@@ -1,0 +1,131 @@
+.card-header
+{
+	font-family: "Times New Roman";
+	font-size: 18px;
+	color: white;
+	background-color: #104E8B;
+	padding: 0px;
+	margin: 0px;
+}
+
+.line
+{
+	font-family: "Garamond";
+	display: table-cell;
+	width: 50px;
+	height: 16px;
+	border-bottom: 1px solid #104E8B;
+	text-transform: uppercase;
+	font-weight: bolder;
+	padding: 0px;
+	margin: 0px;
+	line-height:16px;
+	font-size: 24px;
+	
+}
+
+.label
+{
+	font-family: "Garamond";
+	font-size: 18px;
+	color: #104E8B;
+	font-weight: bold;
+	padding: 0px;
+	margin: 0px;
+	line-height:16px;
+
+	
+}
+.lineName
+{
+	font-family: "Garamond";
+	font-size: 20px;
+	text-transform: uppercase;
+	color: #000000;
+	font-weight: bolder;
+	padding: 0px;
+	margin: 0px;
+	
+}
+.labelName
+{
+	font-family: "Garamond";
+	font-size: 18px;
+	color: #104E8B;
+	font-weight: bold;
+	padding: 0px;
+	margin: 0px;
+
+	
+}
+.Names
+{
+	font-family: "Garamond";
+	text-transform: uppercase;
+	font-weight: bolder;
+	padding: 0px;
+	margin: 0px;
+	line-height:18px;
+	color: #000000;
+}
+.lineNameSig
+{
+	font-family: "Garamond";
+	display: table-cell;
+	width: 500px;
+	height: 16px;
+	border-bottom: 1px solid black;
+	text-transform: uppercase;
+	font-weight: bolder;
+	padding: 1px;
+	margin: 1px;
+	line-height:3px;
+	color: #000000;
+	
+}
+
+
+.label1
+{
+	font-family: "Garamond";
+	font-size: 18px;
+	color:#104E8B;
+	font-weight: bold;
+	padding: 0px;
+	margin: 0px;
+	line-height:0px;
+	
+
+}
+.col, .col-1, .col-2, .col-3, .col-4, .col-5 .col-6
+{
+	padding-left: 0px;
+	margin-left: 0px;
+}
+
+.col u
+{
+	font-family: "Garamond";
+	text-transform: uppercase;
+	font-weight: bolder;
+	
+}
+hr
+{
+	background-color: #fff;
+	border-top: 3px dashed #8c8b8b;
+	line-height:1px;
+
+}
+.resultlabel{
+	font-weight: bolder;
+	font-size: 15px;
+	border-bottom: 1px solid  #104E8B;
+    border-top: 5px solid  #104E8B;
+    margin: 3px;
+    padding: 1px;
+}
+.LN{
+	font-weight: bold;
+	font-family: "Garamond";
+}

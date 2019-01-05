@@ -1,0 +1,8 @@
+added at table "qpd_labresult" 
+column 
+UriLE = Leukocyte Esterase
+UriNi = Nitrite
+UriUB = Urobilinogen
+UriBl = Blood
+UriKe = Ketone
+UriBi = Bilirubin
