@@ -630,7 +630,7 @@ hr
 	</div>
 </div>
 <div class="col-md-10">
-<div class="card" style="border-radius: 0px; margin-top: 40px;">
+<div class="card" style="border-radius: 0px; margin-top: 30px;">
 	<div class="card-block" style="height: 1.3in;" >
 			<div class="row">
 				<div class="col" style="padding-left: 0px"><center><span class="Names"><br><b><?php echo $data['Received'] ?></b></span></center></div>

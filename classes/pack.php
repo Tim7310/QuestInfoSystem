@@ -4,7 +4,7 @@ class pack {
 	public function fetch_all(){
 		global $pdo;
 
-		$query = $pdo->prepare("SELECT * FROM qpd_items WHERE ItemType LIKE 'Cash%' ORDER BY ItemID desc");
+		$query = $pdo->prepare("SELECT * FROM qpd_items WHERE ItemType LIKE 'Cash%' ORDER BY ItemName asc");
 		$query->execute();
 
 		return $query->fetchAll();

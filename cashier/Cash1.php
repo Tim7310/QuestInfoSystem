@@ -55,6 +55,9 @@ $TransNo = randomDigits();
 <script type="text/javascript" src="../source/popper.min.js"></script>
 <script type="text/javascript" src="../source/jquery.min.js"></script>
 <script type="text/javascript" src="../source/printThis/printThis.js"></script>
+
+<link rel="stylesheet" type="text/css" href="../source/Searchable-Dropdown/src/selectstyle.css">
+<script type="text/javascript" src="../source/Searchable-Dropdown/src/selectstyle.js"></script>
 <style type="text/css">
 	.btn{
 		cursor: pointer;
@@ -198,7 +201,8 @@ include_once('cashsidebar.php');
 	<div class="row" style="margin-top: 10px;">
 		<div class="col">
 			<div class="input-group">
-			  <select class="custom-select" id="itemList" name="itemList" aria-label="Select Item Here" style="">
+			  <select class="custom-select" id="itemList" name="itemList" aria-label="Select Item Here" style="" 
+			  placeholder="Select Item Here">
 			   		<?php foreach ($packData as $key){ ?>
 						
 						<option value="<?php echo $key['ItemID'];?>"><?php echo $key['ItemName']." ".$key['ItemDescription']." | ". $key['ItemPrice'];?></option>
@@ -223,7 +227,6 @@ include_once('cashsidebar.php');
 		 		 </div>
 			</div>
 		</div>
-
 
 	</div>
 
@@ -434,6 +437,12 @@ include_once('cashsidebar.php');
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.form/4.2.2/jquery.form.min.js" integrity="sha384-FzT3vTVGXqf7wRfy8k4BiyzvbNfeYjK+frTVqZeNDFl8woCbF0CYG6g2fMEFFo/i" crossorigin="anonymous"></script>
 <script type="text/javascript">
 	$(document).ready(function(){
+		$('#itemList').selectstyle({
+			width  : 400,
+			height : 300,
+			theme  : 'light',
+			onchange : function(val){}
+		});
 		verify();
 		//var xx = new array
 		//$("input[name=print]").attr("disabled", "disabled");

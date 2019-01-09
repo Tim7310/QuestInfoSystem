@@ -6,7 +6,7 @@ include_once('../classes/qc.php');
 include_once('../classes/lab.php');
 date_default_timezone_set("Asia/Kuala_Lumpur");
 $printdate = date("Y-m-d H:i:s");
-$_GET['id'] = 4;
+$_GET['id'] = 1;
 $_GET['tid'] = 0000000000004;
 $tid = $_GET['tid'];
 

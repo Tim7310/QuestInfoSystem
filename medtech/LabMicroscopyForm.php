@@ -73,7 +73,7 @@
 {
 	font-family: "Garamond";
 	display: table-cell;
-	width: 50px;
+	/*width: 50px;*/
 	height: 18px;
 	line-height: 18px;
 	font-size: 18px;
@@ -315,7 +315,42 @@
 	</div>
 	</div>
 </div>
-<div class="col-sm-20" style="border-radius: 0px; margin-top: 7px; color: black; ">
+<!--Footer-->
+<div style="position: absolute;margin-top: 730px;margin-left:-10px;">
+	<div class="col-md-12 ">
+	<span style="font-size: 12px;">Note: Specimen rechecked, result/s verified.</span>
+	<div class="card" style="border-radius: 0px; margin-top: 10px;">
+		<div class="card-block" style="height: 1.3in;" >
+				<div class="row">
+					<div class="col" style="padding-left: 0px"><center><span class="Names"><br>
+						<b><?php echo $data['Received'] ?></b></span></center></div>
+					<div class="col" style="padding-left: 0px"><center><span class="Names"><br>
+						<b><?php echo $data1['QC'] ?></b></span></center></div>
+					<div class="col" style="padding-left: 0px"><center><span class="Names"><br>
+						<b><?php echo $data['Printed'] ?></b></span></center></div>
+				</div>
+				<div class="row">
+					<div class="col" style="padding-left: 0px"><center><span class="lineNameSig"><br>
+						<b>LIC NO. <?php echo $data['RMTLIC'] ?></b></span></center></div>
+					<div class="col" style="padding-left: 0px"><center><span class="lineNameSig"><br>
+						<b>LIC NO. <?php echo $data1['QCLicense'] ?></b></span></center></div>
+					<div class="col" style="padding-left: 0px"><center><span class="lineNameSig"><br>
+						<b>LIC NO. <?php echo $data['PATHLIC'] ?></b></span></center></div>
+				</div>
+				<div class="row">
+					<div class="col"><center><p class="labelName">Registered Medical Technologist</p></center></div>
+					<div class="col"><center><p class="labelName">Quality Control</p></center></div>
+					<div class="col"><center><p class="labelName">Pathologist</p></center></div>		
+				</div>
+		</div>
+	</div>
+	</div>
+	<div class="col-md-10">
+		<img src="../assets/QISFooter.png" height="50px" width="100%">
+	</div>
+</div>
+<!-- Footer End -->
+<div class="col-sm-20" style="border-radius: 0px; margin-top: 2px; color: black; ">
 
 	  
 	  
@@ -326,85 +361,92 @@
 	<div class="row">
 	    <div class="col-3"><p class="label">TEST</p></div>
 	    <div class="col-2"><p class="label"></p></div>
-	    <div class="col-3"><p class="label">SI Units</p></div>
+	    <div class="col-3"><p class="label"></p></div>
 	    <div class="col-1"><p class="label"></p></div>
-	    <div class="col-3"><p class="label">Conventional Units</p></div>
+	    <div class="col-3"><p class="label"></p></div>
 	</div>
 	<hr>
-<!-- U/A -->	
+<!-- U/A -->
+<div class="row">
+	<?php if($data['UriColor'] != '' and $data['UriColor'] != "N/A" and $data['UriColor'] != "-"){ ?>
+<div class="col-7">	
 				<div class="row" style="margin-top: 5px;">
-	            	<div class="col-3 ">
+	            	<div class="col-12" style="padding-left: 0px">
 	            		<b>CLINICAL MICROSCOPY</b>
 	            	</div>
 				</div>
 				<div class="row" style="margin-top: 5px;">
-	            	<div class="col-3 ">
+	            	<div class="col-12 " style="padding-left: 0px">
 	            		<b>Complete Urinalysis</b>
 	            	</div>
 				</div>
 			<div class="col-12" style="margin-top: 5px;">
 				<div class="row">
-					<div class="col-5"><p class="labelName">Color</p></div>
-					<div class=""><p class="lineRes"><?php echo $data['UriColor'] ?></p></div>
+					<div class="col-4"><p class="labelName">Color</p></div>
+					<div class="col-2"><p class="lineRes"><?php echo $data['UriColor'] ?></p></div>
 				</div>
 				<div class="row" style="margin-top: 5px;">
-					<div class="col-5"><p class="labelName">Transparency</p></div>
-					<div class=""><p class="lineRes"><?php echo $data['UriTrans'] ?></p></div>
+					<div class="col-4"><p class="labelName">Transparency</p></div>
+					<div class="col-2"><p class="lineRes"><?php echo $data['UriTrans'] ?></p></div>
 				</div>
 			</div>
 
 			<div class="row" style="margin-top: 10px;">
-	            	<div class="col-3 ">
+	            	<div class="col-4 ">
 	            		<b>Urine Chemical</b>
 	            	</div>
 			</div>
 			<div class="col-12" style="margin-top: 5px;">
 				<div class="row" style="margin-top: 5px;">
-					<div class="col-5" ><p class="labelName">pH</p></div>
+					<div class="col-4" ><p class="labelName">pH</p></div>
 					<div class="col-2"><p class="lineRes"><?php echo $data['UriPh'] ?></p></div>
 				</div>
 				<div class="row" style="margin-top: 5px;">
-					<div class="col-5"><p class="labelName">Specific Gravity</p></div>
+					<div class="col-4"><p class="labelName">Specific Gravity</p></div>
 					<div class="col-2"><p class="lineRes"><?php echo $data['UriSp'] ?></p></div>
 				</div>
 				<div class="row" style="margin-top: 5px;">
-					<div class="col-5"><p class="labelName">Protein</p></div>
+					<div class="col-4"><p class="labelName">Protein</p></div>
 					<div class="col-2"><p class="lineRes"><?php echo $data['UriPro'] ?></p></div>
 				</div>
 				<div class="row" style="margin-top: 5px;">
-					<div class="col-5"><p class="labelName">Glucose</p></div>
+					<div class="col-4"><p class="labelName">Glucose</p></div>
 					<div class="col-2"><p class="lineRes"><?php echo $data['UriGlu'] ?></p></div>
 				</div>
 				<div class="row" style="margin-top: 5px;">
-					<div class="col-5"><p class="labelName">Leukocyte Esterase</p></div>
+					<div class="col-4"><p class="labelName">Leukocyte Esterase</p></div>
 					<div class="col-2"><p class="lineRes"><?php echo $data['LE'] ?></p></div>
 				</div>
 				<div class="row" style="margin-top: 5px;">
-					<div class="col-5"><p class="labelName">Nitrite</p></div>
+					<div class="col-4"><p class="labelName">Nitrite</p></div>
 					<div class="col-2"><p class="lineRes"><?php echo $data['LE'] ?></p></div>
 				</div>
 				<div class="row" style="margin-top: 5px;">
-					<div class="col-5"><p class="labelName">Urobilinogen</p></div>
+					<div class="col-4"><p class="labelName">Urobilinogen</p></div>
 					<div class="col-2"><p class="lineRes"><?php echo $data['URO'] ?></p></div>
-					<div class="col-3"><p class="labelName">mg/dl</p></div>
-					<div class="col-2"><p class="labelName">0.2~0.9 mg/dl</p></div>
+					<div class="col-2"><p class="labelName" style="padding-left: 25px">mg/dl</p></div>
+					<div class="col-3"><p class="labelName"style="padding-left: 0px">0.2~0.9 mg/dl</p></div>
 				</div>
 				<div class="row" style="margin-top: 5px;">
-					<div class="col-5"><p class="labelName">Blood</p></div>
-					<div class="col-2"><p class="lineRes"><?php echo $data['BLD'] ?></p></div>
+					<div class="col-4"><p class="labelName">Blood</p></div>
+					<div class="col-3"><p class="lineRes"><?php echo $data['BLD'] ?></p></div>
 				</div>
 				<div class="row" style="margin-top: 5px;">
-					<div class="col-5"><p class="labelName">Ketone</p></div>
-					<div class="col-2"><p class="lineRes"><?php echo $data['KET'] ?></p></div>
+					<div class="col-4"><p class="labelName">Ketone</p></div>
+					<div class="col-3"><p class="lineRes"><?php echo $data['KET'] ?></p></div>
 				</div>
 				<div class="row" style="margin-top: 5px;">
-					<div class="col-5"><p class="labelName">Bilirubin</p></div>
-					<div class="col-2"><p class="lineRes"><?php echo $data['BIL'] ?></p></div>
+					<div class="col-4"><p class="labelName">Bilirubin</p></div>
+					<div class="col-3"><p class="lineRes"><?php echo $data['BIL'] ?></p></div>
 				</div>
 			</div>
-
+</div>
+<?php } ?>
+<div class="col-5">
+<!-- microscopic -->
+<?php if($data['UriColor'] != '' and $data['UriColor'] != "N/A"  and $data['UriColor'] != "-"){ ?>
 			<div class="row" style="margin-top: 10px;">
-	            	<div class="col-3 ">
+	            	<div class="col-4 ">
 	            		<b>Microscopic</b>
 	            	</div>
 			</div>
@@ -413,9 +455,9 @@
 					if($data['RBC'] != "" and $data['RBC'] != "N/A"){
 				?>
 				<div class="row" >
-					<div class="col-5"><p class="labelName">RBC</p></div>
-					<div class="col-2"><p class="lineRes"><?php echo $data['RBC'] ?></p></div>
-					<div class="col-3"><p class="labelName">/hpf</p></div>
+					<div class="col-4"><p class="labelName">RBC</p></div>
+					<div class="col-3"><p class="lineRes"><?php echo $data['RBC'] ?></p></div>
+					<div class="col-2"><p class="labelName">/hpf</p></div>
 					<div class="col-2"><p class="labelName">0~3</p></div>
 				</div>
 				<?php
@@ -423,9 +465,9 @@
 					if($data['WBC'] != "" and $data['WBC'] != "N/A"){
 				?>
 				<div class="row" style="margin-top: 5px;">
-					<div class="col-5"><p class="labelName">WBC</p></div>
-					<div class="col-2"><p class="lineRes"><?php echo $data['WBC'] ?></p></div>
-					<div class="col-3"><p class="labelName">/hpf</p></div>
+					<div class="col-4"><p class="labelName">WBC</p></div>
+					<div class="col-3"><p class="lineRes"><?php echo $data['WBC'] ?></p></div>
+					<div class="col-2"><p class="labelName">/hpf</p></div>
 					<div class="col-2"><p class="labelName">0~5</p></div>
 				</div>
 				<?php
@@ -433,29 +475,29 @@
 					if($data['ECells'] != "" and $data['ECells'] != "N/A"){
 				?>
 				<div class="row" style="margin-top: 5px;">
-					<div class="col-5"><p class="labelName">E.Cells</p></div>
-					<div class="col-2"><p class="lineRes"><?php echo $data['ECells'] ?></p></div>
+					<div class="col-4"><p class="labelName">E.Cells</p></div>
+					<div class="col-3"><p class="lineRes"><?php echo $data['ECells'] ?></p></div>
 				</div>
 				<?php 
 				}
 					if($data['MThreads'] != "" and $data['MThreads'] != "N/A"){
 				?>
 				<div class="row" style="margin-top: 5px;">
-					<div class="col-5"><p class="labelName">M.Threads</p></div>
-					<div class="col-2"><p class="lineRes"><?php echo $data['MThreads'] ?></p></div>
+					<div class="col-4"><p class="labelName">M.Threads</p></div>
+					<div class="col-3"><p class="lineRes"><?php echo $data['MThreads'] ?></p></div>
 				</div>
 				<?php } ?>
 				<?php 
 					if($data['Bac'] != "" and $data['Bac'] != "N/A"){
 				?>
 				<div class="row" style="margin-top: 5px;">
-					<div class="col-5"><p class="labelName">Bacteria</p></div>
-					<div class="col-2"><p class="lineRes"><?php echo $data['Bac'] ?></p></div>
+					<div class="col-4"><p class="labelName">Bacteria</p></div>
+					<div class="col-3"><p class="lineRes"><?php echo $data['Bac'] ?></p></div>
 				</div>
 				<?php } ?>
 			</div>
-
-			<hr>
+<?php } ?>
+<!-- fecalysis -->
 <div id="checkFecalysis" >
 			<?php 
 				if($data['FecColor'] != "" and $data['FecColor'] != "-"){
@@ -463,7 +505,7 @@
 
 			 ?>
 			<div class="row" style="margin-top: 10px;" >
-	            	<div class="col-3 ">
+	            	<div class="col-12" style="padding-left: 0px">
 	            		<b>ROUTINE FECALYSIS</b>
 	            	</div>
 			</div>
@@ -474,8 +516,8 @@
 					if ($data['FecColor'] != "" ) {
 				 ?>
 				<div class="row" id="checkFecColor">
-					<div class="col-5"><p class="labelName">Color</p></div>
-					<div class="col-2"><p class="lineRes" id="FecColortxt"><?php echo $data['FecColor'] ?></p></div>
+					<div class="col-4" ><p class="labelName">Color</p></div>
+					<div class="col-8"><p class="lineRes" id="FecColortxt"><?php echo $data['FecColor'] ?></p></div>
 
 				</div>
 				<?php 
@@ -485,24 +527,26 @@
 
 
 				<div class="row" id="checkFecCon" style="margin-top: 5px;">
-					<div class="col-5"><p class="labelName">Consistency</p></div>
-					<div class="col-2"><p class="lineRes" id="FecContxt"><?php echo $data['FecCon'] ?></p></div>
+					<div class="col-4"><p class="labelName">Consistency</p></div>
+					<div class="col-8"><p class="lineRes" id="FecContxt"><?php echo $data['FecCon'] ?></p></div>
 				</div>
 				<?php 
 					}
 					if ($data['FecMicro'] != "" and $data['FecMicro'] != "N/A") {
 				 ?>
 				<div class="row" id="checkFecMicro" style="margin-top: 5px;">
-					<div class="col-5"><p class="labelName">Microscopic Findings</p></div>
-					<div class="col-2"><p class="lineRes" id="FecMicrotxt"><?php echo $data['FecMicro'] ?></p></div>
+					<div class="col-4"><p class="labelName">Microscopic Findings</p></div>
+					<div class="col-8"><p class="lineRes" id="FecMicrotxt"><?php echo $data['FecMicro'] ?></p></div>
 				</div>
 				<?php }} ?>
 			</div>
 </div>
 </div>
+</div>
+</div>
 <!--Footer-->
 
-	<div class="col-sm-14 " style="margin-top: 0px;">
+<!-- <div class="col-sm-14 " style="margin-top: 0px;">
 	<span style="font-size: 15px;">Note: Specimen rechecked, result/s verified.</span>
 	<div class="card" style="border-radius: 0px; margin-top: 10px;">
 		<div class="card-block" style="height: 1.3in;" >
@@ -533,7 +577,7 @@
 	<div class="col-md-14" style="margin-top: 24px; position: fixed;">
 		<img src="../assets/QISFooter.png" height="50px" width="100%">
 	</div>
-</div>
+</div> -->
 
 
 

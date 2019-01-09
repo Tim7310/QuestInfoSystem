@@ -68,7 +68,7 @@ if(mysqli_num_rows($result) == 0)
     if ($conn->query($sqlinsert) === TRUE && $conn->query($sqlinsert1) === TRUE) 
     {
     	echo "<script> alert('Record Added Successfully'); </script>";
-    	echo "<script>window.open('LabMicroscopy.php','_self');</script>";
+    	echo "<script>window.open('LabMicroscopyView.php?id=$PatientID&tid=$id','_self');</script>";
     } 
     else
     {
