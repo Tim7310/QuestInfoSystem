@@ -81,7 +81,7 @@ include_once('labsidebar.php');
 					<div class="col col-md-auto">
 						<label>SR No.: </label><br>
 						<b><?php echo $trans['TransactionID'] ?></b>
-						<input type="hidden" name="id" value="<?php echo $data['TransactionID'] ?>">
+						<input type="hidden" name="tid" value="<?php echo $data['TransactionID'] ?>">
 					</div>
 					<div class="col">
 						<label>Name:</label><br>
@@ -314,31 +314,61 @@ include_once('labsidebar.php');
 	            	</div>
 				</div>
 				<div class="form-group row">
-					<div class="col">
-		            	<input type="text" name="Clinician" class="form-control" placeholder="Clinician/Walk-In" value="<?php echo $data['Clinician'] ?>">
-		            </div>
-	            	<div class="col">
-	            		<input type="text" name="Received" class="form-control" placeholder=" Medical Technologist" value="<?php echo $data['Received'] ?>">
-	            	</div>
-	            	<div class="col">
-	            		<input type="text" name="qc" class="form-control" placeholder=" Quality Control" value="<?php echo $data1['QC'] ?>">
-	            	</div>
-	            	<div class="col">
-	            		<input type="text" name="Printed" class="form-control" value="<?php echo $data['Printed'] ?>" >
-	            	</div>
-				</div>
-				<div class="form-group row">
+				<div class="col">
+						<input type="text" name="Clinician" class="form-control" value ='' placeholder="Clinician/Walk-In">   
+	            </div>
+	            <div class="col">
+	            	<select class="form-control" name="MedTechID">
+	            		<?php  
+	            			$medtech = $lab->medtech();
+	            				foreach ($medtech as $key) {
+	            					if ($key['LicenseNO'] == $data['RMTLIC']){
+		            				$select = 'selected';
+		            				}else{
+		            					$select = '';
+		            				}
+	            				
+	            		?>
+						<option value="<?php echo $key['personnelID'] ?>">
+							<?php echo $key['FirstName']." ".$key['MiddleName']." ".$key['LastName'].", ".$key['PositionEXT']?>	
+						</option>
+					<?php } ?>
+					</select>
+	            	
+	            </div>
+	            <div class="col">
+	            	<select class="form-control" name="qcID">
+	            		<?php  
+	            			foreach ($medtech as $key) {
+	            				if ($key['LicenseNO'] == $data['QCLIC']){
+	            				$select = 'selected';
+	            				}else{
+	            					$select = '';
+	            				}
+	            				
+	            		?>
+						<option value="<?php echo $key['personnelID'] ?>" <?php echo $select;?>>
+							<?php echo $key['FirstName']." ".$key['MiddleName']." ".$key['LastName'].", ".$key['PositionEXT']?>	
+						</option>
+					<?php } ?>
+					</select>
+	            </div>
+	            <div class="col">
+	            	<input type="text" name="Printed" class="form-control" value="Emiliano Dela Cruz,MD">
+	            </div>
+			</div>
+			<div class="form-group row">
 				<div class="col">
 	            	
-	         </div>
-	            <div class="col">
-	            	<input type="text" name="RMTLIC" class="form-control" placeholder=" Medical Technologist License" value="<?php echo $data['RMTLIC'] ?>">
 	            </div>
 	            <div class="col">
-	            	<input type="text" name="QCLIC" class="form-control"  placeholder="Quality Control License" value="<?php echo $data1['QCLicense'] ?>">
+	            	<!-- <input type="text" name="RMTLIC" class="form-control" value ='0075119' placeholder=" Medical Technologist License"> -->
 	            </div>
 	            <div class="col">
-	            	<input type="text" name="PATHLIC" class="form-control" placeholder="Pathologist License" value="<?php echo $data['PATHLIC'] ?>">
+	            	<!-- <input type="text" name="QCLIC" class="form-control" value ='0076211' placeholder="Quality Control License"> -->
+	            </div>
+	            <div class="col">
+	            	<input type="text" name="PATHLIC" class="form-control" value="0073345" placeholder="Pathologist License">
 	            </div>
 			</div>
 			<div class="form-group row">

@@ -2,6 +2,8 @@
 include_once('../connection.php');
 include_once('../classes/trans.php');
 include_once('../classes/patient.php');
+include_once('../classes/lab.php');
+$lab = new lab();
 $tid = $_GET['tid'];
 $patient = new Patient;
 if (isset($_GET['id'])){
@@ -75,7 +77,7 @@ include_once('labsidebar.php');
 					<div class="col col-md-auto">
 						<label>SR No.: </label><br>
 						<b><?php echo $trans['TransactionID'] ?></b>
-						<input type="hidden" name="id" value="<?php echo $trans['TransactionID'] ?>">
+						<input type="hidden" name="tid" value="<?php echo $trans['TransactionID'] ?>">
 						
 					</div>
 					<div class="col">
@@ -281,13 +283,33 @@ include_once('labsidebar.php');
 
 			<div class="form-group row">
 				<div class="col">
-	            	<input type="text" name="Clinician" class="form-control" placeholder="Clinician/Walk-In">
+						<input type="text" name="Clinician" class="form-control" value ='' placeholder="Clinician/Walk-In">   
 	            </div>
 	            <div class="col">
-	            	<input type="text" name="Received" class="form-control" value ='Jayanara May S. Capulong,RMT' placeholder=" Medical Technologist">
+	            	<select class="form-control" name="MedTechID">
+	            		<?php  
+	            			$medtech = $lab->medtech();
+	            				foreach ($medtech as $key) {
+	            				
+	            		?>
+						<option value="<?php echo $key['personnelID'] ?>">
+							<?php echo $key['FirstName']." ".$key['MiddleName']." ".$key['LastName'].", ".$key['PositionEXT']?>	
+						</option>
+					<?php } ?>
+					</select>
+	            	
 	            </div>
 	            <div class="col">
-	            	<input type="text" name="qc" class="form-control" value ='Althea Joy S. Padios,RMT' placeholder=" Quality Control">
+	            	<select class="form-control" name="qcID">
+	            		<?php  
+	            				foreach ($medtech as $key) {
+	            				
+	            		?>
+						<option value="<?php echo $key['personnelID'] ?>">
+							<?php echo $key['FirstName']." ".$key['MiddleName']." ".$key['LastName'].", ".$key['PositionEXT']?>	
+						</option>
+					<?php } ?>
+					</select>
 	            </div>
 	            <div class="col">
 	            	<input type="text" name="Printed" class="form-control" value="Emiliano Dela Cruz,MD">
@@ -298,10 +320,10 @@ include_once('labsidebar.php');
 	            	
 	            </div>
 	            <div class="col">
-	            	<input type="text" name="RMTLIC" class="form-control" value ='0075119' placeholder=" Medical Technologist License">
+	            	<!-- <input type="text" name="RMTLIC" class="form-control" value ='0075119' placeholder=" Medical Technologist License"> -->
 	            </div>
 	            <div class="col">
-	            	<input type="text" name="QCLIC" class="form-control" value =' 0076211' placeholder="Quality Control License">
+	            	<!-- <input type="text" name="QCLIC" class="form-control" value ='0076211' placeholder="Quality Control License"> -->
 	            </div>
 	            <div class="col">
 	            	<input type="text" name="PATHLIC" class="form-control" value="0073345" placeholder="Pathologist License">

@@ -16,7 +16,7 @@ $row = $stmt->fetch(PDO::FETCH_ASSOC);
 $cashierName =  $row['userName'];
 $pack = new Pack;
 $packData = $pack->fetch_all();
-$biller = "Alorica";//biller here
+$biller = "";//biller here
 
 $trans = new trans;
 $pat = new Patient;

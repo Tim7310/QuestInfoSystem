@@ -302,7 +302,7 @@
 	        <p class="labelName">Reported:</p>
 	    </div>
 	    <div class="col col-sm-auto">
-	        <u><?php echo $data['DateUpdate'] ?></u>
+	        <u><?php echo $data['CreationDate'] ?></u>
 	    </div>
 	    <div class="col"></div>
 	    <div class="col col-sm-auto">
@@ -409,36 +409,56 @@
 	            	</div>
 			</div>
 			<div class="col-12" style="margin-top: 5px;">
+				<?php 
+					if($data['RBC'] != "" and $data['RBC'] != "N/A"){
+				?>
 				<div class="row" >
 					<div class="col-5"><p class="labelName">RBC</p></div>
 					<div class="col-2"><p class="lineRes"><?php echo $data['RBC'] ?></p></div>
 					<div class="col-3"><p class="labelName">/hpf</p></div>
 					<div class="col-2"><p class="labelName">0~3</p></div>
 				</div>
+				<?php
+				} 
+					if($data['WBC'] != "" and $data['WBC'] != "N/A"){
+				?>
 				<div class="row" style="margin-top: 5px;">
 					<div class="col-5"><p class="labelName">WBC</p></div>
 					<div class="col-2"><p class="lineRes"><?php echo $data['WBC'] ?></p></div>
 					<div class="col-3"><p class="labelName">/hpf</p></div>
 					<div class="col-2"><p class="labelName">0~5</p></div>
 				</div>
+				<?php
+				} 
+					if($data['ECells'] != "" and $data['ECells'] != "N/A"){
+				?>
 				<div class="row" style="margin-top: 5px;">
 					<div class="col-5"><p class="labelName">E.Cells</p></div>
 					<div class="col-2"><p class="lineRes"><?php echo $data['ECells'] ?></p></div>
 				</div>
+				<?php 
+				}
+					if($data['MThreads'] != "" and $data['MThreads'] != "N/A"){
+				?>
 				<div class="row" style="margin-top: 5px;">
 					<div class="col-5"><p class="labelName">M.Threads</p></div>
 					<div class="col-2"><p class="lineRes"><?php echo $data['MThreads'] ?></p></div>
 				</div>
+				<?php } ?>
+				<?php 
+					if($data['Bac'] != "" and $data['Bac'] != "N/A"){
+				?>
 				<div class="row" style="margin-top: 5px;">
 					<div class="col-5"><p class="labelName">Bacteria</p></div>
 					<div class="col-2"><p class="lineRes"><?php echo $data['Bac'] ?></p></div>
 				</div>
+				<?php } ?>
 			</div>
 
 			<hr>
 <div id="checkFecalysis" >
 			<?php 
-				if($data['FecColor'] != ""){
+				if($data['FecColor'] != "" and $data['FecColor'] != "-"){
 
 
 			 ?>
@@ -451,7 +471,7 @@
 			<div class="col-12"  style="margin-top: 5px;" id="checkResult">
 				<?php 
 
-					if ($data['FecColor'] != "") {
+					if ($data['FecColor'] != "" ) {
 				 ?>
 				<div class="row" id="checkFecColor">
 					<div class="col-5"><p class="labelName">Color</p></div>
@@ -470,7 +490,7 @@
 				</div>
 				<?php 
 					}
-					if ($data['FecMicro'] != "") {
+					if ($data['FecMicro'] != "" and $data['FecMicro'] != "N/A") {
 				 ?>
 				<div class="row" id="checkFecMicro" style="margin-top: 5px;">
 					<div class="col-5"><p class="labelName">Microscopic Findings</p></div>
@@ -490,7 +510,7 @@
 					<div class="col" style="padding-left: 0px"><center><span class="Names"><br>
 						<b><?php echo $data['Received'] ?></b></span></center></div>
 					<div class="col" style="padding-left: 0px"><center><span class="Names"><br>
-						<b><?php echo $data1['QC'] ?></b></span></center></div>
+						<b><?php echo $data['QC'] ?></b></span></center></div>
 					<div class="col" style="padding-left: 0px"><center><span class="Names"><br>
 						<b><?php echo $data['Printed'] ?></b></span></center></div>
 				</div>

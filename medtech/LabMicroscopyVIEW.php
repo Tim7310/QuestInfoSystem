@@ -351,7 +351,7 @@ include_once('labsidebar.php');
 			<div class="form-group row">
 				<div class="col-3">Quality Control:</div>
 	            <div class="col">
-	            	<p><?php echo $data1['QC'] ?> / <?php echo $data1['QCLicense'] ?></p>
+	            	<p><?php echo $data['QC'] ?> / <?php echo $data['QCLIC'] ?></p>
 	            </div>
 			</div>
 			<div class="form-group row">

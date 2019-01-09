@@ -2,6 +2,8 @@
 include_once('../connection.php');
 include_once('../classes/trans.php');
 include_once('../classes/patient.php');
+include_once('../classes/lab.php');
+$lab = new lab();
 $tid = $_GET['tid'];
 $patient = new Patient;
 if (isset($_GET['id'])){
@@ -12,6 +14,8 @@ $transac = new trans;
 if (isset($_GET['id'])){
 	$id = $_GET['id'];
 	$trans = $transac->fetch_data($id,$tid);
+
+
 ?>
 
 <html>
@@ -182,7 +186,7 @@ include_once('labsidebar.php');
 					</div>
 					<div class="col col-md-auto">
 						<label>SR No.: </label><br>
-						<input type="hidden" name="id" value="<?php echo $trans['TransactionID'] ?>">
+						<input type="hidden" name="tid" value="<?php echo $trans['TransactionID'] ?>">
 						<b><?php echo $trans['TransactionID'] ?></b>
 					</div>
 					<div class="col col-md-auto">
@@ -192,7 +196,7 @@ include_once('labsidebar.php');
 					</div>
 					<div class="col col-md-auto">
 						<label>Name:</label><br>
-						<input type="hidden" name="id" value="<?php echo $data['PatientID'] ?>">
+						<!-- <input type="hidden" name="pid" value="<?php echo $data['PatientID'] ?>"> -->
 						<input type="hidden" name="lasnam" value="<?php echo $data['LastName'] ?>">
 						<input type="hidden" name="firnam" value="<?php echo $data['FirstName'] ?>">
 						<input type="hidden" name="midnam" value="<?php echo $data['MiddleName'] ?>">
@@ -501,13 +505,33 @@ include_once('labsidebar.php');
 
 			<div class="form-group row">
 				<div class="col">
-	            	<input type="text" name="Clinician" class="form-control" value ='Hazel Collen Villegas,RMT' placeholder="Clinician/Walk-In">
+						<input type="text" name="Clinician" class="form-control" value ='' placeholder="Clinician/Walk-In">   
 	            </div>
 	            <div class="col">
-	            	<input type="text" name="Received" class="form-control" value ='Jayanara May S. Capulong,RMT' placeholder=" Medical Technologist">
+	            	<select class="form-control" name="MedTechID">
+	            		<?php  
+	            			$medtech = $lab->medtech();
+	            				foreach ($medtech as $key) {
+	            				
+	            		?>
+						<option value="<?php echo $key['personnelID'] ?>">
+							<?php echo $key['FirstName']." ".$key['MiddleName']." ".$key['LastName'].", ".$key['PositionEXT']?>	
+						</option>
+					<?php } ?>
+					</select>
+	            	
 	            </div>
 	            <div class="col">
-	            	<input type="text" name="qc" class="form-control" value ='Mark Timothy Rivera,RMT' placeholder=" Quality Control">
+	            	<select class="form-control" name="qcID">
+	            		<?php  
+	            				foreach ($medtech as $key) {
+	            				
+	            		?>
+						<option value="<?php echo $key['personnelID'] ?>">
+							<?php echo $key['FirstName']." ".$key['MiddleName']." ".$key['LastName'].", ".$key['PositionEXT']?>	
+						</option>
+					<?php } ?>
+					</select>
 	            </div>
 	            <div class="col">
 	            	<input type="text" name="Printed" class="form-control" value="Emiliano Dela Cruz,MD">
@@ -518,10 +542,10 @@ include_once('labsidebar.php');
 	            	
 	            </div>
 	            <div class="col">
-	            	<input type="text" name="RMTLIC" class="form-control" value ='0075119' placeholder=" Medical Technologist License">
+	            	<!-- <input type="text" name="RMTLIC" class="form-control" value ='0075119' placeholder=" Medical Technologist License"> -->
 	            </div>
 	            <div class="col">
-	            	<input type="text" name="QCLIC" class="form-control" value ='0076211' placeholder="Quality Control License">
+	            	<!-- <input type="text" name="QCLIC" class="form-control" value ='0076211' placeholder="Quality Control License"> -->
 	            </div>
 	            <div class="col">
 	            	<input type="text" name="PATHLIC" class="form-control" value="0073345" placeholder="Pathologist License">

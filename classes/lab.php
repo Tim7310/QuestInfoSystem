@@ -26,13 +26,32 @@ class lab {
 	public function fetch_data2($id, $tid){
 			global $pdo;
 
-			$query = $pdo->prepare("SELECT * FROM qpd_labresult WHERE PatientID = ?");
+			$query = $pdo->prepare("SELECT * FROM qpd_labresult WHERE PatientID = ? and TransactionID = ?");
 			$query->bindValue(1, $id);
+			$query->bindValue(2, $tid);
 			$query->execute();
 
 			return $query->fetch();
 	}
+	public function medtech(){
+		global $pdo;
+
+		$query = $pdo->prepare("SELECT * FROM lab_personnel WHERE Position = 'MEDICAL TECHNOLOGIST'");
+		$query->execute();
+
+		return $query->fetchAll();
+	}
+	public function medtechByID($id){
+		global $pdo;
+
+		$query = $pdo->prepare("SELECT * FROM lab_personnel WHERE personnelID = ? ");
+		$query->bindValue(1, $id);
+		$query->execute();
+
+		return $query->fetch();
+	}
 
 
 }
+
 ?>

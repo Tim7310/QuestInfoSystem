@@ -380,8 +380,8 @@
 					<div class="col-4"><p class="labelName">Hemoglobin</p></div>
 					<div class="col-2"><p class="lineRes"><?php echo $data['Hemoglobin'] ?></p></div>
 					<div class="col-2"><p class="labelName">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;%</p></div>
-					<div class="col-2"><p class="labelName">M: 137.00~175.00</p></div>
-					<div class="col-2"><p class="labelName">M: 137.00~175.00</p></div>
+					<div class="col-2"><p class="labelName" style="font-size: 16px">M: 137.00~175.00</p></div>
+					<div class="col-2"><p class="labelName" style="font-size: 16px">F: 112.00~157.00</p></div>
 				</div>
 				<div class="row" style="margin: 10px;">
 					<div class="col-4"><p class="labelName">Hematocrit</p></div>
@@ -400,13 +400,13 @@
 				</div>
 				</div>
 
-				<div class="row">
+				<!-- <div class="row">
 
 					<div class="col-5">
 						<br><br><br>
 						<p class="labelName">Blood Type</p></div>
-					<!-- <div class=""><p class="lineRes"><?php echo $data['PLT'] ?>&nbsp;%</p></div> -->
-				</div>
+					<div class=""><p class="lineRes"><?php echo $data['PLT'] ?>&nbsp;%</p></div> 
+				</div> -->
 
 			</div>
 
@@ -423,7 +423,7 @@
 					<div class="col" style="padding-left: 0px"><center><span class="Names"><br>
 						<b><?php echo $data['Received'] ?></b></span></center></div>
 					<div class="col" style="padding-left: 0px"><center><span class="Names"><br>
-						<b><?php echo $data1['QC'] ?></b></span></center></div>
+						<b><?php echo $data['QC'] ?></b></span></center></div>
 					<div class="col" style="padding-left: 0px"><center><span class="Names"><br>
 						<b><?php echo $data['Printed'] ?></b></span></cent	er></div>
 				</div>
@@ -431,7 +431,7 @@
 					<div class="col" style="padding-left: 0px"><center><span class="lineNameSig"><br>
 						<b>LIC NO. <?php echo $data['RMTLIC'] ?></b></span></center></div>
 					<div class="col" style="padding-left: 0px"><center><span class="lineNameSig"><br>
-						<b>LIC NO. <?php echo $data1['QCLicense'] ?></b></span></center></div>
+						<b>LIC NO. <?php echo $data['QCLIC'] ?></b></span></center></div>
 					<div class="col" style="padding-left: 0px"><center><span class="lineNameSig"><br>
 						<b>LIC NO. <?php echo $data['PATHLIC'] ?></b></span></center></div>
 				</div>

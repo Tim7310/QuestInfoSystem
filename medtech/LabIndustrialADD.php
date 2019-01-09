@@ -4,7 +4,7 @@ include_once('../classes/trans.php');
 include_once('../classes/patient.php');
 $patient = new Patient;
 $tid = $_GET['tid'];
-$trans = new trans;
+$transac = new trans;
 if (isset($_GET['id'])){
 	$id = $_GET['id'];
 	$data = $patient->fetch_data($id);
@@ -12,7 +12,7 @@ if (isset($_GET['id'])){
 if (isset($_GET['id'])){
 	$id = $_GET['id'];
 	$tid = $_GET['tid'];
-	$trans = $trans->fetch_data($id,$tid);
+	$trans = $transac->fetch_data($id,$tid);
 ?>
 
 <html>

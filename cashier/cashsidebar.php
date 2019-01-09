@@ -58,7 +58,7 @@ $row = $stmt->fetch(PDO::FETCH_ASSOC);
   </a>
   <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
     <div class="navbar-nav">
-     <a class="nav-item nav-link" href="Cash.php" ><i class="fas fa-home"></i>&nbsp; Home <span class="sr-only">(current)</span></a>
+     <a class="nav-item nav-link" href="Cash1.php" ><i class="fas fa-home"></i>&nbsp; Home <span class="sr-only">(current)</span></a>
       <a class="nav-item nav-link" href="TransactionListCash.php"><i class="fas fa-list-ul"></i>&nbsp; Transaction List</a>
       <a class="nav-item nav-link" href="ItemCash.php"><i class="fas fa-archive"></i>&nbsp; Manage Tests Packages</a>
       <a class="nav-item nav-link" href="CashSalesReport.php"><i class="far fa-newspaper"></i>&nbsp; Sales Report</a>

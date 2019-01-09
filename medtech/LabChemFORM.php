@@ -343,7 +343,7 @@ hr
 	<div class="row">
 	    <div class="col-1"><p class="labelName">Name:</p></div>
 	    <div class="col-6">
-	        <span class="lineName"><?php echo $data['LastName'] ?>,<?php echo $data['FirstName'] ?> <?php echo $data['MiddleName'] ?></span>
+	        <span class="lineName"><?php echo $trans['LastName'] ?>,&nbsp; <?php echo $trans['FirstName'] ?> <?php echo $trans['MiddleName'] ?></span>
 	    </div>
 	    <div class="col-2 text-right">
 	        <p class="labelName">Lab Number:</p>
@@ -355,19 +355,19 @@ hr
 	<div class="row">
 	    <div class="col-1"><p class="labelName">QuestID:</p></div>
 	    <div class="col-6">
-	        <span class="lineName"><?php echo $data['PatientID'] ?></span>
+	        <span class="lineName"><?php echo $trans['PatientID'] ?></span>
 	    </div>
 	</div>
 	<div class="row">
 	    <div class="col-1"><p class="labelName">Age:</p></div>
 	    <div class="col-6">
-	        <span class="lineName"><?php echo $data['Age'] ?></span>
+	        <span class="lineName"><?php echo $trans['Age'] ?></span>
 	    </div>
 	    <div class="col-2 text-right">
 	        <p class="labelName">Gender:</p>
 	    </div>
 	    <div class="col">
-	        <span class="lineName"><?php echo $data['Gender'] ?></span>
+	        <span class="lineName"><?php echo $trans['Gender'] ?></span>
 	    </div>
 	</div>
 	<div class="row">
@@ -379,14 +379,14 @@ hr
 	<div class="row">
 	    <div class="col col-sm-auto"><p class="labelName">Received:</p></div>
 	    <div class="col col-sm-auto">
-	        <u><?php echo $data['CreationDate'] ?></u>
+	        <u><?php echo $trans['CreationDate'] ?></u>
 	    </div>
 	    <div class="col"></div>
 	    <div class="col col-sm-auto">
 	        <p class="labelName">Reported:</p>
 	    </div>
 	    <div class="col col-sm-auto">
-	        <u><?php echo $data['CreationDate'] ?></u>
+	        <u><?php echo $trans['CreationDate'] ?></u>
 	    </div>
 	    <div class="col"></div>
 	    <div class="col col-sm-auto">
@@ -401,7 +401,7 @@ hr
 </div>
 
 <div class="col-md-10" >
-	<div class="card" style="border-radius: 0px; margin-top: 10px;">
+	<div class="card" style="border-radius: 0px; margin-top: 10px;border-width: 0px">
 	<div class="card-header"><center><b>LABORATORY RESULTS</b></center></div>
 	<div class="card-block" style="height: 7in;">
 
@@ -634,7 +634,7 @@ hr
 	<div class="card-block" style="height: 1.3in;" >
 			<div class="row">
 				<div class="col" style="padding-left: 0px"><center><span class="Names"><br><b><?php echo $data['Received'] ?></b></span></center></div>
-				<div class="col" style="padding-left: 0px"><center><span class="Names"><br><b><?php echo $qc['QC'] ?></b></span></center></div>
+				<div class="col" style="padding-left: 0px"><center><span class="Names"><br><b><?php echo $data['QC'] ?></b></span></center></div>
 				<div class="col" style="padding-left: 0px"><center><span class="Names"><br><b><?php echo $data['Printed'] ?></b></span></center></div>
 			</div>
 			<div class="row">

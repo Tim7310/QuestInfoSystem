@@ -1,8 +1,8 @@
 <?php
 include_once('../connection.php');
 include_once('../classes/trans.php');
-$trans = new trans;
-$trans = $trans->fetch_allCash();
+$transac = new trans;
+$trans = $transac->fetch_allCash();
 ?>
 <html>
 	<head>
@@ -57,7 +57,7 @@ include_once('cashsidebar.php');
 								<?php echo $trans['PatientID']?>
 							</td>	
 							<td nowrap>
-								<?php echo $trans['LastName']?>,<?php echo $trans['FirstName']?> <?php echo $trans['MiddleName']?> 
+								<?php echo $trans['LastName']?>,&nbsp;<?php echo $trans['FirstName']?> <?php echo $trans['MiddleName']?> 
 							</td>
 							<td>
 								<?php echo $trans['CompanyName']?>
@@ -68,11 +68,31 @@ include_once('cashsidebar.php');
 							<td>
 								<?php echo $trans['ContactNo']?>
 							</td>
-							<td nowrap>
-								<b><?php echo $trans['ItemName']?></b> (<?php echo $trans['ItemDescription']?>)
+							
+							<td style="word-wrap: break-word;">
+								<?php 
+									$items = $transac->each_item($trans['ItemID']);
+									foreach ($items as $key) {
+									
+								?>
+								<b><?php echo $key['ItemName']; 
+								if ($key['ItemDescription'] != " ") {
+										# code...
+									
+								?></b> 
+								(<?php echo $key['ItemDescription']?>)
+								<?php
+												
+									
+								 } 
+								 $itemEnd = end($items);
+								 if ($key[0] != $itemEnd[0]) {
+								 	echo ", ";
+								 }}
+								 ?>
 							</td>
 							<td > 
-								<button type="button" class="btn btn-primary" onclick="document.location = 'ForREPrint.php?id=<?php echo $trans['PatientID']?>&tid=<?php echo $trans['TransactionID']?>';">Reprint Receipt</button>
+								<button type="button" class="btn btn-primary" onclick="document.location = 'AccountReceipt.php?patID=<?php echo $trans['PatientID']?>&transID=<?php echo $trans['TransactionID']?>';">Reprint Receipt</button>
 							</td>
 
 

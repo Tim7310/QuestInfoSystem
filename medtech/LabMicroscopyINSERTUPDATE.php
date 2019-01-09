@@ -1,4 +1,6 @@
 <?php
+include_once "../connection.php";
+include_once "../classes/lab.php";
 $conn=mysqli_connect("localhost","root","","dbqis");
 // Check connection
 if (mysqli_connect_errno())
@@ -6,7 +8,17 @@ if (mysqli_connect_errno())
   echo "Failed to connect to MySQL: " . mysqli_connect_error();
   }
 date_default_timezone_set("Asia/Kuala_Lumpur");
-$id=$_POST['id'];
+$id=$_POST['tid'];
+
+$lab = new lab;
+$mdID = $_POST["MedTechID"];
+$qcID = $_POST["qcID"];
+
+$med = $lab->medtechByID($mdID);
+$medName = $med['FirstName']." ".$med['MiddleName']." ".$med['LastName'].", ".$med['PositionEXT'];
+$qcmed = $lab->medtechByID($qcID);
+$qcmedName = $qcmed['FirstName']." ".$qcmed['MiddleName']." ".$qcmed['LastName'].", ".$qcmed['PositionEXT'];
+
 $result = $conn->query("SELECT * FROM qpd_labresult WHERE TransactionID ='$id'");
 if(mysqli_num_rows($result) == 0) 
 {
@@ -40,16 +52,17 @@ if(mysqli_num_rows($result) == 0)
   //lab personalities
   $Clinician=$_POST['Clinician'];
   $date=date("Y-m-d H:i:s");
-  $Received=$_POST['Received'];
   $PATHLIC=$_POST['PATHLIC'];
   $Printed=$_POST['Printed'];
-  $RMTLIC=$_POST['RMTLIC'];
-  $qc=$_POST['qc'];
-  $QCLIC=$_POST['QCLIC'];
+  
+  $Received = $medName;
+  $RMTLIC = $med['LicenseNO'];
+  $qc = $qcmedName;
+  $QCLIC = $qcmed['LicenseNO'];
 
-  $sqlinsert = "INSERT INTO qpd_labresult (TransactionID, PatientID, FecColor,  FecCon, FecMicro, FecOt, UriColor, UriTrans, UriPh, UriSp, UriPro, UriGlu, RBC, WBC, Bac, MThreads, ECells, Amorph, CoAx, UriOt, LE, NIT, URO, BLD, KET, BIL, Received, Printed, Clinician, RMTLIC, PATHLIC, CreationDate) 
+  $sqlinsert = "INSERT INTO qpd_labresult (TransactionID, PatientID, FecColor,  FecCon, FecMicro, FecOt, UriColor, UriTrans, UriPh, UriSp, UriPro, UriGlu, RBC, WBC, Bac, MThreads, ECells, Amorph, CoAx, UriOt, LE, NIT, URO, BLD, KET, BIL, Received, Printed, Clinician, RMTLIC, PATHLIC, CreationDate, qc, QCLIC) 
 
-  VALUES ('$id', '$PatientID', '$FecColor', '$FecCon', '$FecMicro' , '$FecOt','$UriColor', '$UriTrans', '$UriPh', '$UriSp', '$UriPro', '$UriGlu', '$RBC', '$WBC', '$Bac', '$MThreads', '$ECells', '$Amorph', '$CoAx', '$UriOt','$LE', '$NIT','$URO','$BLD','$KET','$BIL', '$Received', '$Printed', '$Clinician', '$RMTLIC', '$PATHLIC', '$date')";
+  VALUES ('$id', '$PatientID', '$FecColor', '$FecCon', '$FecMicro' , '$FecOt','$UriColor', '$UriTrans', '$UriPh', '$UriSp', '$UriPro', '$UriGlu', '$RBC', '$WBC', '$Bac', '$MThreads', '$ECells', '$Amorph', '$CoAx', '$UriOt','$LE', '$NIT','$URO','$BLD','$KET','$BIL', '$Received', '$Printed', '$Clinician', '$RMTLIC', '$PATHLIC', '$date', '$qc','$QCLIC')";
   
   $sqlinsert1 = "INSERT INTO qpd_class(TransactionID, PatientID, QC, QCLicense, CreationDate) VALUES ('$id', '$PatientID' ,'$qc' ,'$QCLIC', '$date')";
     if ($conn->query($sqlinsert) === TRUE && $conn->query($sqlinsert1) === TRUE) 
@@ -92,14 +105,15 @@ else
   $UriOt=$_POST['UriOt'] ? $_POST['UriOt'] : "N/A";
   $Clinician=$_POST['Clinician'];
   $date=date("Y-m-d H:i:s");
-  $Received=$_POST['Received'];
   $PATHLIC=$_POST['PATHLIC'];
   $Printed=$_POST['Printed'];
-  $RMTLIC=$_POST['RMTLIC'];
-  $qc=$_POST['qc'];
-  $QCLIC=$_POST['QCLIC'];
 
-  $sqlUPDATE= "UPDATE qpd_labresult SET FecColor = '$FecColor', FecCon='$FecCon', FecMicro='$FecMicro', FecOt='$FecOt', UriColor='$UriColor', UriTrans='$UriTrans', UriPh='$UriPh', UriSp='$UriSp', UriPro='$UriPro', UriGlu='$UriGlu', LE='$LE', NIT='$NIT', URO='$URO', BLD='$BLD', KET='$KET', BIL='$BIL', RBC='$RBC', WBC='$WBC', ECells='$ECells', MThreads='$MThreads', Bac='$Bac', Amorph='$Amorph', CoAx='$CoAx', UriOt='$UriOt', Clinician= '$Clinician', DateUpdate='$date' , Received='$Received' , PATHLIC='$PATHLIC' , Printed='$Printed' , RMTLIC='$RMTLIC' WHERE TransactionID = '$id'";
+  $Received = $medName;
+  $RMTLIC = $med['LicenseNO'];
+  $qc = $qcmedName;
+  $QCLIC = $qcmed['LicenseNO'];
+
+  $sqlUPDATE= "UPDATE qpd_labresult SET FecColor = '$FecColor', FecCon='$FecCon', FecMicro='$FecMicro', FecOt='$FecOt', UriColor='$UriColor', UriTrans='$UriTrans', UriPh='$UriPh', UriSp='$UriSp', UriPro='$UriPro', UriGlu='$UriGlu', LE='$LE', NIT='$NIT', URO='$URO', BLD='$BLD', KET='$KET', BIL='$BIL', RBC='$RBC', WBC='$WBC', ECells='$ECells', MThreads='$MThreads', Bac='$Bac', Amorph='$Amorph', CoAx='$CoAx', UriOt='$UriOt', Clinician= '$Clinician', DateUpdate='$date' , Received='$Received' , PATHLIC='$PATHLIC' , Printed='$Printed' , RMTLIC='$RMTLIC', QC='$qc', QCLIC='$QCLIC' WHERE TransactionID = '$id'";
   $sqlUPDATE1= "UPDATE qpd_class SET QC = '$qc', QCLicense = '$QCLIC', CreationDate='$date' WHERE TransactionID = '$id'";
     if ($conn->query($sqlUPDATE) === TRUE && $conn->query($sqlUPDATE1) === TRUE) 
     {
