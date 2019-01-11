@@ -76,6 +76,52 @@ class trans {
 	 	}
 	 	return $array;
 	 }
+	 public function compute_discount($id){
+	 	global $pdo;
+
+	 	$query = $pdo->prepare("SELECT * FROM qpd_trans where TransactionID = '$id'");
+	 	$query->execute();
+	 	$trans = $query->fetch();
+	 	$ids = $trans['ItemID'];
+	 	$discids = $trans['Discount'];
+	 	$qtyid = $trans['ItemQTY'];
+	 	$idarr = explode(",", $ids);
+	 	$idarr = array('id' => $idarr);
+	 	$disarr = explode(",", $discids);
+	 	$disarr = array('dis' => $disarr);
+	 	$qtyid = explode(",", $qtyid);
+	 	$qtyid = array('qty' => $qtyid);
+	 	$arr = array_merge($idarr, $disarr, $qtyid);
+	 	$discTotal = 0;
+	 	for ($x=0;$x < count($arr['id']);$x++) {
+	 		$price = $this->fetch_item($arr["id"][$x]);
+	 		$priceV = $price['ItemPrice'] * $arr["qty"][$x];
+	 		$discPrice = $arr["dis"][$x] / 100 * $priceV;
+	 		$discTotal = $discTotal + $discPrice;
+	 	}	 	
+	 	return $discTotal;
+	 }
+	 public function total_price($id){
+	 	global $pdo;
+
+	 	$query = $pdo->prepare("SELECT * FROM qpd_trans where TransactionID = '$id'");
+	 	$query->execute();
+	 	$trans = $query->fetch();
+	 	$ids = $trans['ItemID'];
+	 	$qtyid = $trans['ItemQTY'];
+	 	$idarr = explode(",", $ids);
+	 	$idarr = array('id' => $idarr);
+	 	$qtyid = explode(",", $qtyid);
+	 	$qtyid = array('qty' => $qtyid);
+	 	$arr = array_merge($idarr, $qtyid);
+	 	$discTotal = 0;
+	 	for ($x=0;$x < count($arr['id']);$x++) {
+	 		$price = $this->fetch_item($arr["id"][$x]);
+	 		$priceV = $price['ItemPrice'] * $arr["qty"][$x];
+	 		$discTotal = $discTotal + $priceV;
+	 	}	 	
+	 	return $discTotal;
+	 }
 
 }
 ?>

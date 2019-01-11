@@ -56,8 +56,9 @@ $TransNo = randomDigits();
 <script type="text/javascript" src="../source/jquery.min.js"></script>
 <script type="text/javascript" src="../source/printThis/printThis.js"></script>
 
-<link rel="stylesheet" type="text/css" href="../source/Searchable-Dropdown/src/selectstyle.css">
-<script type="text/javascript" src="../source/Searchable-Dropdown/src/selectstyle.js"></script>
+<link href="../source/select2/dist/css/select2.min.css" rel="stylesheet" />
+<link href="../source/select2/theme/dist/select2-bootstrap.min.css" rel="stylesheet" />
+<script type="text/javascript" src="../source/select2/dist/js/select2.min.js"></script>
 <style type="text/css">
 	.btn{
 		cursor: pointer;
@@ -437,13 +438,10 @@ include_once('cashsidebar.php');
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.form/4.2.2/jquery.form.min.js" integrity="sha384-FzT3vTVGXqf7wRfy8k4BiyzvbNfeYjK+frTVqZeNDFl8woCbF0CYG6g2fMEFFo/i" crossorigin="anonymous"></script>
 <script type="text/javascript">
 	$(document).ready(function(){
-		$('#itemList').selectstyle({
-			width  : 400,
-			height : 300,
-			theme  : 'light',
-			onchange : function(val){}
-		});
 		verify();
+		$.fn.select2.defaults.set( "theme", "bootstrap" );
+		$('#itemList').select2({
+		});
 		//var xx = new array
 		//$("input[name=print]").attr("disabled", "disabled");
 		var ItemArrays;
@@ -691,12 +689,12 @@ include_once('cashsidebar.php');
 							// $.post("AccountReceipt.php",{transID: e},function(){
 								
 							// });
-							window.open("AccountReceipt.php?transID="+e+"&patID="+PatientID);
+							window.open("Receipt.php?transID="+e+"&patID="+PatientID);
 							location.reload();
 						});
 					}else{
 						$.post("DataTransaction.php",{transID: idtrans, status: status, PatientID: PatientID, itemsID: itemsID, itemsQTY: itemsQTY, itemsDisc: itemsDisc, change: changeValue, totalAmount: subTotalcash, payment: payment, cashier: CN, transNO: TN, transType: transType, biller: biller}, function(e){
-							window.open("AccountReceipt.php?transID="+idtrans+"&patID="+PatientID);
+							window.open("Receipt.php?transID="+idtrans+"&patID="+PatientID);
 							location.reload();
 						});
 					}

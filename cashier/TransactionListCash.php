@@ -92,7 +92,7 @@ include_once('cashsidebar.php');
 								 ?>
 							</td>
 							<td > 
-								<button type="button" class="btn btn-primary" onclick="document.location = 'AccountReceipt.php?patID=<?php echo $trans['PatientID']?>&transID=<?php echo $trans['TransactionID']?>';">Reprint Receipt</button>
+								<button type="button" class="btn btn-primary" onclick="document.location = 'Receipt.php?patID=<?php echo $trans['PatientID']?>&transID=<?php echo $trans['TransactionID']?>';">Reprint Receipt</button>
 							</td>
 
 
