@@ -36,7 +36,7 @@ class lab {
 	public function medtech(){
 		global $pdo;
 
-		$query = $pdo->prepare("SELECT * FROM lab_personnel WHERE Position = 'MEDICAL TECHNOLOGIST'");
+		$query = $pdo->prepare("SELECT * FROM lab_personnel WHERE Position = 'MEDICAL TECHNOLOGIST' OR Position = 'QUALITY CONTROL'");
 		$query->execute();
 
 		return $query->fetchAll();

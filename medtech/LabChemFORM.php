@@ -630,7 +630,7 @@ hr
 	</div>
 </div>
 <div class="col-md-10">
-<div class="card" style="border-radius: 0px; margin-top: 30px;">
+<div class="card" style="border-radius: 0px; margin-top: 20px;">
 	<div class="card-block" style="height: 1.3in;" >
 			<div class="row">
 				<div class="col" style="padding-left: 0px"><center><span class="Names"><br><b><?php echo $data['Received'] ?></b></span></center></div>
@@ -647,11 +647,11 @@ hr
 				<div class="col"><center><p class="labelName">Quality Control</p></center></div>
 				<div class="col"><center><p class="labelName">Pathologist</p></center></div>		
 			</div>
-			<center>**Report Electronically Signed Out**</center>
+			<!-- <center><p style="font-size: 12px;margin-top: -7px">**Report Electronically Signed Out**</p></center> -->
 	</div>
 </div>
 </div>
-<div class="col-md-10">
+<div class="col-md-10" style="margin-top: 5px">
 	<img src="../assets/QISFooter.png" height="50px" width="100%">
 </div>
 <?php }}}} ?>

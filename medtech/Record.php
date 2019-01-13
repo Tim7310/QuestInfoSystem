@@ -120,16 +120,16 @@ include_once('labsidebar.php');
 					</div>
 					<div class="col">
 						<label>LOE: </label><br>
-						<p><b><?php echo $trans['LOE'] ?></b></p>
+						<p><b><!-- <?php echo $trans['LOE'] ?> --></b></p>
 						<label>AN: </label><br>
-						<p><b><?php echo $trans['AN'] ?></b></p>
+						<p><b><!-- <?php echo $trans['AN'] ?> --></b></p>
 						<label>AC: </label><br>
-						<p><b><?php echo $trans['AC'] ?></b></p>
+						<p><b><!-- <?php echo $trans['AC'] ?> --></b></p>
 						<label>Senior ID: </label><br>
-						<p><b><?php echo $trans['SID'] ?></b></p>
+						<p><b><!-- <?php echo $trans['SID'] ?> --></b></p>
 						<label>Comment: </label><br>
-						<p><b><?php echo $data['Notes'] ?></b></p>
-						<p><b><?php echo $trans['Notes'] ?></b></p>
+						<p><b><!-- <?php echo $data['Notes'] ?> --></b></p>
+						<p><b><!-- <?php echo $trans['Notes'] ?> --></b></p>
 					</div>
 				</div>
             </div>

@@ -329,7 +329,7 @@ include_once('labsidebar.php');
 		            				}
 	            				
 	            		?>
-						<option value="<?php echo $key['personnelID'] ?>">
+						<option value="<?php echo $key['personnelID'] ?>" <?php echo $select;?>>
 							<?php echo $key['FirstName']." ".$key['MiddleName']." ".$key['LastName'].", ".$key['PositionEXT']?>	
 						</option>
 					<?php } ?>

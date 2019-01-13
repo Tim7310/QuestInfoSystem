@@ -122,6 +122,15 @@ class trans {
 	 	}	 	
 	 	return $discTotal;
 	 }
+	 public function fetch_micro(){
+		global $pdo;
+
+		$query = $pdo->prepare("SELECT f.*, t.* FROM qpd_patient f, qpd_trans t, qpd_labresult l WHERE f.PatientID = t.PatientID and l.PatientID = f.PatientID and l.UriColor != ' ' and l.UriColor != 'N/A' and l.UriColor != '' ORDER BY t.TransactionID");
+		$query->execute();
+
+		return $query->fetchAll();
+
+	}
 
 }
 ?>

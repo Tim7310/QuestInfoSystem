@@ -439,6 +439,7 @@
 					<div class="col-4"><p class="labelName">Bilirubin</p></div>
 					<div class="col-3"><p class="lineRes"><?php echo $data['BIL'] ?></p></div>
 				</div>
+				
 			</div>
 </div>
 <?php } ?>
@@ -493,6 +494,16 @@
 				<div class="row" style="margin-top: 5px;">
 					<div class="col-4"><p class="labelName">Bacteria</p></div>
 					<div class="col-3"><p class="lineRes"><?php echo $data['Bac'] ?></p></div>
+				</div>
+				<?php } 
+				if($data['UriOt'] != "" and $data['UriOt'] != "N/A"){?>
+				<div class="row" style="margin-top: 5px;">
+					<div class="col-4"><p class="labelName">Other Notes:</p></div>
+					<div class="col-7"><p class="lineRes"><?php 
+					$notes = explode(",", $data['UriOt']);
+					foreach ($notes as $key) {
+					 	echo $key.'<br/>';
+					 } ?></p></div>
 				</div>
 				<?php } ?>
 			</div>
