@@ -111,7 +111,22 @@ include_once('cashsidebar.php');
         scrollCollapse: true,
         "scrollX": true,
         paging:         false,
-        buttons: ['excel', 'pdf', 'colvis' ]
+        buttons: ['excel', 'pdf', 'colvis' ],
+        "columnDefs": [
+            {
+                "targets": [ 7 ],
+                "visible": false,
+                "searchable": false
+            },
+            {
+                "targets": [ 6 ],
+                "visible": false
+            },
+            {
+                "targets": [ 1 ],
+                "visible": false
+            }
+        ]
     } );
  
     table.buttons().container()

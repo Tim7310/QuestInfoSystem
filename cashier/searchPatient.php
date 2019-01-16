@@ -33,7 +33,8 @@ include_once("../connection.php");
 			$color = "black";
 		}
 	?>
-	<div class="col selectdiv" style="cursor: pointer; padding: 1px;background-color: <?php echo $bcolor; ?>;color: <?php echo $color; ?>">
+	<div class="col selectdiv" id="<?php echo $key['PatientID'] ?>" 
+		style="cursor: pointer; padding: 1px;background-color: <?php echo $bcolor; ?>;color: <?php echo $color; ?>">
 		<?php echo $key['LastName'].", ".$key['FirstName']." ".$key["MiddleName"];?>
 		<input type="text" name="" style="display: none" class="patientID" value="<?php echo $key['PatientID'] ?>">
 	</div>
@@ -45,7 +46,7 @@ include_once("../connection.php");
 		$(".selectdiv").click(function(){
 			var PatientID = $(this).children(".patientID").val();
 			$("#selectedPatient").load("getPatient.php",{patID: PatientID},function(){
-				
+
 			});
 		});
 		

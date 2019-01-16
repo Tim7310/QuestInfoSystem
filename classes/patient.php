@@ -31,6 +31,12 @@ class Patient {
 
 			return $query->fetch();
 	}
+	public function Update_Patient($pid, $fname, $mname, $lname, $age, $gender, $comname, $contact, $bod, $add, $pos){
+		global $pdo;
+
+		$query = $pdo->prepare("UPDATE qpd_patient set FirstName = '$fname', MiddleName = '$mname', LastName = '$lname', Age = '$age', Gender = '$gender', CompanyName = '$comname', ContactNo = '$contact', BirthDate = '$bod', Address = '$add', Position = '$pos' WHERE PatientID = '$pid'");
+		$query->execute();
+	}
 
 }
 ?>

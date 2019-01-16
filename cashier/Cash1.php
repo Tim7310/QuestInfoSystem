@@ -299,7 +299,7 @@ include_once('cashsidebar.php');
 	</div>
 
 	<div class="row">
-		<div class="col-6" id="selectedPatient" style="text-align: left; height: 30px"></div>
+		<div class="col-12" id="selectedPatient" style="text-align: left; height: 40px"></div>
 	</div>
 	<div class="row col-12" id="addItemdiv" style="background-color: #08863E;color: white; padding: 10px;text-align: left ">
 		<div class="col-1" style="font-weight: bold;">Item ID</div>
@@ -379,14 +379,18 @@ include_once('cashsidebar.php');
 	<center>
     <div class="" style="width: 500px;">
     <div class="modal-content modal-dialog">
-
+    		<button type="button" class="close" data-dismiss="modal" aria-label="Close" 
+    		style="color: white;background-color: red;font-size: 16px;padding:3px">
+          			<span aria-hidden="true" >&times; EXIT &times;</span>
+        	</button>
     	 	<div class="modal-header" style="font-size: 20px;text-align: center">	 	
     	 		<i class="fas fa-user-plus"></i>Add New Patient
+    	 		
       		<br>
       	</div>
 	<form method="post" id="addForm">
       	 <div style="width: 500px; padding: 30px;">
-      	 	<div class="row">
+      	 	<div class="row" id="newPatientDiv">
       	 	<div class="col">
        			<input type="hidden"  name="idpatient" class="form-control" value="" id="myInput" required />
 				<label for="">Company Name:</label>
@@ -420,6 +424,8 @@ include_once('cashsidebar.php');
 				<br>
 				<button type="submit"  name="ADDNewRecord" class="btn btn-primary" style="font-size: 14px; width: 120px; height: 40px;" id="NPbtn">
 				<i class="far fa-check-circle"></i>&nbsp; SUBMIT</button>
+				<button class="btn btn-danger" id="clearData" style="font-size: 14px; width: 120px; height: 40px;margin-top: 50px">
+					<i class="fas fa-eraser"></i>&nbsp; CLEAR</button>
 				<!-- <button onclick="myFunction()">TRY</button> -->
 
 				
@@ -520,8 +526,17 @@ include_once('cashsidebar.php');
 		});
 		$("#addItem").click(function(){
 			// e.preventDefault();
+			var existItem;
+			var isExist = 0;
 			var itemNum = $("#itemList").val();
-			
+			$(".itemNum").each(function(){
+				existItem = $(this).text();
+				if (existItem == itemNum) {
+					alert("Item already in Item List");
+					isExist = 1;
+				}
+			});
+			if (isExist == 0) {
 			var itemtxt = $( "#itemList option:selected" ).text().split("|");
 			var itemName = itemtxt[0];
 			var itemPrice = itemtxt[1];
@@ -587,6 +602,7 @@ include_once('cashsidebar.php');
 				change();
 				verify();
 			});
+			}
 		});	
 		$("#AR").change(function(){
 			change();
@@ -720,11 +736,12 @@ include_once('cashsidebar.php');
 			var age = $("input[name=age]").val();
 			var gender = $("input[name=gender]").val();
 			var bt = $("input[name=billto]").val();
-			if (company.length && position.length && fn.length && mn. length && ln.length && add.length && bd.length) {
+			// if (company.length && position.length && fn.length && mn.length && ln.length && add.length && bd.length) {
 				var option = { 
 					target: "#APloader",
 					url:        'newPatient.php', 
-					success:    function(result) { 		
+					success:    function(result) { 
+						$('#newPatientDiv').children('div').children("input").val("");	
 						$('#ModalAdd').modal('toggle');
 						$("#selectedPatient").load("getPatient.php",{patID: result},function(){
 				
@@ -732,9 +749,12 @@ include_once('cashsidebar.php');
 					} 
 				};  
 				$("#addForm").ajaxSubmit(option);
-			}else{
-				alert("Please Complete all credentials");
-			}
+			// }else{
+			// 	alert("Please Complete all credentials");
+			// }
+		});
+		$("#clearData").click(function(){
+			$('#newPatientDiv').children('div').children("input").val("");
 		});
 		$(".holdtrans").click(function(){
 			if ($(".removeItem")) {

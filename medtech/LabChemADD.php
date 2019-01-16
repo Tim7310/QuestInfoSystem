@@ -24,109 +24,8 @@ if (isset($_GET['id'])){
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<title>Laboratory Chemistry</title>
     <link href="../source/bootstrap4/css/bootstrap.min.css" media="all" rel="stylesheet"/>
-<script>
-    function FBSCalc() 
-    {
-		var myBox1 = document.getElementById('FBS').value;	
-		var myBox2 = 0.055;
-		var result = document.getElementById('FBScon');	
-		var myResult = myBox1 / myBox2;
-        myResult= myResult.toFixed(1);
-		result.value = myResult;
-    }
-    function BUACalc() 
-    {
-		var myBox1 = document.getElementById('BUA').value;	
-		var myBox2 = 59.48;
-		var result = document.getElementById('BUAcon');	
-		var myResult = myBox1 / myBox2;
-        myResult= myResult.toFixed(1);
-		result.value = myResult;
-    }
-    function BUNCalc() 
-    {
-		var myBox1 = document.getElementById('BUN').value;	
-		var myBox2 = 0.357;
-		var result = document.getElementById('BUNcon');	
-		var myResult = myBox1 / myBox2;
-        myResult= myResult.toFixed(1);
-		result.value = myResult;
-    }
-    function CREACalc() 
-    {
-		var myBox1 = document.getElementById('CREA').value;	
-		var myBox2 = 88.4;
-		var result = document.getElementById('CREAcon');	
-		var myResult = myBox1 / myBox2;
-        myResult= myResult.toFixed(2);
-		result.value = myResult;
-    }
-    function CHOLCalc() 
-    {
-		var myBox1 = document.getElementById('CHOL').value;	
-		var myBox2 = 0.0259;
-		var result = document.getElementById('CHOLcon');	
-		var myResult = myBox1 / myBox2;
-        myResult= myResult.toFixed(2);
-		result.value = myResult;
-    }
-    function TRIGCalc() 
-    {
-		var myBox1 = document.getElementById('TRIG').value;	
-		var myBox2 = 0.0113;
-		var result = document.getElementById('TRIGcon');	
-		var myResult = myBox1 / myBox2;
-        myResult= myResult.toFixed(2);
-		result.value = myResult;
-    }
-    function HDLCalc() 
-    {
-		var myBox1 = document.getElementById('HDL').value;	
-		var myBox2 = 0.0259;
-		var result = document.getElementById('HDLcon');	
-		var myResult = myBox1 / myBox2;
-        myResult= myResult.toFixed(2);
-		result.value = myResult;
-    }
-    function LDLCalc() 
-    {
-		var myBox1 = parseFloat(document.getElementById("HDL").value);
-		var myBox2 = 2.175;
-		var myBox3 = parseFloat(document.getElementById("TRIG").value);
-		var myBox4 = parseFloat(document.getElementById("CHOL").value);		
-		var result = document.getElementById('LDL');
-		var myResult = myBox4 - ( myBox1 +  (myBox3 / myBox2) );
-        myResult= myResult.toFixed(2);
-		result.value = myResult;
-    }
-    function LDLconCalc() 
-    {
-    	var myBox1 = document.getElementById('LDL').value;	
-		var myBox2 = 0.0259;
-		var result = document.getElementById('LDLcon');	
-		var myResult = myBox1 / myBox2;
-        myResult= myResult.toFixed(2);
-		result.value = myResult;
-    }
-    function CHCalc() 
-    {
-    	var myBox1 = document.getElementById('CHOL').value;	
-		var myBox2 = document.getElementById('HDL').value;
-		var result = document.getElementById('CH');	
-		var myResult = myBox1 / myBox2;
-        myResult= myResult.toFixed(2);
-		result.value = myResult;
-    }
-    function VLDLCalc() 
-    {
-    	var myBox1 = document.getElementById('TRIG').value;	
-		var myBox2 = 2.175;
-		var result = document.getElementById('VLDL');	
-		var myResult = myBox1 / myBox2;
-        myResult= myResult.toFixed(2);
-		result.value = myResult;
-    }
-</script>
+    <script type="text/javascript" src="../source/jquery.min.js"></script>
+
 </head>
 <style type="text/css" media="all">
 	.form-control
@@ -287,7 +186,7 @@ include_once('labsidebar.php');
 			<div class="form-group row">
 	            <label for="FBS" class="col-3 col-form-label">Fasting Blood Sugar :</label>
 	            <div class="col-2">
-	            	<input type="text" name="FBS"  class="form-control" id="FBS" onchange="FBSCalc()">
+	            	<input type="text" name="FBS"  class="form-control" id="FBS" >
 	            </div>
 	            <div class="col-3">
 	            	mmol/L 4.1-5.9
@@ -302,7 +201,7 @@ include_once('labsidebar.php');
 			<div class="form-group row">
 	            <label for="BUA" class="col-3 col-form-label">Uric Acid :</label>
 	            <div class="col-2">
-	            	<input type="text" name="BUA"  class="form-control" id="BUA" onchange="BUACalc()">
+	            	<input type="text" name="BUA"  class="form-control" id="BUA" >
 	            </div>
 	            <div class="col-3">
 	            	mmol/L 155 - 428
@@ -317,7 +216,7 @@ include_once('labsidebar.php');
 			<div class="form-group row">
 	            <label for="BUN" class="col-3 col-form-label">Blood Urea Nitrogen :</label>
 	            <div class="col-2">
-	            	<input type="text" name="BUN"  class="form-control" id="BUN" onchange="BUNCalc()">
+	            	<input type="text" name="BUN"  class="form-control" id="BUN" >
 	            </div>
 	            <div class="col-3">
 	            	mmol/L 2.5 - 7.5
@@ -332,7 +231,7 @@ include_once('labsidebar.php');
 			<div class="form-group row">
 	            <label for="CREA" class="col-3 col-form-label">Creatinine :</label>
 	            <div class="col-2">
-	            	<input type="text" name="CREA"  class="form-control" id="CREA" onchange="CREACalc()">
+	            	<input type="text" name="CREA"  class="form-control" id="CREA" >
 	            </div>
 	            <div class="col-3">
 	            	umol/L Female: 53 - 106
@@ -363,7 +262,7 @@ include_once('labsidebar.php');
 			<div class="form-group row">
 	            <label for="CHOL" class="col-3 col-form-label">Cholesterol :</label>
 	            <div class="col-2">
-	            	<input type="text" name="CHOL"  class="form-control" id="CHOL" onchange="CHOLCalc()">
+	            	<input type="text" name="CHOL"  class="form-control" id="CHOL" >
 	            </div>
 	            <div class="col-3">
 	            	mmol/L < 5.17
@@ -378,7 +277,7 @@ include_once('labsidebar.php');
 			<div class="form-group row">
 	            <label for="TRIG" class="col-3 col-form-label">Triglycerides :</label>
 	            <div class="col-2">
-	            	<input type="text" name="TRIG"  class="form-control" id="TRIG" onchange="TRIGCalc()">
+	            	<input type="text" name="TRIG"  class="form-control" id="TRIG" >
 	            </div>
 	            <div class="col-3">
 	            	mmol/L 0.3-1.7
@@ -393,7 +292,7 @@ include_once('labsidebar.php');
 			<div class="form-group row">
 	            <label for="HDL" class="col-3 col-form-label">HDL :</label>
 	            <div class="col-2">
-	            	<input type="text" name="HDL"  class="form-control" id="HDL" onchange="HDLCalc()">
+	            	<input type="text" name="HDL"  class="form-control" id="HDL">
 	            </div>
 	            <div class="col-3">
 	            	mmol/L 0.9-2.21
@@ -408,13 +307,13 @@ include_once('labsidebar.php');
 			<div class="form-group row">
 	            <label for="LDL" class="col-3 col-form-label">LDL :</label>
 	            <div class="col-2">
-	            	<input type="text" name="LDL"  class="form-control" id="LDL" onclick="LDLCalc()">
+	            	<input type="text" name="LDL"  class="form-control" id="LDL" >
 	            </div>
 	            <div class="col-3">
 	            	mmol/L 2.5-4.1
 	            </div>
 	            <div class="col-1">
-	            	<input type="text" name="LDLcon" class="form-control" id="LDLcon" onclick="LDLconCalc()">
+	            	<input type="text" name="LDLcon" class="form-control" id="LDLcon">
 	            </div>
 	            <div class="col-3">
 	            	mg/dl 96.52-158.30
@@ -423,7 +322,7 @@ include_once('labsidebar.php');
 			<div class="form-group row">
 	            <label for="CH" class="col-3 col-form-label"> CHOLESTEROL/HDL.RATIO :</label>
 	            <div class="col-2">
-	            	<input type="text" name="CH"  class="form-control" id="CH" onclick ="CHCalc()">
+	            	<input type="text" name="CH"  class="form-control" id="CH" >
 	            </div>
 	            <div class="col-3">
 	            	mmol/L < 4.40 
@@ -432,7 +331,7 @@ include_once('labsidebar.php');
 			<div class="form-group row">
 	            <label for="VLDL" class="col-3 col-form-label">VLDL :</label>
 	            <div class="col-2">
-	            	<input type="text" name="VLDL"  class="form-control" id="VLDL" onclick="VLDLCalc()">
+	            	<input type="text" name="VLDL"  class="form-control" id="VLDL" >
 	            </div>
 	            <div class="col-3">
 	            	mmol/L 0.050-1.04
@@ -570,4 +469,50 @@ include_once('labsidebar.php');
 </div>
 <?php }} ?>
 </body>
+<script type="text/javascript">
+	$(document).ready(function(){
+		function chemCalc(divide, id, id2){
+			var idName = "#" + id;
+			var idName2 = "#" + id2;
+			$(idName).keyup(function(){
+				var results = $(this).val();
+				var myResult = results / divide;
+				myResult = parseFloat(Math.round(myResult * 100) / 100).toFixed(2);
+				if (myResult == 0) {
+					$(idName2).val("");
+				}else{
+					$(idName2).val(myResult);
+				}			
+			});		
+		}
+		chemCalc("0.055","FBS","FBScon");
+		chemCalc("59.48","BUA","BUAcon");
+		chemCalc("0.357","BUN","BUNcon");
+		chemCalc("88.4","CREA","CREAcon");
+		chemCalc("0.0259","CHOL","CHOLcon");
+		chemCalc("0.0113","TRIG","TRIGcon");
+		chemCalc("0.0259","HDL","HDLcon");
+		chemCalc("0.0259","LDL","LDLcon");
+	$("#HDL, #TRIG, #CHOL").keyup(function(){
+		var chole = $("#CHOL").val();
+		var trig = $("#TRIG").val();
+		var hdl = $("#HDL").val();
+		var ldlval =  chole - (trig / 2.175) - hdl;
+		ldlval = parseFloat(Math.round(ldlval * 100) / 100).toFixed(2);
+		ldlval2 = ldlval / 0.0259;
+		var chdl = chole / hdl;
+		var vldl = trig / 2.175;
+		vldl = parseFloat(Math.round(vldl * 100) / 100).toFixed(2);
+		chdl = parseFloat(Math.round(chdl * 100) / 100).toFixed(2);
+		if (chdl != "Infinity") {
+			$("#CH").val(chdl);
+		}		
+		$("#VLDL").val(vldl);
+		$("#LDLcon").val(ldlval2);
+		$("#LDL").val(ldlval);
+
+	});
+
+	});
+</script>
 </html>
