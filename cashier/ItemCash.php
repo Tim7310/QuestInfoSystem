@@ -115,6 +115,28 @@ $pack = $pack->fetch_all();
 <div class="container-fluid">
 <div class="col-md-10 offset-sm-1">
 	<div class="card card-info" style="border-radius: 0px; margin-top: 10px;">
+ 		<div class="card-header"><center><b>CREATE PACKAGES</b></center></div>
+		<div class="card-block">
+			<div class="row">
+				<div class="col">
+					<form method="POST">
+					<input type="" name="txtItemName" placeholder="Item Name" required="">
+					<input type="" name="txtItemDescription" placeholder="Item Description" required="">
+					<input type="" name="txtItemPrice" placeholder="Item Price" required="">
+					<select name="CashType">
+						<option value="CashIndustrial">CASH INDUSTRIAL</option>
+						<option value="CashLab" selected>CASH LAB</option>
+						<option value="CashImaging">CASH IMAGING</option>
+					</select>
+					<input type="submit" name="btnCreatePackage" value="CREATE NEW PACKAGE">
+					</form>
+				</div>
+			</div> 
+		</div>
+	</div>
+</div>
+<div class="col-md-10 offset-sm-1">
+	<div class="card card-info" style="border-radius: 0px; margin-top: 10px;">
 		<div class="card-header"><b>Packages with Complete Descriptions</b></div>
 		<div class="card-block">
 		<table id="example" class="table table-striped table-bordered" style="width:100%">
@@ -153,28 +175,7 @@ $pack = $pack->fetch_all();
 	</div>
 </div>
 <!-- Trigger/Open The Modal -->
-<div class="col-md-10 offset-sm-1">
-	<div class="card card-info" style="border-radius: 0px; margin-top: 10px;">
- 		<div class="card-header"><center><b>CREATE PACKAGES</b></center></div>
-		<div class="card-block">
-			<div class="row">
-				<div class="col">
-					<form method="POST">
-					<input type="" name="txtItemName" placeholder="Item Name" required="">
-					<input type="" name="txtItemDescription" placeholder="Item Description" required="">
-					<input type="" name="txtItemPrice" placeholder="Item Price" required="">
-					<select name="CashType">
-						<option value="CashIndustrial">CASH INDUSTRIAL</option>
-						<option value="CashLab">CASH LAB</option>
-						<option value="CashImaging">CASH IMAGING</option>
-					</select>
-					<input type="submit" name="btnCreatePackage" value="CREATE NEW PACKAGE">
-					</form>
-				</div>
-			</div> 
-		</div>
-	</div>
-</div>
+
 
 
 </div>

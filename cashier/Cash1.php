@@ -200,8 +200,8 @@ include_once('cashsidebar.php');
         </div>  
 	
 	<div class="row" style="margin-top: 10px;">
-		<div class="col">
-			<div class="input-group">
+		<div class="col-7">
+			<div class="input-group" >
 			  <select class="custom-select" id="itemList" name="itemList" aria-label="Select Item Here" style="" 
 			  placeholder="Select Item Here">
 			   		<?php foreach ($packData as $key){ ?>

@@ -131,6 +131,19 @@ class trans {
 		return $query->fetchAll();
 
 	}
+	public function add_quantity($size){
+		global $pdo;
+
+		$query = $pdo->prepare("SELECT `totalCount` FROM `qpd_count` WHERE xrayFilm = '$size'");
+		$query->execute();
+
+		$count = $query->fetch();
+		$count = $count['totalCount'] + 1;
+
+		$query2 = $pdo->prepare("UPDATE `qpd_count` SET `totalCount`= '$count' WHERE `xrayFilm` = '$size'");
+		$query2->execute();
+		return $count;
+	}
 
 }
 ?>

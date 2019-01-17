@@ -1,0 +1,29 @@
+<?php
+include_once('../connection.php');
+include_once('../classes/trans.php');
+$trans = new trans;
+$patients = $trans->fetch_all();
+?>
+<html>
+<style>
+table {
+  border-collapse: collapse;
+}
+
+table, th, td {
+  border: 2px solid black;
+}
+</style>
+<body>
+	<?php
+		include_once('radsidebar.php');
+	?>
+	<table width = 350 border="1">
+		<tr><td colspan = "3"><center>QUESTPHIL DIAGNOSTICS</center></td></tr>
+		<tr><td width = 220 style="padding: 0px 0px 0px 5px">NAME HERE</td><td rowspan = "3" colspan = "2"><center><font size = 30><b>123</b></font></center></td></tr>
+		<tr><td style="padding: 0px 0px 0px 5px">AGE/GENDER</td></tr>
+		<tr><td style="padding: 0px 0px 0px 5px">COMPANY</td></tr>
+		<tr><td style="padding: 0px 0px 0px 5px">EXAM</td><td style="padding: 0px 0px 0px 5px">JORGE</td><td style="padding: 0px 0px 0px 5px">01/01/2019</td></tr>
+	</table>
+</body>
+</html>

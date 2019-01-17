@@ -3,10 +3,39 @@ include_once('../connection.php');
 include_once('../classes/trans.php');
 $trans = new trans;
 $patients = $trans->fetch_all();
+$partsArray = array("CHEST PA", 
+					"CHEST AP LATERAL", 
+					"PELVIMETRY",
+					"LUMBOSACRAL",
+					"SKULL",
+					"ZYGOMATIC BONE",
+					"NASAL BONE",
+					"PARANASAL SINUSES",
+					"TEMPORAL BONE",
+					"MANDIBLE",
+					"SHOULDER JOINT",
+					"HUMERUS",
+					"ELBOW JOINT",
+					"FOREARM",
+					"WRIST",
+					"HAND",
+					"HIP JOINT",
+					"FEMUR",
+					"CALCANEUS",
+					"KNEE JOINT",
+					"LEG ANKLE JOINT",
+					"FOOT",
+					"CERVICAL SPINE",
+					"THORACIC SPINE",
+					"COCCYX",
+					"LUMBAR SPINE",
+					"PELVIS");
 ?>
+
+
 <html>
 	<head>
-		<title>Radiology Report</title>
+		<title>Radiology Marker Printing</title>
 		<link rel="icon" type="image/png" href="../assets/qpd.png">
 		<script type="text/javascript" src="../source/CDN/jquery-1.12.4.js"></script>
 		<script type="text/javascript" src="../source/CDN/jquery.dataTables.min.js"></script>
@@ -22,71 +51,96 @@ $patients = $trans->fetch_all();
 		<link rel="stylesheet" type="text/css" href="../source/bootstrap4/css/bootstrap.css">
 		<link rel="stylesheet" type="text/css" href="../source/CDN/dataTables.bootstrap4.min.css">
 		<link rel="stylesheet" type="text/css" href="../source/CDN/buttons.bootstrap4.min.css	">
+		
 	</head>
-<body>
-<?php
-include_once('radsidebar.php');
-?>
-<div class="container" style="margin-top: 10px;">
-	<table id="example" class="table table-striped table-bordered" cellspacing="0" width="100%">
-	               <thead>
-                    	<th nowrap>Transaction No.</th>
-                    	<th>Patient ID</th>
-                    	<th nowrap>Transaction Date</th>
-						<th>Company Name</th>
-						<th nowrap>Patient Name</th>
-						<th>Action</th>
-					</thead>
-					<?php foreach  ($patients as $patient) {  ?>
-					
+	<body>
+	<?php
+	include_once('radsidebar.php');
+	?>
+
+	<div class="container" style="margin-top: 10px;">
+		
+			<table id="example" class="table table-striped table-bordered" cellspacing="0" width="100%">
+	           <thead>
+	            	<th nowrap>Transaction No.</th>
+	            	<th>Patient ID</th>
+	            	<th nowrap>Transaction Date</th>
+					<th>Company Name</th>
+					<th nowrap>Patient Name</th>
+					<th>Action</th>
+				</thead>
+				<?php foreach  ($patients as $patient) {  ?>
+				
+
 					<tr>
-							<td>
-								<?php echo $patient['TransactionID']?>
-							</td>
-							<td>
-								<?php echo $patient['PatientID']?>
-							</td>
-							<td>
-								<?php echo $patient['TransactionDate']?>
-							</td>
-							<td>
-								<?php echo $patient['CompanyName']?>
-							</td>	
-							<td nowrap>
-								<?php echo $patient['LastName']?>,<?php echo $patient['FirstName']?> <?php echo $patient['MiddleName']?> 
-							</td>
-							<td > 
-								<select type="button" class="btn btn-primary"> 
-									<option > Select film size </option>
-									<option > 11x14 </option>
-									<option > 10x12 </option>
-									<option > 14x14 </option>
-									<option > 14x17 </option>
-									<option > 8x10 </option>
-								</select>
-							</td>
+						<form method = "get" action = "PrintMarker.php">
+						<td>
+							<?php echo $patient['TransactionID']?>
+							<input type = "hidden" name = "tid" value = "<?php echo $patient['TransactionID']?>">
+						</td>
+						<td>
+							<?php echo $patient['PatientID']?>
+							<input type = "hidden" name = "id" value = "<?php echo $patient['PatientID']?>">
 
+						</td>
+						<td>
+							<?php echo $patient['TransactionDate']?>
+						</td>
+						<td>
+							<?php echo $patient['CompanyName']?>
+						</td>	
+						<td nowrap>
+							<?php echo $patient['LastName' ].", ".$patient['FirstName'] ." ". $patient['MiddleName']?> 
+						</td>
+						<td > 
+							<select type="button" class="btn btn-primary" name = "filmSize"  required> 
+								<option value=""  selected disabled>Film Size</option>
+								<option value = "11x14"> 11x14 </option>
+								<option value = "10x12"> 10x12 </option>
+								<option value = "14x14"> 14x14 </option>
+								<option value = "14x17"> 14x17 </option>
+								<option value = "8x10"> 8x10 </option>
+							</select>
+							<select type="button" class="btn btn-primary " name = "RadTech" required> 
+								<option value=""  selected disabled>Radtech</option>
+								<option value = "JORGE"> JORGE </option>
+								<option value = "ARBY"> ARBY </option>
+							</select>
+							<select type="button" class="btn btn-primary mt-2" name = "Part"  required> 
+								<option value=""  selected disabled>Body Part</option>
+								<?php foreach ($partsArray as $key)
+								{ ?>
+									<option value = "<?php echo $key?>"> <?php echo $key?></option>
+								<?php } ?>
+
+							</select>
+							<button type="submit" name="submit" class = "btn btn-secondary mt-2">
+								Print
+							</button>
+						</td>
+						</form>
 					</tr>
-	<?php  } 	?> 
-    </table>
-</div>
+				
+				<?php  } 	?> 
+		    </table>
+		
+	</div>
 
-
-<script>
-	$(document).ready(function() {
-    var table = $('#example').DataTable( {
-        lengthChange: false,
-        scrollY:       500,
-        scrollCollapse: true,
-        "scrollX": true,
-        paging:         false,
-        buttons: ['excel', 'pdf', 'colvis' ], 
-        "order": [[ 0, "desc" ]]
-    } );
- 
-    table.buttons().container()
-        .appendTo( '#example_wrapper .col-md-6:eq(0)' );
-} );	
-</script>	
-</body>
+		<script type="text/javascript">
+			$(document).ready(function() {
+		    var table = $('#example').DataTable( {
+		        lengthChange: false,
+		        scrollY:       500,
+		        scrollCollapse: true,
+		        "scrollX": true,
+		        paging:         false,
+		        buttons: ['excel', 'pdf', 'colvis' ], 
+		        "order": [[ 0, "desc" ]]
+		    } );
+		 
+		    table.buttons().container().appendTo( '#example_wrapper .col-md-6:eq(0)' );
+			
+		} );	
+		</script>	
+	</body>
 </html> 

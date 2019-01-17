@@ -53,7 +53,7 @@ include_once('radsidebar.php');
 								<?php echo $patient['CompanyName']?>
 							</td>	
 							<td nowrap>
-								<?php echo $patient['LastName']?>,<?php echo $patient['FirstName']?> <?php echo $patient['MiddleName']?> 
+								<?php echo $patient['LastName']?>, <?php echo $patient['FirstName']?> <?php echo $patient['MiddleName']?> 
 							</td>
 							<td > 
 								<button type="button" class="btn btn-primary" onclick="document.location = 'XRayVIEW.php?id=<?php echo $patient['PatientID']?>&tid=<?php echo $patient['TransactionID']?>';">VIEW RECORD</button>
