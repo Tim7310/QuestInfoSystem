@@ -9,7 +9,7 @@ $patData = $patient->fetch_data($patID);
 if ($patID != 0) {
 
 ?>
-<div >
+<div style="background-color: white;padding: 5px">
 	<i class="fas fa-user-check"></i> &nbsp;
 	<?php 
 		echo $patData['LastName']." , ".$patData['FirstName']." ".$patData['MiddleName']." | ".$patData['CompanyName']." | ".$patData['ContactNo'];
@@ -54,7 +54,7 @@ if ($patID != 0) {
 				value="<?php echo $patData['Gender']; ?>" required />
 		  	</div>
 		  	<div class="col">
-		  		<label for="">Company Name:</label>
+		  		<label for="">Company Name / Doctor:</label>
 				<input type="text"  name="EditComName" id="EditComName" class="form-control " 
 				style="font-size: 15px;font-weight: bold"
 				value="<?php echo $patData['CompanyName']; ?>" required />
@@ -73,6 +73,9 @@ if ($patID != 0) {
 				value="<?php echo $patData['Position']; ?>" required />
 		  	</div>
 		  	<div class="col">
+		  		<label for="">Biller</label>
+				<input type="text"  name="EditBiller" id="EditBiller" class="form-control " 
+				style="font-size: 15px;font-weight: bold; width: 140px" value="<?php echo $patData['PatientBiller']; ?>" required />
 		  		<button type="button" class="btn btn-primary" id="saveEdited" style="margin-top: 80px">Save Changes</button>
 		  		<button type="button" class="btn btn-danger" id="restoreDef" style="margin-top: 10px">Cancel</button>
 		  	</div>
@@ -97,6 +100,7 @@ if ($patID != 0) {
 		var EditAdd = $("#EditAdd").val();
 		var EditPos = $("#EditPos").val();
 		var patID = $("#editPatID").val();
+		var EditBiller = $("#EditBiller").val();
 		$("#restoreDef").click(function(){
 			$("#EditFName").val(EditFName);
 			$("#EditMName").val(EditMName);
@@ -122,8 +126,9 @@ if ($patID != 0) {
 			EditAdd = $("#EditAdd").val();
 			EditPos = $("#EditPos").val();
 			patID = $("#editPatID").val();
+			EditBiller = $("#EditBiller").val();
 			$('#editPatientModal').modal('toggle');
-			$.post("updatePatient.php",{fname:EditFName, mname:EditMName, lname: EditLName, age: EditAge, gen: EditGender, comname:EditComName, contact: EditContact, bod: EditBOD, address: EditAdd, pos: EditPos, pid:patID},function(e){
+			$.post("updatePatient.php",{fname:EditFName, mname:EditMName, lname: EditLName, age: EditAge, gen: EditGender, comname:EditComName, contact: EditContact, bod: EditBOD, address: EditAdd, pos: EditPos, pid:patID, biller: EditBiller},function(e){
 				var patIDID = '#' + patID;
 				$(patIDID).trigger('click',function(){	});
 				$("#searchloader").load("searchPatient.php",{txt:""},function(){});

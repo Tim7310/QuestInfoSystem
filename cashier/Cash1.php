@@ -299,13 +299,21 @@ include_once('cashsidebar.php');
 	</div>
 
 	<div class="row">
-		<div class="col-12" id="selectedPatient" style="text-align: left; height: 40px"></div>
+		<div class="col-12" id="selectedPatient" style="text-align: left; height: 40px;"></div>
 	</div>
 	<div class="row col-12" id="addItemdiv" style="background-color: #08863E;color: white; padding: 10px;text-align: left ">
-		<div class="col-1" style="font-weight: bold;">Item ID</div>
+		<div class="col-1" style="font-weight: bold;">Item ID </div>
 		<div class="col-2" style="font-weight: bold;">Item Name</div>
 		<div class="col-2" style="font-weight: bold;">Attribute</div>
-		<div class="col-5" style="font-weight: bold;">Quantity</div>
+		<div class="col-5" style="font-weight: bold;">Quantity &nbsp;
+			<!-- <div class="input-group input-group-sm" style="width: 150px">
+			  <div class="input-group-prepend">
+			    <span class="input-group-text" id="inputGroup-sizing-sm" style="background-color: gray">
+			    	<i class="fas fa-plus-circle"></i> Discount </span>
+			  </div>
+			  <input type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
+			</div> -->
+		</div>
 		<div class="col-1" style="font-weight: bold;">Price</div>
 		<div class="col-1" style="font-weight: bold;">Ext Price</div>
 	</div>
@@ -532,7 +540,10 @@ include_once('cashsidebar.php');
 			$(".itemNum").each(function(){
 				existItem = $(this).text();
 				if (existItem == itemNum) {
-					alert("Item already in Item List");
+					var qtyvalue = $(this).parent("div").children("div").children(".qty").val();
+					qtyvalue = parseInt(qtyvalue);
+					qtyvalue = qtyvalue + 1;
+					$(this).parent("div").children("div").children(".qty").val(qtyvalue);
 					isExist = 1;
 				}
 			});
@@ -551,7 +562,7 @@ include_once('cashsidebar.php');
 			'<div class="col-1 pricediv"></div>'+
 			'<div class="col-1 tpdiv"><input name="" class="tpdivIN" style="width:80px;border:none;background-color:white" disabled></div></div>'+
 			'<input name="data" class="data" style="display:none">');
-
+			}
 			$(".removeItem").click(function(){
 				$(this).parent('div').parent('div').remove();xx--;
 				totalPrice();
@@ -602,7 +613,7 @@ include_once('cashsidebar.php');
 				change();
 				verify();
 			});
-			}
+			
 		});	
 		$("#AR").change(function(){
 			change();
@@ -705,11 +716,13 @@ include_once('cashsidebar.php');
 							// $.post("AccountReceipt.php",{transID: e},function(){
 								
 							// });
+							
 							window.open("Receipt.php?transID="+e+"&patID="+PatientID);
 							location.reload();
 						});
 					}else{
 						$.post("DataTransaction.php",{transID: idtrans, status: status, PatientID: PatientID, itemsID: itemsID, itemsQTY: itemsQTY, itemsDisc: itemsDisc, change: changeValue, totalAmount: subTotalcash, payment: payment, cashier: CN, transNO: TN, transType: transType, biller: biller}, function(e){
+							
 							window.open("Receipt.php?transID="+idtrans+"&patID="+PatientID);
 							location.reload();
 						});

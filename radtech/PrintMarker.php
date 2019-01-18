@@ -1,3 +1,9 @@
+<script type="text/javascript">
+	window.onload = function() 
+	{ 
+		window.print(); 
+	}
+</script>
 <?php
 	include_once('../connection.php');;
 	include_once('../classes/trans.php');

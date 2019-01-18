@@ -1,7 +1,10 @@
 <?php
 include_once("../connection.php");
 include_once("../classes/trans.php");
+include_once("../classes/patient.php");
 $trans = new trans;
+$pat = new Patient;
+
 	function arraytoString($array){
 		$x = 0;
 		foreach ($array as $key) {
@@ -35,8 +38,11 @@ $trans = new trans;
 
 	if (isset($_POST['PatientID'])) {
 		$PatientID = $_POST['PatientID'];
+		$getPat = $pat->fetch_data($PatientID);
+		$biller = $getPat['PatientBiller'];
 	}else{
 		$PatientID = "";
+		$biller = "";
 		}
 	if (isset($_POST['itemsID'][0])) {
 		$payment = $_POST['payment'];
@@ -58,7 +64,7 @@ $trans = new trans;
 	$transNO = $_POST['transNO'];
 	$cashier = $_POST['cashier'];
 	$transType = $_POST['transType'];
-	$biller = $_POST['biller'];
+	
 
 	if ( $transType == 0 ) {
 		$transType = "";

@@ -1,15 +1,25 @@
 <?php
 
 class pack {
-	public function fetch_all(){
+	public function fetch_by_type($type){
 		global $pdo;
 
-		$query = $pdo->prepare("SELECT * FROM qpd_items WHERE ItemType LIKE 'Cash%' ORDER BY ItemName asc");
+		$query = $pdo->prepare("SELECT * FROM qpd_items WHERE ItemType LIKE '$type%' ORDER BY ItemName asc");
 		$query->execute();
 
 		return $query->fetchAll();
 
 	}
+	public function fetch_all(){
+		global $pdo;
+
+		$query = $pdo->prepare("SELECT * FROM qpd_items ORDER BY ItemName asc");
+		$query->execute();
+
+		return $query->fetchAll();
+
+	}
+
 
 	public function fetch_data($id){
 			global $pdo;
