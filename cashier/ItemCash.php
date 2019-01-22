@@ -109,6 +109,9 @@ $pack = $pack->fetch_all();
 	    height: 50px;
 	    width: 100px;
 	}
+	button{
+		cursor: pointer;
+	}
 </style>
 <body>
 <?php include_once('cashsidebar.php');?>
@@ -145,8 +148,10 @@ $pack = $pack->fetch_all();
                     	<th>Date Created</th>
 						<th>Item Name</th>
 						<th>Item Price</th>
-						<th>Item Description</th>
-						<th></th>
+						<!-- <th>Item Description</th> -->
+						<th width="50px">Special Test?</th>
+						<th>Action</th>
+
 					</thead>
 						<?php foreach  ($pack as $pack) {  ?>
 					<tr>
@@ -162,10 +167,25 @@ $pack = $pack->fetch_all();
 							<td>
 								<?php echo $pack['ItemPrice']?>
 							</td>	
-							<td>
+							<!-- <td>
 								<?php echo $pack['ItemDescription']?>
+							</td> -->
+							<td>
+								<input type="hidden" name="" class="itemid" value="<?php echo $pack['ItemID']?>">
+								<input type="hidden" name="" class="testtype" value="<?php echo $pack['TestType']?>">
+								<button class="btn btn-primary specifydisc">
+								<?php
+									if ($pack['TestType'] == 0) {
+										echo '<i class="fas fa-times-circle"></i>';
+									}else{
+										echo '<i class="fas fa-check-circle"></i>';
+									}
+								?>
+								</button>
 							</td>
 							<td > 
+								
+								
 								<button type="button" class="btn btn-danger" onclick="javascript:confirmationDelete($(this));return false;" href = 'DeletePack.php?id=<?php echo $pack['ItemID']?>';>DELETE</button>
 							</td>
 							<?php } ?> 
@@ -196,11 +216,37 @@ function confirmationDelete(anchor)
         scrollCollapse: true,
         "scrollX": true,
         paging:         false,
-        buttons: ['excel', 'pdf', 'colvis' ]
+        buttons: ['excel', 'pdf', 'colvis' ],
+        // columnDefs: [
+        //     {
+        //         targets: 4,
+        //         visible: false
+        //     }
+        // ]
     } );
  
     table.buttons().container()
         .appendTo( '#example_wrapper .col-md-6:eq(0)' );
+
+        $('.specifydisc').click(function(){
+        	var thisbtn = $(this);
+        	var id = $(this).siblings(".itemid").val();
+        	var type = $(this).siblings(".testtype").val();
+        	if (type == 0) {
+        		type = 1;
+        		$(this).siblings(".testtype").val(1);
+        	}else{
+        		type = 0;
+        		$(this).siblings(".testtype").val(0);
+        	}
+        	$.post("UpdateItemType.php",{id: id, type: type},function(e){
+        		if (e == 0) {
+        			thisbtn.html('<i class="fas fa-times-circle"></i>');
+        		}else{
+        			thisbtn.html('<i class="fas fa-check-circle"></i>');
+        		}
+        	});
+        });
 } );	
 </script>
 

@@ -19,6 +19,9 @@ $trans = $transac->fetch_allCash();
 		<script type="text/javascript" src="../source/CDN/buttons.html5.min.js"></script>
 		<script type="text/javascript" src="../source/CDN/buttons.print.min.js"></script>
 		<script type="text/javascript" src="../source/CDN/buttons.colVis.min.js"></script>
+		<script type="text/javascript" src="../source/jquery-confirm.min.js"></script>
+		
+		<link rel="stylesheet" type="text/css" href="../source/jquery-confirm.min.css">
 		<link rel="stylesheet" type="text/css" href="../source/bootstrap4/css/bootstrap.css">
 		<link rel="stylesheet" type="text/css" href="../source/CDN/dataTables.bootstrap4.min.css">
 		<link rel="stylesheet" type="text/css" href="../source/CDN/buttons.bootstrap4.min.css	">
@@ -27,6 +30,11 @@ $trans = $transac->fetch_allCash();
 <?php
 include_once('cashsidebar.php');
 ?>
+<style type="text/css">
+	button{
+		cursor: pointer;
+	}
+</style>
 <div class="container" style="margin-top: 10px;">
 	<table id="example" class="table table-striped table-bordered" cellspacing="0" width="100%">
  <thead>
@@ -48,16 +56,16 @@ include_once('cashsidebar.php');
 								<?php echo $trans['TransactionDate']?>
 							</td>
 							<td>
-								<?php echo $trans['TransactionID']?>
-							</td>
-							<td>
-								<?php echo $trans['TransactionType']?>
-							</td>
-							<td>
 								<?php echo $trans['PatientID']?>
+							</td>
+							<td>
+								<?php echo $trans['TransactionType']." - ".$trans['SalesType']?>
+							</td>
+							<td>
+								<?php echo $trans['TransactionID']?>
 							</td>	
 							<td nowrap>
-								<?php echo $trans['LastName']?>,&nbsp;<?php echo $trans['FirstName']?> <?php echo $trans['MiddleName']?> 
+								<?php echo $trans['LastName']?>,&nbsp;<br><?php echo $trans['FirstName']?> <?php echo $trans['MiddleName']?> 
 							</td>
 							<td>
 								<?php echo $trans['CompanyName']?>
@@ -80,7 +88,7 @@ include_once('cashsidebar.php');
 										# code...
 									
 								?></b> 
-								(<?php echo $key['ItemDescription']?>)
+								
 								<?php
 												
 									
@@ -92,7 +100,14 @@ include_once('cashsidebar.php');
 								 ?>
 							</td>
 							<td > 
-								<button type="button" class="btn btn-primary" onclick="document.location = 'Receipt.php?patID=<?php echo $trans['PatientID']?>&transID=<?php echo $trans['TransactionID']?>';">Reprint Receipt</button>
+								<button type="button" class="btn btn-primary" onclick="document.location = 'Receipt.php?patID=<?php echo $trans['PatientID']?>&transID=<?php echo $trans['TransactionID']?>';">Reprint Receipt</button><br>
+								<?php
+									if ($trans['SalesType'] == 'sales') {
+										
+								?>
+								<button class="btn btn-danger refund" style="margin-top: 10px" >Refund</button>
+								<input type="hidden" name="" class="tid" value="<?php echo $trans['TransactionID']?>">
+								<?php } ?>
 							</td>
 
 
@@ -105,6 +120,30 @@ include_once('cashsidebar.php');
 
 <script>
 	$(document).ready(function() {
+	$(".refund").click(function(){
+		var tid = $(this).siblings(".tid").val();
+		$.confirm({
+			title: 'Confirm',
+			content: 'Are you sure you want to Refund this transaction?',
+			theme: 'modern',
+			buttons: {
+				confirm: {
+					text: 'Yes',
+					btnClass: 'btn-danger',
+					action: function(){
+						$.post("refund.php",{tid: tid},function(e){
+							location.reload();
+						});
+					}
+				},
+				cancel: {
+					action: function(){
+						
+					}
+				}
+			}
+		});
+	});
     var table = $('#example').DataTable( {
         lengthChange: false,
         scrollY:       500,

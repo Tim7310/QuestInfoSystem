@@ -144,6 +144,54 @@ class trans {
 		$query2->execute();
 		return $count;
 	}
+	public function fetch_by_date($date1,$date2){
+		global $pdo;
 
+		$query = $pdo->prepare("SELECT f.*, t.* FROM qpd_patient f, qpd_trans t WHERE f.PatientID = t.PatientID and t.TransactionDate BETWEEN '$date1' and '$date2' ORDER BY t.TransactionDate");
+		$query->execute();
+
+		return $query->fetchAll();
+
+	}
+	public function randomDigits(){
+		do{
+			$trans = new trans;
+			$numbers = range(0,9);
+			$digits = '';
+			$length = 8;
+			shuffle($numbers);
+			for($i = 0; $i < $length; $i++){
+				global $digits;
+				$digits .= $numbers[$i];
+			}
+			$transdata = $this->refCount($digits);
+
+			}while($transdata != 0);			  
+			    return $digits;
+			}
+	public function item_refund($id){
+		global $pdo;
+		$query = $pdo->prepare("SELECT * FROM qpd_trans WHERE TransactionID = '$id'");
+		$query->execute();
+
+		$trans = $query->fetch();
+		$tref = $this->randomDigits();
+		$patid = $trans['PatientID'];
+		$ttype = $trans['TransactionType'];
+		$cash = $trans['Cashier'];
+		$itemid = $trans['ItemID'];
+		$qty = $trans['ItemQTY'];
+		$biller = $trans['biller'];
+		$tprice = $trans['TotalPrice'];
+		$paidin = $trans['PaidIn'];
+		$disc = $trans['Discount'];
+		$paidout = $trans['PaidOut'];
+		$gtotal = $trans['GrandTotal'];
+		$tdate = $trans['TransactionDate'];
+		$status = $trans['status'];
+		$sql = $pdo->prepare("INSERT INTO qpd_trans( TransactionRef, PatientID, TransactionType, Cashier, ItemID, ItemQTY, Biller, TotalPrice, PaidIn, Discount, PaidOut, GrandTotal, TransactionDate, status, SalesType) VALUES ('$tref', '$patid', '$ttype', '$cash', '$itemid', '$qty', '$biller', '$tprice', '$paidin', '$disc', $paidout, '$gtotal', '$tdate', '$status', 'refund')");
+
+		$sql->execute();
+	} 
 }
 ?>

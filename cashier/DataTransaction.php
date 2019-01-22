@@ -23,7 +23,7 @@ $pat = new Patient;
 		$date = date("Y-m-d H:i:s");
 		$sql = "INSERT INTO qpd_trans 
 		(TransactionRef, PatientID, TransactionType, Cashier, ItemID, ItemQTY, Biller, TotalPrice, PaidIn, Discount, PaidOut, GrandTotal, TransactionDate, status) 
-		values ('$tref', '$pid', '$ttype', '$cashier', '$itemIDs', '$itemQTY', '$biller', '$tprice', '$paidIn', '$disc', '$PaidOut', '$gtotal', '$date', $status)";
+		values ('$tref', '$pid', '$ttype', '$cashier', '$itemIDs', '$itemQTY', '$biller', '$tprice', '$paidIn', '$disc', '$PaidOut', '$gtotal', '$date', '$status')";
 		$stmt= $pdo->prepare($sql);
 		$stmt->execute();
 	}

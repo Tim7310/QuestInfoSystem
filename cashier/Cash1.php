@@ -206,7 +206,7 @@ include_once('cashsidebar.php');
 			  placeholder="Select Item Here">
 			   		<?php foreach ($packData as $key){ ?>
 						
-						<option value="<?php echo $key['ItemID'];?>"><?php echo $key['ItemName']." ".$key['ItemDescription']." | ". $key['ItemPrice'];?></option>
+						<option value="<?php echo $key['ItemID'];?>"><?php echo $key['ItemName']." | ". $key['ItemPrice'];?></option>
 
 					<?php } ?>
 			  </select>

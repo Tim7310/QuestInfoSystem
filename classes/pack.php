@@ -32,6 +32,14 @@ class pack {
 
 
 	}
+	public function item_type($id, $val){
+		global $pdo;
+
+		$sql = $pdo->prepare("UPDATE qpd_items set TestType = '$val' WHERE ItemID = '$id'");
+
+		$sql->execute();
+	}
+	
 
 
 }
