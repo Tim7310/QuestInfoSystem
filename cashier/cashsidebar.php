@@ -62,7 +62,9 @@ $row = $stmt->fetch(PDO::FETCH_ASSOC);
       <a class="nav-item nav-link" href="TransactionListCash.php"><i class="fas fa-list-ul"></i>&nbsp; Transaction List</a>
       <a class="nav-item nav-link" href="ItemCash.php"><i class="fas fa-archive"></i>&nbsp; Manage Tests Packages</a>
       <a class="nav-item nav-link" href="CashSalesReport.php"><i class="far fa-newspaper"></i>&nbsp; Sales Report</a>
-      <a class="nav-item nav-link" href="../logout.php" style="float: right; padding-left:430px; "><i class="fas fa-sign-out-alt"></i>&nbsp LOGOUT</a>
+      <a class="nav-item nav-link" href="Exchange.php"><i class="fas fa-exchange-alt"></i>&nbsp; Refund / Exchange</a>
+      <div style="padding-left:250px"></div>
+      <a class="nav-item nav-link" href="../logout.php" style="float: right; "><i class="fas fa-sign-out-alt"></i>&nbsp LOGOUT</a>
     </div>
 
   </div>

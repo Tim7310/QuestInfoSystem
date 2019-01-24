@@ -132,7 +132,9 @@ include_once('cashsidebar.php');
 					btnClass: 'btn-danger',
 					action: function(){
 						$.post("refund.php",{tid: tid},function(e){
-							location.reload();
+							var msg = JSON.parse(e);
+							window.open("Receipt.php?patID="+msg[1]+"&transID="+msg[0]);
+							//location.reload();
 						});
 					}
 				},

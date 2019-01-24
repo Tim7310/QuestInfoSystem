@@ -4,5 +4,7 @@ include_once("../classes/trans.php");
 
 $trans = new trans;
 $tid = $_POST['tid'];
-$trans->item_refund($tid);
+$array = $trans->item_refund($tid);
+
+echo json_encode($array);
 ?>

@@ -31,6 +31,18 @@ class trans {
 			return $query->fetch();
 
 	}
+	public function fetch_trans($id){
+		global $pdo;
+
+			$query = $pdo->prepare("SELECT * FROM qpd_trans WHERE TransactionID = '$id'");
+			$query->execute();
+
+			$trans = $query->fetch();
+			$pid = $trans['PatientID'];
+			$return = $this->fetch_data($pid, $id);
+			return $return;
+
+	}
 	public function refCount($ref){
 			global $pdo;
 
@@ -176,22 +188,26 @@ class trans {
 
 		$trans = $query->fetch();
 		$tref = $this->randomDigits();
+		$tid = $trans['TransactionID'];
 		$patid = $trans['PatientID'];
 		$ttype = $trans['TransactionType'];
 		$cash = $trans['Cashier'];
 		$itemid = $trans['ItemID'];
 		$qty = $trans['ItemQTY'];
-		$biller = $trans['biller'];
+		$biller = $trans['Biller'];
 		$tprice = $trans['TotalPrice'];
-		$paidin = $trans['PaidIn'];
-		$disc = $trans['Discount'];
-		$paidout = $trans['PaidOut'];
+		$paidin = "0";
+		$disc = '0';
+		$paidout = "0";
 		$gtotal = $trans['GrandTotal'];
-		$tdate = $trans['TransactionDate'];
 		$status = $trans['status'];
+		date_default_timezone_set("Asia/Kuala_Lumpur");
+		$tdate = date("Y-m-d H:i:s");
 		$sql = $pdo->prepare("INSERT INTO qpd_trans( TransactionRef, PatientID, TransactionType, Cashier, ItemID, ItemQTY, Biller, TotalPrice, PaidIn, Discount, PaidOut, GrandTotal, TransactionDate, status, SalesType) VALUES ('$tref', '$patid', '$ttype', '$cash', '$itemid', '$qty', '$biller', '$tprice', '$paidin', '$disc', $paidout, '$gtotal', '$tdate', '$status', 'refund')");
 
 		$sql->execute();
+		$array = array($tid, $patid);
+		return $array;
 	} 
 }
 ?>
