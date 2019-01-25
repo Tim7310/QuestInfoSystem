@@ -16,7 +16,7 @@ $pack = new pack;
 $id = $_POST['id'];
 $data = $trans->fetch_trans($id);
 if(is_array($data)){	
-	if ($data['TransactionType'] == 'CASH') {
+	if ($data['TransactionType'] == 'CASH' and $data['SalesType'] == 'sales') {
 	$ids = $data['ItemID'];
 	$ids = $trans->each_item($ids);	
 	$disc = explode(",", $data['Discount']);
@@ -57,7 +57,7 @@ if(is_array($data)){
 			<div class="col-md-12 p-2 bg-primary text-white" style="font-size: 16px;text-align: center;font-weight: bold">
 			PATIENT INFO</div>
 			<div class="col-md-12">
-				<input type="hidden" name="PID">
+				<input type="hidden" name="PID" value="<?php echo $data['PatientID']?>">
 				<span > Name: </span> 
 					<?php echo $data['FirstName']." ".$data['LastName']; ?>
 			</div>
@@ -76,7 +76,9 @@ if(is_array($data)){
 			<div class="col-md-6"><span>Transaction Ref: </span><?php echo $data['TransactionRef']?></div>
 			<div class="col-md-6"><span>Transaction Type: </span><?php echo $data['TransactionType']?></div>
 			<div class="col-md-6"><span>Cashier: </span><?php echo $data['Cashier']?></div>
-			<div class="col-md-12"><span>Transaction Date: </span><?php echo $data['TransactionDate']?></div>
+			<div class="col-md-6"><span>Transaction Date: </span><?php echo $data['TransactionDate']?></div>
+			<div class="col-md-6"><span>Biller: </span><?php echo $data['Biller']?></div>
+			<input type="hidden" name="biller" value="<?php echo $data['Biller']?>">
 			<div class="col-md-4"><span>Item Name</span></div>
 			<div class="col-md-2"><span>Discount</span></div>
 			<div class="col-md-2"><span>Quantity</span></div>
@@ -94,6 +96,7 @@ if(is_array($data)){
 				<div class="col-md-4 " ><?php echo $key['ItemName']?></div>
 				<div class="col-md-2 mt-1"><?php echo $disc[$x]?></div>
 				<input class="discount" type="hidden" name="discount" value="<?php echo $disc[$x]?>">	
+				<input class="quantity" type="hidden" name="Quantity" value="<?php echo $qty[$x]?>">	
 				<div class="col-md-2 mt-1"><?php echo $qty[$x]?></div>
 				<div class="col-md-2 mt-1"><?php echo $key['ItemPrice']?></div>
 				<?php
@@ -158,7 +161,9 @@ if(is_array($data)){
 		var cashier = "<?php echo $cashierName ?>";
 		var itemid = getIDS("itemid");
 		var discount = getIDS("discount");
-		
+		var quantity = getIDS("quantity");
+		var biller = $("input[name='biller'").val();
+		var gtotal = $(".grandtotal").text();
 		$.confirm({
 			title: 'Confirm',
 			content: 'Are you sure you want to Refund this transaction?',
@@ -168,12 +173,13 @@ if(is_array($data)){
 					text: 'Yes',
 					btnClass: 'btn-danger',
 					action: function(){
-						alert(itemid.toString());
-						// $.post("refund.php",{tid: tid},function(e){
-						// 	var msg = JSON.parse(e);
-						// 	window.open("Receipt.php?patID="+msg[1]+"&transID="+msg[0]);
+						//alert(itemid.toString());
+						$.post("refund.php",{pid: pid, cashier: cashier, itemid: itemid, discount: discount, quantity: quantity, biller: biller, gtotal: gtotal},function(e){
+							//alert(e);
+							var msg = JSON.parse(e);
+						 	window.open("refundReceipt.php?patID="+msg[1]+"&transID="+msg[0]);
 						// 	//location.reload();
-						// });
+						});
 					}
 				},
 				cancel: {
@@ -188,7 +194,7 @@ if(is_array($data)){
 </script>
 <?php 
 	}else{
-		echo "<script> alert('Account Transaction cant Exchange/Refund'); </script>";
+		echo "<script> alert('Transaction Number cannot be Refund/Exchange'); </script>";
 		echo "<script>location.reload();</script>";
 	}
 }else{

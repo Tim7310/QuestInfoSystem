@@ -206,8 +206,8 @@ include_once('cashsidebar.php');
 			  placeholder="Select Item Here">
 			   		<?php foreach ($packData as $key){ ?>
 						
-						<option value="<?php echo $key['ItemID'];?>"><?php echo $key['ItemName']." | ". $key['ItemPrice'];?></option>
-
+						<option value="<?php echo $key['ItemID'];?>">
+							<?php echo $key['TestType']." | ".$key['ItemName']." | ". $key['ItemPrice'] ;?></option>
 					<?php } ?>
 			  </select>
 			  <div class="input-group-append">
@@ -306,13 +306,7 @@ include_once('cashsidebar.php');
 		<div class="col-2" style="font-weight: bold;">Item Name</div>
 		<div class="col-2" style="font-weight: bold;">Attribute</div>
 		<div class="col-5" style="font-weight: bold;">Quantity &nbsp;
-			<!-- <div class="input-group input-group-sm" style="width: 150px">
-			  <div class="input-group-prepend">
-			    <span class="input-group-text" id="inputGroup-sizing-sm" style="background-color: gray">
-			    	<i class="fas fa-plus-circle"></i> Discount </span>
-			  </div>
-			  <input type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
-			</div> -->
+			 <button class="btn btn-primary pt-1 pb-1" id="spdiscount">Add 20% Discount</button>
 		</div>
 		<div class="col-1" style="font-weight: bold;">Price</div>
 		<div class="col-1" style="font-weight: bold;">Ext Price</div>
@@ -520,6 +514,16 @@ include_once('cashsidebar.php');
 			}
 			return val;
 		}
+		$("#spdiscount").click(function(){
+			$(".itemdivID").each(function(){
+				var test_type = $(this).children(".testtype").val();
+				if (test_type == 0) {
+					$(this).children("div").children(".Disc").val("20");
+					$(this).children("div").children(".Disc").change();
+
+				}
+			});
+		});
 		$("#Account").click(function(){
 			$("#transDivAcc").show();
 			$("#transDivCash").hide();
@@ -549,11 +553,11 @@ include_once('cashsidebar.php');
 			});
 			if (isExist == 0) {
 			var itemtxt = $( "#itemList option:selected" ).text().split("|");
-			var itemName = itemtxt[0];
-			var itemPrice = itemtxt[1];
+			var itemName = itemtxt[1];
+			var itemPrice = itemtxt[2];
 			//var tempArray = [itemNum, itemName, itemPrice, Price, TotalPrice];
-			
-			$("#addItemdiv").after('<div class="row itemdivID col-12" id="itemdivID'+ xx +'"><div class="col-1 itemNum">'+ itemNum +'</div>'+
+			var testtype = itemtxt[0];
+			$("#addItemdiv").after('<div class="row itemdivID col-12" id="itemdivID'+ xx +'"><div class="col-1 itemNum">'+ itemNum +'</div>'+'<input type="hidden" name="testtype" value="'+testtype+'" class="testtype">'+
 			'<div class="col-2">'+ itemName +'</div>'+
 			'<div class="col-2">Item Price:&nbsp;'+
 			'<input name="itemPrice" class="itemPrice " value="'+ itemPrice +'" style="width:80px;border:none;background-color:white" disabled></div>'+
@@ -612,6 +616,7 @@ include_once('cashsidebar.php');
 				totalPrice();
 				change();
 				verify();
+				$(this).children("div").children(".Disc").change();
 			});
 			
 		});	

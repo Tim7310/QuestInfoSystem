@@ -181,32 +181,22 @@ class trans {
 			}while($transdata != 0);			  
 			    return $digits;
 			}
-	public function item_refund($id){
+	public function item_refund($pid, $cashier, $itemid, $discount, $quantity, $biller, $gtotal){
 		global $pdo;
-		$query = $pdo->prepare("SELECT * FROM qpd_trans WHERE TransactionID = '$id'");
-		$query->execute();
-
-		$trans = $query->fetch();
 		$tref = $this->randomDigits();
-		$tid = $trans['TransactionID'];
-		$patid = $trans['PatientID'];
-		$ttype = $trans['TransactionType'];
-		$cash = $trans['Cashier'];
-		$itemid = $trans['ItemID'];
-		$qty = $trans['ItemQTY'];
-		$biller = $trans['Biller'];
-		$tprice = $trans['TotalPrice'];
-		$paidin = "0";
-		$disc = '0';
-		$paidout = "0";
-		$gtotal = $trans['GrandTotal'];
-		$status = $trans['status'];
+		$ttype = 'CASH';
+		$itemid = implode(",", $itemid);
+		$discount = implode(",", $discount);
+		$quantity = implode(",", $quantity);
+		$gtotal = $gtotal * -1;
 		date_default_timezone_set("Asia/Kuala_Lumpur");
 		$tdate = date("Y-m-d H:i:s");
-		$sql = $pdo->prepare("INSERT INTO qpd_trans( TransactionRef, PatientID, TransactionType, Cashier, ItemID, ItemQTY, Biller, TotalPrice, PaidIn, Discount, PaidOut, GrandTotal, TransactionDate, status, SalesType) VALUES ('$tref', '$patid', '$ttype', '$cash', '$itemid', '$qty', '$biller', '$tprice', '$paidin', '$disc', $paidout, '$gtotal', '$tdate', '$status', 'refund')");
+		$sql = $pdo->prepare("INSERT INTO qpd_trans( TransactionRef, PatientID, TransactionType, Cashier, ItemID, ItemQTY, Biller, Discount, GrandTotal, TransactionDate, SalesType, status) VALUES ('$tref', '$pid', '$ttype', '$cashier', '$itemid', '$quantity', '$biller', '$discount', '$gtotal', '$tdate', 'refund', '1')");
 
 		$sql->execute();
-		$array = array($tid, $patid);
+
+		$trans = $this->fetchByRef($tref);
+		$array = array($trans['TransactionID'], $trans['PatientID']);
 		return $array;
 	} 
 }

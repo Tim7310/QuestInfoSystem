@@ -101,13 +101,6 @@ include_once('cashsidebar.php');
 							</td>
 							<td > 
 								<button type="button" class="btn btn-primary" onclick="document.location = 'Receipt.php?patID=<?php echo $trans['PatientID']?>&transID=<?php echo $trans['TransactionID']?>';">Reprint Receipt</button><br>
-								<?php
-									if ($trans['SalesType'] == 'sales') {
-										
-								?>
-								<button class="btn btn-danger refund" style="margin-top: 10px" >Refund</button>
-								<input type="hidden" name="" class="tid" value="<?php echo $trans['TransactionID']?>">
-								<?php } ?>
 							</td>
 
 
@@ -120,32 +113,7 @@ include_once('cashsidebar.php');
 
 <script>
 	$(document).ready(function() {
-	$(".refund").click(function(){
-		var tid = $(this).siblings(".tid").val();
-		$.confirm({
-			title: 'Confirm',
-			content: 'Are you sure you want to Refund this transaction?',
-			theme: 'modern',
-			buttons: {
-				confirm: {
-					text: 'Yes',
-					btnClass: 'btn-danger',
-					action: function(){
-						$.post("refund.php",{tid: tid},function(e){
-							var msg = JSON.parse(e);
-							window.open("Receipt.php?patID="+msg[1]+"&transID="+msg[0]);
-							//location.reload();
-						});
-					}
-				},
-				cancel: {
-					action: function(){
-						
-					}
-				}
-			}
-		});
-	});
+	
     var table = $('#example').DataTable( {
         lengthChange: false,
         scrollY:       500,

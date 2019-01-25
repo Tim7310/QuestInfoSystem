@@ -1,4 +1,4 @@
-﻿<!-- <script type="text/javascript">
+<!-- <script type="text/javascript">
 	window.onload = function() 
 	{ 
 		window.print(); 
@@ -22,7 +22,7 @@ if (isset($_GET['transID'])){
 	<head>
 	<meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Receipt</title>
+    <title>Refund Receipt</title>
     <link rel="stylesheet" href="style.css">
 	<link href="../source/bootstrap4/css/bootstrap.min.css" media="all" rel="stylesheet"/>
 	</head>
@@ -74,6 +74,7 @@ if (isset($_GET['transID'])){
 <table style="margin-left:20px;margin: right:20px;width: 200px;margin-top:-20px">
 	<tr>
 		<td colspan="3"><?php echo $data['TransactionDate'] ?></td>
+
 		<td rowspan="23" style="width: 20px">&nbsp;&nbsp;&nbsp;</td>
 	</tr>
 	<tr>
@@ -144,13 +145,14 @@ if (isset($_GET['transID'])){
 	</tr>
 	<tr class="tab" >
 		
-		<td style="padding: 5px;"><b>Items</b></td>
-		<td></td>
+		<td style="padding: 5px;" colspan="2"><b>Refunded Items</b></td>
 	<!-- 	<td style="width: 200px;padding: 5px;"><b>Description</b></td> -->
 		<td style="width: 120px;padding: 5px;" class="text-right"><b>Price</b></td>
 	</tr>
 		<?php
+			$x = 0;
 			$ItemName = explode(",",$data['ItemID']);
+			$discount = explode(",",$data['Discount']);
 			foreach ($ItemName as $item) {
 		?>
 	<tr style="border-bottom: dotted grey 1px; ">
@@ -170,78 +172,26 @@ if (isset($_GET['transID'])){
 		</td> -->
 		<td style="" class="text-right">
 			<?php 
-				echo $itemdata['ItemPrice']."<br/>";
+				$itemprice = $discount[$x] / 100;
+				$itemprice = $itemdata['ItemPrice'] * $itemprice;
+				$itemprice = $itemdata['ItemPrice'] - $itemprice;
+				$itemprice = $itemprice * -1;
+				echo $itemprice."<br/>";
 			?>
 		</td>
 	</tr>	
-	<?php } ?> 
+	<?php $x++; } ?> 
 		<tr class="tab" ></tr>
 				<tr style="border-top: solid grey 5px; padding-top: 3px">
-					<td style="" class="text-right" colspan="2">Receipt Total:</td>
-					<td style="" class="text-right">₱:<?php echo $price_total ?></td>
+					<td style="" class="text-right" colspan="2">Amount Refunded:</td>
+					<td style="" class="text-right">₱:<?php echo $data['GrandTotal'] ?></td>
 				</tr>
-				<?php
-					if ($data['TransactionType'] == 'ACCOUNT') {
-						
-				?>
+				<td style="font-weight: bolder;text-align: center;font-size: 20px;padding-top: 10px" colspan="3">REFUND  RECEIPT</td>
 				<tr>
-					<td style="font-size: 18px; font-weight: bolder;" colspan="2" 
-					class="text-right">Total Accounted:</td>
-					<td style="font-size: 18px; font-weight: bolder;" class="text-right">
-						₱:<?php echo $data['GrandTotal'] ?></td>
-				</tr>				
-				<tr>
-					<td style="font-size: 18px; font-weight: bolder;" colspan="2" class="text-right">Billed to:</td>
-					<td style="font-size: 18px; font-weight: bolder;" class="text-right">
-						<?php echo $data['Biller'] ?></td>
-				</tr>
-					<?php } ?>
-				<!-- for Cash -->
-				<?php
-					if ($data['TransactionType'] == 'CASH') {
-						
-				?>
-				<tr>
-					<td style="" class="text-right" colspan="2">Discount:</td>
-					<td style="" class="text-right">₱:
-					<?php 
-						// $Disc = explode(",",$data['Discount']);
-						// $DiscA = array_sum($Disc);
-						// echo $DiscA;
-						echo $discount;
-					?></td>
+					<td style="height: 15px;"></td>
 				</tr>
 				<tr>
-					<td style="font-size: 18px; font-weight: bolder;" class="text-right" colspan="2">
-					Total Accounted:</td>
-					<td style="font-size: 18px; font-weight: bolder;" class="text-right">
-						₱:<?php echo $data['GrandTotal'] ?></td>
-				</tr>	
-				<tr>
-					<td style="" class="text-right" colspan="2">Amount Tendered:</td>
-					<td style="" class="text-right">₱:
-					<?php 
-						$cash = explode(",",$data['PaidIn']);
-						echo $cash[0];
-					?>
-					</td>
-				</tr>
-				
-				<tr>
-					<td style="font-size: 18px; font-weight: bolder;" class="text-right" colspan="2">
-					Given Change:</td>					
-					<td style="font-size: 18px; font-weight: bolder;" class="text-right">₱:
-					<?php 
-						$change = explode(",",$data['PaidOut']);
-						echo $change[0];
-					?></td>
-				</tr>
-				<?php } ?>
-				<tr>
-					<td style="height: 30px;"></td>
-				</tr>
-				<tr>
-					<td style="padding-top: 15px;" colspan="3">
+					<td style="padding-top: 10px;" colspan="3">
 						<center><p style="border: solid 2px black;padding-left: 25px;padding-right: 25px;font-size: 17px;width: 250px">
 						online results,<br/> www.questphil.com.ph</p></center>		
 					</td>
