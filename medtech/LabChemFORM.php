@@ -46,6 +46,8 @@ $AST = $data['AST'];
 $HB = $data['HB'];
 date_default_timezone_set("Asia/Kuala_Lumpur");
 $printdate = date("Y-m-d H:i:s");
+
+$printCount = $lab->checkPrint($id, $tid, 'CHEMISTRY');
 ?>
 
 <html>
@@ -54,6 +56,9 @@ $printdate = date("Y-m-d H:i:s");
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<title>LABORATORY CHEMISTRY FORM</title>
     <link href="../source/bootstrap4/css/bootstrap.min.css" media="all" rel="stylesheet"/>
+     <script type="text/javascript" src="../source/jquery.min.js"></script>
+    <script type="text/javascript" src="../source/jquery-confirm.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="../source/jquery-confirm.min.css">
 	<script type="text/javascript">
 	window.onload = function() 
 	{ 
@@ -654,6 +659,46 @@ hr
 <div class="col-md-10" style="margin-top: 5px">
 	<img src="../assets/QISFooter.png" height="50px" width="100%">
 </div>
+<script type="text/javascript">
+	$(document).ready(function(){
+		var pcount = "<?php echo $printCount; ?>";
+		pcount = parseInt(pcount);
+		if (pcount > 0) {
+			$.confirm({
+				title: 'Confirm',
+				content: 'You have already printed this result '+pcount+' Time/s',
+				theme: 'modern',
+				buttons: {
+					cancel: {
+						text: 'cancel',
+						btnClass: 'btn-primary',
+						action: function(){
+							window.location.href = "ChemList.php";
+						}
+					},
+					yes: {
+						text: 'yes',
+						btnClass: 'btn-danger',
+						action: function(){
+							
+						}
+					}
+				}
+			});
+		}
+		window.onafterprint = function() {
+			var tid = "<?php echo $tid; ?>";
+			var pid = "<?php echo $id; ?>";
+			var test = "CHEMISTRY";
+		   $.post("PrintCount.php",{pid: pid, tid: tid, test: test},function(){
+		   		window.location.href = "ChemList.php";
+		   });   
+		};
+		// window.onbeforeprint = function() {
+		// 	alert("This will be Count a");
+		// };
+	});
+</script>
 <?php }}}} ?>
 </div>
 </body>

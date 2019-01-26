@@ -26,6 +26,7 @@
 		$id = $_GET['id'];
 		$pat = $patient->fetch_data($id);
 
+$printCount = $lab->checkPrint($id, $tid, 'HEMATOLOGY');
 	// $qc = new qc;
 	// if (isset($_GET['id'])){
 	// 	$id = $_GET['id'];
@@ -219,6 +220,9 @@
 	<title>FORM</title>
     <link href="../source/bootstrap4/css/bootstrap.min.css" media="all" rel="stylesheet"/>
     <link href="../source/formstyle.css" media="all" rel="stylesheet"/>
+    <script type="text/javascript" src="../source/jquery.min.js"></script>
+    <script type="text/javascript" src="../source/jquery-confirm.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="../source/jquery-confirm.min.css">
 	
 </head>
 <style type="text/css">
@@ -451,5 +455,44 @@
 
 
 </body>
-
+<script type="text/javascript">
+	$(document).ready(function(){
+		var pcount = "<?php echo $printCount; ?>";
+		pcount = parseInt(pcount);
+		if (pcount > 0) {
+			$.confirm({
+				title: 'Confirm',
+				content: 'You have already printed this result '+pcount+' Time/s',
+				theme: 'modern',
+				buttons: {
+					cancel: {
+						text: 'cancel',
+						btnClass: 'btn-primary',
+						action: function(){
+							window.location.href = "LabHemaList.php";
+						}
+					},
+					yes: {
+						text: 'yes',
+						btnClass: 'btn-danger',
+						action: function(){
+							
+						}
+					}
+				}
+			});
+		}
+		window.onafterprint = function() {
+			var tid = "<?php echo $tid; ?>";
+			var pid = "<?php echo $id; ?>";
+			var test = "HEMATOLOGY";
+		   $.post("PrintCount.php",{pid: pid, tid: tid, test: test},function(){
+		   		window.location.href = "LabHemaList.php";
+		   });   
+		};
+		// window.onbeforeprint = function() {
+		// 	alert("This will be Count a");
+		// };
+	});
+</script>
 <?php }}}} ?>

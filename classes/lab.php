@@ -50,7 +50,31 @@ class lab {
 
 		return $query->fetch();
 	}
+	public function printCount($pid, $tid, $test){
+		global $pdo;
+		$sql = $pdo->prepare("SELECT * from print_count where TransactionID = '$tid' and PatientID = '$pid' and Test = '$test'");
+		$sql->execute();
+		$printed = $sql->fetch();
 
+		if (is_array($printed)) {
+			$count = $printed['PrintCount'] + 1;
+			$query = $pdo->prepare("UPDATE print_count set PrintCount = '$count' where TransactionID = '$tid' and PatientID = '$pid' and Test = '$test'");
+		}else{
+			$query = $pdo->prepare("INSERT INTO print_count(TransactionID, PatientID, Test) VALUES ('$tid', '$pid', '$test')");
+		}
+		$query->execute();
+	}
+	public function checkPrint($pid, $tid, $test){
+		global $pdo;
+		$sql = $pdo->prepare("SELECT * from print_count where TransactionID = '$tid' and PatientID = '$pid' and Test = '$test'");
+		$sql->execute();
+		$print = $sql->fetch();
+		$count = $sql->rowCount();
+		if ($count > 0) {
+			$count = $print['PrintCount'];
+		}
+		return $count;
+	}
 
 }
 

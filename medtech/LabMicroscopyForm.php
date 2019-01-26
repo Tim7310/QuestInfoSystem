@@ -31,6 +31,7 @@
 	$FecCon = $data['FecCon'];
 	$FecMicro = $data['FecMicro'];
 
+	$printCount = $lab->checkPrint($id, $tid, 'MICROSCOPY');
 	// $qc = new qc;
 	// if (isset($_GET['id'])){
 	// 	$id = $_GET['id'];
@@ -224,6 +225,9 @@
 	<title>Lab Microscopy Form</title>
     <link href="../source/bootstrap4/css/bootstrap.min.css" media="all" rel="stylesheet"/>
     <link href="../source/formstyle.css" media="all" rel="stylesheet"/>
+    <script type="text/javascript" src="../source/jquery.min.js"></script>
+    <script type="text/javascript" src="../source/jquery-confirm.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="../source/jquery-confirm.min.css">
 <!-- 	<script type="text/javascript">
 	window.onload = function() 
 	{ 
@@ -282,7 +286,7 @@
 	</div>
 	<div class="row" style="margin-top: 10px;">
 	    <div class="col-1"><p class="labelName">Age:</p></div>
-	    <div class="col-6" style="margin-top: 10px;">
+	    <div class="col-6" style="">
 	        <span class="lineName"><?php echo $pat['Age'] ?></span>
 	    </div>
 	    <div class="col-2 text-right">
@@ -316,7 +320,7 @@
 	</div>
 </div>
 <!--Footer-->
-<div style="position: absolute;margin-top: 730px;margin-left:-10px;">
+<div style="position: absolute;margin-top: 750px;margin-left:-10px;">
 	<div class="col-md-12 ">
 	<span style="font-size: 12px;">Note: Specimen rechecked, result/s verified.</span>
 	<div class="card" style="border-radius: 0px; margin-top: 10px;">
@@ -593,5 +597,44 @@
 
 
 </body>
-
+<script type="text/javascript">
+	$(document).ready(function(){
+		var pcount = "<?php echo $printCount; ?>";
+		pcount = parseInt(pcount);
+		if (pcount > 0) {
+			$.confirm({
+				title: 'Confirm',
+				content: 'You have already printed this result '+pcount+' Time/s',
+				theme: 'modern',
+				buttons: {
+					cancel: {
+						text: 'cancel',
+						btnClass: 'btn-primary',
+						action: function(){
+							window.location.href = "MicroscopyList.php";
+						}
+					},
+					yes: {
+						text: 'yes',
+						btnClass: 'btn-danger',
+						action: function(){
+							
+						}
+					}
+				}
+			});
+		}
+		window.onafterprint = function() {
+			var tid = "<?php echo $tid; ?>";
+			var pid = "<?php echo $id; ?>";
+			var test = "MICROSCOPY";
+		   $.post("PrintCount.php",{pid: pid, tid: tid, test: test},function(){
+		   		window.location.href = "MicroscopyList.php";
+		   });   
+		};
+		// window.onbeforeprint = function() {
+		// 	alert("This will be Count a");
+		// };
+	});
+</script>
 <?php }}}} ?>

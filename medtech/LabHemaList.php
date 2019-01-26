@@ -2,6 +2,8 @@
 include_once('../connection.php');
 include_once('../classes/patient.php');
 include_once('../classes/transVal.php');
+include_once('../classes/lab.php');
+$lab = new lab;
 $patient = new Patient;
 $patients = $patient->fetch_all();
 $trans = new trans;
@@ -57,7 +59,18 @@ include_once('labsidebar.php');
 								<?php echo $patient['LastName']?>,<?php echo $patient['FirstName']?> <?php echo $patient['MiddleName']?> 
 							</td>
 							<td > 
-								<button type="button" class="btn btn-info" onclick="document.location = 'LabHemaForm.php?id=<?php echo $patient['PatientID']."&tid=".$transID[0]?>';">View Certificate</button>
+								<?php 
+									$pid = $patient['PatientID'];
+									$tid = $transID[0];
+									$count = $lab->checkPrint($pid, $tid, 'HEMATOLOGY');
+									if ($count > 0) {
+										$class = "btn-warning";
+									}else{
+										$class = "btn-info";
+									}
+
+								?>
+								<button type="button" class="btn <?php echo $class; ?>" onclick="document.location = 'LabHemaForm.php?id=<?php echo $patient['PatientID']."&tid=".$transID[0]?>';">View Certificate</button>
 							</td>
 
 					</tr>
