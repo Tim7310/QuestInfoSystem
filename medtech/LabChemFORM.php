@@ -692,6 +692,7 @@ hr
 			var test = "CHEMISTRY";
 		   $.post("PrintCount.php",{pid: pid, tid: tid, test: test},function(){
 		   		window.location.href = "ChemList.php";
+		   		
 		   });   
 		};
 		// window.onbeforeprint = function() {

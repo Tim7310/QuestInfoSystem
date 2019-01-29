@@ -2,7 +2,8 @@
 include_once('../connection.php');
 include_once('../classes/trans.php');
 $trans = new trans;
-$patients = $trans->fetch_all();
+$patients = $trans->recentTrans();
+
 ?>
 <html>
 	<head>

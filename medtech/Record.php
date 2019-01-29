@@ -1,6 +1,6 @@
 <?php
 include_once('../connection.php');
-include_once('../classes/transVal.php');
+include_once('../classes/trans.php');
 include_once('../classes/qc.php');
 include_once('../classes/rad.php');
 include_once('../classes/lab.php');
@@ -9,44 +9,12 @@ include_once('../classes/vital.php');
 include_once('../classes/medhis.php');
 include_once('../classes/patient.php');
 $patient = new Patient;
+$tran = new trans;
 if (isset($_GET['id'])){
 	$id = $_GET['id'];
 	$data = $patient->fetch_data($id);
-$His = new His;
-if (isset($_GET['id'])){
-	$id = $_GET['id'];
-	$tid = $_GET['tid'];
-	$his = $His->fetch_data($id, $tid);
-$vital = new vital;
-if (isset($_GET['id'])){
-	$id = $_GET['id'];
-	$tid = $_GET['tid'];
-	$vit = $vital->fetch_data($id, $tid);
-$pe = new pe;
-if (isset($_GET['id'])){
-	$id = $_GET['id'];
-	$tid = $_GET['tid'];
-	$pe = $pe->fetch_data($id, $tid);
-$lab = new lab;
-if (isset($_GET['id'])){
-	$id = $_GET['id'];
-	$tid = $_GET['tid'];
-	$lab = $lab->fetch_data($id, $tid);
-$rad = new rad;
-if (isset($_GET['id'])){
-	$id = $_GET['id'];
-	$tid = $_GET['tid'];
-	$rad = $rad->fetch_data($id, $tid);
-$qc = new qc;
-if (isset($_GET['id'])){
-	$id = $_GET['id'];
-	$tid = $_GET['tid'];
-	$qc = $qc->fetch_data($id, $tid);
-$trans = new trans;
-if (isset($_GET['id'])){
-	$id = $_GET['id'];
-	$tid = $_GET['tid'];
-	$trans = $trans->fetch_data($id, $tid);
+	$trans = $tran->Patient_Trans($id);
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -55,7 +23,20 @@ if (isset($_GET['id'])){
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<title>Patient Records Summary</title>
 	<link rel="icon" type="image/png" href="../assets/qpd.png">
-	<link href="../source/bootstrap4/css/bootstrap.min.css" media="all" rel="stylesheet"/>
+	<script type="text/javascript" src="../source/CDN/jquery-1.12.4.js"></script>
+	<script type="text/javascript" src="../source/CDN/jquery.dataTables.min.js"></script>
+	<script type="text/javascript" src="../source/CDN/dataTables.bootstrap4.min.js"></script>
+	<script type="text/javascript" src="../source/CDN/dataTables.buttons.min.js"></script>
+	<script type="text/javascript" src="../source/CDN/buttons.bootstrap4.min.js"></script>
+	<script type="text/javascript" src="../source/CDN/jszip.min.js"></script>
+	<script type="text/javascript" src="../source/CDN/pdfmake.min.js"></script>
+	<script type="text/javascript" src="../source/CDN/vfs_fonts.js"></script>
+	<script type="text/javascript" src="../source/CDN/buttons.html5.min.js"></script>
+	<script type="text/javascript" src="../source/CDN/buttons.print.min.js"></script>
+	<script type="text/javascript" src="../source/CDN/buttons.colVis.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="../source/bootstrap4/css/bootstrap.css">
+	<link rel="stylesheet" type="text/css" href="../source/CDN/dataTables.bootstrap4.min.css">
+	<link rel="stylesheet" type="text/css" href="../source/CDN/buttons.bootstrap4.min.css	">
 </head>
 <style type="text/css" media="all">
 	.form-control
@@ -141,24 +122,30 @@ include_once('labsidebar.php');
         <div class="card" style="border-radius: 0px; margin-top: 10px;">
             <div class="card-header card-inverse card-info"><center><b>Transaction</b></center></div>
             <div class="card-block">
-            	<div class="row">
-					<div class="col col-md-auto">
-						<label>SR No.: </label><br>
-						<p><b><?php echo $trans['TransactionID'] ?></b></p>
-					</div>
-					<div class="col col-md-auto	">
-						<label>Availed: </label><br>
-						<p><b><?php echo $trans['ItemName'] ?></b></p>
-					</div>
-					<div class="col">
-						<label>Description: </label><br>
-						<p><b><?php echo $trans['ItemDescription'] ?></b></p>
-					</div>
-					<div class="col col-md-auto">
-						<label>Transaction Type: </label><br>
-						<p><b><?php echo $trans['TransactionType'] ?></b></p>
-					</div>
-				</div>
+            	
+					<table style="width: 100%" id="table">
+						<THEAD>
+							<th>SR No</th>
+							<th>Availed</th>
+							<th>Description</th>
+							<th>Transaction Type</th>
+							<th>Action</th>
+						</THEAD>
+						<?php 
+								foreach ($trans as $key) {
+									
+								
+						?>
+						<tr>
+							<td><?php echo $key['TransactionID']?></td>
+							<td><?php echo $key['ItemID']?></td>
+							<td><?php echo $key['ItemID']?></td>
+							<td><?php echo $key['TransactionType']." - ".$key['SalesType']?></td>
+							<td><button class="btn btn-primary"></button></td>
+						</tr>
+						<?php } ?>
+					</table>
+					
             </div>
         </div>
     </div>	
@@ -907,6 +894,22 @@ include_once('labsidebar.php');
 </div>
 <center><button type="button" class="btn btn-primary" onclick="document.location = 'ListOfPatients.php';">BACK</button></center>
 </div>
-<?php }}}}}}}}?>
+
 </body>
 </html>
+<script>
+	$(document).ready(function() {
+    var table = $('#table').DataTable( {
+        lengthChange: false,
+        scrollY:       500,
+        scrollCollapse: true,
+        "scrollX": true,
+        paging:         false,
+        "searching": false,
+        "info": false,
+    } );
+ 
+   
+} );	
+</script>
+<?php }?>
