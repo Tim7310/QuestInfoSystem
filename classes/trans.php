@@ -213,5 +213,11 @@ class trans {
 		$sql->execute();
 		return $sql->fetchAll();
 	}
+	public function RecentTransID($pid){
+		global $pdo;
+		$sql = $pdo->prepare("SELECT TransactionID from qpd_trans where TransactionDate in (SELECT MAX(TransactionDate) from qpd_trans where SalesType = 'sales' and status = '1')");
+		$sql->execute();
+		return $sql->fetch();
+	}
 }
 ?>

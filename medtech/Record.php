@@ -14,6 +14,32 @@ if (isset($_GET['id'])){
 	$id = $_GET['id'];
 	$data = $patient->fetch_data($id);
 	$trans = $tran->Patient_Trans($id);
+	$tid = $tran->RecentTransID($id);
+	$tid = $tid['TransactionID'];
+$His = new His;
+if (isset($_GET['id'])){
+	$id = $_GET['id'];
+	$his = $His->fetch_data($id, $tid);
+$vital = new vital;
+if (isset($_GET['id'])){
+	$id = $_GET['id'];
+	$vit = $vital->fetch_data($id, $tid);
+$pe = new pe;
+if (isset($_GET['id'])){
+	$id = $_GET['id'];
+	$pe = $pe->fetch_data($id, $tid);
+$lab = new lab;
+if (isset($_GET['id'])){
+	$id = $_GET['id'];
+	$lab = $lab->fetch_data($id, $tid);
+$rad = new rad;
+if (isset($_GET['id'])){
+	$id = $_GET['id'];
+	$rad = $rad->fetch_data($id, $tid);
+$qc = new qc;
+if (isset($_GET['id'])){
+	$id = $_GET['id'];
+	$qc = $qc->fetch_data($id, $tid);
 
 ?>
 <!DOCTYPE html>
@@ -123,23 +149,27 @@ include_once('labsidebar.php');
             <div class="card-header card-inverse card-info"><center><b>Transaction</b></center></div>
             <div class="card-block">
             	
-					<table style="width: 100%" id="table">
+					<table  class="table table-striped " style="width: 100%" id="table">
 						<THEAD>
 							<th>SR No</th>
+							<th>Date</th>
 							<th>Availed</th>
-							<th>Description</th>
-							<th>Transaction Type</th>
+							<th>Transaction Type</th>							
 							<th>Action</th>
 						</THEAD>
 						<?php 
 								foreach ($trans as $key) {
-									
-								
+			
 						?>
 						<tr>
 							<td><?php echo $key['TransactionID']?></td>
-							<td><?php echo $key['ItemID']?></td>
-							<td><?php echo $key['ItemID']?></td>
+							<td><?php echo $key['TransactionDate']?></td>
+							<td><?php $ids = explode(",", $key['ItemID']);
+								foreach ($ids as $id) {
+									$item = $tran->fetch_item($id);
+									echo $item['ItemName']."<br/>";
+								}
+							?></td>
 							<td><?php echo $key['TransactionType']." - ".$key['SalesType']?></td>
 							<td><button class="btn btn-primary"></button></td>
 						</tr>
@@ -912,4 +942,4 @@ include_once('labsidebar.php');
    
 } );	
 </script>
-<?php }?>
+<?php }}}}}}} ?>
