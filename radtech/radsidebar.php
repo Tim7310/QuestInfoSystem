@@ -74,7 +74,7 @@ $row = $stmt->fetch(PDO::FETCH_ASSOC);
       <a class="nav-item nav-link" href="ListOfPatients.php"><i class="fas fa-user-cog"></i>&nbsp;Patient Summary</a>
       <a class="nav-item nav-link" href="XRaySummary.php"><i class="fas fa-x-ray"></i>&nbsp;XRAY Summary</a>
       <a class="nav-item nav-link" href="XRay.php"><i class="fas fa-times"></i>&nbsp;Radiology Report</a>
-      <a class="nav-item nav-link" href="TestPrint.php"><i class="fas fa-times"></i>&nbsp;Printing Samples</a>
+      <a class="nav-item nav-link" href="TestPrint.php"><i class="fas fa-times"></i>&nbsp; X-Ray Markers</a>
       <a class="nav-item nav-link" href="PEList.php"><i class="fab fa-steam"></i>&nbsp;PE Form</a>
       <a class="nav-item nav-link" href="MCList.php"><i class="fas fa-certificate"></i>&nbsp;MedCert</a>
       <div style="padding-left:290px; "></div>
