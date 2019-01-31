@@ -126,5 +126,70 @@ class USER
 		$mail->Subject    = $subject;
 		$mail->MsgHTML($message);
 		$mail->Send();
+	}
+	public function getUser($id){
+		$stmt = $this->conn->prepare("SELECT * FROM user_privilege WHERE userID=:userName_id");
+		$stmt->execute(array(":userName_id"=>$id));
+		return $stmt->fetch();
+			
+	}
+	public function userData($id){
+		$stmt = $this->conn->prepare("SELECT * FROM tbl_users WHERE userID=:userName_id");
+		$stmt->execute(array(":userName_id"=>$id));
+		return $stmt->fetch();
+			
+	}
+	public function bypass($page){
+		if ($page == 'cashier' or $page == 'lab' or $page == 'imaging' or $page == 'qc') {			
+			if($this->is_logged_in()){
+				$id = $_SESSION['userSession'];
+				$data = $this->getUser($id);
+				//0 = no Rights, 1 = Have Rights, 2 = Special Rights
+				$array = explode("/", $_SERVER['REQUEST_URI']);
+				$count = count($array);
+				if ($count == 3) {
+						$header = "Location: error.php?privilege";
+					}else{
+						$header = "Location: ../error.php?privilege";
+					}
+				if (is_array($data)) {
+					
+					if ($page == 'cashier') {
+						if ($data['CashierCash'] != 0 or $data['CashierAccount'] != 0) {
+							
+						}else{
+							header($header);
+						}
+					}
+					else if($page == 'lab'){
+						if ($data['Laboratory'] != 0) {
+							
+						}else{
+							header($header);
+						}
+					}
+					else if($page == 'imaging'){
+						if ($data['Imaging'] != 0) {
+							
+						}else{
+							header($header);
+						}
+					}
+					else if($page == 'qc'){
+						if ($data['QualityControl'] != 0) {
+							
+						}else{
+							header($header);
+						}
+					}
+				}else{
+					header($header);
+				}
+			}else{
+				die("Please Login");
+			}
+		}else{
+			die("Syntax Error");
+		}
 	}	
 }
