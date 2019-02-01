@@ -36,7 +36,7 @@ class lab {
 	public function medtech(){
 		global $pdo;
 
-		$query = $pdo->prepare("SELECT * FROM lab_personnel WHERE Position = 'MEDICAL TECHNOLOGIST' OR Position = 'QUALITY CONTROL'");
+		$query = $pdo->prepare("SELECT * FROM lab_personnel WHERE Position = 'MEDICAL TECHNOLOGIST' OR Position = 'QUALITY CONTROL' OR Position = 'PATHOLOGIST'");
 		$query->execute();
 
 		return $query->fetchAll();
@@ -74,6 +74,13 @@ class lab {
 			$count = $print['PrintCount'];
 		}
 		return $count;
+	}
+	public function addMicro($tid, $pid, $FecColor, $fecCon, $fecMicro, $frcOt, $UriColor, $UriTrans, $UriPh, $UriSp, $UriPro, $UriGlu, $RBC, $WBC, $Bac, $MThreads, $ECells, $Amorph, $CoAx, $UriOt, $LE, $NIT, $URO, $BLD, $KET, $BIL, $PregTest, $PathID, $MedID, $QualityID, $date){
+		global $pdo;
+
+		$sql = $pdo->prepare("INSERT INTO lab_microscopy( TransactionID, PatientID, FecColor, FecCon, FecMicro, FecOt, UriColor, UriTrans, UriPh, UriSp, UriPro, UriGlu, RBC, WBC, Bac, MThreads, ECells, Amorph, CoAx, UriOt, LE, NIT, URO, BLD, KET, BIL, PregTest, PathID, MedID, QualityID, CreationDate) VALUES ('$tid', '$pid', '$FecColor', '$fecCon','$fecMicro', '$frcOt', '$UriColor', '$UriTrans', '$UriPh', '$UriSp', '$UriPro', '$UriGlu', '$RBC', '$WBC', '$Bac', '$MThreads', '$ECells', '$Amorph', '$CoAx', '$UriOt', '$LE', '$NIT', '$URO', '$BLD', '$KET', '$BIL', '$PregTest', '$PathID', '$MedID', '$QualityID', '$date')");
+		$sql->execute();
+
 	}
 
 }

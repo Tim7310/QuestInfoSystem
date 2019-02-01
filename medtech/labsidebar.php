@@ -3,15 +3,11 @@ if(!isset($_SESSION))
 	{ 
 	session_start(); 
 	} 
-require_once '../class.user.php';
-$user_home = new USER();
+ require_once '../class.user.php';
+  $user = new USER;
+  $user->bypass('lab');
 
-if(!$user_home->is_logged_in())
-{
-  $user_home->redirect('index.php');
-}
-
-$stmt = $user_home->runQuery("SELECT * FROM tbl_users WHERE userID=:uid");
+$stmt = $user->runQuery("SELECT * FROM tbl_users WHERE userID=:uid");
 $stmt->execute(array(":uid"=>$_SESSION['userSession']));
 $row = $stmt->fetch(PDO::FETCH_ASSOC);
 ?>
@@ -70,7 +66,7 @@ $row = $stmt->fetch(PDO::FETCH_ASSOC);
   </a>
   <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
     <div class="navbar-nav">
-      <a class="nav-item nav-link" href="../medtech/index.php" ><i class="fas fa-home"></i>&nbsp; Home</a>
+      <a class="nav-item nav-link" href="../home.php" ><i class="fas fa-home"></i>&nbsp; Home</a>
       <a class="nav-item nav-link" href="../medtech/ListOfPatients.php"><i class="fas fa-user-cog"></i>&nbsp;Patient Summary</a>
       <a class="nav-item nav-link" href="../medtech/LABSummary.php"><i class="fas fa-flask"></i>&nbsp;Lab Summary</a>
       <a class="nav-item nav-link" href="../medtech/LabSections.php"><i class="fas fa-users"></i>&nbsp;Laboratory Sections</a>

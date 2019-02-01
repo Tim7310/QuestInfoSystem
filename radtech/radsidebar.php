@@ -3,15 +3,11 @@ if(!isset($_SESSION))
   { 
   session_start(); 
   } 
-require_once '../class.user.php';
-$user_home = new USER();
+ require_once '../class.user.php';
+  $user = new USER;
+  $user->bypass('imaging');
 
-if(!$user_home->is_logged_in())
-{
-  $user_home->redirect('index.php');
-}
-
-$stmt = $user_home->runQuery("SELECT * FROM tbl_users WHERE userID=:uid");
+$stmt = $user->runQuery("SELECT * FROM tbl_users WHERE userID=:uid");
 $stmt->execute(array(":uid"=>$_SESSION['userSession']));
 $row = $stmt->fetch(PDO::FETCH_ASSOC);
 ?>
@@ -70,14 +66,14 @@ $row = $stmt->fetch(PDO::FETCH_ASSOC);
   </a>
   <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
     <div class="navbar-nav">
-      <a class="nav-item nav-link" href="index.php"><i class="fas fa-home"></i>&nbsp; Home</a>
+      <a class="nav-item nav-link" href="../home.php"><i class="fas fa-home"></i>&nbsp; Home</a>
       <a class="nav-item nav-link" href="ListOfPatients.php"><i class="fas fa-user-cog"></i>&nbsp;Patient Summary</a>
       <a class="nav-item nav-link" href="XRaySummary.php"><i class="fas fa-x-ray"></i>&nbsp;XRAY Summary</a>
       <a class="nav-item nav-link" href="XRay.php"><i class="fas fa-times"></i>&nbsp;Radiology Report</a>
       <a class="nav-item nav-link" href="TestPrint.php"><i class="fas fa-times"></i>&nbsp; X-Ray Markers</a>
       <a class="nav-item nav-link" href="PEList.php"><i class="fab fa-steam"></i>&nbsp;PE Form</a>
       <a class="nav-item nav-link" href="MCList.php"><i class="fas fa-certificate"></i>&nbsp;MedCert</a>
-      <div style="padding-left:290px; "></div>
+      <div style="padding-left:100px; "></div>
       <a class="nav-item nav-link" href="../logout.php"><i class="fas fa-sign-out-alt"></i>&nbsp; LOGOUT</a>
     </div>
 

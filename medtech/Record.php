@@ -177,13 +177,13 @@ include_once('labsidebar.php');
 							<td><?php echo $key['TransactionType']." - ".$key['SalesType']?></td>
 							<td>
 								<?php
-									// if ($key['SalesType'] == ) {
-									// 	# code...
-									// }
+									if ($key['SalesType'] == 'sales') {
+										
 								?>
 								<button class="btn btn-primary resultbtn">Result</button>
 								<input type="hidden" name="transaction" value="<?php echo $key['TransactionID']?>">
 								<input type="hidden" name="patient" value="<?php echo $key['PatientID']?>">
+								<?php } ?>
 							</td>
 						</tr>
 						<?php } ?>

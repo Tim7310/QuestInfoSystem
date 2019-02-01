@@ -1,11 +1,4 @@
 <?php 
-// copy this
-// session_start();
-// require_once 'class.user.php';
-// $bypass = new USER;
-// $bypass->bypass('lab');
-
-// end of copy
 session_start();
 require_once 'class.user.php';
 $user = new USER();
@@ -35,6 +28,14 @@ if(!$user->is_logged_in())
     <link rel="stylesheet" href="assets/css/Navbar---App-Toolbar--LG--MD---Mobile-Nav--SM--XS1.css">
     <link rel="stylesheet" href="assets/css/News-Cards.css">
     <link rel="stylesheet" href="assets/css/styles.css">
+<style type="text/css">
+    .box-heading{
+        background-color: rgba(66,139,202,0.9) !important;       
+    }
+    .boxContent{
+        background-color: rgba(66,139,202,0.9) !important;
+    }        
+</style>
 </head>
 <body>
     <nav class="navbar navbar-light navbar-expand-md">
@@ -77,7 +78,7 @@ if(!$user->is_logged_in())
                     <?php 
                         if( $data['Laboratory'] != 0){               
                     ?>
-                        <a href="#" class="read">Go To Laboratory<i class="fa fa-angle-right"></i></a>
+                        <a href="medtech/ListOfPatients.php" class="read">Go To Laboratory<i class="fa fa-angle-right"></i></a>
                      <?php } ?>
                     </div>
                 </div>
@@ -87,7 +88,13 @@ if(!$user->is_logged_in())
                     <div class="box-heading">
                         <h4 class="title" style="color:#333333;">Imaging</h4><span class="post" style="color:#333333;">X-Ray Readings and Markers</span></div>
                     <div class="boxContent">
-                        <p class="description" style="color:#333333;">Be precise. A lack of precision is dangerous when the margin of error is small.</p><a href="#" class="read">Go To Imaging<i class="fa fa-angle-right"></i></a></div>
+                        <p class="description" style="color:#333333;">Be precise. A lack of precision is dangerous when the margin of error is small.</p>
+                    <?php 
+                        if( $data['Imaging'] != 0){               
+                    ?>
+                        <a href="radtech/ListOfPatients.php" class="read">Go To Imaging<i class="fa fa-angle-right"></i></a>
+                    <?php } ?>
+                    </div>
                 </div>
             </div>
             <div class="col-sm-6 col-md-4 mt-3">
@@ -95,7 +102,13 @@ if(!$user->is_logged_in())
                     <div class="box-heading">
                         <h4 class="title" style="color:#333333;">Quality Control</h4><span class="post" style="color:#333333;">Quality Control Section</span></div>
                     <div class="boxContent">
-                        <p class="description" style="color:#333333;">Quality in a service or product is not what you put into it. It is what the client or customer gets out of it.</p><a href="#" class="read">Go To QC<i class="fa fa-angle-right"></i></a></div>
+                        <p class="description" style="color:#333333;">Quality in a service or product is not what you put into it. It is what the client or customer gets out of it.</p>
+                    <?php 
+                        if( $data['QualityControl'] != 0){               
+                    ?>    
+                        <a href="qc/ListOfPatients.php" class="read">Go To QC<i class="fa fa-angle-right"></i></a>
+                     <?php } ?>
+                    </div>
                 </div>
             </div>
         </div>
