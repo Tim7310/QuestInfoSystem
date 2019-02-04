@@ -40,7 +40,7 @@ include_once('radsidebar.php');
                     	<th>Date</th>
 						<th>Company Name</th>
 						<th>Patient Name</th>
-						<th>Comment</th>
+						<!-- <th>Comment</th> -->
 						<th>Impression</th>
 						<th>Radiologist</th>
 						<th>Quality Assurance</th>
@@ -60,9 +60,9 @@ include_once('radsidebar.php');
 							<td>
 								<?php echo $rad['LastName']?>,<?php echo $rad['FirstName']?> <?php echo $rad['MiddleName']?> 
 							</td>
-							<td>
+							<!-- <td>
 								<?php echo $rad['Comment']?>
-							</td>
+							</td> -->
 							<td>
 								<?php echo $rad['Impression']?>
 							</td>
@@ -74,6 +74,7 @@ include_once('radsidebar.php');
 							</td>
 							<td>
 								<button type="button" class="btn btn-primary" onclick="document.location = 'XRayEDIT.php?id=<?php echo $rad['PatientID']?>&tid=<?php echo $rad['TransactionID']?>';">UPDATE RECORD</button>
+								<button type="button" class="btn btn-primary" onclick="document.location = 'XRayResult.php?id=<?php echo $rad['PatientID']?>&tid=<?php echo $rad['TransactionID']?>';">PRINT RESULT</button>
 							</td>
 
 					</tr>

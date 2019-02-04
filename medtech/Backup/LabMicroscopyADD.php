@@ -449,6 +449,17 @@ include_once('labsidebar.php');
 	            		<input type="text" name="FecOt" class="form-control" id="FecOt" placeholder="Presence of:">
 	            	</div>
 				</div>
+				<div class="form-group row">
+	            	<div class="col-3 ">
+	            		<b>PREGNANCY TEST</b>
+	            	</div>
+				</div>
+				<div class="form-group row">
+	            	<label for="FecOt" class="col-3 col-form-label text-right">Pregnancy Test Result : </label>
+	            	<div class="col-4">
+	            		<input type="text" name="pregTest" class="form-control" >
+	            	</div>
+				</div>
 			<div class="form-group row">
 				<div class="col">
 						<input type="text" name="Clinician" class="form-control" value ='' placeholder="Clinician/Walk-In">   
@@ -480,23 +491,24 @@ include_once('labsidebar.php');
 					</select>
 	            </div>
 	            <div class="col">
-	            	<input type="text" name="Printed" class="form-control" value="Emiliano Dela Cruz,MD">
+	            	<select class="form-control" name="pathID">
+	            		<?php  
+	            				foreach ($medtech as $key) {
+			            			if($key['LicenseNO'] == '0073345'){
+			            				$select = 'selected';
+	        	    				}else{
+	        	    					$select = '';
+	        	    				}
+	            				
+	            		?>
+						<option value="<?php echo $key['personnelID'] ?>" <?php echo $select ?>>
+							<?php echo $key['FirstName']." ".$key['MiddleName']." ".$key['LastName'].", ".$key['PositionEXT']?>	
+						</option>
+					<?php } ?>
+					</select>
 	            </div>
 			</div>
-			<div class="form-group row">
-				<div class="col">
-	            	
-	            </div>
-	            <div class="col">
-	            	<!-- <input type="text" name="RMTLIC" class="form-control" value ='0075119' placeholder=" Medical Technologist License"> -->
-	            </div>
-	            <div class="col">
-	            	<!-- <input type="text" name="QCLIC" class="form-control" value ='0076211' placeholder="Quality Control License"> -->
-	            </div>
-	            <div class="col">
-	            	<input type="text" name="PATHLIC" class="form-control" value="0073345" placeholder="Pathologist License">
-	            </div>
-			</div>
+			
 			<div class="form-group row">
 				<div class="col" style="font-weight: bold; padding-top: 0px;"><center>Clinician/Walk-In</center></div>
 	            <div class="col" style="font-weight: bold; padding-top: 0px;"><center>Medical Technologist</center></div>

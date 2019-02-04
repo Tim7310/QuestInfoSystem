@@ -1,5 +1,6 @@
 <?php
 include_once('../connection.php');
+include_once('../classes/trans.php');
 include_once('../classes/qc.php');
 include_once('../classes/rad.php');
 include_once('../classes/lab.php');
@@ -8,52 +9,61 @@ include_once('../classes/vital.php');
 include_once('../classes/medhis.php');
 include_once('../classes/patient.php');
 $patient = new Patient;
+$tran = new trans;
 if (isset($_GET['id'])){
 	$id = $_GET['id'];
 	$data = $patient->fetch_data($id);
+	$trans = $tran->Patient_Trans($id);
+	$tid = $tran->RecentTransID($id);
+	$tid = $tid['TransactionID'];
 $His = new His;
 if (isset($_GET['id'])){
 	$id = $_GET['id'];
-	$tid = $_GET['tid'];
 	$his = $His->fetch_data($id, $tid);
 $vital = new vital;
 if (isset($_GET['id'])){
 	$id = $_GET['id'];
-	$tid = $_GET['tid'];
 	$vit = $vital->fetch_data($id, $tid);
 $pe = new pe;
 if (isset($_GET['id'])){
 	$id = $_GET['id'];
-	$tid = $_GET['tid'];
 	$pe = $pe->fetch_data($id, $tid);
 $lab = new lab;
 if (isset($_GET['id'])){
 	$id = $_GET['id'];
-	$tid = $_GET['tid'];
 	$lab = $lab->fetch_data($id, $tid);
 $rad = new rad;
 if (isset($_GET['id'])){
 	$id = $_GET['id'];
-	$tid = $_GET['tid'];
 	$rad = $rad->fetch_data($id, $tid);
 $qc = new qc;
 if (isset($_GET['id'])){
 	$id = $_GET['id'];
-	$tid = $_GET['tid'];
 	$qc = $qc->fetch_data($id, $tid);
-$trans = new trans;
-if (isset($_GET['id'])){
-	$id = $_GET['id'];
-	$tid = $_GET['tid'];
-	$trans = $trans->fetch_data($id, $tid);
+
 ?>
 <!DOCTYPE html>
 <html>
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	 <meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Patient Records Summary</title>
-	<link href="../source/bootstrap4/css/bootstrap.min.css" media="all" rel="stylesheet"/>
+	<link rel="icon" type="image/png" href="../assets/qpd.png">
+	<script type="text/javascript" src="../source/CDN/jquery-1.12.4.js"></script>
+	<script type="text/javascript" src="../source/CDN/jquery.dataTables.min.js"></script>
+	<script type="text/javascript" src="../source/CDN/dataTables.bootstrap4.min.js"></script>
+	<script type="text/javascript" src="../source/CDN/dataTables.buttons.min.js"></script>
+	<script type="text/javascript" src="../source/CDN/buttons.bootstrap4.min.js"></script>
+	<script type="text/javascript" src="../source/CDN/jszip.min.js"></script>
+	<script type="text/javascript" src="../source/CDN/pdfmake.min.js"></script>
+	<script type="text/javascript" src="../source/CDN/vfs_fonts.js"></script>
+	<script type="text/javascript" src="../source/CDN/buttons.html5.min.js"></script>
+	<script type="text/javascript" src="../source/CDN/buttons.print.min.js"></script>
+	<script type="text/javascript" src="../source/CDN/buttons.colVis.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="../source/bootstrap4/css/bootstrap.css">
+	<link rel="stylesheet" type="text/css" href="../source/CDN/dataTables.bootstrap4.min.css">
+	<link rel="stylesheet" type="text/css" href="../source/CDN/buttons.bootstrap4.min.css	">
 </head>
 <style type="text/css" media="all">
 	.form-control
@@ -79,6 +89,9 @@ if (isset($_GET['id'])){
 		.col-2
 	{
 		align-self: center;
+	}
+	button{
+		cursor: pointer;
 	}
 </style>
 
@@ -118,16 +131,16 @@ include_once('radsidebar.php');
 					</div>
 					<div class="col">
 						<label>LOE: </label><br>
-						<p><b><?php echo $trans['LOE'] ?></b></p>
+						<p><b><!-- <?php echo $trans['LOE'] ?> --></b></p>
 						<label>AN: </label><br>
-						<p><b><?php echo $trans['AN'] ?></b></p>
+						<p><b><!-- <?php echo $trans['AN'] ?> --></b></p>
 						<label>AC: </label><br>
-						<p><b><?php echo $trans['AC'] ?></b></p>
+						<p><b><!-- <?php echo $trans['AC'] ?> --></b></p>
 						<label>Senior ID: </label><br>
-						<p><b><?php echo $trans['SID'] ?></b></p>
+						<p><b><!-- <?php echo $trans['SID'] ?> --></b></p>
 						<label>Comment: </label><br>
-						<p><b><?php echo $data['Notes'] ?></b></p>
-						<p><b><?php echo $trans['Notes'] ?></b></p>
+						<p><b><!-- <?php echo $data['Notes'] ?> --></b></p>
+						<p><b><!-- <?php echo $trans['Notes'] ?> --></b></p>
 					</div>
 				</div>
             </div>
@@ -139,24 +152,43 @@ include_once('radsidebar.php');
         <div class="card" style="border-radius: 0px; margin-top: 10px;">
             <div class="card-header card-inverse card-info"><center><b>Transaction</b></center></div>
             <div class="card-block">
-            	<div class="row">
-					<div class="col col-md-auto">
-						<label>SR No.: </label><br>
-						<p><b><?php echo $trans['TransactionID'] ?></b></p>
-					</div>
-					<div class="col col-md-auto	">
-						<label>Availed: </label><br>
-						<p><b><?php echo $trans['ItemName'] ?></b></p>
-					</div>
-					<div class="col">
-						<label>Description: </label><br>
-						<p><b><?php echo $trans['ItemDescription'] ?></b></p>
-					</div>
-					<div class="col col-md-auto">
-						<label>Transaction Type: </label><br>
-						<p><b><?php echo $trans['TransactionType'] ?></b></p>
-					</div>
-				</div>
+            	
+					<table  class="table table-striped " style="width: 100%" id="table">
+						<THEAD>
+							<th>SR No</th>
+							<th>Date</th>
+							<th>Availed</th>
+							<th>Transaction Type</th>							
+							<th>Action</th>
+						</THEAD>
+						<?php 
+								foreach ($trans as $key) {
+			
+						?>
+						<tr>
+							<td><?php echo $key['TransactionID']?></td>
+							<td><?php echo $key['TransactionDate']?></td>
+							<td><?php $ids = explode(",", $key['ItemID']);
+								foreach ($ids as $id) {
+									$item = $tran->fetch_item($id);
+									echo $item['ItemName']."<br/>";
+								}
+							?></td>
+							<td><?php echo $key['TransactionType']." - ".$key['SalesType']?></td>
+							<td>
+								<?php
+									if ($key['SalesType'] == 'sales') {
+										
+								?>
+								<button class="btn btn-primary resultbtn">Result</button>
+								<input type="hidden" name="transaction" value="<?php echo $key['TransactionID']?>">
+								<input type="hidden" name="patient" value="<?php echo $key['PatientID']?>">
+								<?php } ?>
+							</td>
+						</tr>
+						<?php } ?>
+					</table>
+					
             </div>
         </div>
     </div>	
@@ -541,370 +573,47 @@ include_once('radsidebar.php');
         </div>
     </div>
 </div>
-<div class="row">
-<div class="col-md-10 offset-sm-1">
-        <div class="card" style="border-radius: 0px; margin-top: 10px;">
-            <div class="card-header card-inverse card-info"><center><b>Laboratory Results</b></center></div>
-            <div class="card-block">
-            	<!-- CBC -->
-            	<div class="row">
-	            	<div class="col">
-	            		<b>HEMATOLOGY</b>
-	            	</div>
-				</div>
-				<div class="form-group row">
-	            	<div class="col-3">
-	            		<b>Complete Blood Count</b>
-	            	</div>
-	            	<div class="col-2">
-	            		
-	            	</div>
-	            	<div class="col-2">
-	            		
-	            	</div>
-	            	<div class="col-2 ">
-	            		<b>Normal Range</b>
-	            	</div>
-				</div>
-				<div class="form-group row">
-	            	<label for="WhiteBlood" class="col-3 col-form-label text-right">White Blood Cells :</label>
-	            	<div class="col-2">
-	            		<b><?php echo $lab['WhiteBlood'] ?></b>
-	            	</div>
-	            	<label for="WhiteBlood" class="col-2 col-form-label">x10^9/L</label>
-	            	<label for="WhiteBlood" class="col-2 col-form-label">4.23-11.07</label>
-				</div>
-				<div class="form-group row">
-	            	<label for="Hemoglobin" class="col-3 col-form-label text-right">Hemoglobin :</label>
-	            	<div class="col-2">
-	            		<b><?php echo $lab['Hemoglobin'] ?></b>
-	            	</div>
-	            	<label for="Hemoglobin" class="col-2 col-form-label">g/L</label>
-	            	<div class="col-2">
-	            		<b><?php echo $lab['HemoNR'] ?></b>
-	            	</div>
-				</div>
-				<div class="form-group row">
-	            	<label for="Hematocrit" class="col-3 col-form-label text-right">Hematocrit :</label>
-	            	<div class="col-2">
-	            		<b><?php echo $lab['Hematocrit'] ?></b>
-	            	</div>
-	            	<label for="Hematocrit" class="col-2 col-form-label">VF</label>
-	            	<div class="col-2">
-	            		<b><?php echo $lab['HemaNR'] ?></b>
-	            	</div>
-				</div>
-				<div class="form-group row">
-	            	<div class="col-3 ">
-	            		<b>Differential Count</b>
-	            	</div>
-				</div>
-				<div class="form-group row">
-	            	<label for="Neutrophils" class="col-3 col-form-label text-right">Neutrophils :</label>
-	            	<div class="col-2">
-	            		<b><?php echo $lab['Neutrophils'] ?></b>
-	            	</div>
-	            	<label for="Neutrophils" class="col-2 col-form-label">%</label>
-	            	<label for="Neutrophils" class="col-2 col-form-label">34-71</label>
-				</div>
-				<div class="form-group row">
-	            	<label for="Lymphocytes" class="col-3 col-form-label text-right">Lymphocytes :</label>
-	            	<div class="col-2">
-	            		<b><?php echo $lab['Lymphocytes'] ?></b>
-	            	</div>
-	            	<label for="Lymphocytes" class="col-2 col-form-label">%</label>
-	            	<label for="Lymphocytes" class="col-2 col-form-label">22-53</label>
-				</div>
-				<div class="form-group row">
-	            	<label for="Monocytes" class="col-3 col-form-label text-right">Monocytes :</label>
-	            	<div class="col-2">
-	            		<b><?php echo $lab['Monocytes'] ?></b>
-	            	</div>
-	            	<label for="Monocytes" class="col-2 col-form-label">%</label>
-	            	<label for="Monocytes" class="col-2 col-form-label">5-12</label>
-				</div>
-				<div class="form-group row">
-	            	<label for="CBCOt" class="col-3 col-form-label text-right">OTHERS/NOTES :</label>
-	            	<div class="col-2">
-	            		<b><?php echo $lab['CBCOt'] ?></b>
-	            	</div>
-				</div>
-<!-- U/A -->	
-				<div class="row">
-	            	<div class="col-3 ">
-	            		<b>CLINICAL MICROSCOPY</b>
-	            	</div>
-				</div>
-				<div class="row">
-	            	<div class="col-3 ">
-	            		<b>Complete Urinalysis</b>
-	            	</div>
-				</div>
-				<div class="row">
-	            	<div class="col-3 ">
-	            		<b>Physical/Chemical</b>
-	            	</div>
-	            	<div class="col-3 "></div>
-	            	<div class="col-2 ">
-	            		<b>Microscopic</b>
-	            	</div>
-	            	<div class="col-2 "></div>
-	            	<div class="col-2 ">
-	            		<b>Normal Range</b>
-	            	</div>
-				</div>
-				<div class="form-group row">
-	            	<label for="UriColor" class="col-3 col-form-label text-right">Color :</label>
-	            	<div class="col-2">
-	            		<b><?php echo $lab['UriColor'] ?></b>
-	            	</div>
-	            	<label for="RBC" class="col-3 col-form-label text-right">RBC :</label>
-	            	<div class="col-1">
-	            		<b><?php echo $lab['RBC'] ?></b>
-	            	</div>
-	            	<label for="RBC" class="col-1 col-form-label">/hpf</label>
-	            	<label for="RBC" class="col-2 col-form-label">0-3</label>
-				</div>
-				<div class="form-group row">
-	            	<label for="UriTrans" class="col-3 col-form-label text-right">Transparency :</label>
-	            	<div class="col-2">
-	            		<b><?php echo $lab['UriTrans'] ?></b>
-	            	</div>
-	            	<label for="WBC" class="col-3 col-form-label text-right">WBC :</label>
-	            	<div class="col-1">
-	            		<b><?php echo $lab['WBC'] ?></b>
-	            	</div>
-	            	<label for="WBC" class="col-1 col-form-label">/hpf</label>
-	            	<label for="WBC" class="col-2 col-form-label">0-5</label>
-				</div>
-				<div class="form-group row">
-	            	<label for="UriPh" class="col-3 col-form-label text-right">pH :</label>
-	            	<div class="col-2">
-	            		<b><?php echo $lab['UriPh'] ?></b>
-	            	</div>
-	            	<label for="ECells" class="col-3 col-form-label text-right">E.Cells:</label>
-	            	<div class="col-2">
-	            		<b><?php echo $lab['ECells'] ?></b>
-	            	</div>
-				</div>
-				<div class="form-group row">
-	            	<label for="UriSp" class="col-3 col-form-label text-right">Sp. Gravity :</label>
-	            	<div class="col-2">
-	            		<b><?php echo $lab['UriSp'] ?></b>
-	            	</div>
-	            	<label for="Mthreads" class="col-3 col-form-label text-right">M.Threads:</label>
-	            	<div class="col-2">
-	            		<b><?php echo $lab['MThreads'] ?></b>
-	            	</div>
-				</div>
-				<div class="form-group row">
-	            	<label for="UriPro" class="col-3 col-form-label text-right">Protein :</label>
-	            	<div class="col-2">
-	            		<b><?php echo $lab['UriPro'] ?></b>
-	            	</div>
-	            	<label for="Bac" class="col-3 col-form-label text-right">Bacteria:</label>
-	            	<div class="col-2">
-	            		<b><?php echo $lab['Bac'] ?></b>
-	            	</div>
-				</div>
-				<div class="form-group row">
-	            	<label for="UriGlu" class="col-3 col-form-label text-right">Glucose :</label>
-	            	<div class="col-2">
-	            		<b><?php echo $lab['UriGlu'] ?></b>
-	            	</div>
-	            	<label for="Amorph" class="col-3 col-form-label text-right">Amorphous:</label>
-	            	<div class="col-2">
-	            		<b><?php echo $lab['Amorph'] ?></b>
-	            	</div>
-				</div>
-				<div class="form-group row">
-	            	<label for="UriOt" class="col-3 col-form-label text-right">OTHERS/NOTES :</label>
-	            	<div class="col-2">
-	            		<b><?php echo $lab['UriOt'] ?></b>
-	            	</div>
+<div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog modal-lg">
 
-	            	<label for="CoAx" class="col-3 col-form-label text-right">CaOx:</label>
-	            	<div class="col-2">
-	            		<b><?php echo $lab['CoAx'] ?></b>
-	            	</div>
-				</div>
-
-
-<!-- Drug Test -->
-				<div class="form-group row">
-	            	<div class="col-3 ">
-	            		<b>DRUG SCREENING</b>
-	            	</div>
-				</div>
-				<div class="form-group row">
-	            	<label for="Meth" class="col-3 col-form-label text-right">METHAMPHETHAMINE:</label>
-	            	<div class="col-2">
-	            		<b><?php echo $lab['Meth'] ?></b>
-	            	</div>
-				</div>
-				<div class="form-group row">
-	            	<label for="Tetra" class="col-3 col-form-label text-right">TETRAHYDROCANABINOL:</label>
-	            	<div class="col-2">
-	            		<b><?php echo $lab['Tetra'] ?></b>
-	            	</div>
-				</div>
-				<div class="form-group row">
-	            	<label for="DT" class="col-3 col-form-label text-right">DT RESULT:</label>
-	            	<div class="col-2">
-	            		<b><?php echo $lab['DT'] ?></b>
-	            	</div>
-				</div>
-<!-- Serology -->
-				<div class="form-group row">
-	            	<div class="col-3 ">
-	            		<b>SEROLOGY</b>
-	            	</div>
-				</div>
-				<div class="form-group row">
-	            	<label for="HBsAg" class="col-3 col-form-label text-right">HBsAg:</label>
-	            	<div class="col-2">
-	            		<b><?php echo $lab['HBsAg'] ?></b>
-	            	</div>
-				</div>
-				<div class="form-group row">
-	            	<label for="PregTest" class="col-3 col-form-label text-right">PREGNANCY TEST:</label>
-	            	<div class="col-2">
-	            		<b><?php echo $lab['PregTest'] ?></b>
-	            	</div>
-				</div>
-				<div class="form-group row">
-	            	<label for="SeroOt" class="col-3 col-form-label text-right">OTHERS/NOTES :</label>
-	            	<div class="col-2">
-	            		<b><?php echo $lab['SeroOt'] ?></b>
-	            	</div>
-				</div>
-<!-- FECALYSIS -->
-				<div class="form-group row">
-	            	<div class="col-3 ">
-	            		<b>FECALYSIS</b>
-	            	</div>
-				</div>
-				<div class="form-group row">
-	            	<label for="FecColor" class="col-3 col-form-label text-right">Color:</label>
-	            	<div class="col-2">
-	            		<b><?php echo $lab['FecColor'] ?></b>
-	            	</div>
-				</div>
-				<div class="form-group row">
-	            	<label for="FecCon" class="col-3 col-form-label text-right">Consistency:</label>
-	            	<div class="col-2">
-	            		<b><?php echo $lab['FecCon'] ?></b>
-	            	</div>
-				</div>
-				<div class="form-group row">
-	            	<label for="FecMicro" class="col-3 col-form-label text-right">Microscopic Findings:</label>
-	            	<div class="col-2">
-	            		<b><?php echo $lab['FecMicro'] ?></b>
-	            	</div>
-				</div>
-				<div class="form-group row">
-	            	<label for="FecOt" class="col-3 col-form-label text-right">OTHERS/NOTES :</label>
-	            	<div class="col-2">
-	            		<b><?php echo $lab['FecOt'] ?></b>
-	            	</div>
-				</div>
-				<div class="form-group row"><hr></div>
-
-				<div class="form-group row">
-	            	<div class="col">
-	            		<center><b><?php echo $lab['Received'] ?></b></center>
-	            	</div>
-	            	<div class="col">
-	            		<center><b><?php echo $qc['QC'] ?></b></center>
-
-	            	</div>
-	            	<div class="col">
-	            		<center><b><?php echo $lab['Printed'] ?></b></center>
-	            	</div>
-				</div>
-				<div class="form-group row">
-	            	<div class="col">
-	            		<center>Medical Technologist</center>
-	            	</div>
-	            	<div class="col">
-	            		<center>Quality Control</center>
-	            	</div>
-	            	<div class="col">
-	            		<center>Pathologist</center>
-	            	</div>
-				</div>
-            </div>
-        </div>
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Patient Results</h4>
+      </div>
+      <div class="modal-body">
+      	<div id="loader"></div>
+      </div>
     </div>
+
+  </div>
 </div>
-<div class="row">
-<div class="col-md-10 offset-sm-1">
-        <div class="card" style="border-radius: 0px; margin-top: 10px;">
-            <div class="card-header card-inverse card-info"><center><b>Radiology Report</b></center></div>
-            <div class="card-block">
-				<div class="row">
-					<div class="col">
-						<label class="col-1">Comment:</label><br>
-					</div>
-					<div class="col-10">
-						<p style="padding-left: 20px;"><b><?php echo $rad['Comment']?><br></b></p>
-					</div>
-				</div>
-				<div class="row">
-					<div class="col">
-						<label class="col-1">Impressions:</label><br>
-					</div>
-					<div class="col-10">
-						<p style="padding-left: 20px;"><b><?php echo $rad['Impression']?><br></b></p>
-					</div>
-				</div>
-				<div class="row">
-	            	<div class="col">
-	            		<center><b><?php echo $rad['QA'] ?></b></center>
-	            	</div>
-	            	<div class="col">
-	            		<center><b><?php echo $rad['Radiologist'] ?></b></center>
-	            	</div>
-				</div>
-				<div class="row">
-	            	<div class="col">
-	            		<center>Quality Assurance</center>
-	            	</div>
-	            	<div class="col">
-	            		<center>Radiologist</center>
-	            	</div>
-				</div>
-            </div>
-        </div>
-    </div>
+<center><button type="button" class="btn btn-primary m-2" onclick="document.location = 'ListOfPatients.php';">BACK
+</button></center>
 </div>
-<div class="row">
-<div class="col-md-10 offset-sm-1">
-        <div class="card" style="border-radius: 0px; margin-top: 10px;">
-            <div class="card-header card-inverse card-info"><center><b>Classification</b></center></div>
-            <div class="card-block">
-				<div class="row">
-					<div class="col">
-						<label class="col-1">Class:</label><br>
-					</div>
-					<div class="col-10">
-						<p style="padding-left: 20px;"><b><?php echo $qc['MedicalClass']?><br></b></p>
-					</div>
-				</div>
-				<div class="row">
-					<div class="col">
-						<label class="col-1">Notes:</label><br>
-					</div>
-					<div class="col-10">
-						<p style="padding-left: 20px;"><b><?php echo $qc['Notes']?><br></b></p>
-					</div>
-				</div>
-            </div>
-        </div>
-    </div>
-</div>
-<center><button type="button" class="btn btn-primary" onclick="document.location = 'ListOfPatients.php';">BACK</button></center>
-</div>
-<?php }}}}}}}}?>
+
 </body>
 </html>
+<script>
+	$(document).ready(function() {
+    var table = $('#table').DataTable( {
+        lengthChange: false,
+        scrollY:       500,
+        scrollCollapse: true,
+        "scrollX": true,
+        paging:         false,
+        "searching": false,
+        "info": false,
+    } );
+ 	$(".resultbtn").click(function(){
+ 		var id = $(this).siblings("input[name='patient']").val();
+ 		var tid = $(this).siblings("input[name='transaction']").val();
+ 		$("#loader").load("RecordResult.php",{id: id, tid: tid}, function(){
+ 			$("#myModal").modal('toggle');
+ 		});
+ 	});
+   
+} );	
+</script>
+<?php }}}}}}} ?>

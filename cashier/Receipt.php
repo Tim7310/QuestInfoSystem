@@ -192,7 +192,7 @@ if (isset($_GET['transID'])){
 				</tr>				
 				<tr>
 					<td style="font-size: 18px; font-weight: bolder;" colspan="2" class="text-right">Billed to:</td>
-					<td style="font-size: 18px; font-weight: bolder;" class="text-right">
+					<td style="font-size: 13px; font-weight: bolder;" class="text-right">
 						<?php echo $data['Biller'] ?></td>
 				</tr>
 					<?php } ?>

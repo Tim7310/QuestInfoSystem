@@ -2,11 +2,13 @@
 include_once('../connection.php');
 include_once('../classes/trans.php');
 $trans = new trans;
-$patients = $trans->fetch_all();
+$patients = $trans->recentTrans();
+
 ?>
 <html>
 	<head>
-		<title>List Of Patients</title>
+		<title>CLINICAL MICROSCOPY</title>
+		<link rel="icon" type="image/png" href="../assets/qpd.png">
 		<script type="text/javascript" src="../source/CDN/jquery-1.12.4.js"></script>
 		<script type="text/javascript" src="../source/CDN/jquery.dataTables.min.js"></script>
 		<script type="text/javascript" src="../source/CDN/dataTables.bootstrap4.min.js"></script>
@@ -22,11 +24,21 @@ $patients = $trans->fetch_all();
 		<link rel="stylesheet" type="text/css" href="../source/CDN/dataTables.bootstrap4.min.css">
 		<link rel="stylesheet" type="text/css" href="../source/CDN/buttons.bootstrap4.min.css	">
 	</head>
+	<style type="text/css">
+		p
+		{
+			font-family: "Century Gothic";
+			font-size: 36px;
+			color: black;
+			font-weight: bolder;
+		}
+	</style>
 <body>
 <?php
-include_once('qcsidebar.php');
+include_once('labsidebar.php');
 ?>
 <div class="container" style="margin-top: 10px;">
+<center><p>LABORATORY CLINICAL MICROSCOPY</p></center>
 	<table id="example" class="table table-striped table-bordered" cellspacing="0" width="100%">
         			<thead>
                     	<th nowrap>Transaction No.</th>
@@ -54,8 +66,9 @@ include_once('qcsidebar.php');
 							<td nowrap>
 								<?php echo $patient['LastName']?>,<?php echo $patient['FirstName']?> <?php echo $patient['MiddleName']?> 
 							</td>
-							<td > 
-								<button type="button" class="btn btn-info" onclick="document.location = 'Record.php?id=<?php echo $patient['PatientID']?>&tid=<?php echo $patient['TransactionID']?>';">View Summary Records</button>
+							<td nowrap> 
+								<button type="button" class="btn btn-primary" onclick="document.location = 'LabMicroscopyVIEW.php?id=<?php echo $patient['PatientID']?>&tid=<?php echo $patient['TransactionID']?>';">VIEW RECORD</button>
+								<button type="button" class="btn btn-primary" onclick="document.location = 'LabMicroscopyADD.php?id=<?php echo $patient['PatientID']?>&tid=<?php echo $patient['TransactionID']?>';">ADD RECORD</button>
 							</td>
 
 					</tr>
