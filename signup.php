@@ -63,7 +63,7 @@ if(isset($_POST['btn-signup']))
 						To complete your registration  please , just click following link<br/>
 						<br /><br />
 
-						<a href='http://localhost/quest/verify.php?id=$id&code=$code'>
+						<a href='http://creatives/qis/verify.php?id=$id&code=$code'>
 						<button style='background-color:#33337F;border-radius: 0px;color:white;padding: 5px 5px 5px 5px;'>Activate Now</button></a>
 						<br /><br />
 						Thanks,";

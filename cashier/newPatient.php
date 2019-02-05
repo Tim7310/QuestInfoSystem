@@ -13,12 +13,12 @@ function randomDigits(){
 	}
 	return $digits;
 }
-function newPatient($pid, $pref, $ptype, $cn, $pos, $fn, $mn, $ln, $add, $bd, $email, $age, $gen, $conNo, $notes, $sid){
+function newPatient($pid, $pref, $ptype, $cn, $pos, $fn, $mn, $ln, $add, $bd, $email, $age, $gen, $conNo, $notes, $sid, $biller){
 	global $pdo;
 	date_default_timezone_set("Asia/Kuala_Lumpur");
 	$date = date("Y-m-d H:i:s");
-	$sql = "INSERT INTO qpd_patient(PatientID, PatientRef, PatientType, CompanyName, Position, FirstName, MiddleName, LastName, Address, Birthdate, Email, Age, Gender, ContactNo, Notes, SID, CreationDate) VALUES 
-	( '$pid', '$pref',' $ptype', '$cn', '$pos', '$fn', '$mn', '$ln', '$add', '$bd', '$email', '$age', '$gen', '$conNo', '$notes', '$sid', '$date'  )";
+	$sql = "INSERT INTO qpd_patient(PatientID, PatientRef, PatientType, CompanyName, Position, FirstName, MiddleName, LastName, Address, Birthdate, Email, Age, Gender, ContactNo, Notes, SID, CreationDate, PatientBiller) VALUES 
+	( '$pid', '$pref',' $ptype', '$cn', '$pos', '$fn', '$mn', '$ln', '$add', '$bd', '$email', '$age', '$gen', '$conNo', '$notes', '$sid', '$date' ,'$biller' )";
 	$pdo->prepare($sql)->execute();
 }
 $pid = $_POST['idpatient'];
@@ -37,8 +37,9 @@ $gen = $_POST['gender'];
 $conNo = $_POST['contact'];
 $notes = "";
 $sid = "";
+$biller = $_POST['billto'];
 try {
-	newPatient($pid, $pref, $ptype, $cn, $pos, $fn, $mn, $ln, $add, $bd, $email, $age, $gen, $conNo, $notes, $sid);
+	newPatient($pid, $pref, $ptype, $cn, $pos, $fn, $mn, $ln, $add, $bd, $email, $age, $gen, $conNo, $notes, $sid, $biller);
 	$patientData = $patient->fetch_data_ref($pref);
 	$patientID = $patientData['PatientID'];
 	echo $patientID;

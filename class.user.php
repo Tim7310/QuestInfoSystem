@@ -120,7 +120,7 @@ class USER
 		$mail->Port       = 465;             
 		$mail->AddAddress($email);
 		$mail->Username="questphil.it@gmail.com";  
-		$mail->Password="questphil2012";            
+		$mail->Password="questphil2019";            
 		$mail->SetFrom('questphil.it@gmail.com','Quest Phil Diagnostics');
 		$mail->AddReplyTo("questphil.it@gmail.com","Quest Phil Diagnostics");
 		$mail->Subject    = $subject;
@@ -140,18 +140,21 @@ class USER
 			
 	}
 	public function bypass($page){
+		$array = explode("/", $_SERVER['REQUEST_URI']);
+		$count = count($array);
+		if ($count == 3) {
+			$header = "Location: error.php?privilege";
+			$header2 = "Location: index.php";
+		}else{
+			$header = "Location: ../error.php?privilege";
+			$header2 = "Location: ../index.php";
+			}
 		if ($page == 'cashier' or $page == 'lab' or $page == 'imaging' or $page == 'qc') {			
 			if($this->is_logged_in()){
 				$id = $_SESSION['userSession'];
 				$data = $this->getUser($id);
 				//0 = no Rights, 1 = Have Rights, 2 = Special Rights
-				$array = explode("/", $_SERVER['REQUEST_URI']);
-				$count = count($array);
-				if ($count == 3) {
-						$header = "Location: error.php?privilege";
-					}else{
-						$header = "Location: ../error.php?privilege";
-					}
+				
 				if (is_array($data)) {
 					
 					if ($page == 'cashier') {
@@ -186,7 +189,7 @@ class USER
 					header($header);
 				}
 			}else{
-				die("Please Login");
+				header($header2);
 			}
 		}else{
 			die("Syntax Error");
