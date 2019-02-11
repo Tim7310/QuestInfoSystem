@@ -6,25 +6,16 @@
 	include_once('../classes/patient.php');
 	$printdate = date("Y-m-d H:i:s");
 	$lab = new lab;
-	$tid = $_GET['tid'];
-	if (isset($_GET['id'])){
-		$id = $_GET['id'];
-		$data = $lab->fetch_data($id,$tid);
-
 	$qc = new qc;
-	if (isset($_GET['id'])){
-		$id = $_GET['id'];
-		$data1 = $qc->fetch_data($id,$tid);
-
-	$transac = new trans;
-	if (isset($_GET['id'])){
-		$id = $_GET['id'];
-		$trans = $transac->fetch_data($id,$tid);
-
 	$patient = new Patient;
-	if (isset($_GET['id'])){
+	$transac = new trans;
+	if (isset($_GET['id']) and isset($_GET['tid'])){
+		$tid = $_GET['tid'];
 		$id = $_GET['id'];
-		$pat = $patient->fetch_data($id);
+		$data = $lab->getData($id,$tid,"lab_microscopy");
+		// $data1 = $qc->fetch_data($id,$tid);
+		// $trans = $transac->fetch_data($id,$tid);
+		// $pat = $patient->fetch_data($id);
 
 
 	$FecColor = $data['FecColor'];
@@ -32,6 +23,10 @@
 	$FecMicro = $data['FecMicro'];
 
 	$printCount = $lab->checkPrint($id, $tid, 'MICROSCOPY');
+
+	$med = $lab->medtechByID($data['MedID']);
+	$qc = $lab->medtechByID($data['QualityID']);
+	$path = $lab->medtechByID($data['PathID']);
 	// $qc = new qc;
 	// if (isset($_GET['id'])){
 	// 	$id = $_GET['id'];
@@ -262,38 +257,38 @@
 	<div class="row" >
 	    <div class="col-1" ><p class="labelName">Name:</p></div>
 	    <div class="col-6"  >
-	        <span class="lineName" ><?php echo $pat['LastName'] ?>,<?php echo $pat['FirstName'] ?> <?php echo $pat['MiddleName'] ?>
+	        <span class="lineName" ><?php echo $data['LastName'] ?>, <?php echo $data['FirstName'] ?> <?php echo $data['MiddleName'] ?>
 	        </span>
 	    </div>
 	    <div class="col-2 text-right">
 	        <p class="labelName">Lab Number:</p>
 	    </div>
 	    <div class="col">
-	        <span class="lineName"><?php echo $data['LabID'] ?></span>
+	        <span class="lineName"><?php echo $data['microID'] ?></span>
 	    </div>
 	</div>
 	<div class="row" style="margin-top: 10px;">
 	    <div class="col-1"><p class="labelName">Gender:</p></div>
 	    <div class="col-6">
-	        <span class="lineName"><?php echo $pat['Gender'] ?></span>
+	        <span class="lineName"><?php echo $data['Gender'] ?></span>
 	    </div>
 	    <div class="col-2 text-right">
 	        <p class="labelName">QuestID:</p>
 	    </div>
 	    <div class="col">
-	        <span class="lineName"><?php echo $pat['PatientID'] ?></span>
+	        <span class="lineName"><?php echo $data['PatientID'] ?></span>
 	    </div>
 	</div>
 	<div class="row" style="margin-top: 10px;">
 	    <div class="col-1"><p class="labelName">Age:</p></div>
 	    <div class="col-6" style="">
-	        <span class="lineName"><?php echo $pat['Age'] ?></span>
+	        <span class="lineName"><?php echo $data['Age'] ?></span>
 	    </div>
 	    <div class="col-2 text-right">
-	        <p class="labelName">Clinician:</p>
+	        <p class="labelName">Clinician/Referrer:</p>
 	    </div>
 	    <div class="col">
-	        <span class="lineName"><?php echo $data['Clinician'] ?></span>
+	        <span class="lineName"><?php echo $data['Biller'] ?></span>
 	    </div>
 	</div>
 	<div class="row" style="margin-top: 10px;">
@@ -320,26 +315,26 @@
 	</div>
 </div>
 <!--Footer-->
-<div style="position: absolute;margin-top: 750px;margin-left:-10px;">
+<div style="position: absolute;margin-top: 735px;margin-left:-10px;">
 	<div class="col-md-12 ">
 	<span style="font-size: 12px;">Note: Specimen rechecked, result/s verified.</span>
 	<div class="card" style="border-radius: 0px; margin-top: 10px;">
 		<div class="card-block" style="height: 1.3in;" >
 				<div class="row">
 					<div class="col" style="padding-left: 0px"><center><span class="Names"><br>
-						<b><?php echo $data['Received'] ?></b></span></center></div>
+						<b><?php echo $med['FirstName']." ".$med['MiddleName']." ".$med['LastName'].", ".$med['PositionEXT']?>	</b></span></center></div>
 					<div class="col" style="padding-left: 0px"><center><span class="Names"><br>
-						<b><?php echo $data1['QC'] ?></b></span></center></div>
+						<b><?php echo $qc['FirstName']." ".$qc['MiddleName']." ".$qc['LastName'].", ".$qc['PositionEXT']?>	</b></span></center></div>
 					<div class="col" style="padding-left: 0px"><center><span class="Names"><br>
-						<b><?php echo $data['Printed'] ?></b></span></center></div>
+						<b><?php echo $path['FirstName']." ".$path['MiddleName']." ".$path['LastName'].", ".$path['PositionEXT']?>	</b></span></center></div>
 				</div>
 				<div class="row">
 					<div class="col" style="padding-left: 0px"><center><span class="lineNameSig"><br>
-						<b>LIC NO. <?php echo $data['RMTLIC'] ?></b></span></center></div>
+						<b>LIC NO. <?php echo $med['LicenseNO'] ?></b></span></center></div>
 					<div class="col" style="padding-left: 0px"><center><span class="lineNameSig"><br>
-						<b>LIC NO. <?php echo $data1['QCLicense'] ?></b></span></center></div>
+						<b>LIC NO. <?php echo $qc['LicenseNO'] ?></b></span></center></div>
 					<div class="col" style="padding-left: 0px"><center><span class="lineNameSig"><br>
-						<b>LIC NO. <?php echo $data['PATHLIC'] ?></b></span></center></div>
+						<b>LIC NO. <?php echo $path['LicenseNO'] ?></b></span></center></div>
 				</div>
 				<div class="row">
 					<div class="col"><center><p class="labelName">Registered Medical Technologist</p></center></div>
@@ -423,7 +418,7 @@
 				</div>
 				<div class="row" style="margin-top: 5px;">
 					<div class="col-4"><p class="labelName">Nitrite</p></div>
-					<div class="col-2"><p class="lineRes"><?php echo $data['LE'] ?></p></div>
+					<div class="col-2"><p class="lineRes"><?php echo $data['NIT'] ?></p></div>
 				</div>
 				<div class="row" style="margin-top: 5px;">
 					<div class="col-4"><p class="labelName">Urobilinogen</p></div>
@@ -553,9 +548,28 @@
 					<div class="col-4"><p class="labelName">Microscopic Findings</p></div>
 					<div class="col-8"><p class="lineRes" id="FecMicrotxt"><?php echo $data['FecMicro'] ?></p></div>
 				</div>
-				<?php }} ?>
+				<?php } ?>
 			</div>
+			<?php } ?>
 </div>
+		<?php
+			if ($data['PregTest'] != '') {
+		?>
+		<?php if($data['UriColor'] != '' and $data['UriColor'] != "N/A" and $data['UriColor'] != "-" and $data['FecColor'] != "" ){	$style = "";
+		}else{
+			$style = "text-align:center; font-size: 25px;";
+		} 
+			?>
+			<div class="row" style="margin-top: 10px;" >
+	            <div class="col-12" style="padding-left: 0px">
+	            	<b>PREGNANCY TEST</b>
+	            </div>
+			</div>
+			<div class="row" >
+				<div class="col-6" ><p class="labelName">Pregnancy Test Result</p></div>
+				<div class="col-6"><p class="lineRes" id="FecColortxt" style="<?php echo $style ?>" ><?php echo $data['PregTest'] ?></p></div>
+			</div>
+		<?php } ?>
 </div>
 </div>
 </div>
@@ -637,4 +651,4 @@
 		// };
 	});
 </script>
-<?php }}}} ?>
+<?php } ?>

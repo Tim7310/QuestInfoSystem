@@ -5,24 +5,18 @@ include_once('../classes/trans.php');
 include_once('../classes/qc.php');
 include_once('../classes/lab.php');
 $lab = new lab;
-$tid = $_GET['tid'];
-if (isset($_GET['id'])){
-	$id = $_GET['id'];
-	$data = $lab->fetch_data($id,$tid);
 $qc = new qc;
-if (isset($_GET['id'])){
-	$id = $_GET['id'];
-	$data1 = $qc->fetch_data($id,$tid);
-
 $transac = new trans;
-if (isset($_GET['id'])){
-	$id = $_GET['id'];
-	$trans = $transac->fetch_data($id,$tid);
-
 $patient = new Patient;
-if (isset($_GET['id'])){
+if (isset($_GET['id']) and isset($_GET['tid'])){
 	$id = $_GET['id'];
-	$pat = $patient->fetch_data($id,$tid)
+	$tid = $_GET['tid'];
+	// $data = $lab->fetch_data($id,$tid);
+	// $data1 = $qc->fetch_data($id,$tid);
+	// $trans = $transac->fetch_data($id,$tid);
+	// $pat = $patient->fetch_data($id);
+	$data =  $lab->getData($id, $tid, "lab_hematology");
+if (is_array($data)) {
 ?>
 <html>
 <head>
@@ -30,6 +24,7 @@ if (isset($_GET['id'])){
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<title>Laboratory CBC</title>
     <link href="../source/bootstrap4/css/bootstrap.min.css" media="all" rel="stylesheet"/>
+    <script type="text/javascript" src="../source/CDN/jquery-1.12.4.js"></script>
 </head>
 <style type="text/css" media="all">
 	.form-control
@@ -72,7 +67,7 @@ if (isset($_GET['id'])){
 	{
 		font-weight: bolder;
 	}
-	.col-2, .col-1
+	.col-2, .col-1, .col-5
 	{
 		align-self: center;
 		font-weight: bolder;
@@ -123,7 +118,7 @@ include_once('labsidebar.php');
             <div class="card-block">
             	<div class="row">
             		<?php
-            			$itemids = $trans['ItemID'];
+            			$itemids = $data['ItemID'];
             			$itemID = explode(',', $itemids);
             			$Package = "";$Description = "";
             			foreach ($itemID as $key) {
@@ -140,7 +135,7 @@ include_once('labsidebar.php');
             			Description: <p><b><?php echo $Description ?></b></p>
             		</div>
             		<div class="col col-lg-2">
-            			Transaction: <p><b><?php echo $trans['TransactionType'] ?></b></p>
+            			Transaction: <p><b><?php echo $data['TransactionType'] ?></b></p>
             		</div>
 				</div>
             </div>
@@ -159,10 +154,10 @@ include_once('labsidebar.php');
 			</div>
 			<div class="form-group row">
 				<div class="col">
-	            	<center><p><?php echo $data['Clinician'] ?></p></center>
+	            	<center><p><?php echo $data['Biller'] ?></p></center>
 	            </div>
 	            <div class="col">
-	            	<center><p><?php echo $pat['CreationDate'] ?></p></center>
+	            	<center><p><?php echo $data['CreationDate'] ?></p></center>
 	            </div>
 	            <div class="col">
 	            	<center><p><?php echo $data['DateUpdate'] ?></p></center>
@@ -312,25 +307,43 @@ include_once('labsidebar.php');
 	            	150~400
 	            </div>
 			</div>
+			<div class="form-group row">
+	            <label for="PLATELET" class="col-3 col-form-label">Other Notes :</label>
+	            <div class="col-5">
+	            	<?php echo $data['CBCOt'] ?>
+	            </div>
+			</div>
 
 <!-- NAMES -->
 		<hr>
 			<div class="form-group row">
 				<div class="col-3">Medical Technologist:</div>
 				<div class="col">
-	            	<p><?php echo $data['Received'] ?> / <?php echo $data['RMTLIC'] ?></p>
+	            	<p>
+	            	<?php $rec = $lab->medtechByID($data['MedID']);
+	            	echo $rec['FirstName']." ". $rec['MiddleName'] ." ". $rec['LastName'] ?> 
+	            	/ <?php echo $rec['LicenseNO'] ?>
+	            	</p>
 	            </div>
 			</div>
 			<div class="form-group row">
 				<div class="col-3">Quality Control:</div>
 	            <div class="col">
-	            	<p><?php echo $data['QC'] ?> / <?php echo $data['QCLIC'] ?></p>
+	            	<p>
+	            	<?php $qc = $lab->medtechByID($data['QualityID']);
+	            	echo $qc['FirstName']." ". $qc['MiddleName'] ." ". $qc['LastName'] ?> 
+	            	/ <?php echo $qc['LicenseNO'] ?>
+	            	</p>
 	            </div>
 			</div>
 			<div class="form-group row">
 	            <div class="col-3">Pathologist:</div>
 	            <div class="col">
-	            	<p><?php echo $data['Printed'] ?> / <?php echo $data['PATHLIC'] ?></p>
+	            	<p>
+		            	<?php $path = $lab->medtechByID($data['PathID']);
+		            	echo $path['FirstName']." ". $path['MiddleName'] ." ". $path['LastName'] ?> 
+		            	/ <?php echo $path['LicenseNO'] ?>
+	            	</p>
 	            </div>
 			</div>
 		<hr>
@@ -344,6 +357,12 @@ include_once('labsidebar.php');
 </div>
 	
 </div>
-<?php } }}}?>
-</body>
+<?php }else{
+	echo "<script> alert('Error: No existing record found.'); </script>";
+  	echo "<script>window.open('LabHemaADD.php?id=$id&tid=$tid','_self');</script>";
+}
+}else{
+	echo "<script> alert('Error: Credential Error'); </script>";
+  	echo "<script>window.open('LabHema.php','_self');</script>";
+} ?></body>
 </html>

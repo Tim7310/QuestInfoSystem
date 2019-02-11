@@ -1,30 +1,22 @@
 <?php
 include_once('../connection.php');
-include_once('../classes/trans.php');
 include_once('../classes/patient.php');
+include_once('../classes/trans.php');
 include_once('../classes/qc.php');
 include_once('../classes/lab.php');
-$tid = $_GET['tid'];
 $lab = new lab;
-if (isset($_GET['id'])){
-	$id = $_GET['id'];
-	$data = $lab->fetch_data($id,$tid);
-
 $qc = new qc;
-if (isset($_GET['id'])){
-	$id = $_GET['id'];
-	$data1 = $qc->fetch_data($id,$tid);
-
-
-$patient = new Patient;
-if (isset($_GET['id'])){
-	$id = $_GET['id'];
-	$pat = $patient->fetch_data($id);
-
 $transac = new trans;
-if (isset($_GET['id'])){
+$patient = new Patient;
+if (isset($_GET['id']) and isset($_GET['tid'])){
 	$id = $_GET['id'];
-	$trans = $transac->fetch_data($id,$tid);
+	$tid = $_GET['tid'];
+	// $data = $lab->fetch_data($id,$tid);
+	// $data1 = $qc->fetch_data($id,$tid);
+	// $trans = $transac->fetch_data($id,$tid);
+	// $pat = $patient->fetch_data($id);
+	$data =  $lab->getData($id, $tid, "lab_chemistry");
+if (is_array($data)) {
 ?>
 
 <html>
@@ -74,6 +66,11 @@ if (isset($_GET['id'])){
 	{
 		padding-top: 7px;
 	}
+	select[name="MedTechID"], select[name="qcID"], select[name="pathID"]{
+		font-size: 14px;
+		font-weight: bold;
+		cursor: pointer;
+	}
 </style>
 
 <body >
@@ -91,8 +88,8 @@ include_once('labsidebar.php');
             	<div class="row">
 					<div class="col col-md-auto">
 						<label>SR No.: </label><br>
-						<input type="hidden" name="tid" value="<?php echo $trans['TransactionID'] ?>">
-						<b><?php echo $trans['TransactionID'] ?></b>
+						<input type="hidden" name="tid" value="<?php echo $data['TransactionID'] ?>">
+						<b><?php echo $data['TransactionID'] ?></b>
 					</div>
 					<div class="col">
 						<label>Name:</label><br>
@@ -123,7 +120,7 @@ include_once('labsidebar.php');
             <div class="card-block">
             	<div class="row">
             		<?php
-            			$itemids = $trans['ItemID'];
+            			$itemids = $data['ItemID'];
             			$itemID = explode(',', $itemids);
             			foreach ($itemID as $key) {
             				$items = $transac->fetch_item($key);
@@ -138,7 +135,7 @@ include_once('labsidebar.php');
             		</div>
             		<?php } ?>
             		<div class="col col-lg-2">
-            			Transaction: <p><b><?php echo $trans['TransactionType'] ?></b></p>
+            			Transaction: <p><b><?php echo $data['TransactionType'] ?></b></p>
             		</div>
 				</div>
             </div>
@@ -402,14 +399,18 @@ include_once('labsidebar.php');
 
 			<div class="form-group row">
 				<div class="col">
-						<input type="text" name="Clinician" class="form-control" value ='' placeholder="Clinician/Walk-In">   
+						<?php if($data['TransactionType'] == 'CASH'){ ?>
+						<input type="text" name="Clinician" class="form-control" value ='<?php echo $data['Biller'] ?> '>
+					<?php }else{ ?>  
+						<input type="text" name="Clinician" class="form-control" value ='' placeholder="Clinician/Walk-In">
+					<?php } ?>
 	            </div>
 	            <div class="col">
 	            	<select class="form-control" name="MedTechID">
 	            		<?php  
 	            			$medtech = $lab->medtech();
 	            				foreach ($medtech as $key) {
-	            					if ($key['LicenseNO'] == $data['RMTLIC']){
+	            					if ($key['personnelID'] == $data['MedID']){
 		            				$select = 'selected';
 		            				}else{
 		            					$select = '';
@@ -427,7 +428,7 @@ include_once('labsidebar.php');
 	            	<select class="form-control" name="qcID">
 	            		<?php  
 	            			foreach ($medtech as $key) {
-	            				if ($key['LicenseNO'] == $data['QCLIC']){
+	            				if ($key['personnelID'] == $data['QualityID']){
 	            				$select = 'selected';
 	            				}else{
 	            					$select = '';
@@ -441,21 +442,20 @@ include_once('labsidebar.php');
 					</select>
 	            </div>
 	            <div class="col">
-	            	<input type="text" name="Printed" class="form-control" value="Emiliano Dela Cruz,MD">
-	            </div>
-			</div>
-			<div class="form-group row">
-				<div class="col">
-	            	
-	            </div>
-	            <div class="col">
-	            	<!-- <input type="text" name="RMTLIC" class="form-control" value ='0075119' placeholder=" Medical Technologist License"> -->
-	            </div>
-	            <div class="col">
-	            	<!-- <input type="text" name="QCLIC" class="form-control" value ='0076211' placeholder="Quality Control License"> -->
-	            </div>
-	            <div class="col">
-	            	<input type="text" name="PATHLIC" class="form-control" value="0073345" placeholder="Pathologist License">
+	            	<select class="form-control" name="pathID">
+	            		<?php  
+	            			foreach ($medtech as $key) {
+	            				if ($key['personnelID'] == $data['PathID']){
+	            				$select = 'selected';
+	            				}else{
+	            					$select = '';
+	            				}        				
+	            		?>
+						<option value="<?php echo $key['personnelID'] ?>" <?php echo $select;?>>
+							<?php echo $key['FirstName']." ".$key['MiddleName']." ".$key['LastName'].", ".$key['PositionEXT']?>	
+						</option>
+					<?php } ?>
+					</select>
 	            </div>
 			</div>
 			<div class="form-group row">
@@ -475,7 +475,6 @@ include_once('labsidebar.php');
 </div>
 	
 </div>
-<?php }}}} ?>
 </body>
 <script type="text/javascript">
 	$(document).ready(function(){
@@ -524,3 +523,11 @@ include_once('labsidebar.php');
 	});
 </script>
 </html>
+<?php }else{
+	echo "<script> alert('Error: No existing record found.'); </script>";
+  	echo "<script>window.open('LabHemaADD.php?id=$id&tid=$tid','_self');</script>";
+}
+}else{
+	echo "<script> alert('Error: Credential Error'); </script>";
+  	echo "<script>window.open('LabHema.php','_self');</script>";
+} ?>

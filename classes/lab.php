@@ -75,12 +75,49 @@ class lab {
 		}
 		return $count;
 	}
-	public function addMicro($tid, $pid, $FecColor, $fecCon, $fecMicro, $frcOt, $UriColor, $UriTrans, $UriPh, $UriSp, $UriPro, $UriGlu, $RBC, $WBC, $Bac, $MThreads, $ECells, $Amorph, $CoAx, $UriOt, $LE, $NIT, $URO, $BLD, $KET, $BIL, $PregTest, $PathID, $MedID, $QualityID, $date){
+	public function addMicro($tid, $pid, $FecColor, $fecCon, $fecMicro, $fecOt, $UriColor, $UriTrans, $UriPh, $UriSp, $UriPro, $UriGlu, $RBC, $WBC, $Bac, $MThreads, $ECells, $Amorph, $CoAx, $UriOt, $LE, $NIT, $URO, $BLD, $KET, $BIL, $PregTest, $PathID, $MedID, $QualityID, $date){
 		global $pdo;
 
-		$sql = $pdo->prepare("INSERT INTO lab_microscopy( TransactionID, PatientID, FecColor, FecCon, FecMicro, FecOt, UriColor, UriTrans, UriPh, UriSp, UriPro, UriGlu, RBC, WBC, Bac, MThreads, ECells, Amorph, CoAx, UriOt, LE, NIT, URO, BLD, KET, BIL, PregTest, PathID, MedID, QualityID, CreationDate) VALUES ('$tid', '$pid', '$FecColor', '$fecCon','$fecMicro', '$frcOt', '$UriColor', '$UriTrans', '$UriPh', '$UriSp', '$UriPro', '$UriGlu', '$RBC', '$WBC', '$Bac', '$MThreads', '$ECells', '$Amorph', '$CoAx', '$UriOt', '$LE', '$NIT', '$URO', '$BLD', '$KET', '$BIL', '$PregTest', '$PathID', '$MedID', '$QualityID', '$date')");
+		$sql = $pdo->prepare("INSERT INTO lab_microscopy( TransactionID, PatientID, FecColor, FecCon, FecMicro, FecOt, UriColor, UriTrans, UriPh, UriSp, UriPro, UriGlu, RBC, WBC, Bac, MThreads, ECells, Amorph, CoAx, UriOt, LE, NIT, URO, BLD, KET, BIL, PregTest, PathID, MedID, QualityID, CreationDate) VALUES ('$tid', '$pid', '$FecColor', '$fecCon','$fecMicro', '$fecOt', '$UriColor', '$UriTrans', '$UriPh', '$UriSp', '$UriPro', '$UriGlu', '$RBC', '$WBC', '$Bac', '$MThreads', '$ECells', '$Amorph', '$CoAx', '$UriOt', '$LE', '$NIT', '$URO', '$BLD', '$KET', '$BIL', '$PregTest', '$PathID', '$MedID', '$QualityID', '$date')");
 		$sql->execute();
 
+	}
+	public function updateMicro($tid, $pid, $FecColor, $fecCon, $fecMicro, $fecOt, $UriColor, $UriTrans, $UriPh, $UriSp, $UriPro, $UriGlu, $RBC, $WBC, $Bac, $MThreads, $ECells, $Amorph, $CoAx, $UriOt, $LE, $NIT, $URO, $BLD, $KET, $BIL, $PregTest, $PathID, $MedID, $QualityID, $date){
+		global $pdo;
+		$sql = $pdo->prepare("UPDATE lab_microscopy set FecColor = '$FecColor', FecCon = '$fecCon', FecMicro = '$fecMicro', FecOt = '$fecOt', UriColor = '$UriColor', UriTrans = '$UriTrans', UriPh = '$UriPh', UriSp = '$UriSp', UriPro = '$UriPro', UriGlu = '$UriGlu', RBC = '$RBC', WBC = '$WBC', Bac = '$Bac', MThreads = '$MThreads', ECells = '$ECells', Amorph = '$Amorph', CoAx = '$CoAx', UriOt = '$UriOt', LE = '$LE', NIT = '$NIT', URO = '$URO', BLD = '$BLD', KET = '$KET', BIL = '$BIL', PregTest = '$PregTest', PathID = '$PathID', MedID = '$MedID', QualityID = '$QualityID', DateUpdate = '$date' where PatientID = '$pid' and TransactionID = '$tid'");
+		$sql->execute();
+	}
+	public function addHema($tid, $pid, $WhiteBlood, $Hemoglobin, $HemoNR, $Hematocrit, $HemaNR, $Neutrophils, $Lymphocytes, $Monocytes, $CBCOt, $EOS, $BAS, $CBCRBC, $PLT, $PathID, $MedID, $QualityID, $Date){
+		global $pdo;
+		$sql = $pdo->prepare("INSERT INTO lab_hematology (TransactionID, PatientID, WhiteBlood, Hemoglobin, HemoNR, Hematocrit, HemaNR, Neutrophils, Lymphocytes, Monocytes, CBCOt, EOS, BAS, CBCRBC, PLT, PathID, MedID, QualityID, CreationDate) values ('$tid', '$pid', '$WhiteBlood', '$Hemoglobin', '$HemoNR', '$Hematocrit',' $HemaNR', '$Neutrophils', '$Lymphocytes', '$Monocytes', '$CBCOt', '$EOS', '$BAS', '$CBCRBC', '$PLT', '$PathID', '$MedID', '$QualityID', '$Date')");
+		$sql->execute();
+	}
+	public function updateHema($tid, $pid, $WhiteBlood, $Hemoglobin, $HemoNR, $Hematocrit, $HemaNR, $Neutrophils, $Lymphocytes, $Monocytes, $CBCOt, $EOS, $BAS, $CBCRBC, $PLT, $PathID, $MedID, $QualityID, $Date){
+		global $pdo;
+		$sql = $pdo->prepare("UPDATE lab_hematology set WhiteBlood = '$WhiteBlood', Hemoglobin = '$Hemoglobin', HemoNR = '$HemoNR', Hematocrit = '$Hematocrit', HemaNR = '$HemaNR', Neutrophils = '$Neutrophils', Lymphocytes = '$Lymphocytes', Monocytes = '$Monocytes', CBCOt = '$CBCOt', EOS = '$EOS', BAS = '$BAS', CBCRBC = '$CBCRBC', PLT = '$PLT', PathID = '$PathID', MedID = '$MedID', QualityID = '$QualityID', CreationDate = '$Date' where PatientID = '$pid' and TransactionID = '$tid'");
+		$sql->execute();
+	}
+	public function addChem( $TransactionID, $PatientID, $FBS, $FBScon, $BUA, $BUAcon, $BUN, $BUNcon, $CREA, $CREAcon, $CHOL, $CHOLcon, $TRIG, $TRIGcon, $HDL, $HDLcon, $LDL, $LDLcon, $CH, $VLDL, $Na, $K, $Cl, $ALT, $AST, $HB, $PathID, $MedID, $QualityID, $Date){
+		global $pdo;
+		$sql = $pdo->prepare("INSERT INTO lab_chemistry (TransactionID, PatientID, FBS, FBScon, BUA, BUAcon, BUN, BUNcon, CREA, CREAcon, CHOL, CHOLcon, TRIG, TRIGcon, HDL, HDLcon, LDL, LDLcon, CH, VLDL, Na, K, Cl, ALT, AST, HB, PathID, MedID, QualityID, CreationDate) values ('$TransactionID', '$PatientID', '$FBS', '$FBScon', '$BUA', '$BUAcon', '$BUN', '$BUNcon', '$CREA', '$CREAcon', '$CHOL', '$CHOLcon', '$TRIG', '$TRIGcon', '$HDL', '$HDLcon', '$LDL', '$LDLcon', '$CH', '$VLDL', '$Na', '$K', '$Cl', '$ALT', '$AST', '$HB', '$PathID', '$MedID', '$QualityID', '$Date')");
+		$sql->execute();
+	}
+	public function updateChem( $TransactionID, $PatientID, $FBS, $FBScon, $BUA, $BUAcon, $BUN, $BUNcon, $CREA, $CREAcon, $CHOL, $CHOLcon, $TRIG, $TRIGcon, $HDL, $HDLcon, $LDL, $LDLcon, $CH, $VLDL, $Na, $K, $Cl, $ALT, $AST, $HB, $PathID, $MedID, $QualityID, $Date){
+		global $pdo;
+		$sql = $pdo->prepare("UPDATE lab_chemistry set FBS = '$FBS', FBScon = '$FBScon', BUA = '$BUA', BUAcon = '$BUAcon', BUN = '$BUN', BUNcon = '$BUNcon', CREA = '$CREA', CREAcon = '$CREAcon', CHOL = '$CHOL', CHOLcon = '$CHOLcon', TRIG = '$TRIG', TRIGcon = '$TRIGcon', HDL = '$HDL', HDLcon = '$HDLcon', LDL = '$LDL', LDLcon = '$LDLcon', CH = '$CH', VLDL = '$VLDL', Na = '$Na', K = '$K', Cl = '$Cl', ALT = '$ALT', AST = '$AST', HB = '$HB', PathID = '$PathID', MedID = '$MedID', QualityID = '$QualityID', DateUpdate = '$Date'  where PatientID = '$PatientID' and TransactionID = '$TransactionID'");
+		$sql->execute();
+	}
+	public function fetchlabAll($table){
+		global $pdo;
+		$sql = $pdo->prepare("SELECT * from $table l, qpd_trans t, qpd_patient p where p.PatientID = l.PatientID and t.TransactionID = l.TransactionID ");
+		$sql->execute();
+		return $sql->fetchAll();
+	}
+	public function getData($pid, $tid, $table){
+		global $pdo;
+		$sql = $pdo->prepare("SELECT * from $table l, qpd_trans t, qpd_patient p where l.TransactionID = '$tid' and l.PatientID = '$pid' and p.PatientID = l.PatientID and t.TransactionID = l.TransactionID");
+		$sql->execute();
+		return $sql->fetch();
 	}
 
 }

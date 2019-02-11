@@ -159,7 +159,7 @@ class trans {
 	public function fetch_by_date($date1,$date2){
 		global $pdo;
 
-		$query = $pdo->prepare("SELECT f.*, t.* FROM qpd_patient f, qpd_trans t WHERE f.PatientID = t.PatientID and t.TransactionDate BETWEEN '$date1' and '$date2' ORDER BY t.TransactionDate");
+		$query = $pdo->prepare("SELECT f.*, t.* FROM qpd_patient f, qpd_trans t WHERE f.PatientID = t.PatientID and t.TransactionDate BETWEEN '$date1' and '$date2'  AND status = '1' ORDER BY t.TransactionDate");
 		$query->execute();
 
 		return $query->fetchAll();
@@ -218,6 +218,24 @@ class trans {
 		$sql = $pdo->prepare("SELECT TransactionID from qpd_trans where TransactionDate in (SELECT MAX(TransactionDate) from qpd_trans where SalesType = 'sales' and status = '1')");
 		$sql->execute();
 		return $sql->fetch();
+	}
+	public function addMarker($size,$pid,$tid){
+		global $pdo;
+		$sql = $pdo->prepare("INSERT into xray_markers ( PatientID, TransactionID, xrayFilm, totalCount) values ('$pid','$tid','$size','') ");
+		$sql->execute();
+	}
+	public function checkMarker($tid,$pid){
+		global $pdo;
+		$sql = $pdo->prepare("SELECT * from xray_markers where TransactionID = '$tid' and PatientID = '$pid'");
+		$sql->execute();
+
+		return $sql->fetchAll();
+	}
+	public function getMarkerBy($data,$column){
+		global $pdo;
+		$sql = $pdo->prepare("SELECT * from xray_markers where $column = '$data'");
+		$sql->execute();
+		return $sql->fetchAll();
 	}
 }
 ?>

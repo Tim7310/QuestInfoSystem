@@ -1,33 +1,20 @@
 <?php
 include_once('../connection.php');
 include_once('../classes/trans.php');
-include_once('../classes/patient.php');
 include_once('../classes/qc.php');
 include_once('../classes/lab.php');
+include_once('../classes/patient.php');
+$printdate = date("Y-m-d H:i:s");
 $lab = new lab;
-if (isset($_GET['id'])){
-	$id = $_GET['id'];
-	$tid = $_GET['tid'];
-	$data = $lab->fetch_data($id,$tid);
-
 $qc = new qc;
-if (isset($_GET['id'])){
-	$id = $_GET['id'];
-	$tid = $_GET['tid'];
-	$qc = $qc->fetch_data($id,$tid);
-
 $patient = new Patient;
-if (isset($_GET['id'])){
-	$id = $_GET['id'];
-	$pat = $patient->fetch_data($id);
-
 $transac = new trans;
-if (isset($_GET['id'])){
-	$id = $_GET['id'];
+if (isset($_GET['id']) and isset($_GET['tid'])){
 	$tid = $_GET['tid'];
-	$trans = $transac->fetch_data($id,$tid);
+	$id = $_GET['id'];
+	$data = $lab->getData($id,$tid,"lab_chemistry");
 
-$C = $data['Clinician'];
+$C = $data['Biller'];
 $FBS = $data['FBS'];
 $BUA = $data['BUA'];
 $BUN = $data['BUN'];
@@ -48,6 +35,9 @@ date_default_timezone_set("Asia/Kuala_Lumpur");
 $printdate = date("Y-m-d H:i:s");
 
 $printCount = $lab->checkPrint($id, $tid, 'CHEMISTRY');
+	$med = $lab->medtechByID($data['MedID']);
+	$qc = $lab->medtechByID($data['QualityID']);
+	$path = $lab->medtechByID($data['PathID']);
 ?>
 
 <html>
@@ -236,6 +226,7 @@ $printCount = $lab->checkPrint($id, $tid, 'CHEMISTRY');
 	padding: 0px;
 	margin: 0px;
 	line-height:16px;
+	text-align: center;
 	/*font-size: 18px;*/
 	
 }
@@ -338,60 +329,63 @@ hr
 
 <body >
 <div class="container-fluid">
-<div class="col-md-10" style="margin-top: 5px;">
+<div class="col-md-12" style="margin-top: 5px;">
 	<img src="../assets/QPDHeader.jpg" height="100px" width="100%">
 </div>
-<div class="col-md-10">
+<div class="col-md-12" style="">
 	<div class="card" style="border-radius: 0px; border: 3px solid #104E8B; margin-top: 10px;">
 	<div class="card-header"><center><b>QUEST PHIL DIAGNOSTICS</b></center></div>
-	<div class="card-block">
+	<div class="card-block" style="padding-bottom: 0px ">
 	<div class="row">
 	    <div class="col-1"><p class="labelName">Name:</p></div>
-	    <div class="col-6">
-	        <span class="lineName"><?php echo $trans['LastName'] ?>,&nbsp; <?php echo $trans['FirstName'] ?> <?php echo $trans['MiddleName'] ?></span>
+	    <div class="col-5">
+	        <span class="lineName"><?php echo $data['LastName'] ?>, <?php echo $data['FirstName'] ?> <?php echo $data['MiddleName'] ?>
+	        </span>
 	    </div>
 	    <div class="col-2 text-right">
 	        <p class="labelName">Lab Number:</p>
 	    </div>
-	    <div class="col">
-	        <span class="lineName"><?php echo $trans['TransactionID'] ?></span>
+	    <div class="col-4">
+	        <span class="lineName"><?php echo $data['chemID'] ?></span>
 	    </div>
 	</div>
-	<div class="row">
-	    <div class="col-1"><p class="labelName">QuestID:</p></div>
-	    <div class="col-6">
-	        <span class="lineName"><?php echo $trans['PatientID'] ?></span>
-	    </div>
-	</div>
-	<div class="row">
-	    <div class="col-1"><p class="labelName">Age:</p></div>
-	    <div class="col-6">
-	        <span class="lineName"><?php echo $trans['Age'] ?></span>
+	<div class="row" style="margin-top: 10px;">
+	    <div class="col-1"><p class="labelName">Gender:</p></div>
+	    <div class="col-5">
+	        <span class="lineName"><?php echo $data['Gender'] ?></span>
 	    </div>
 	    <div class="col-2 text-right">
-	        <p class="labelName">Gender:</p>
+	        <p class="labelName">QuestID:</p>
 	    </div>
-	    <div class="col">
-	        <span class="lineName"><?php echo $trans['Gender'] ?></span>
-	    </div>
-	</div>
-	<div class="row">
-	    <div class="col-1"><p class="labelName" id="Check">Clinician:</p></div>
-	    <div class="col-6">
-	        <span class="lineName" id="CheckAgain"><?php echo $data['Clinician'] ?></span>
+	    <div class="col-4">
+	        <span class="lineName"><?php echo $data['PatientID'] ?></span>
 	    </div>
 	</div>
-	<div class="row">
-	    <div class="col col-sm-auto"><p class="labelName">Received:</p></div>
+	<div class="row" style="margin-top: 10px;">
+	    <div class="col-1"><p class="labelName">Age:</p></div>
+	    <div class="col-3">
+	        <span class="lineName"><?php echo $data['Age'] ?></span>
+	    </div>
+	    <div class="col-2 text-right">
+	        <p class="labelName">Clinician/Refferer:</p>
+	    </div>
+	    <div class="col-6" >
+	        <span class="lineName">
+	        	<?php echo $data['Biller'] ?></span>
+	    </div>
+	</div>
+	<div class="row" style="margin-top: 10px;"
+	`1>
+	    <div class="col col-sm-auto"><p class="labelName">Date Received:</p></div>
 	    <div class="col col-sm-auto">
-	        <u><?php echo $trans['CreationDate'] ?></u>
+	        <u><?php echo $data['CreationDate'] ?></u>
 	    </div>
 	    <div class="col"></div>
 	    <div class="col col-sm-auto">
 	        <p class="labelName">Reported:</p>
 	    </div>
 	    <div class="col col-sm-auto">
-	        <u><?php echo $trans['CreationDate'] ?></u>
+	        <u><?php echo $data['CreationDate'] ?></u>
 	    </div>
 	    <div class="col"></div>
 	    <div class="col col-sm-auto">
@@ -404,8 +398,42 @@ hr
 	</div>
 	</div>
 </div>
+<!--Footer-->
+<div  style="position: absolute;margin-top: 735px;margin-left:-10px;">
+	<div class="col-md-12 ">
+	<div class="card" style="border-radius: 0px; margin-top: 10px;">
+		<div class="card-block" style="height: 1.3in;" >
+				<div class="row">
+					<div class="col" style="padding-left: 0px"><center><span class="Names"><br>
+						<b><?php echo $med['FirstName']." ".$med['MiddleName']." ".$med['LastName'].", ".$med['PositionEXT']?>	</b></span></center></div>
+					<div class="col" style="padding-left: 0px"><center><span class="Names"><br>
+						<b><?php echo $qc['FirstName']." ".$qc['MiddleName']." ".$qc['LastName'].", ".$qc['PositionEXT']?>	</b></span></center></div>
+					<div class="col" style="padding-left: 0px"><center><span class="Names"><br>
+						<b><?php echo $path['FirstName']." ".$path['MiddleName']." ".$path['LastName'].", ".$path['PositionEXT']?>	</b></span></center></div>
+				</div>
+				<div class="row">
+					<div class="col" style="padding-left: 0px"><center><span class="lineNameSig"><br>
+						<b>LIC NO. <?php echo $med['LicenseNO'] ?></b></span></center></div>
+					<div class="col" style="padding-left: 0px"><center><span class="lineNameSig"><br>
+						<b>LIC NO. <?php echo $qc['LicenseNO'] ?></b></span></center></div>
+					<div class="col" style="padding-left: 0px"><center><span class="lineNameSig"><br>
+						<b>LIC NO. <?php echo $path['LicenseNO'] ?></b></span></center></div>
+				</div>
+				<div class="row">
+					<div class="col"><center><p class="labelName">Registered Medical Technologist</p></center></div>
+					<div class="col"><center><p class="labelName">Quality Control</p></center></div>
+					<div class="col"><center><p class="labelName">Pathologist</p></center></div>		
+				</div>
+		</div>
+	</div>
+	</div>
+	<div class="col-md-12">
+		<img src="../assets/QISFooter.png" height="50px" width="100%">
+	</div>
+</div>
+<!-- Footer End -->
 
-<div class="col-md-10" >
+<div class="col-md-12" >
 	<div class="card" style="border-radius: 0px; margin-top: 10px;border-width: 0px">
 	<div class="card-header"><center><b>LABORATORY RESULTS</b></center></div>
 	<div class="card-block" style="height: 7in;">
@@ -634,7 +662,7 @@ hr
 	</div>
 	</div>
 </div>
-<div class="col-md-10">
+<!-- <div class="col-md-10">
 <div class="card" style="border-radius: 0px; margin-top: 20px;">
 	<div class="card-block" style="height: 1.3in;" >
 			<div class="row">
@@ -652,13 +680,13 @@ hr
 				<div class="col"><center><p class="labelName">Quality Control</p></center></div>
 				<div class="col"><center><p class="labelName">Pathologist</p></center></div>		
 			</div>
-			<!-- <center><p style="font-size: 12px;margin-top: -7px">**Report Electronically Signed Out**</p></center> -->
+			 <center><p style="font-size: 12px;margin-top: -7px">**Report Electronically Signed Out**</p></center> 
 	</div>
 </div>
 </div>
 <div class="col-md-10" style="margin-top: 5px">
 	<img src="../assets/QISFooter.png" height="50px" width="100%">
-</div>
+</div> -->
 <script type="text/javascript">
 	$(document).ready(function(){
 		var pcount = "<?php echo $printCount; ?>";
@@ -700,7 +728,7 @@ hr
 		// };
 	});
 </script>
-<?php }}}} ?>
 </div>
 </body>
 </html>
+<?php } ?>

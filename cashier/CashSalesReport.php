@@ -69,7 +69,8 @@ include_once('cashsidebar.php');
 	            	</div>
             	</div>
             	<center><input type="submit" class="btn btn-success" value="Generate Report" name="gen"></center> 
-            	<button class="btn btn-primary" type="button" name="tdReport" >Generate Today's Report</button>
+            	<button class="btn btn-primary mt-2" type="button" name="tdReport" >Generate Today's Report</button>
+            	<button class="btn btn-primary mt-2" type="button" name="eotdReport" >Generate End of the Day Report</button>
             </div>
         </div>
     </div>
@@ -91,6 +92,11 @@ include_once('cashsidebar.php');
 			var sd2 = "<?php echo $dnSD?>";
 			var ed2 = "<?php echo $dnED?>";
 			window.open("SalesCSV.php?sd="+sd2+"&ed="+ed2);
+		});
+		$("button[name='eotdReport'").click(function(){
+			var sd2 = "<?php echo $dnSD?>";
+			var ed2 = "<?php echo $dnED?>";
+			window.open("eotd.php?sd="+sd2+"&ed="+ed2);
 		});
 	});
 </script>

@@ -6,27 +6,23 @@
 	include_once('../classes/patient.php');
 	$printdate = date("Y-m-d H:i:s");
 	$lab = new lab;
-	$tid = $_GET['tid'];
-	if (isset($_GET['id'])){
-		$id = $_GET['id'];
-		$data = $lab->fetch_data($id,$tid);
-
 	$qc = new qc;
-	if (isset($_GET['id'])){
-		$id = $_GET['id'];
-		$data1 = $qc->fetch_data($id,$tid);
-
-	$transac = new trans;
-	if (isset($_GET['id'])){
-		$id = $_GET['id'];
-		$trans = $transac->fetch_data($id,$tid);
-
 	$patient = new Patient;
-	if (isset($_GET['id'])){
+	$transac = new trans;
+	if (isset($_GET['id']) and isset($_GET['tid'])){
+		$tid = $_GET['tid'];
 		$id = $_GET['id'];
-		$pat = $patient->fetch_data($id);
+		$data = $lab->getData($id,$tid,"lab_hematology");
+		// $data1 = $qc->fetch_data($id,$tid);
+		// $trans = $transac->fetch_data($id,$tid);
+		// $pat = $patient->fetch_data($id);
+
 
 $printCount = $lab->checkPrint($id, $tid, 'HEMATOLOGY');
+
+	$med = $lab->medtechByID($data['MedID']);
+	$qc = $lab->medtechByID($data['QualityID']);
+	$path = $lab->medtechByID($data['PathID']);
 	// $qc = new qc;
 	// if (isset($_GET['id'])){
 	// 	$id = $_GET['id'];
@@ -78,6 +74,7 @@ $printCount = $lab->checkPrint($id, $tid, 'HEMATOLOGY');
 	font-weight: bolder;
 	padding: 0px;
 	margin: 0px;
+	text-align: center;
 	
 }
 .lineRes1
@@ -236,42 +233,42 @@ $printCount = $lab->checkPrint($id, $tid, 'HEMATOLOGY');
 <div class="col-md-14" style="">
 	<div class="card" style="border-radius: 0px; border: 3px solid #104E8B; margin-top: 10px;">
 	<div class="card-header"><center><b>QUEST PHIL DIAGNOSTICS</b></center></div>
-	<div class="card-block">
+	<div class="card-block" style="padding-bottom: 0px ">
 	<div class="row">
 	    <div class="col-1"><p class="labelName">Name:</p></div>
 	    <div class="col-6">
-	        <span class="lineName"><?php echo $pat['LastName'] ?>,<?php echo $pat['FirstName'] ?> <?php echo $pat['MiddleName'] ?>
+	        <span class="lineName"><?php echo $data['LastName'] ?>, <?php echo $data['FirstName'] ?> <?php echo $data['MiddleName'] ?>
 	        </span>
 	    </div>
 	    <div class="col-2 text-right">
 	        <p class="labelName">Lab Number:</p>
 	    </div>
 	    <div class="col">
-	        <span class="lineName"><?php echo $data['LabID'] ?></span>
+	        <span class="lineName"><?php echo $data['hemaID'] ?></span>
 	    </div>
 	</div>
 	<div class="row" style="margin-top: 10px;">
 	    <div class="col-1"><p class="labelName">Gender:</p></div>
 	    <div class="col-6">
-	        <span class="lineName"><?php echo $pat['Gender'] ?></span>
+	        <span class="lineName"><?php echo $data['Gender'] ?></span>
 	    </div>
 	    <div class="col-2 text-right">
 	        <p class="labelName">QuestID:</p>
 	    </div>
 	    <div class="col">
-	        <span class="lineName"><?php echo $pat['PatientID'] ?></span>
+	        <span class="lineName"><?php echo $data['PatientID'] ?></span>
 	    </div>
 	</div>
 	<div class="row" style="margin-top: 10px;">
 	    <div class="col-1"><p class="labelName">Age:</p></div>
-	    <div class="col-6">
-	        <span class="lineName"><?php echo $pat['Age'] ?></span>
+	    <div class="col-3">
+	        <span class="lineName"><?php echo $data['Age'] ?></span>
 	    </div>
 	    <div class="col-2 text-right">
-	        <p class="labelName">Clinician:</p>
+	        <p class="labelName">Clinician/Refferer:</p>
 	    </div>
-	    <div class="col">
-	        <span class="lineName"><?php echo $data['Clinician'] ?></span>
+	    <div class="col-6">
+	        <span class="lineName"><?php echo $data['Biller'] ?></span>
 	    </div>
 	</div>
 	<div class="row" style="margin-top: 10px;"
@@ -285,7 +282,7 @@ $printCount = $lab->checkPrint($id, $tid, 'HEMATOLOGY');
 	        <p class="labelName">Reported:</p>
 	    </div>
 	    <div class="col col-sm-auto">
-	        <u><?php echo $data['DateUpdate'] ?></u>
+	        <u><?php echo $data['CreationDate'] ?></u>
 	    </div>
 	    <div class="col"></div>
 	    <div class="col col-sm-auto">
@@ -298,6 +295,41 @@ $printCount = $lab->checkPrint($id, $tid, 'HEMATOLOGY');
 	</div>
 	</div>
 </div>
+<!--Footer-->
+<div style="position: absolute;margin-top: 750px;margin-left:-10px;">
+	<div class="col-md-12 ">
+	<span style="font-size: 12px;">Note: Specimen rechecked, result/s verified.</span>
+	<div class="card" style="border-radius: 0px; margin-top: 10px;">
+		<div class="card-block" style="height: 1.3in;" >
+				<div class="row">
+					<div class="col" style="padding-left: 0px"><center><span class="Names"><br>
+						<b><?php echo $med['FirstName']." ".$med['MiddleName']." ".$med['LastName'].", ".$med['PositionEXT']?>	</b></span></center></div>
+					<div class="col" style="padding-left: 0px"><center><span class="Names"><br>
+						<b><?php echo $qc['FirstName']." ".$qc['MiddleName']." ".$qc['LastName'].", ".$qc['PositionEXT']?>	</b></span></center></div>
+					<div class="col" style="padding-left: 0px"><center><span class="Names"><br>
+						<b><?php echo $path['FirstName']." ".$path['MiddleName']." ".$path['LastName'].", ".$path['PositionEXT']?>	</b></span></center></div>
+				</div>
+				<div class="row">
+					<div class="col" style="padding-left: 0px"><center><span class="lineNameSig"><br>
+						<b>LIC NO. <?php echo $med['LicenseNO'] ?></b></span></center></div>
+					<div class="col" style="padding-left: 0px"><center><span class="lineNameSig"><br>
+						<b>LIC NO. <?php echo $qc['LicenseNO'] ?></b></span></center></div>
+					<div class="col" style="padding-left: 0px"><center><span class="lineNameSig"><br>
+						<b>LIC NO. <?php echo $path['LicenseNO'] ?></b></span></center></div>
+				</div>
+				<div class="row">
+					<div class="col"><center><p class="labelName">Registered Medical Technologist</p></center></div>
+					<div class="col"><center><p class="labelName">Quality Control</p></center></div>
+					<div class="col"><center><p class="labelName">Pathologist</p></center></div>		
+				</div>
+		</div>
+	</div>
+	</div>
+	<div class="col-md-12">
+		<img src="../assets/QISFooter.png" height="50px" width="100%">
+	</div>
+</div>
+<!-- Footer End -->
 <div class="col-sm-22" style="border-radius: 0px; color: black; margin-top: 10px;">
 	<div class="card-header"><center><b>LABORATORY RESULTS</b></center></div>
 	   
@@ -391,7 +423,8 @@ $printCount = $lab->checkPrint($id, $tid, 'HEMATOLOGY');
 					<div class="col-4"><p class="labelName">Hematocrit</p></div>
 					<div class="col-2"><p class="lineRes"><?php echo $data['Hematocrit'] ?></p></div>
 					<div class="col"><p class="labelName">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;%</p></div>
-					<div class="col"><p class="labelName">4:23~11.07</p></div>
+					<div class="col-2"><p class="labelName" style="font-size: 16px">M: 0.40~0.51</p></div>
+					<div class="col-2"><p class="labelName" style="font-size: 16px">F: 0.34~0.45</p></div>
 				</div>
 				<div class="row" style="margin: 10px;"></div>
 				<div class="row" style="margin: 10px;"></div>
@@ -400,7 +433,7 @@ $printCount = $lab->checkPrint($id, $tid, 'HEMATOLOGY');
 					<div class="col-4"><p class="labelName">Platelet</p></div>
 					<div class="col-2"><p class="lineRes"><?php echo $data['PLT'] ?></p></div>
 					<div class="col"><p class="labelName">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;%</p></div>
-					<div class="col"><p class="labelName">4:23~11.07</p></div>
+					<div class="col"><p class="labelName">150~400</p></div>
 				</div>
 				</div>
 
@@ -419,7 +452,7 @@ $printCount = $lab->checkPrint($id, $tid, 'HEMATOLOGY');
 </div>
 <!--Footer-->
 
-	<div class="col-sm-14 " style="margin-top: 75px;">
+	<!-- <div class="col-sm-14 " style="margin-top: 75px;">
 	<span style="font-size: 15px;">Note: Specimen rechecked, result/s verified.</span>
 	<div class="card" style="border-radius: 0px; margin-top: 10px;">
 		<div class="card-block" style="height: 1.3in;" >
@@ -452,7 +485,7 @@ $printCount = $lab->checkPrint($id, $tid, 'HEMATOLOGY');
 	</div>
 </div>
 
-
+ -->
 
 </body>
 <script type="text/javascript">
@@ -495,4 +528,4 @@ $printCount = $lab->checkPrint($id, $tid, 'HEMATOLOGY');
 		// };
 	});
 </script>
-<?php }}}} ?>
+<?php } ?>

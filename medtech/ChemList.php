@@ -1,13 +1,8 @@
 <?php
 include_once('../connection.php');
-include_once('../classes/patient.php');
-include_once('../classes/transVal.php');
 include_once('../classes/lab.php');
 $lab = new lab;
-$patient = new Patient;
-$patients = $patient->fetch_all();
-$trans = new trans;
-
+$data = $lab->fetchlabAll("lab_chemistry");
 ?>
 <html>
 	<head>
@@ -41,8 +36,8 @@ include_once('labsidebar.php');
 						<th nowrap>Patient Name</th>
 						<th>Action</th>
 					</thead>
-					<?php foreach  ($patients as $patient) {  
-						$transID = $trans->fetch_id($patient['PatientID']);
+					<?php foreach  ($data as $patient) {  
+						$transID = $patient['TransactionID'];
 					?>
 					
 					<tr>
@@ -56,7 +51,7 @@ include_once('labsidebar.php');
 								<?php echo $patient['CompanyName']?>
 							</td>	
 							<td nowrap>
-								<?php echo $patient['LastName']?>,<?php echo $patient['FirstName']?> <?php echo $patient['MiddleName']?> 
+								<?php echo $patient['LastName']?>, <?php echo $patient['FirstName']?> <?php echo $patient['MiddleName']?> 
 							</td>
 							<td > 
 								<?php 
@@ -70,7 +65,7 @@ include_once('labsidebar.php');
 									}
 
 								?>
-								<button type="button" class="btn <?php echo $class; ?>" onclick="document.location = 'LabChemFORM.php?id=<?php echo $patient['PatientID']."&tid=".$transID[0]?>';">View Certificate</button>
+								<button type="button" class="btn <?php echo $class; ?>" onclick="document.location = 'LabChemFORM.php?id=<?php echo $patient['PatientID']."&tid=".$transID?>';">View Certificate</button>
 							</td>
 
 					</tr>

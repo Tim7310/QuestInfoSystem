@@ -1,9 +1,9 @@
-<script type="text/javascript">
+<!-- <script type="text/javascript">
 	window.onload = function() 
 	{ 
 		window.print(); 
 	}
-</script>
+</script> -->
 <?php
 	include_once('../connection.php');;
 	include_once('../classes/trans.php');
@@ -27,11 +27,11 @@
 			$tid = $_GET['tid'];
 			$trans = $transac->fetch_data($id, $tid);
 			$date = explode(" ", $trans['TransactionDate']);
-			$marker = $transac->checkMarker($tid, $id);
-			$transac->addMarker($filmSize,$id,$tid);
-			if (!is_array($marker)) {
-				$transac->addMarker($filmSize,$id,$tid);
-			}
+			// $marker = $transac->checkMarker($tid, $id);
+			// $transac->addMarker($filmSize,$id,$tid);
+			// if (!is_array($marker)) {
+			// 	$transac->addMarker($filmSize,$id,$tid);
+			// }
 			
 		}
 	}
@@ -48,7 +48,6 @@
 		}
 	</style>
 	<body>
-		
 		<table width = "350px"; height = "80px"; style = "font-size: 13px">
 			<tr>
 				<td colspan = "3"><center>QUESTPHIL DIAGNOSTICS</center></td>

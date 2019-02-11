@@ -53,11 +53,48 @@ $partsArray = array("CHEST PA",
 		<link rel="stylesheet" type="text/css" href="../source/CDN/buttons.bootstrap4.min.css	">
 		
 	</head>
+<style type="text/css">
+	button{
+		cursor: pointer
+	}
+</style>
 	<body>
 	<?php
 	include_once('radsidebar.php');
 	?>
-
+	<div class="container ">
+		<div class="row mt-2">
+			<div class="col-md-12 p-2 " style="background-color: #2980B9; color: white; font-weight: bolder">PRINT STICKERS</div>
+		</div>
+		<div class="row m-2">
+			<div class="col-md-2" class="form-control">
+				<label> By Date:</label> 
+			</div>
+			<div class="col-md-3">
+				<input type="text" name="startdate" class="form-control" placeholder="mm:dd:yyyy hh:mm:ss">
+			</div>
+			<div class="col-md-3">
+				<input type="text" name="enddate" class="form-control" placeholder="mm:dd:yyyy hh:mm:ss">
+			</div>
+			<div class="col-md-2" class="form-control">
+				<button class="btn btn-primary">PRINT</button>
+			</div>
+		</div>
+		<div class="row m-2">
+			<div class="col-md-2" class="form-control">
+				<label> By IDs:</label> 
+			</div>
+			<div class="col-md-3">
+				<input type="text" name="id1" class="form-control" placeholder="Transaction ID 1">
+			</div>
+			<div class="col-md-3">
+				<input type="text" name="id2" class="form-control" placeholder="Transaction ID 2">
+			</div>
+			<div class="col-md-2" class="form-control">
+				<button class="btn btn-primary">PRINT</button>
+			</div>
+		</div>
+	</div>
 	<div class="container" style="margin-top: 10px;">
 		
 			<table id="example" class="table table-striped table-bordered" cellspacing="0" width="100%">

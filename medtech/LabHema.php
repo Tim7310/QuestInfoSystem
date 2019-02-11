@@ -1,8 +1,11 @@
 <?php
 include_once('../connection.php');
 include_once('../classes/trans.php');
+include_once('../classes/lab.php');
 $trans = new trans;
+$lab = new lab;
 $patients = $trans->recentTrans();
+
 ?>
 <html>
 	<head>
@@ -47,7 +50,11 @@ include_once('labsidebar.php');
 						<th nowrap>Patient Name</th>
 						<th>Action</th>
 					</thead>
-					<?php foreach  ($patients as $patient) {  ?>
+					<?php foreach  ($patients as $patient) { 
+						$pid = $patient['PatientID'];
+						$tid = $patient['TransactionID']; 
+						$data = $lab->getData($pid, $tid, "lab_hematology");
+					?>
 					
 					<tr>
 							<td>
@@ -66,8 +73,11 @@ include_once('labsidebar.php');
 								<?php echo $patient['LastName']?>,<?php echo $patient['FirstName']?> <?php echo $patient['MiddleName']?> 
 							</td>
 							<td nowrap> 
-								<button type="button" class="btn btn-primary" onclick="document.location = 'LabHemaVIEW.php?id=<?php echo $patient['PatientID']?>&tid=<?php echo $patient['TransactionID']?>';">VIEW RECORD</button>
+								<?php if(is_array($data)){ ?>
+								<button type="button" class="btn btn-success" onclick="document.location = 'LabHemaVIEW.php?id=<?php echo $patient['PatientID']?>&tid=<?php echo $patient['TransactionID']?>';">VIEW RECORD</button>
+								<?php }else{ ?>
 								<button type="button" class="btn btn-primary" onclick="document.location = 'LabHemaADD.php?id=<?php echo $patient['PatientID']?>&tid=<?php echo $patient['TransactionID']?>';">ADD RECORD</button>
+								<?php } ?>
 							</td>
 
 					</tr>
