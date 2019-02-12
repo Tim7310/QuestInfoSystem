@@ -205,13 +205,12 @@ include_once('cashsidebar.php');
 			  <select class="custom-select" id="itemList" name="itemList" aria-label="Select Item Here" style="" 
 			  placeholder="Select Item Here">
 			   		<?php foreach ($packData as $key){ ?>
-						
-						<option value="<?php echo $key['ItemID'];?>">
+						<option value="<?php echo $key['ItemID'];?>" class="itemval">
 							<?php echo $key['TestType']." | ".$key['ItemName']." | ". $key['ItemPrice'] ;?></option>
 					<?php } ?>
 			  </select>
 			  <div class="input-group-append">
-			    <button class="btn btn-outline-primary" type="button" id="addItem"><i class="fas fa-plus-circle"></i>&nbsp;  ADD</button>
+			    <button class="btn btn-outline-primary" type="button" id="addItem" style="display: none"><i class="fas fa-plus-circle"></i>&nbsp;  ADD</button>
 			  </div>
 			</div>
 			
@@ -233,63 +232,7 @@ include_once('cashsidebar.php');
 
 	<div class="row">
 		<div class="col-2">
-			<div class="btn-group dropright">
-			  <button class="btn" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" style="background-color: #2980b9;color:white;float:left">
-			    HELD TRANSACTION &nbsp;<i class="fas fa-caret-right" style="font-size: 12px"></i>
-			  </button>
-			  <div class="dropdown-menu" style="width:600px;font-size: 15px;background-color: #2980b9;">
-			    	<div class="row" style="font-weight: bold;color:white;">
-			    		<div class="col-3">Transaction ID </div>
-			    		<div class="col-3">Patient Name </div>
-			    		<div class="col-3">Items </div>
-			    		<div class="col-3">Transaction Date </div>
-			    	</div>
-			    	<hr style="margin-top: 2px;">
-			    	<div style="width:600px; max-height: 400px;overflow-y: auto;overflow-x: hidden;background-color: white;margin-top: -10px">
-			    	<?php foreach ($holdTrans as $key) {
-			    	?>
-			    	<hr style="margin-top: 2px">
-			    	<div class="row holdtrans" style="font-size: 12px;cursor: pointer">
-			    		<div class="col-3" ><?php echo $key['TransactionID'] ?> </div>
-			    		<?php 
-			    			$patID1 = $key['PatientID'];
-			    			$patdata1 = $pat->fetch_data($patID1); 
-			    		?>
-			    		<div class="col-3"><?php echo $patdata1['LastName'].", ".$patdata1['FirstName']." ".$patdata1['MiddleName'] ?></div>
-			    		<?php
-			    			$idpatient = $key['PatientID'];
-			    			$idtrans = $key['TransactionID'];
-			    			$itemsquantity = $key['ItemQTY'];
-			    			$itemsquantity = explode(',', $itemsquantity);
-			    			$itemsdiscount = $key['Discount'];
-			    			$itemsdiscount = explode(',', $itemsdiscount);
-			    			$itemids = $key['ItemID'];
-	            			$itemID = explode(',', $itemids);
-	            			$Package = "";$itemnum = 0;$yy = 0;
-	            			if ($itemids != ""){
-	            			foreach ($itemID as $key1) {
-	            				$items = $trans->fetch_item($key1);
-	            				$Package .= "[".$items['ItemName']." - ".$items['ItemDescription']."] ";
-	            				$itemnum++; 
-	            		?>
-	            			<input type="hidden" name="" class="itemsid" value="<?php echo $items['ItemID']; ?>">
-			    			<input type="hidden" name="" class="itemlabel" value="<?php echo $items['ItemName'].' '.$items['ItemDescription']; ?>">
-	            			<input type="hidden" name="" class="itemprices" value="<?php echo $items['ItemPrice']; ?>">			    			
-	            			<input type="hidden" name="" class="itemsquantity" value="<?php echo $itemsquantity[$yy]; ?>">			    			
-	            			<input type="hidden" name="" class="itemsdiscount" value="<?php echo $itemsdiscount[$yy]; ?>">			    					    			
-	            		<?php
-	            			$yy++;}}
-			    		?>
-			    		<input type="hidden" name="" class="idpatient" value="<?php echo $idpatient; ?>">
-			    		<input type="hidden" name="" class="idtrans" value="<?php echo $idtrans; ?>">
-			    		<div class="col-3"><?php echo $Package?> </div>
-			    		<div class="col-3"><?php echo $key['TransactionDate'] ?> </div>
-			    		
-			    	</div>
-			    	<?php } ?>
-			    	</div>
-			  </div>
-			</div>
+			
 		</div>
 
 		<div class="col-6"></div>
@@ -360,8 +303,72 @@ include_once('cashsidebar.php');
 			<div class="col-2" id="ADa" style="text-align: center;"></div>
 		</div>
 	</div>
-	<div class="row mt-3" >
-			<div class="col-9"></div>
+	<div class="row mt-3 mb-3" >
+			<div class="col-2">
+				<div class="btn-group dropup">
+				  <button class="btn" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" style="background-color: #2980b9;color:white;float:left">
+				    TRANSACTION HELD &nbsp;<i class="fas fa-caret-right" style="font-size: 12px"></i>
+				  </button>
+				  
+				  <div class="dropdown-menu" style="width:610px;font-size: 15px;background-color: #2980b9;">
+				    	<div class="row" style="font-weight: bold;color:white;">
+				    		<div class="col-3"> Transaction ID </div>
+				    		<div class="col-3">Patient Name </div>
+				    		<div class="col-3">Items </div>
+				    		<div class="col-3">Transaction Date </div>
+				    	</div>
+				    	<hr style="margin-top: 2px;">
+				    	<div style="width:600px; max-height: 200px;overflow-y: auto;overflow-x: hidden;background-color: white;margin-top: -10px;margin-left: 3px">
+				    	<?php foreach ($holdTrans as $key) {
+				    	?>
+				    	<hr style="margin-top: 2px">
+				    	<div class="row holdtrans" style="font-size: 12px;cursor: pointer">
+				    		<div class="col-3" ><?php echo $key['TransactionID'] ?> </div>
+				    		<?php 
+				    			$patID1 = $key['PatientID'];
+				    			$patdata1 = $pat->fetch_data($patID1); 
+				    		?>
+				    		<div class="col-3"><?php echo $patdata1['LastName'].", ".$patdata1['FirstName']." ".$patdata1['MiddleName'] ?></div>
+				    		<?php
+				    			$idpatient = $key['PatientID'];
+				    			$idtrans = $key['TransactionID'];
+				    			$itemsquantity = $key['ItemQTY'];
+				    			$itemsquantity = explode(',', $itemsquantity);
+				    			$itemsdiscount = $key['Discount'];
+				    			$itemsdiscount = explode(',', $itemsdiscount);
+				    			$itemids = $key['ItemID'];
+		            			$itemID = explode(',', $itemids);
+		            			$Package = "";$itemnum = 0;$yy = 0;
+		            			if ($itemids != ""){
+		            			foreach ($itemID as $key1) {
+		            				$items = $trans->fetch_item($key1);
+		            				$Package .= "[".$items['ItemName']."] ";
+		            				$itemnum++; 
+		            		?>
+		            			<input type="hidden" name="" class="itemsid" value="<?php echo $items['ItemID']; ?>">
+				    			<input type="hidden" name="" class="itemlabel" value="<?php echo $items['ItemName'].' '.$items['ItemDescription']; ?>">
+		            			<input type="hidden" name="" class="itemprices" value="<?php echo $items['ItemPrice']; ?>">			    			
+		            			<input type="hidden" name="" class="itemsquantity" value="<?php echo $itemsquantity[$yy]; ?>">			    			
+		            			<input type="hidden" name="" class="itemsdiscount" value="<?php echo $itemsdiscount[$yy]; ?>">			    					    			
+		            		<?php
+		            			$yy++;}}
+				    		?>
+				    		<input type="hidden" name="" class="idpatient" value="<?php echo $idpatient; ?>">
+				    		<input type="hidden" name="" class="idtrans" value="<?php echo $idtrans; ?>">
+				    		<div class="col-3"><?php echo $Package?> </div>
+				    		<div class="col-3"><?php echo $key['TransactionDate'] ?> </div>
+				    		
+				    	</div>
+				    	<?php } ?>
+				    	</div>
+				  </div>
+				</div>
+			</div>
+			<div class="col-2">
+				<button class="btn btn-warning" id="cancelTrans">Cancel</button>
+				<button class="btn btn-danger" id="discardTrans" disabled>Discard</button>
+			</div>
+			<div class="col-5"></div>
 			<div class="col-3" id="change">
 				<input type="submit" name="hold" value="HOLD" class="btn btn-primary">
 				<input type="submit" name="print" value="Save and Print" class="btn btn-primary">
@@ -514,6 +521,19 @@ include_once('cashsidebar.php');
 			}
 			return val;
 		}
+		$("#cancelTrans").click(function(){
+			location.reload();
+		});
+		$("#itemList").change(function(){
+			$("#addItem").trigger("click");
+		});
+		$("#discardTrans").click(function(){
+			var heldtransID = $("#heldtransID").val();
+			$.post("discard.php",{ tid:heldtransID }, function(){
+				alert("Transaction Discarded");
+				location.reload();
+			});
+		});
 		$("#spdiscount").click(function(){
 			$(".itemdivID").each(function(){
 				var test_type = $(this).children(".testtype").val();
@@ -775,6 +795,7 @@ include_once('cashsidebar.php');
 			$('#newPatientDiv').children('div').children("input").val("");
 		});
 		$(".holdtrans").click(function(){
+			$("#discardTrans").removeAttr("disabled");
 			if ($(".removeItem")) {
 				$(".removeItem").trigger("click");
 				xx = 0;
@@ -785,6 +806,7 @@ include_once('cashsidebar.php');
 			$("#selectedPatient").load("getPatient.php",{patID: idpatient},function(){
 				
 			});
+			$("#discardTrans").after("<input type='hidden' id='heldtransID' value='"+idtrans+"'>");
 			var itemids = [];
 			var itemlabel = [];
 			var itemprice = [];

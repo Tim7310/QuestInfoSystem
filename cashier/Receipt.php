@@ -86,25 +86,25 @@ if (isset($_GET['transID'])){
 	<tr style="height: 25px"></tr>
 	<tr >
 		<td class="text-right" >Name:</td>
-		<td class="" style="font-size: 14px;" colspan="2"><b>
+		<td class="" style="font-size: 18px;letter-spacing: 2px" colspan="2"><b>
 			&nbsp;&nbsp;<?php echo $data['LastName'] ?>, <?php echo $data['FirstName'] ?> <?php echo $data['MiddleName'] ?>
 		</b></td>
 	</tr>
 	<tr>
 		<td class="text-right">Company:</td>
-		<td class="" colspan="2" style="font-size: 14px;"><b>
+		<td class="" colspan="2" style="font-size: 18px;letter-spacing: 2px"><b>
 			&nbsp;&nbsp;<?php echo $data['CompanyName'] ?>
 		</b></td>
 	</tr>
 	<tr>
 		<td class="text-right">Age/Gen:</td>
-		<td class="" style="font-size: 14px;"><b>
+		<td class="" style="font-size: 18px;letter-spacing: 2px"><b>
 			&nbsp;&nbsp;<?php echo $data['Age'] ?>/<?php echo $data['Gender'] ?>
 		</b></td>
 	</tr>
 	<tr>
 		<td class="text-right">DOB:</td>
-		<td class="" style="font-size: 14px;"><b>
+		<td class="" colspan="2" style="font-size: 18px;letter-spacing: 2px"><b>
 			&nbsp;&nbsp;<?php echo $data['Birthdate'] ?>
 		</b></td>
 	</tr>
@@ -117,13 +117,13 @@ if (isset($_GET['transID'])){
 		}
 		?>
 		<td class="text-right" >Referral:</td>
-		<td class="" colspan="2" style="font-size: 14px;"><b>
+		<td class="" colspan="2" style="font-size: 18px;letter-spacing: 2px"><b>
 			&nbsp;&nbsp;<?php echo $reff ?>
 		</b></td>
 	</tr>
 	<tr>
 		<td class="text-right">Cashier:</td>
-		<td class="" style="font-size: 14px;"><b>
+		<td class="" style="font-size: 18px;letter-spacing: 2px"><b>
 			&nbsp;&nbsp;<?php 
 				$cashier = explode(",",$data['Cashier']);
 				echo $cashier[0];
@@ -132,7 +132,7 @@ if (isset($_GET['transID'])){
 	</tr>
 	<tr>
 		<td class="text-right">Type:</td>
-		<td class="" style="font-size: 14px;"><b>
+		<td class="" style="font-size: 18px;letter-spacing: 2px"><b>
 			&nbsp;&nbsp;<?php echo $data['TransactionType'] ?>
 		</b></td>
 	</tr>
@@ -159,6 +159,9 @@ if (isset($_GET['transID'])){
 				<?php 
 					$itemdata = $trans->fetch_item($item);
 					echo $itemdata['ItemName'];
+					if ($itemdata['ItemName'] != $itemdata['ItemDescription']) {
+						echo " ( ".$itemdata['ItemDescription']." ) ";
+					}
 						
 				?>
 			</b>

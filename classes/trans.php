@@ -237,5 +237,10 @@ class trans {
 		$sql->execute();
 		return $sql->fetchAll();
 	}
+	public function deleteTrans($tid){
+		global $pdo;
+		$sql = $pdo->prepare("DELETE FROM qpd_trans WHERE TransactionID = '$tid' and status = '0'");
+		$sql->execute();
+	}
 }
 ?>

@@ -244,7 +244,7 @@ $printCount = $lab->checkPrint($id, $tid, 'HEMATOLOGY');
 	        <p class="labelName">Lab Number:</p>
 	    </div>
 	    <div class="col">
-	        <span class="lineName"><?php echo $data['hemaID'] ?></span>
+	        <span class="lineName"><?php echo $data['TransactionID'] ?></span>
 	    </div>
 	</div>
 	<div class="row" style="margin-top: 10px;">
@@ -265,10 +265,13 @@ $printCount = $lab->checkPrint($id, $tid, 'HEMATOLOGY');
 	        <span class="lineName"><?php echo $data['Age'] ?></span>
 	    </div>
 	    <div class="col-2 text-right">
-	        <p class="labelName">Clinician/Refferer:</p>
+	        <p class="labelName">Referred by:</p>
 	    </div>
 	    <div class="col-6">
-	        <span class="lineName"><?php echo $data['Biller'] ?></span>
+	        <span class="lineName"><?php 
+	        if ($data['Biller'] != "WALK-IN") {
+	        	echo $data['Biller']; 
+	        } ?></span>
 	    </div>
 	</div>
 	<div class="row" style="margin-top: 10px;"

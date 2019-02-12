@@ -55,7 +55,7 @@ $printCount = $lab->checkPrint($id, $tid, 'CHEMISTRY');
 		var x = "<?php echo $C ?>";
 		if ( x == "WALK-IN") 
 		{
-			document.getElementById("Check").style.visibility = "hidden";
+			//document.getElementById("Check").style.visibility = "hidden";
 		}
 		else if ( x == "") 
 		{
@@ -346,7 +346,7 @@ hr
 	        <p class="labelName">Lab Number:</p>
 	    </div>
 	    <div class="col-4">
-	        <span class="lineName"><?php echo $data['chemID'] ?></span>
+	        <span class="lineName"><?php echo $data['TransactionID'] ?></span>
 	    </div>
 	</div>
 	<div class="row" style="margin-top: 10px;">
@@ -367,11 +367,14 @@ hr
 	        <span class="lineName"><?php echo $data['Age'] ?></span>
 	    </div>
 	    <div class="col-2 text-right">
-	        <p class="labelName">Clinician/Refferer:</p>
+	        <p class="labelName">Referred by:</p>
 	    </div>
 	    <div class="col-6" >
 	        <span class="lineName">
-	        	<?php echo $data['Biller'] ?></span>
+	        	<?php 
+	        if ($data['Biller'] != "WALK-IN") {
+	        	echo $data['Biller']; 
+	        } ?></span>
 	    </div>
 	</div>
 	<div class="row" style="margin-top: 10px;"

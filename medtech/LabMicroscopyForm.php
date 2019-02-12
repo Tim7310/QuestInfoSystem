@@ -264,7 +264,7 @@
 	        <p class="labelName">Lab Number:</p>
 	    </div>
 	    <div class="col">
-	        <span class="lineName"><?php echo $data['microID'] ?></span>
+	        <span class="lineName"><?php echo $data['TransactionID'] ?></span>
 	    </div>
 	</div>
 	<div class="row" style="margin-top: 10px;">
@@ -285,10 +285,14 @@
 	        <span class="lineName"><?php echo $data['Age'] ?></span>
 	    </div>
 	    <div class="col-2 text-right">
-	        <p class="labelName">Clinician/Referrer:</p>
+	        <p class="labelName">Referred by:</p>
 	    </div>
 	    <div class="col">
-	        <span class="lineName"><?php echo $data['Biller'] ?></span>
+	        <span class="lineName"><?php 
+	        if ($data['Biller'] != "WALK-IN") {
+	        	echo $data['Biller']; 
+	        } ?>
+	        </span>
 	    </div>
 	</div>
 	<div class="row" style="margin-top: 10px;">
