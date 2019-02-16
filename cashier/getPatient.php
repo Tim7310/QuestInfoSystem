@@ -22,8 +22,8 @@ if ($patID != 0) {
 <?php } ?>
 <!-- Edit Patient Modal -->
 <div class="modal" tabindex="-1" role="dialog" id="editPatientModal" >
-  <div class="modal-dialog modal-lg" role="document">
-    <div class="modal-content">
+  <!-- <div class="modal-dialog modal-lg" role="document"> -->
+    <div class="modal-content modal-dialog modal-lg" role="document">
       <div class="modal-header">
         <h5 class="modal-title"><i class="fas fa-user-edit"></i> Edit Patient Info</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="color: white">
@@ -36,54 +36,54 @@ if ($patID != 0) {
 		  	<div class="col" >
 		  		<input type="hidden"  name="editPatID" id="editPatID"
 		  		class="form-control" value="<?php echo $patID ?>" required />
-		  		<label for="">First Name:</label>
-				<input type="text"  name="EditFName" id="EditFName" class="form-control" style="font-size: 15px;font-weight: bold;"
+		  		<label for="" class="newPatLabel">First Name:</label>
+				<input type="text"  name="EditFName" id="EditFName" class="form-control newPatStyle" style="font-size: 15px;font-weight: bold;"
 				value="<?php echo $patData['FirstName']; ?>"  required />
-				<label for="">Middle Name:</label>
-				<input type="text"  name="EditMName" id="EditMName" class="form-control " style="font-size: 15px;font-weight: bold"
+				<label for="" class="newPatLabel">Middle Name:</label>
+				<input type="text"  name="EditMName" id="EditMName" class="form-control newPatStyle" style="font-size: 15px;font-weight: bold"
 				value="<?php echo $patData['MiddleName']; ?>" required />
-		  		<label for="">Last Name:</label>
-				<input type="text"  name="EditLName" id="EditLName" class="form-control " style="font-size: 15px;font-weight: bold"
+		  		<label for="" class="newPatLabel">Last Name:</label>
+				<input type="text"  name="EditLName" id="EditLName" class="form-control newPatStyle" style="font-size: 15px;font-weight: bold"
 				value="<?php echo $patData['LastName']; ?>" required />				
-				<label for="">Age:</label>
-				<input type="text"  name="EditAge" id="EditAge" class="form-control " style="font-size: 15px;font-weight: bold"
+				<label for="" class="newPatLabel">Age:</label>
+				<input type="text"  name="EditAge" id="EditAge" class="form-control newPatStyle" style="font-size: 15px;font-weight: bold"
 				value="<?php echo $patData['Age']; ?>" required />
-				<label for="">Gender:</label>
-				<input type="text"  name="EditGender" id="EditGender" class="form-control " 
+				<label for="" class="newPatLabel">Gender:</label>
+				<input type="text"  name="EditGender" id="EditGender" class="form-control newPatStyle" 
 				style="font-size: 15px;font-weight: bold"
 				value="<?php echo $patData['Gender']; ?>" required />
 		  	</div>
 		  	<div class="col">
-		  		<label for="">Company Name / Doctor:</label>
-				<input type="text"  name="EditComName" id="EditComName" class="form-control " 
+		  		<label for="" class="newPatLabel">Company Name / Doctor:</label>
+				<input type="text"  name="EditComName" id="EditComName" class="form-control newPatStyle" 
 				style="font-size: 15px;font-weight: bold"
 				value="<?php echo $patData['CompanyName']; ?>" required />
-				<label for="">Contact No:</label>
-				<input type="text"  name="EditContact" class="form-control " id="EditContact" 
+				<label for="" class="newPatLabel">Contact No:</label>
+				<input type="text"  name="EditContact" class="form-control newPatStyle" id="EditContact" 
 				style="font-size: 15px;font-weight: bold"
 				value="<?php echo $patData['ContactNo']; ?>" required />
-				<label for="">BirthDate:</label>
-				<input type="text"  name="EditBOD" class="form-control" id="EditBOD" style="font-size: 15px;font-weight: bold"
+				<label for="" class="newPatLabel">BirthDate:</label>
+				<input type="text"  name="EditBOD" class="form-control newPatStyle" id="EditBOD" style="font-size: 15px;font-weight: bold"
 				value="<?php echo $patData['Birthdate']; ?>" required />
-				<label for="">Address:</label>
-				<input type="text"  name="EditAdd" id="EditAdd" class="form-control " style="font-size: 15px;font-weight: bold"
+				<label for="" class="newPatLabel">Address:</label>
+				<input type="text"  name="EditAdd" id="EditAdd" class="form-control newPatStyle" style="font-size: 15px;font-weight: bold"
 				value="<?php echo $patData['Address']; ?>" required />
-				<label for="">Position</label>
-				<input type="text"  name="EditPos" id="EditPos" class="form-control " style="font-size: 15px;font-weight: bold"
+				<label for="" class="newPatLabel">Position</label>
+				<input type="text"  name="EditPos" id="EditPos" class="form-control newPatStyle" style="font-size: 15px;font-weight: bold"
 				value="<?php echo $patData['Position']; ?>" required />
 		  	</div>
 		  	<div class="col">
-		  		<label for="">Biller</label>
-				<input type="text"  name="EditBiller" id="EditBiller" class="form-control " 
-				style="font-size: 15px;font-weight: bold; width: 140px" value="<?php echo $patData['PatientBiller']; ?>" required />
-		  		<button type="button" class="btn btn-primary" id="saveEdited" style="margin-top: 80px">Save Changes</button>
+		  		<label for="" class="newPatLabel">Biller</label>
+				<input type="text"  name="EditBiller" id="EditBiller" class="form-control newPatStyle" 
+				style="font-size: 15px;font-weight: bold;" value="<?php echo $patData['PatientBiller']; ?>" required />
+		  		<button type="button" class="btn btn-primary" id="saveEdited" style="margin-top: 10px">Save Changes</button>
 		  		<button type="button" class="btn btn-danger" id="restoreDef" style="margin-top: 10px">Cancel</button>
 		  	</div>
 		  </div>
 		</form>
       </div>     
     </div>
-  </div>
+  <!-- </div> -->
 </div>
 
 <!-- end -->

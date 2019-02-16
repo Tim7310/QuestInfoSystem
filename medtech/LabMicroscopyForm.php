@@ -71,7 +71,7 @@
 	display: table-cell;
 	/*width: 50px;*/
 	height: 18px;
-	line-height: 18px;
+	line-height: 25px;
 	font-size: 18px;
 	border-bottom: 1px solid #104E8B;
 	text-transform: uppercase;
@@ -104,7 +104,7 @@
 	font-weight: bold;
 	padding: 0px;
 	margin: 0px;
-	line-height:16px;
+	line-height:18px;
 
 	
 }
@@ -117,7 +117,7 @@
 	font-weight: bolder;
 	padding: 0px;
 	margin: 0px;
-	line-height: 18px;
+	line-height: 25px;
 	
 }
 .labelName
@@ -251,8 +251,8 @@
 	<img src="../assets/QPDHeader.jpg" height="100px" width="100%">
 </div>
 <div class="col-md-14">
-	<div class="card" style="border-radius: 0px; border: 3px solid #104E8B; margin-top: 10px;">
-	<div class="card-header"><center><b>QUEST PHIL DIAGNOSTICS</b></center></div>
+	<div class="card" style="border-radius: 0px; border:none; margin-top: 10px;">
+	<div class="card-header" style="border: none"></div>
 	<div class="card-block" >
 	<div class="row" >
 	    <div class="col-1" ><p class="labelName">Name:</p></div>
@@ -281,7 +281,7 @@
 	</div>
 	<div class="row" style="margin-top: 10px;">
 	    <div class="col-1"><p class="labelName">Age:</p></div>
-	    <div class="col-6" style="">
+	    <div class="col-3" style="">
 	        <span class="lineName"><?php echo $data['Age'] ?></span>
 	    </div>
 	    <div class="col-2 text-right">
@@ -319,7 +319,7 @@
 	</div>
 </div>
 <!--Footer-->
-<div style="position: absolute;margin-top: 735px;margin-left:-10px;">
+<div style="position: absolute;margin-top: 750px;margin-left:-10px;">
 	<div class="col-md-12 ">
 	<span style="font-size: 12px;">Note: Specimen rechecked, result/s verified.</span>
 	<div class="card" style="border-radius: 0px; margin-top: 10px;">
@@ -348,7 +348,7 @@
 		</div>
 	</div>
 	</div>
-	<div class="col-md-10">
+	<div class="col-md-12">
 		<img src="../assets/QISFooter.png" height="50px" width="100%">
 	</div>
 </div>
@@ -557,7 +557,7 @@
 			<?php } ?>
 </div>
 		<?php
-			if ($data['PregTest'] != '') {
+			if ($data['PregTest'] != '' and $data['PregTest'] != 'N/A' and $data['PregTest'] != ' ') {
 		?>
 		<?php if($data['UriColor'] != '' and $data['UriColor'] != "N/A" and $data['UriColor'] != "-" and $data['FecColor'] != "" ){	$style = "";
 		}else{

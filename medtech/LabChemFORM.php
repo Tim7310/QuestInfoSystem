@@ -225,7 +225,7 @@ $printCount = $lab->checkPrint($id, $tid, 'CHEMISTRY');
 	font-weight: bolder;
 	padding: 0px;
 	margin: 0px;
-	line-height:16px;
+	line-height:22px;
 	text-align: center;
 	/*font-size: 18px;*/
 	
@@ -239,7 +239,7 @@ $printCount = $lab->checkPrint($id, $tid, 'CHEMISTRY');
 	font-weight: bold;
 	padding: 0px;
 	margin: 0px;
-	line-height:16px;
+	line-height:22px;
 
 	
 }
@@ -252,6 +252,7 @@ $printCount = $lab->checkPrint($id, $tid, 'CHEMISTRY');
 	font-weight: bolder;
 	padding: 0px;
 	margin: 0px;
+	line-height: 18px;
 	
 }
 .labelName
@@ -261,6 +262,7 @@ $printCount = $lab->checkPrint($id, $tid, 'CHEMISTRY');
 	color: #104E8B;
 	font-weight: bold;
 	padding: 0px;
+	line-height: 18px;
 	margin: 0px;
 
 	
@@ -333,8 +335,8 @@ hr
 	<img src="../assets/QPDHeader.jpg" height="100px" width="100%">
 </div>
 <div class="col-md-12" style="">
-	<div class="card" style="border-radius: 0px; border: 3px solid #104E8B; margin-top: 10px;">
-	<div class="card-header"><center><b>QUEST PHIL DIAGNOSTICS</b></center></div>
+	<div class="card" style="border-radius: 0px; border:none; margin-top: 0px;">
+	<!-- <div class="card-header"><center><b>QUEST PHIL DIAGNOSTICS</b></center></div> -->
 	<div class="card-block" style="padding-bottom: 0px ">
 	<div class="row">
 	    <div class="col-1"><p class="labelName">Name:</p></div>
@@ -402,7 +404,7 @@ hr
 	</div>
 </div>
 <!--Footer-->
-<div  style="position: absolute;margin-top: 735px;margin-left:-10px;">
+<div  style="position: absolute;margin-top: 810px;margin-left:-10px;">
 	<div class="col-md-12 ">
 	<div class="card" style="border-radius: 0px; margin-top: 10px;">
 		<div class="card-block" style="height: 1.3in;" >
@@ -437,7 +439,7 @@ hr
 <!-- Footer End -->
 
 <div class="col-md-12" >
-	<div class="card" style="border-radius: 0px; margin-top: 10px;border-width: 0px">
+	<div class="card" style="border-radius: 0px; margin-top: 20px;border-width: 0px">
 	<div class="card-header"><center><b>LABORATORY RESULTS</b></center></div>
 	<div class="card-block" style="height: 7in;">
 

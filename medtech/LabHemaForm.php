@@ -231,8 +231,8 @@ $printCount = $lab->checkPrint($id, $tid, 'HEMATOLOGY');
 	<img src="../assets/QPDHeader.jpg" height="100px" width="100%">
 </div>
 <div class="col-md-14" style="">
-	<div class="card" style="border-radius: 0px; border: 3px solid #104E8B; margin-top: 10px;">
-	<div class="card-header"><center><b>QUEST PHIL DIAGNOSTICS</b></center></div>
+	<div class="card" style="border-radius: 0px; border:none; margin-top: 10px;">
+	<!-- <div class="card-header" sty></center></div> -->
 	<div class="card-block" style="padding-bottom: 0px ">
 	<div class="row">
 	    <div class="col-1"><p class="labelName">Name:</p></div>
@@ -299,7 +299,7 @@ $printCount = $lab->checkPrint($id, $tid, 'HEMATOLOGY');
 	</div>
 </div>
 <!--Footer-->
-<div style="position: absolute;margin-top: 750px;margin-left:-10px;">
+<div style="position: absolute;margin-top: 785px;margin-left:-10px;">
 	<div class="col-md-12 ">
 	<span style="font-size: 12px;">Note: Specimen rechecked, result/s verified.</span>
 	<div class="card" style="border-radius: 0px; margin-top: 10px;">
@@ -333,7 +333,7 @@ $printCount = $lab->checkPrint($id, $tid, 'HEMATOLOGY');
 	</div>
 </div>
 <!-- Footer End -->
-<div class="col-sm-22" style="border-radius: 0px; color: black; margin-top: 10px;">
+<div class="col-sm-22" style="border-radius: 0px; color: black; margin-top: 20px;">
 	<div class="card-header"><center><b>LABORATORY RESULTS</b></center></div>
 	   
           

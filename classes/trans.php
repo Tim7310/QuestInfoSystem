@@ -219,17 +219,16 @@ class trans {
 		$sql->execute();
 		return $sql->fetch();
 	}
-	public function addMarker($size,$pid,$tid){
+	public function addMarker($size,$pid,$tid,$type,$rt){
 		global $pdo;
-		$sql = $pdo->prepare("INSERT into xray_markers ( PatientID, TransactionID, xrayFilm, totalCount) values ('$pid','$tid','$size','') ");
+		$sql = $pdo->prepare("INSERT into xray_markers ( PatientID, TransactionID, xrayFilm, xrayType, radTech) values ('$pid','$tid','$size','$type','$rt') ");
 		$sql->execute();
 	}
 	public function checkMarker($tid,$pid){
 		global $pdo;
 		$sql = $pdo->prepare("SELECT * from xray_markers where TransactionID = '$tid' and PatientID = '$pid'");
-		$sql->execute();
-
-		return $sql->fetchAll();
+		$sql->execute();	
+		return $sql->rowCount();
 	}
 	public function getMarkerBy($data,$column){
 		global $pdo;

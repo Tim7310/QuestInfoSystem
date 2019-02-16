@@ -28,9 +28,10 @@
 			$trans = $transac->fetch_data($id, $tid);
 			$date = explode(" ", $trans['TransactionDate']);
 			$marker = $transac->checkMarker($tid, $id);
-			$transac->addMarker($filmSize,$id,$tid);
-			if (!is_array($marker)) {
-				$transac->addMarker($filmSize,$id,$tid);
+			$rt = $_GET['RadTech'];
+			$part = $_GET['Part'];
+			if ($marker == 0) {
+				$transac->addMarker($filmSize,$id,$tid,$part,$rt);
 			}
 			
 		}

@@ -57,46 +57,20 @@ $partsArray = array("CHEST PA",
 	button{
 		cursor: pointer
 	}
+	.form-control{
+		font-size: 14px !important;
+
+	}
 </style>
 	<body>
 	<?php
 	include_once('radsidebar.php');
 	?>
-	<div class="container ">
-		<div class="row mt-2">
-			<div class="col-md-12 p-2 " style="background-color: #2980B9; color: white; font-weight: bolder">PRINT STICKERS</div>
-		</div>
-		<div class="row m-2">
-			<div class="col-md-2" class="form-control">
-				<label> By Date:</label> 
-			</div>
-			<div class="col-md-3">
-				<input type="text" name="startdate" class="form-control" placeholder="mm:dd:yyyy hh:mm:ss">
-			</div>
-			<div class="col-md-3">
-				<input type="text" name="enddate" class="form-control" placeholder="mm:dd:yyyy hh:mm:ss">
-			</div>
-			<div class="col-md-2" class="form-control">
-				<button class="btn btn-primary">PRINT</button>
-			</div>
-		</div>
-		<div class="row m-2">
-			<div class="col-md-2" class="form-control">
-				<label> By IDs:</label> 
-			</div>
-			<div class="col-md-3">
-				<input type="text" name="id1" class="form-control" placeholder="Transaction ID 1">
-			</div>
-			<div class="col-md-3">
-				<input type="text" name="id2" class="form-control" placeholder="Transaction ID 2">
-			</div>
-			<div class="col-md-2" class="form-control">
-				<button class="btn btn-primary">PRINT</button>
-			</div>
-		</div>
-	</div>
-	<div class="container" style="margin-top: 10px;">
-		
+
+	<div class="container-fluid" style="margin-top: 10px;">
+	<div class="row">
+		<div class="col-md-10">
+	
 			<table id="example" class="table table-striped table-bordered" cellspacing="0" width="100%">
 	           <thead>
 	            	<th nowrap>Transaction No.</th>
@@ -160,8 +134,43 @@ $partsArray = array("CHEST PA",
 				
 				<?php  } 	?> 
 		    </table>
-		
+		</div>
+	
+	<div class="col-md-2 ">
+		<div class="row mt-2">
+			<div class="col-md-11  p-2" style="background-color: #2980B9; color: white; font-weight: bolder">PRINT STICKERS</div>
+		</div>
+		<div class="row ">
+			<div class="col-md-11" class="form-control">
+				<label style="font-weight: bold"> By Date:</label> 
+			</div>
+			<div class="col-md-11 mb-1">
+				<input type="text" name="startdate" class="form-control" placeholder="yyyy:mm:dd hh:mm:ss">
+			</div>
+			<div class="col-md-11 mb-1">
+				<input type="text" name="enddate" class="form-control" placeholder="yyyy:mm:dd hh:mm:ss">
+			</div>
+			<div class="col-md-11 mb-1" class="form-control">
+				<center><button class="btn btn-primary pb-1 pt-1">PRINT</button></center>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-11" class="form-control">
+				<label style="font-weight: bold"> By IDs:</label> 
+			</div>
+			<div class="col-md-11 mb-1">
+				<input type="text" name="id1" class="form-control" placeholder="Transaction ID 1">
+			</div>
+			<div class="col-md-11 mb-1">
+				<input type="text" name="id2" class="form-control" placeholder="Transaction ID 2">
+			</div>
+			<div class="col-md-11 mb-1" class="form-control">
+				<center><button class="btn btn-primary pb-1 pt-1">PRINT</button></center>
+			</div>
+		</div>
 	</div>
+	</div>
+</div>
 
 		<script type="text/javascript">
 			$(document).ready(function() {

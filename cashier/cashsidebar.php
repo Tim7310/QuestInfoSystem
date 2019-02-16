@@ -49,13 +49,13 @@ $row = $stmt->fetch(PDO::FETCH_ASSOC);
   <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-  <a class="navbar-brand">
+  <a class="navbar-brand" href="../home.php">
     <img src="../assets/QPDLogo.png" width="40" height="40" class="d-inline-block align-center" alt="">
     
   </a>
   <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
     <div class="navbar-nav">
-       <a class="nav-item nav-link" href="../home.php" ><i class="fas fa-home"></i>&nbsp; Home<span class="sr-only">(current)</span></a>
+       
      <a class="nav-item nav-link" href="Cash1.php" ><i class="fas fa-money-bill-alt"></i>&nbsp; Transact</a>
       <a class="nav-item nav-link" href="TransactionListCash.php"><i class="fas fa-list-ul"></i>&nbsp; Transaction List</a>
       <a class="nav-item nav-link" href="ItemCash.php"><i class="fas fa-archive"></i>&nbsp; Manage Tests Packages</a>

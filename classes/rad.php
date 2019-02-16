@@ -23,10 +23,13 @@ class rad {
 			$query->execute();
 
 			return $query->fetch();
-
-
 	}
-
+	public function fetchMarker($column,$data1, $data2){
+		global $pdo;
+		$query = $pdo->prepare("SELECT * from xray_markers x, qpd_patient p, qpd_trans t where x.PatientID = p.PatientID and x.TransactionID = t.TransactionID and t.$column between '$data1' and '$data2' ");
+		$query->execute();
+		return $query->fetchAll();
+	}
 
 }
 ?>

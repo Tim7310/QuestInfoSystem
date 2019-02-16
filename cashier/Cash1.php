@@ -174,6 +174,12 @@ $TransNo = randomDigits();
 	::-webkit-scrollbar-thumb:hover {
 	  background: #555; 
 	}
+	.newPatLabel{
+		font-size: 16px !important;
+	}
+	.newPatStyle{
+		font-size: 16px !important;
+	}
 </style>
 <body style="background-color: #ECF0F1;">
 <?php
@@ -202,10 +208,10 @@ include_once('cashsidebar.php');
 	<div class="row" style="margin-top: 10px;">
 		<div class="col-7">
 			<div class="input-group" >
-			  <select class="custom-select" id="itemList" name="itemList" aria-label="Select Item Here" style="" 
+			  <select class="custom-select" id="itemList" name="itemList" aria-label="Select Item Here" 
 			  placeholder="Select Item Here">
 			   		<?php foreach ($packData as $key){ ?>
-						<option value="<?php echo $key['ItemID'];?>" class="itemval">
+						<option value="<?php echo $key['ItemID'];?>" class="itemval" >
 							<?php echo $key['TestType']." | ".$key['ItemName']." | ". $key['ItemPrice'] ;?></option>
 					<?php } ?>
 			  </select>
@@ -386,8 +392,8 @@ include_once('cashsidebar.php');
 <!-- ADD modal -->
 <div class="modal fade" id="ModalAdd" role="dialog" style="padding-top: 100px;">
 	<center>
-    <div class="" style="width: 500px;">
-    <div class="modal-content modal-dialog">
+    <div class="" >
+    <div class="modal-content modal-dialog modal-lg" >
     		<button type="button" class="close" data-dismiss="modal" aria-label="Close" 
     		style="color: white;background-color: red;font-size: 16px;padding:3px">
           			<span aria-hidden="true" >&times; EXIT &times;</span>
@@ -398,38 +404,38 @@ include_once('cashsidebar.php');
       		<br>
       	</div>
 	<form method="post" id="addForm">
-      	 <div style="width: 500px; padding: 30px;">
+      	 <div style=" padding: 30px;">
       	 	<div class="row" id="newPatientDiv">
       	 	<div class="col">
-       			<input type="hidden"  name="idpatient" class="form-control" value="" id="myInput" required />
-				<label for="">Company Name:</label>
-				<input type="text"  name="company" class="form-control" value="" id="myInput" required />
-				<label for="">Applied Position:</label>
-				<input type="text" name="position" class="form-control" value="" id="myInput" required />
-				<label for="">First Name:</label>
-				<input type="text"  name="firstname" class="form-control" value="" id="myInput" required />
-				<label for=""> Middle Name:</label>
-				<input type="text"  name="middlename" class="form-control" value="" id="myInput" />
-				<label for=""> Last Name:</label>
-				<input type="text"  name="lastname"  class="form-control" value="" id="myInput" required />
+       			<input type="hidden"  name="idpatient" class="form-control newPatStyle" value="" id="myInput" required />
+				<label for="" class="newPatLabel">Company Name:</label>
+				<input type="text"  name="company" class="form-control newPatStyle" value="" id="myInput" required />
+				<label for="" class="newPatLabel">Applied Position:</label>
+				<input type="text" name="position" class="form-control newPatStyle" value="" id="myInput" required />
+				<label for="" class="newPatLabel">First Name:</label>
+				<input type="text"  name="firstname" class="form-control newPatStyle" value="" id="myInput" required />
+				<label for="" class="newPatLabel"> Middle Name:</label>
+				<input type="text"  name="middlename" class="form-control newPatStyle" value="" id="myInput" />
+				<label for="" class="newPatLabel"> Last Name:</label>
+				<input type="text"  name="lastname"  class="form-control newPatStyle" value="" id="myInput" required />
 			</div>
 			<div class="col">
-				<label for="">Address:</label>
-				<input type="text"  name="address" class="form-control" value="" id="myInput" required />
+				<label for="" class="newPatLabel">Address:</label>
+				<input type="text"  name="address" class="form-control newPatStyle" value="" id="myInput" required />
 				<label for=""> Birth Date:</label>
-				<input type="text"  name="birthday" class="form-control" placeholder="MM-DD-YYYY" value="" id="myInput" required />
-				<label for="">Age:</label>
-				<input type="text"  name="age" id="age" class="form-control" value="" id="myInput" required />
-				<label for="">Gender:</label>
-				<input type="text"  name="gender" class="form-control" value="" id="myInput" required  />
-				<label for="">Contact No.:</label>
-				<input type="text"  name="contact" class="form-control" value="" id="myInput" required />	
+				<input type="text"  name="birthday" class="form-control newPatStyle" placeholder="MM-DD-YYYY" value="" id="myInput" required />
+				<label for="" class="newPatLabel">Age:</label>
+				<input type="text"  name="age" id="age" class="form-control newPatStyle" value="" id="myInput" required />
+				<label for="" class="newPatLabel">Gender:</label>
+				<input type="text"  name="gender" class="form-control newPatStyle" value="" id="myInput" required  />
+				<label for="" class="newPatLabel">Contact No.:</label>
+				<input type="text"  name="contact" class="form-control newPatStyle" value="" id="myInput" required />	
 			</div>
 			<div class="col">
-				<label for="">Email Address:</label>
-				<input type="text"  name="email" class="form-control" value="" id="myInput" />
-				<label for="">Bill to:</label>
-				<input type="text"  name="billto" id="billto" class="form-control" id="myInput" value="" />
+				<label for="" class="newPatLabel">Email Address:</label>
+				<input type="text"  name="email" class="form-control newPatStyle" value="" id="myInput" />
+				<label for="" class="newPatLabel">Bill to:</label>
+				<input type="text"  name="billto" id="billto" class="form-control newPatStyle" id="myInput" value="" />
 				<br>
 				<button type="submit"  name="ADDNewRecord" class="btn btn-primary" style="font-size: 14px; width: 120px; height: 40px;" id="NPbtn">
 				<i class="far fa-check-circle"></i>&nbsp; SUBMIT</button>
