@@ -99,7 +99,7 @@ include_once('labsidebar.php');
 					<button onclick="window.location.href='LabMicroscopy.php'">CLINICAL MICROSCOPY</button>
 				</div>
 				<div class="col">
-					<p><b>*Urinalysis *Fecalysis</b></p>
+					<p><b>*Urinalysis *Fecalysis *Pregnancy Test</b></p>
 				</div>
 			</div> 
 			<div class="row">
@@ -116,6 +116,14 @@ include_once('labsidebar.php');
 				</div>
 				<div class="col">
 					<p><b>*FBS *BUA *BUN *Creatinine *Lipid Profile *Electrolytes *Enzymes *HBA1C</b></p>
+				</div>
+			</div> 
+			<div class="row">
+				<div class="col-3">
+					<button onclick="window.location.href='LabSeroToxi.php'">SEROLOGY/TOXICOLOGY</button>
+				</div>
+				<div class="col">
+					<p><b>*Drug Screening *HBsAg Screening *Anti-HAV</b></p>
 				</div>
 			</div> 
 		</div>

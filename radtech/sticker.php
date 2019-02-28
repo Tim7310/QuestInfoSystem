@@ -8,9 +8,16 @@
 	include_once('../connection.php');;
 	include_once('../classes/rad.php');
 	$rad = new rad;
-	$ds = "2019-01-01";
-	$de = "2019-02-14";
-	$datas = $rad->fetchMarker('TransactionDate', $ds,$de);
+	
+	if (isset($_GET['enddate']) and isset($_GET['startdate'])) {
+		$datas = $rad->fetchMarker('TransactionDate', $_GET['startdate'],$_GET['enddate']);
+	}
+	else if(isset($_GET['id1']) and isset($_GET['id2'])){
+		$datas = $rad->fetchMarker('TransactionID', $_GET['id1'],$_GET['id2']);
+	}else{
+		header("location:index.php");
+	}
+	
 	// $part = $_GET['Part'];
 	// $radtech = $_GET['RadTech'];
 	// $filmSize = $_GET['filmSize'];

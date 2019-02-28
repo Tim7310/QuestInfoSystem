@@ -11,7 +11,6 @@ $patients = $patient->fetch_all();
 		<title>Results Sections</title>
 		<link rel="icon" type="image/png" href="../assets/qpd.png">
 	    <link rel="stylesheet" type="text/css" href="../source/bootstrap4/css/bootstrap.min.css">
-	    <link rel="stylesheet" href="style.css">
 		<link href="../sorting/dataTables.bootstrap.css" rel="stylesheet">
 	    <link href="../sorting/dataTables.responsive.css" rel="stylesheet">
 	    <link rel="stylesheet" type="text/css" href="../source/CDN/dataTables.bootstrap4.min.css">
@@ -77,6 +76,9 @@ $patients = $patient->fetch_all();
 	{
 	    margin-top: 10px;
 	}
+	button{
+		cursor: pointer;
+	}
 </style>
 <body>
 <?php
@@ -124,6 +126,14 @@ include_once('labsidebar.php');
 				</div>
 				<div class="col">
 					<p><b>*FBS *BUA *BUN *CREA *CHOLE *TRIG *HDL *LDL *CHOLE HDL RATIO *VLDL *Sodium *Potassium *Chloride *SGPT *SGOT *HBA1C</b></p>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-3">
+					<button onclick="window.location.href='STList.php'">SEROLOGY AND TOXICOLOGY RESULTS</button>
+				</div>
+				<div class="col">
+					<p><b>*DRUG SCREENING *HBSAG SCREENING *ANTI-HAV</b></p>
 				</div>
 			</div>
 		</div>

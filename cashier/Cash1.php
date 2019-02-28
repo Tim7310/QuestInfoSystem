@@ -52,12 +52,15 @@ $TransNo = randomDigits();
 	<title>Cashier</title>
 </head>
 <link rel="stylesheet" type="text/css" href="../source/bootstrap4/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="../source/jquery-ui/jquery-ui.css">
 <script type="text/javascript" src="../source/popper.min.js"></script>
 <script type="text/javascript" src="../source/jquery.min.js"></script>
+<script type="text/javascript" src="../source/jquery-ui/jquery-ui.js"></script>
 <script type="text/javascript" src="../source/printThis/printThis.js"></script>
 
 <link href="../source/select2/dist/css/select2.min.css" rel="stylesheet" />
 <link href="../source/select2/theme/dist/select2-bootstrap.min.css" rel="stylesheet" />
+<link href="../source/switch.css" rel="stylesheet" />
 <script type="text/javascript" src="../source/select2/dist/js/select2.min.js"></script>
 <style type="text/css">
 	.btn{
@@ -264,7 +267,7 @@ include_once('cashsidebar.php');
 		<div class="col-8"> </div>
 		<div class="col-2" style="text-align: right">Transaction Type: </div>
 		<button id="Cash" class="btn btn-primary">CASH</button>
-		<button id="Account" class="btn btn-primary">ACCOUNT</button>
+		<button id="Account" class="btn btn-primary" style="float: right;">ACCOUNT</button>
 	</div>
 	<div id="transDivCash" style="display: none">
 		<div class="row">
@@ -294,7 +297,30 @@ include_once('cashsidebar.php');
 			<div class="col-2" id="change" style="text-align: center;"></div>
 		</div>
 	</div>
-	<div id="transDivAcc" style="display: none">
+	<div id="transDivAcc" style="display: none">		
+		<div class="row">
+			<div class="col-2"> </div>
+			<div class="col-2 ">
+				<input type="text" name="LOE" class="form-control m-1 hmo" placeholder="LOE Number" >
+			</div>
+			<div class="col-2">
+				<input type="text" name="ACCNO" class="form-control m-1 hmo" placeholder="Account Number" >
+			</div>
+			<div class="col-2">
+				<input type="text" name="APPC" class="form-control m-1 hmo" placeholder="Approval Code" >
+			</div>
+			<div class="col-2">
+				<span class="switch">
+				  <input type="checkbox" class="switch" id="switch-id">
+				  <label for="switch-id" style="font-weight: bolder;float: right">HMO</label>
+				</span>
+			</div>
+			
+		</div>	
+		<div class="row">
+			<div class="col-5"> </div>
+			
+		</div>
 		<div class="row">
 			<div class="col-8"> </div>
 			<div class="col-2" style="text-align: right">Sub Total: </div>
@@ -422,10 +448,10 @@ include_once('cashsidebar.php');
 			<div class="col">
 				<label for="" class="newPatLabel">Address:</label>
 				<input type="text"  name="address" class="form-control newPatStyle" value="" id="myInput" required />
-				<label for=""> Birth Date:</label>
-				<input type="text"  name="birthday" class="form-control newPatStyle" placeholder="MM-DD-YYYY" value="" id="myInput" required />
+				<label for=""  class="newPatLabel"> Birth Date:</label>
+				<input type="date"  name="birthday" class="form-control newPatStyle" placeholder="MM-DD-YYYY" value="" id="bday" required />
 				<label for="" class="newPatLabel">Age:</label>
-				<input type="text"  name="age" id="age" class="form-control newPatStyle" value="" id="myInput" required />
+				<input type="text"  name="age" id="age" class="form-control newPatStyle" value="" required />
 				<label for="" class="newPatLabel">Gender:</label>
 				<input type="text"  name="gender" class="form-control newPatStyle" value="" id="myInput" required  />
 				<label for="" class="newPatLabel">Contact No.:</label>
@@ -436,6 +462,8 @@ include_once('cashsidebar.php');
 				<input type="text"  name="email" class="form-control newPatStyle" value="" id="myInput" />
 				<label for="" class="newPatLabel">Bill to:</label>
 				<input type="text"  name="billto" id="billto" class="form-control newPatStyle" id="myInput" value="" />
+				<label for="" class="newPatLabel">Senior/PWD ID:</label>
+				<input type="text"  name="sid" id="SID" class="form-control newPatStyle" id="myInput" value="" />
 				<br>
 				<button type="submit"  name="ADDNewRecord" class="btn btn-primary" style="font-size: 14px; width: 120px; height: 40px;" id="NPbtn">
 				<i class="far fa-check-circle"></i>&nbsp; SUBMIT</button>
@@ -456,13 +484,15 @@ include_once('cashsidebar.php');
 </div>
 <div id="APloader" style="display: none"></div>
 </body>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.form/4.2.2/jquery.form.min.js" integrity="sha384-FzT3vTVGXqf7wRfy8k4BiyzvbNfeYjK+frTVqZeNDFl8woCbF0CYG6g2fMEFFo/i" crossorigin="anonymous"></script>
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.form/4.2.2/jquery.form.min.js" integrity="sha384-FzT3vTVGXqf7wRfy8k4BiyzvbNfeYjK+frTVqZeNDFl8woCbF0CYG6g2fMEFFo/i" crossorigin="anonymous"></script> -->
+<script type="text/javascript" src="../source/jquery.form.min.js"></script>
 <script type="text/javascript">
 	$(document).ready(function(){
 		verify();
 		$.fn.select2.defaults.set( "theme", "bootstrap" );
 		$('#itemList').select2({
 		});
+		$(".hmo").hide();
 		//var xx = new array
 		//$("input[name=print]").attr("disabled", "disabled");
 		var ItemArrays;
@@ -527,6 +557,43 @@ include_once('cashsidebar.php');
 			}
 			return val;
 		}
+		function getAge(dateString) {
+		    var today = new Date();
+		    var birthDate = new Date(dateString);
+		    var age = today.getFullYear() - birthDate.getFullYear();
+		    var m = today.getMonth() - birthDate.getMonth();
+		    if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+		        age--;
+		    }
+		    return age;
+		}
+		// $("#bday").keyup(function(){
+		// 	var birthday = $('#bday').val();
+		// 	var ageCalc = getAge(birthday);
+		// 	$('#ageCalc').val(ageCalc);
+		// });
+		$("#bday").datepicker({
+		    onSelect: function(dateText) {
+		      var ageCalc = getAge(dateText);
+		      $('#age').val(ageCalc);
+		    }
+		  }).on("change", function() {
+		  	var birthday = $('#bday').val();
+		     var ageCalc = getAge(birthday);
+		      $('#age').val(ageCalc);
+		  });
+
+		  // function display(msg) {
+		  //   $("<p>").html(msg).appendTo(document.body);
+		  // }
+		 $( "#switch-id" ).change(function() {
+		  var input = $( this );
+			if (input.is(":checked")) {
+				$(".hmo").show();
+			}else{
+				$(".hmo").hide();
+			}
+		}).change();
 		$("#cancelTrans").click(function(){
 			location.reload();
 		});
@@ -676,6 +743,7 @@ include_once('cashsidebar.php');
 			var itemsID = [];
 			var itemsQTY = getClassDataVal(".qty");
 			var itemsDisc = getClassDataVal(".Disc");
+			
 			$('.itemNum').each(function(){
 				var itemvalue = $(this).text();
 				itemsID.push(itemvalue);
@@ -718,6 +786,9 @@ include_once('cashsidebar.php');
 			var itemsID = [];
 			var itemsQTY = getClassDataVal(".qty");
 			var itemsDisc = getClassDataVal(".Disc");
+			var LOE = $("input[name=LOE]").val();
+			var AN = $("input[name=ACCNO]").val();
+			var AC = $("input[name=APPC]").val();
 			$('.itemNum').each(function(){
 				var itemvalue = $(this).text();
 				itemsID.push(itemvalue);
@@ -743,7 +814,7 @@ include_once('cashsidebar.php');
 				}else{
 
 					if (uporin == 0) {
-						$.post("DataTransaction.php",{status: status, PatientID: PatientID, itemsID: itemsID, itemsQTY: itemsQTY, itemsDisc: itemsDisc, change: changeValue, totalAmount: subTotalcash, payment: payment, cashier: CN, transNO: TN, transType: transType, biller: biller}, function(e){
+						$.post("DataTransaction.php",{status: status, PatientID: PatientID, itemsID: itemsID, itemsQTY: itemsQTY, itemsDisc: itemsDisc, change: changeValue, totalAmount: subTotalcash, payment: payment, cashier: CN, transNO: TN, transType: transType, biller: biller, LOE: LOE, AN: AN, AC: AC}, function(e){
 							// $.post("AccountReceipt.php",{transID: e},function(){
 								
 							// });
@@ -783,12 +854,12 @@ include_once('cashsidebar.php');
 			// if (company.length && position.length && fn.length && mn.length && ln.length && add.length && bd.length) {
 				var option = { 
 					target: "#APloader",
+					dataType: "json",
 					url:        'newPatient.php', 
-					success:    function(result) { 
+					success:    function(responseText) { 
 						$('#newPatientDiv').children('div').children("input").val("");	
 						$('#ModalAdd').modal('toggle');
-						$("#selectedPatient").load("getPatient.php",{patID: result},function(){
-				
+						$("#selectedPatient").load("getPatient.php",{patID: responseText},function(){
 						});
 					} 
 				};  

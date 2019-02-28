@@ -140,34 +140,38 @@ $partsArray = array("CHEST PA",
 		<div class="row mt-2">
 			<div class="col-md-11  p-2" style="background-color: #2980B9; color: white; font-weight: bolder">PRINT STICKERS</div>
 		</div>
+		<form action="sticker.php" method="get" target="_blank" >
 		<div class="row ">
 			<div class="col-md-11" class="form-control">
 				<label style="font-weight: bold"> By Date:</label> 
 			</div>
 			<div class="col-md-11 mb-1">
-				<input type="text" name="startdate" class="form-control" placeholder="yyyy:mm:dd hh:mm:ss">
+				<input type="text" name="startdate" class="form-control" placeholder="yyyy:mm:dd hh:mm:ss" required="">
 			</div>
 			<div class="col-md-11 mb-1">
-				<input type="text" name="enddate" class="form-control" placeholder="yyyy:mm:dd hh:mm:ss">
+				<input type="text" name="enddate" class="form-control" placeholder="yyyy:mm:dd hh:mm:ss" required="">
 			</div>
 			<div class="col-md-11 mb-1" class="form-control">
 				<center><button class="btn btn-primary pb-1 pt-1">PRINT</button></center>
 			</div>
 		</div>
+		</form>
+		<form action="sticker.php" method="get" target="_blank" >
 		<div class="row">
 			<div class="col-md-11" class="form-control">
 				<label style="font-weight: bold"> By IDs:</label> 
 			</div>
 			<div class="col-md-11 mb-1">
-				<input type="text" name="id1" class="form-control" placeholder="Transaction ID 1">
+				<input type="text" name="id1" class="form-control" placeholder="Transaction ID 1" required="">
 			</div>
 			<div class="col-md-11 mb-1">
-				<input type="text" name="id2" class="form-control" placeholder="Transaction ID 2">
+				<input type="text" name="id2" class="form-control" placeholder="Transaction ID 2" required="">
 			</div>
 			<div class="col-md-11 mb-1" class="form-control">
 				<center><button class="btn btn-primary pb-1 pt-1">PRINT</button></center>
 			</div>
 		</div>
+		</form>
 	</div>
 	</div>
 </div>

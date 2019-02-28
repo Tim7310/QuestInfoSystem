@@ -1,17 +1,12 @@
 <?php
-if(!isset($_SESSION)) 
-	{ 
-	session_start(); 
-	} 
-require_once '../class.user.php';
-$user_home = new USER();
-
-if(!$user_home->is_logged_in())
-{
-  $user_home->redirect('index.php');
+if (!isset($_SESSION)) {
+   session_start();
 }
+  require_once '../class.user.php';
+  $user = new USER;
+  $user->bypass('Medical');
 
-$stmt = $user_home->runQuery("SELECT * FROM tbl_users WHERE userID=:uid");
+$stmt = $user->runQuery("SELECT * FROM tbl_users WHERE userID=:uid");
 $stmt->execute(array(":uid"=>$_SESSION['userSession']));
 $row = $stmt->fetch(PDO::FETCH_ASSOC);
 ?>
@@ -66,7 +61,7 @@ $row = $stmt->fetch(PDO::FETCH_ASSOC);
   <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
     <div class="navbar-nav">
 
-      <a class="nav-item nav-link" href="index.php"><i class="fas fa-list-ul"></i>&nbsp; Home</a>
+      <a class="nav-item nav-link" href="../home.php"><i class="fas fa-list-ul"></i>&nbsp; Home</a>
       <a class="nav-item nav-link" href="ListOfPatients.php"><i class="fas fa-user-cog"></i>&nbsp; Summary</a>
       <a class="nav-item nav-link" href="MHVS.php"><i class="fas fa-file-medical"></i>&nbsp; MH & VS</a>
       <!-- <a class="nav-item nav-link" href="Registration.php"><i class="fas fa-user-plus"></i>&nbsp; Registration</a> -->

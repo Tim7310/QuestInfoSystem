@@ -1,6 +1,6 @@
 <?php
 include_once('../connection.php');
-include_once('../classes/transVal.php');
+//include_once('../classes/transVal.php');
 include_once('../classes/qc.php');
 include_once('../classes/rad.php');
 include_once('../classes/lab.php');
@@ -8,6 +8,7 @@ include_once('../classes/pe.php');
 include_once('../classes/vital.php');
 include_once('../classes/medhis.php');
 include_once('../classes/patient.php');
+include_once('../classes/trans.php');
 $patient = new Patient;
 if (isset($_GET['id'])){
 	$id = $_GET['id'];
@@ -28,10 +29,10 @@ if (isset($_GET['id'])){
 	$tid = $_GET['tid'];
 	$pe = $pe->fetch_data($id, $tid);
 $lab = new lab;
-if (isset($_GET['id'])){
-	$id = $_GET['id'];
-	$tid = $_GET['tid'];
-	$lab = $lab->fetch_data($id, $tid);
+// if (isset($_GET['id'])){
+// 	$id = $_GET['id'];
+// 	$tid = $_GET['tid'];
+// 	$lab = $lab->fetch_data($id, $tid);
 $rad = new rad;
 if (isset($_GET['id'])){
 	$id = $_GET['id'];
@@ -43,10 +44,18 @@ if (isset($_GET['id'])){
 	$tid = $_GET['tid'];
 	$qc = $qc->fetch_data($id, $tid);
 $trans = new trans;
+$trans2 = new trans;
 if (isset($_GET['id'])){
 	$id = $_GET['id'];
 	$tid = $_GET['tid'];
 	$trans = $trans->fetch_data($id, $tid);
+	
+
+$data2 = $lab->getData($id, $tid, "lab_microscopy");
+	$data1 = $lab->getData($id, $tid, "lab_hematology");
+	$data3 = $lab->getData($id, $tid, "lab_serology");
+	$data4 = $lab->getData($id, $tid, "lab_toxicology");
+if(is_array($data) or is_array($data1) or is_array($data3) or is_array($data4)){
 ?>
 <!DOCTYPE html>
 <html>
@@ -118,17 +127,19 @@ include_once('doctorsidebar.php');
 						<p><b><?php echo $data['Email'] ?></b></p>
 					</div>
 					<div class="col">
+						<div class="col">
 						<label>LOE: </label><br>
-						<p><b><?php echo $trans['LOE'] ?></b></p>
+						<!-- <p><b><?php echo $trans['LOE'] ?></b></p> -->
 						<label>AN: </label><br>
-						<p><b><?php echo $trans['AN'] ?></b></p>
+						<!-- <p><b><?php echo $trans['AN'] ?></b></p> -->
 						<label>AC: </label><br>
-						<p><b><?php echo $trans['AC'] ?></b></p>
+						<!-- <p><b><?php echo $trans['AC'] ?></b></p> -->
 						<label>Senior ID: </label><br>
-						<p><b><?php echo $trans['SID'] ?></b></p>
+						<!-- <p><b><?php echo $trans['SID'] ?></b></p> -->
 						<label>Comment: </label><br>
-						<p><b><?php echo $data['Notes'] ?></b></p>
-						<p><b><?php echo $trans['Notes'] ?></b></p>
+						<!-- <p><b><?php echo $data['Notes'] ?></b></p>
+						<p><b><?php echo $trans['Notes'] ?></b></p> -->
+					</div>
 					</div>
 				</div>
             </div>
@@ -147,11 +158,23 @@ include_once('doctorsidebar.php');
 					</div>
 					<div class="col col-md-auto	">
 						<label>Availed: </label><br>
-						<p><b><?php echo $trans['ItemName'] ?></b></p>
+						<p><b><?php 
+						$itemID = $trans['ItemID'];
+						$items = $trans2->each_item($itemID);
+							foreach ($items as $item) {
+								echo $item['ItemName']." ";
+							}
+						 ?></b></p>
 					</div>
 					<div class="col">
 						<label>Description: </label><br>
-						<p><b><?php echo $trans['ItemDescription'] ?></b></p>
+						<p><b><?php foreach ($items as $item) {
+								echo $item['ItemDescription']." ";
+							} ?></b></p> 
+					</div>
+					<div class="col col-md-auto">
+						<label>Transaction Type: </label><br>
+						<p><b><?php echo $trans['TransactionType'] ?></b></p>
 					</div>
 					<div class="col col-md-auto">
 						<label>Transaction Type: </label><br>
@@ -570,7 +593,7 @@ include_once('doctorsidebar.php');
 				<div class="form-group row">
 	            	<label for="WhiteBlood" class="col-3 col-form-label text-right">White Blood Cells :</label>
 	            	<div class="col-2">
-	            		<b><?php echo $lab['WhiteBlood'] ?></b>
+	            		<b><?php echo $data1['WhiteBlood'] ?></b>
 	            	</div>
 	            	<label for="WhiteBlood" class="col-2 col-form-label">x10^9/L</label>
 	            	<label for="WhiteBlood" class="col-2 col-form-label">4.23-11.07</label>
@@ -578,21 +601,21 @@ include_once('doctorsidebar.php');
 				<div class="form-group row">
 	            	<label for="Hemoglobin" class="col-3 col-form-label text-right">Hemoglobin :</label>
 	            	<div class="col-2">
-	            		<b><?php echo $lab['Hemoglobin'] ?></b>
+	            		<b><?php echo $data1['Hemoglobin'] ?></b>
 	            	</div>
 	            	<label for="Hemoglobin" class="col-2 col-form-label">g/L</label>
 	            	<div class="col-2">
-	            		<b><?php echo $lab['HemoNR'] ?></b>
+	            		<b><?php echo $data1['HemoNR'] ?></b>
 	            	</div>
 				</div>
 				<div class="form-group row">
 	            	<label for="Hematocrit" class="col-3 col-form-label text-right">Hematocrit :</label>
 	            	<div class="col-2">
-	            		<b><?php echo $lab['Hematocrit'] ?></b>
+	            		<b><?php echo $data1['Hematocrit'] ?></b>
 	            	</div>
 	            	<label for="Hematocrit" class="col-2 col-form-label">VF</label>
 	            	<div class="col-2">
-	            		<b><?php echo $lab['HemaNR'] ?></b>
+	            		<b><?php echo $data1['HemaNR'] ?></b>
 	            	</div>
 				</div>
 				<div class="form-group row">
@@ -603,7 +626,7 @@ include_once('doctorsidebar.php');
 				<div class="form-group row">
 	            	<label for="Neutrophils" class="col-3 col-form-label text-right">Neutrophils :</label>
 	            	<div class="col-2">
-	            		<b><?php echo $lab['Neutrophils'] ?></b>
+	            		<b><?php echo $data1['Neutrophils'] ?></b>
 	            	</div>
 	            	<label for="Neutrophils" class="col-2 col-form-label">%</label>
 	            	<label for="Neutrophils" class="col-2 col-form-label">34-71</label>
@@ -611,7 +634,7 @@ include_once('doctorsidebar.php');
 				<div class="form-group row">
 	            	<label for="Lymphocytes" class="col-3 col-form-label text-right">Lymphocytes :</label>
 	            	<div class="col-2">
-	            		<b><?php echo $lab['Lymphocytes'] ?></b>
+	            		<b><?php echo $data1['Lymphocytes'] ?></b>
 	            	</div>
 	            	<label for="Lymphocytes" class="col-2 col-form-label">%</label>
 	            	<label for="Lymphocytes" class="col-2 col-form-label">22-53</label>
@@ -619,7 +642,7 @@ include_once('doctorsidebar.php');
 				<div class="form-group row">
 	            	<label for="Monocytes" class="col-3 col-form-label text-right">Monocytes :</label>
 	            	<div class="col-2">
-	            		<b><?php echo $lab['Monocytes'] ?></b>
+	            		<b><?php echo $data1['Monocytes'] ?></b>
 	            	</div>
 	            	<label for="Monocytes" class="col-2 col-form-label">%</label>
 	            	<label for="Monocytes" class="col-2 col-form-label">5-12</label>
@@ -627,7 +650,7 @@ include_once('doctorsidebar.php');
 				<div class="form-group row">
 	            	<label for="CBCOt" class="col-3 col-form-label text-right">OTHERS/NOTES :</label>
 	            	<div class="col-2">
-	            		<b><?php echo $lab['CBCOt'] ?></b>
+	            		<b><?php echo $data1['CBCOt'] ?></b>
 	            	</div>
 				</div>
 <!-- U/A -->	
@@ -657,11 +680,11 @@ include_once('doctorsidebar.php');
 				<div class="form-group row">
 	            	<label for="UriColor" class="col-3 col-form-label text-right">Color :</label>
 	            	<div class="col-2">
-	            		<b><?php echo $lab['UriColor'] ?></b>
+	            		<b><?php echo $data2['UriColor'] ?></b>
 	            	</div>
 	            	<label for="RBC" class="col-3 col-form-label text-right">RBC :</label>
 	            	<div class="col-1">
-	            		<b><?php echo $lab['RBC'] ?></b>
+	            		<b><?php echo $data2['RBC'] ?></b>
 	            	</div>
 	            	<label for="RBC" class="col-1 col-form-label">/hpf</label>
 	            	<label for="RBC" class="col-2 col-form-label">0-3</label>
@@ -669,11 +692,11 @@ include_once('doctorsidebar.php');
 				<div class="form-group row">
 	            	<label for="UriTrans" class="col-3 col-form-label text-right">Transparency :</label>
 	            	<div class="col-2">
-	            		<b><?php echo $lab['UriTrans'] ?></b>
+	            		<b><?php echo $data2['UriTrans'] ?></b>
 	            	</div>
 	            	<label for="WBC" class="col-3 col-form-label text-right">WBC :</label>
 	            	<div class="col-1">
-	            		<b><?php echo $lab['WBC'] ?></b>
+	            		<b><?php echo $data2['WBC'] ?></b>
 	            	</div>
 	            	<label for="WBC" class="col-1 col-form-label">/hpf</label>
 	            	<label for="WBC" class="col-2 col-form-label">0-5</label>
@@ -681,52 +704,52 @@ include_once('doctorsidebar.php');
 				<div class="form-group row">
 	            	<label for="UriPh" class="col-3 col-form-label text-right">pH :</label>
 	            	<div class="col-2">
-	            		<b><?php echo $lab['UriPh'] ?></b>
+	            		<b><?php echo $data2['UriPh'] ?></b>
 	            	</div>
 	            	<label for="ECells" class="col-3 col-form-label text-right">E.Cells:</label>
 	            	<div class="col-2">
-	            		<b><?php echo $lab['ECells'] ?></b>
+	            		<b><?php echo $data2['ECells'] ?></b>
 	            	</div>
 				</div>
 				<div class="form-group row">
 	            	<label for="UriSp" class="col-3 col-form-label text-right">Sp. Gravity :</label>
 	            	<div class="col-2">
-	            		<b><?php echo $lab['UriSp'] ?></b>
+	            		<b><?php echo $data2['UriSp'] ?></b>
 	            	</div>
 	            	<label for="Mthreads" class="col-3 col-form-label text-right">M.Threads:</label>
 	            	<div class="col-2">
-	            		<b><?php echo $lab['MThreads'] ?></b>
+	            		<b><?php echo $data2['MThreads'] ?></b>
 	            	</div>
 				</div>
 				<div class="form-group row">
 	            	<label for="UriPro" class="col-3 col-form-label text-right">Protein :</label>
 	            	<div class="col-2">
-	            		<b><?php echo $lab['UriPro'] ?></b>
+	            		<b><?php echo $data2['UriPro'] ?></b>
 	            	</div>
 	            	<label for="Bac" class="col-3 col-form-label text-right">Bacteria:</label>
 	            	<div class="col-2">
-	            		<b><?php echo $lab['Bac'] ?></b>
+	            		<b><?php echo $data2['Bac'] ?></b>
 	            	</div>
 				</div>
 				<div class="form-group row">
 	            	<label for="UriGlu" class="col-3 col-form-label text-right">Glucose :</label>
 	            	<div class="col-2">
-	            		<b><?php echo $lab['UriGlu'] ?></b>
+	            		<b><?php echo $data2['UriGlu'] ?></b>
 	            	</div>
 	            	<label for="Amorph" class="col-3 col-form-label text-right">Amorphous:</label>
 	            	<div class="col-2">
-	            		<b><?php echo $lab['Amorph'] ?></b>
+	            		<b><?php echo $data2['Amorph'] ?></b>
 	            	</div>
 				</div>
 				<div class="form-group row">
 	            	<label for="UriOt" class="col-3 col-form-label text-right">OTHERS/NOTES :</label>
 	            	<div class="col-2">
-	            		<b><?php echo $lab['UriOt'] ?></b>
+	            		<b><?php echo $data2['UriOt'] ?></b>
 	            	</div>
 
 	            	<label for="CoAx" class="col-3 col-form-label text-right">CaOx:</label>
 	            	<div class="col-2">
-	            		<b><?php echo $lab['CoAx'] ?></b>
+	            		<b><?php echo $data2['CoAx'] ?></b>
 	            	</div>
 				</div>
 
@@ -740,19 +763,19 @@ include_once('doctorsidebar.php');
 				<div class="form-group row">
 	            	<label for="Meth" class="col-3 col-form-label text-right">METHAMPHETHAMINE:</label>
 	            	<div class="col-2">
-	            		<b><?php echo $lab['Meth'] ?></b>
+	            		<b><?php echo $data4['Meth'] ?></b>
 	            	</div>
 				</div>
 				<div class="form-group row">
 	            	<label for="Tetra" class="col-3 col-form-label text-right">TETRAHYDROCANABINOL:</label>
 	            	<div class="col-2">
-	            		<b><?php echo $lab['Tetra'] ?></b>
+	            		<b><?php echo $data4['Tetra'] ?></b>
 	            	</div>
 				</div>
 				<div class="form-group row">
 	            	<label for="DT" class="col-3 col-form-label text-right">DT RESULT:</label>
 	            	<div class="col-2">
-	            		<b><?php echo $lab['DT'] ?></b>
+	            		<b><?php echo $data4['DT'] ?></b>
 	            	</div>
 				</div>
 <!-- Serology -->
@@ -764,19 +787,19 @@ include_once('doctorsidebar.php');
 				<div class="form-group row">
 	            	<label for="HBsAg" class="col-3 col-form-label text-right">HBsAg:</label>
 	            	<div class="col-2">
-	            		<b><?php echo $lab['HBsAg'] ?></b>
+	            		<b><?php echo $data3['HBsAG'] ?></b>
 	            	</div>
 				</div>
 				<div class="form-group row">
 	            	<label for="PregTest" class="col-3 col-form-label text-right">PREGNANCY TEST:</label>
 	            	<div class="col-2">
-	            		<b><?php echo $lab['PregTest'] ?></b>
+	            		<b><?php echo $data2['PregTest'] ?></b>
 	            	</div>
 				</div>
 				<div class="form-group row">
 	            	<label for="SeroOt" class="col-3 col-form-label text-right">OTHERS/NOTES :</label>
 	            	<div class="col-2">
-	            		<b><?php echo $lab['SeroOt'] ?></b>
+	            		<b><?php echo $data3['SeroOt'] ?></b>
 	            	</div>
 				</div>
 <!-- FECALYSIS -->
@@ -788,40 +811,41 @@ include_once('doctorsidebar.php');
 				<div class="form-group row">
 	            	<label for="FecColor" class="col-3 col-form-label text-right">Color:</label>
 	            	<div class="col-2">
-	            		<b><?php echo $lab['FecColor'] ?></b>
+	            		<b><?php echo $data2['FecColor'] ?></b>
 	            	</div>
 				</div>
 				<div class="form-group row">
 	            	<label for="FecCon" class="col-3 col-form-label text-right">Consistency:</label>
 	            	<div class="col-2">
-	            		<b><?php echo $lab['FecCon'] ?></b>
+	            		<b><?php echo $data2['FecCon'] ?></b>
 	            	</div>
 				</div>
 				<div class="form-group row">
 	            	<label for="FecMicro" class="col-3 col-form-label text-right">Microscopic Findings:</label>
 	            	<div class="col-2">
-	            		<b><?php echo $lab['FecMicro'] ?></b>
+	            		<b><?php echo $data2['FecMicro'] ?></b>
 	            	</div>
 				</div>
 				<div class="form-group row">
 	            	<label for="FecOt" class="col-3 col-form-label text-right">OTHERS/NOTES :</label>
 	            	<div class="col-2">
-	            		<b><?php echo $lab['FecOt'] ?></b>
+	            		<b><?php echo $data2['FecOt'] ?></b>
 	            	</div>
 				</div>
 				<div class="form-group row"><hr></div>
 
-				<div class="form-group row">
-	            	<div class="col">
-	            		<center><b><?php echo $lab['Received'] ?></b></center>
-	            	</div>
-	            	<div class="col">
-	            		<center><b><?php echo $qc['QC'] ?></b></center>
-
-	            	</div>
-	            	<div class="col">
-	            		<center><b><?php echo $lab['Printed'] ?></b></center>
-	            	</div>
+				<div class="row">
+				<div class="col" style="padding-left: 0px"><center><span class="lineNameSig"><br><b>
+					<?php $rec = $lab->medtechByID($data2['MedID']);
+	            	echo $rec['FirstName']." ". $rec['MiddleName'] ." ". $rec['LastName'].", ".$rec['PositionEXT'] ?> 
+	            </b></span></center></div>
+				<div class="col" style="padding-left: 0px"><center><span class="lineNameSig"><br><b>
+					<?php $qc1 = $lab->medtechByID($data2['QualityID']);
+	            	echo $qc1['FirstName']." ". $qc1['MiddleName'] ." ". $qc1['LastName'].", ".$qc1['PositionEXT'] ?>	     
+	            	</b></span></center></div>
+				<div class="col" style="padding-left: 0px"><center><span class="lineNameSig"><br><b>
+					<?php $path = $lab->medtechByID($data2['PathID']);
+		            	echo $path['FirstName']." ". $path['MiddleName'] ." ". $path['LastName'].", ".$path['PositionEXT'] ?> </b></span></center></div>
 				</div>
 				<div class="form-group row">
 	            	<div class="col">

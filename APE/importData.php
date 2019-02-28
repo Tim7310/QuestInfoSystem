@@ -1,19 +1,19 @@
 <?php
 include_once("apeDatabase.php");
-if (isset($_FILES['trans'])) {
-	$path1 = $_FILES['trans']['name'];
+if (isset($_FILES['csv'])) {
+	$path1 = $_FILES['csv']['name'];
 	$ext1 = pathinfo($path1, PATHINFO_EXTENSION);
 	if ($ext1 == "csv") {
-		move_uploaded_file($_FILES["trans"]["tmp_name"], $path1);
+		move_uploaded_file($_FILES["csv"]["tmp_name"], $path1);
 	}
 }
-if (isset($_FILES['patient'])) {
-	$path2 = $_FILES['patient']['name'];
-	$ext2 = pathinfo($path2, PATHINFO_EXTENSION);
-	if ($ext2 == "csv") {
-		move_uploaded_file($_FILES["patient"]["tmp_name"], $path2);
-	}
-}
+// if (isset($_FILES['patient'])) {
+// 	$path2 = $_FILES['patient']['name'];
+// 	$ext2 = pathinfo($path2, PATHINFO_EXTENSION);
+// 	if ($ext2 == "csv") {
+// 		move_uploaded_file($_FILES["patient"]["tmp_name"], $path2);
+// 	}
+// }
 
 function csv_to_array($filename='', $delimiter=',')
 {
@@ -38,9 +38,11 @@ function csv_to_array($filename='', $delimiter=',')
 /**
  * Example
  */
-$trans = csv_to_array($path1);
-$patient = csv_to_array($path2);
-$import = new import;
-$import->insertData($trans, $patient);
-
+// $trans = csv_to_array($path1);
+// $patient = csv_to_array($path2);
+ $import = new import;
+// $import->insertData($trans, $patient);
+//print_r(csv_to_array($path1));
+$array = csv_to_array($path1);
+$import->insertItem($array);
 ?> 

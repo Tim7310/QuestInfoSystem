@@ -1,3 +1,16 @@
+<?php 
+session_start();
+require_once '../class.user.php';
+$user = new USER();
+
+if(!$user->is_logged_in())
+{
+    $user->redirect('index.php');
+}else{
+    $data = $user->getUser($_SESSION['userSession']);
+    $userData = $user->userData($_SESSION['userSession']);
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -7,12 +20,16 @@
   <link rel="icon" type="image/png" href="dashboard/assets/img/favicon.png">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
   <title>
-    Material Dashboard by Creative Tim
+    QIS Admin
   </title>
   <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
   <!--     Fonts and icons     -->
-  <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
+  <link rel="stylesheet" type="text/css" href="../assets/css/MaterialIcons.css" />
+ 
+  <link rel="stylesheet" type="text/css" href="../source/bootstrap4/css/bootstrap.min.css">
+<script type="text/javascript" src="../source/popper.min.js"></script>
+<script type="text/javascript" src="../source/jquery.min.js"></script>
+<link href="../source/fontawesome/css/all.css" rel="stylesheet"/>
   <!-- CSS Files -->
   <link href="dashboard/assets/css/material-dashboard.css?v=2.1.1" rel="stylesheet" />
   <!-- CSS Just for demo purpose, don't include it in your project -->
@@ -47,49 +64,55 @@
         Tip 2: you can also add an image using data-image tag
     -->
       <div class="logo">
-        <a href="http://www.creative-tim.com" class="simple-text logo-normal">
-          QIS Admin
+        <a href="../home.php" class="simple-text logo-normal">
+          <?php echo $userData['userName']?>
         </a>
       </div>
       <div class="sidebar-wrapper">
         <ul class="nav">
-          <li class="nav-item active  ">
-            <a class="nav-link" href="#">
+          <li class="nav-item active  mynav" id="sales">
+            <a class="nav-link" href="#" >
               <i class="material-icons">attach_money</i>
               <p>Sales</p>
             </a>
           </li>
-          <li class="nav-item ">
+          <li class="nav-item mynav" id="userManagement">
             <a class="nav-link" href="#">
               <i class="material-icons">person</i>
               <p>User Management</p>
             </a>
           </li>
-          <li class="nav-item ">
+           <li class="nav-item mynav" id="dataconfig">
+            <a class="nav-link" href="#" >
+              <i class="material-icons">perm_data_setting</i>
+              <p>Database</p>
+            </a>
+          </li>
+          <li class="nav-item mynav">
             <a class="nav-link" href="#">
               <i class="material-icons">content_paste</i>
               <p>Table List</p>
             </a>
           </li>
-          <li class="nav-item ">
+          <li class="nav-item mynav">
             <a class="nav-link" href="#">
               <i class="material-icons">library_books</i>
               <p>Typography</p>
             </a>
           </li>
-          <li class="nav-item ">
+          <li class="nav-item mynav">
             <a class="nav-link" href="#">
               <i class="material-icons">bubble_chart</i>
               <p>Icons</p>
             </a>
           </li>
-          <li class="nav-item ">
+          <li class="nav-item mynav">
             <a class="nav-link" href="#">
               <i class="material-icons">location_ons</i>
               <p>Maps</p>
             </a>
           </li>
-          <li class="nav-item ">
+          <li class="nav-item mynav">
             <a class="nav-link" href="#">
               <i class="material-icons">notifications</i>
               <p>Notifications</p>
@@ -103,7 +126,7 @@
       <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top ">
         <div class="container-fluid">
           <div class="navbar-wrapper">
-            <a class="navbar-brand" href="#pablo">Sales</a>
+            <a class="navbar-brand">Sales</a>
           </div>
           <button class="navbar-toggler" type="button" data-toggle="collapse" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
             <span class="sr-only">Toggle navigation</span>
@@ -146,10 +169,10 @@
                   </p>
                 </a>
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownProfile">
-                  <a class="dropdown-item" href="#">Profile</a>
+                  <a class="dropdown-item" href="home.php">Profile</a>
                   <a class="dropdown-item" href="#">Settings</a>
                   <div class="dropdown-divider"></div>
-                  <a class="dropdown-item" href="#">Log out</a>
+                  <a class="dropdown-item" href="../logout.php">Log out</a>
                 </div>
               </li>
             </ul>
@@ -157,131 +180,8 @@
         </div>
       </nav>
       <!-- End Navbar -->
-      <div class="content">
-        <div class="container-fluid">
-          <div class="row">
-            <div class="col-lg-6 col-md-12">
-              <div class="card card-chart">
-                <div class="card-header card-header-info">
-                  <canvas id="myChart"></canvas>
-                </div>
-                <div class="card-body">
-                  <h4 class="card-title">Daily Sales</h4>
-                  <p class="card-category">
-                    <span class="text-success"><i class="fa fa-long-arrow-up"></i> 55% </span> increase in today sales.</p>
-                </div>
-                <div class="card-footer">
-                  <div class="stats">
-                    <i class="material-icons">access_time</i> updated 4 minutes ago
-                  </div>
-                </div>
-              </div>
-            </div>
-              <div class="col-lg-6 col-md-12" >
-              <div class="card">
-                <div class="card-header card-header-info">
-                  <h4 class="card-title">Transaction List</h4>
-                  <p class="card-category">Transaction List on 30th January, 2019</p>
-                </div>
-                <div class="card-body table-responsive" style="max-height: 300px;overflow-x: auto">
-                  <table class="table table-hover">
-                    <thead class="text-info">
-                      <th>ID</th>
-                      <th>Name</th>
-                      <th>Type</th>
-                      <th>Price</th>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <td>1</td>
-                        <td>Dakota Rice</td>
-                        <td>$36,738</td>
-                        <td>Niger</td>
-                      </tr>
-                      <tr>
-                        <td>2</td>
-                        <td>Minerva Hooper</td>
-                        <td>$23,789</td>
-                        <td>Curaçao</td>
-                      </tr>
-                      <tr>
-                        <td>3</td>
-                        <td>Sage Rodriguez</td>
-                        <td>$56,142</td>
-                        <td>Netherlands</td>
-                      </tr>
-                      <tr>
-                        <td>4</td>
-                        <td>Philip Chaney</td>
-                        <td>$38,735</td>
-                        <td>Korea, South</td>
-                      </tr>
-                      <tr>
-                        <td>4</td>
-                        <td>Philip Chaney</td>
-                        <td>$38,735</td>
-                        <td>Korea, South</td>
-                      </tr>
-                      <tr>
-                        <td>4</td>
-                        <td>Philip Chaney</td>
-                        <td>$38,735</td>
-                        <td>Korea, South</td>
-                      </tr>
-                      <tr>
-                        <td>4</td>
-                        <td>Philip Chaney</td>
-                        <td>$38,735</td>
-                        <td>Korea, South</td>
-                      </tr>
-                      <tr>
-                        <td>4</td>
-                        <td>Philip Chaney</td>
-                        <td>$38,735</td>
-                        <td>Korea, South</td>
-                      </tr>
-                      <tr>
-                        <td>4</td>
-                        <td>Philip Chaney</td>
-                        <td>$38,735</td>
-                        <td>Korea, South</td>
-                      </tr>
-                      <tr>
-                        <td>4</td>
-                        <td>Philip Chaney</td>
-                        <td>$38,735</td>
-                        <td>Korea, South</td>
-                      </tr>
-                      <tr>
-                        <td>4</td>
-                        <td>Philip Chaney</td>
-                        <td>$38,735</td>
-                        <td>Korea, South</td>
-                      </tr><tr>
-                        <td>4</td>
-                        <td>Philip Chaney</td>
-                        <td>$38,735</td>
-                        <td>Korea, South</td>
-                      </tr>
-                      <tr>
-                        <td>4</td>
-                        <td>Philip Chaney</td>
-                        <td>$38,735</td>
-                        <td>Korea, South</td>
-                      </tr>
-                      <tr>
-                        <td>4</td>
-                        <td>Philip Chaney</td>
-                        <td>$38,735</td>
-                        <td>Korea, South</td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+      <div class="content" id="content">
+        
       </div>
 <!--       <footer class="footer">
         <div class="container-fluid">
@@ -321,7 +221,6 @@
     </div>
   </div>
   <!--   Core JS Files   -->
-  <script src="dashboard/assets/js/core/jquery.min.js"></script>
   <script src="dashboard/assets/js/Chart.js"></script>
   <script src="dashboard/assets/js/core/popper.min.js"></script>
   <script src="dashboard/assets/js/core/bootstrap-material-design.min.js"></script>
@@ -361,27 +260,22 @@
   <script src="dashboard/assets/demo/demo.js"></script>
   <script>
     $(document).ready(function() {
-      var ctx = document.getElementById('myChart').getContext('2d');
-      Chart.defaults.global.defaultFontColor = 'white';
-      var chart = new Chart(ctx, {
-          // The type of chart we want to create
-          type: 'line',
+    $("#content").load("sales.php",{},function(){});
+    $(".mynav").click(function(){
+      $(".mynav").removeClass("active");
+      $(this).addClass("active");
 
-          // The data for our dataset
-          data: {
-              labels: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
-              datasets: [{
-                  label: "My First dataset",
-                  backgroundColor: 'rgb(255, 255, 255)',
-                  borderColor: 'rgb(64, 142, 255)',
-                  data: [0, 10, 5, 2, 20, 30],
-                  stepped: true,
-              }]
-          },
-
-          // Configuration options go here
-          options: {}
-      });
+      if ($("#sales").hasClass("active")) {
+       $("#content").load("sales.php",{},function(){});
+      }
+      else if ($("#dataconfig").hasClass("active")) {
+         $("#content").load("dataconfig.php",{},function(){});
+      }
+      else if ($("#userManagement").hasClass("active")) {
+         $("#content").load("userManagement.php",{},function(){});
+      }
+    });
+    
     });
   </script>
 </body>

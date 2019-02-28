@@ -25,16 +25,24 @@ class Patient {
 	public function fetch_data_ref($ref){
 			global $pdo;
 
-			$query = $pdo->prepare("SELECT * FROM qpd_patient WHERE PatientRef = ? ");
-			$query->bindValue(1, $ref);
+			$query = $pdo->prepare("SELECT * FROM qpd_patient WHERE PatientRef = '$ref'");
 			$query->execute();
 
 			return $query->fetch();
 	}
-	public function Update_Patient($pid, $fname, $mname, $lname, $age, $gender, $comname, $contact, $bod, $add, $pos, $biller){
+	public function refCount($ref){
+			global $pdo;
+
+			$query = $pdo->prepare("SELECT * FROM qpd_patient WHERE PatientRef = '$ref'");
+			$query->execute();
+
+			return $query->rowCount();
+
+	}
+	public function Update_Patient($pid, $fname, $mname, $lname, $age, $gender, $comname, $contact, $bod, $add, $pos, $biller, $SID){
 		global $pdo;
 
-		$query = $pdo->prepare("UPDATE qpd_patient set FirstName = '$fname', MiddleName = '$mname', LastName = '$lname', Age = '$age', Gender = '$gender', CompanyName = '$comname', ContactNo = '$contact', BirthDate = '$bod', Address = '$add', Position = '$pos', PatientBiller = '$biller' WHERE PatientID = '$pid'");
+		$query = $pdo->prepare("UPDATE qpd_patient set FirstName = '$fname', MiddleName = '$mname', LastName = '$lname', Age = '$age', Gender = '$gender', CompanyName = '$comname', ContactNo = '$contact', BirthDate = '$bod', Address = '$add', Position = '$pos', PatientBiller = '$biller', SID = '$SID' WHERE PatientID = '$pid'");
 		$query->execute();
 	}
 

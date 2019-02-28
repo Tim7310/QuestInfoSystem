@@ -9,6 +9,9 @@ if(!$user->is_logged_in())
 }else{
     $data = $user->getUser($_SESSION['userSession']);
     $userData = $user->userData($_SESSION['userSession']);
+    if ($userData['userID'] == 17) {
+        $user->redirect('regPatient.php');
+    }
 }
 ?>
 <!DOCTYPE html>
@@ -46,7 +49,7 @@ if(!$user->is_logged_in())
                     <li class="dropdown"><a class="dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="false" href="#"><img class="rounded-circle" src="assets/img/user.png" width="25px" height="25px"> 
                         <?php echo $userData['userName']?> <i class="fa fa-chevron-down fa-fw"></i></a>
                         <div class="dropdown-menu"
-                            role="menu"><a class="dropdown-item" role="presentation" href="#"><i class="fa fa-user fa-fw"></i> Profile </a><a class="dropdown-item" role="presentation" href="logout.php"><i class="fa fa-power-off fa-fw"></i>Logout </a></div>
+                            role="menu"><a class="dropdown-item" role="presentation" href="admin/Profile.php"><i class="fa fa-user fa-fw"></i> Profile </a><a class="dropdown-item" role="presentation" href="logout.php"><i class="fa fa-power-off fa-fw"></i>Logout </a></div>
                     </li>
                 </ul>
             </div>
@@ -107,6 +110,34 @@ if(!$user->is_logged_in())
                         if( $data['QualityControl'] != 0){               
                     ?>    
                         <a href="qc/ListOfPatients.php" class="read">Go To QC<i class="fa fa-angle-right"></i></a>
+                     <?php } ?>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6 col-md-4 mt-3">
+                <div class="box"><img src="assets/img/pe.jpg" alt="PE">
+                    <div class="box-heading">
+                        <h4 class="title" style="color:#333333;">Physical Examination</h4><span class="post" style="color:#333333;">Physical Examination Section</span></div>
+                    <div class="boxContent">
+                        <p class="description" style="color:#333333;">The best way to reduce the cost of medical care is to reduce the illness.</p>
+                    <?php 
+                        if( $data['Medical'] != 0){               
+                    ?>    
+                        <a href="nurse/ListOfPatients.php" class="read">Go To PE<i class="fa fa-angle-right"></i></a>
+                     <?php } ?>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6 col-md-4 mt-3">
+                <div class="box"><img src="assets/img/doctor.jpg" alt="Doctor">
+                    <div class="box-heading">
+                        <h4 class="title" style="color:#333333;">Nurse</h4><span class="post" style="color:#333333;">Classification Section</span></div>
+                    <div class="boxContent">
+                        <p class="description" style="color:#333333;">Wherever the art of Medicine is loved, there is also a love of Humanity..</p>
+                    <?php 
+                        if( $data['Medical'] != 0){               
+                    ?>    
+                        <a href="doctor/ListOfPatients.php" class="read">Go To Nurse<i class="fa fa-angle-right"></i></a>
                      <?php } ?>
                     </div>
                 </div>

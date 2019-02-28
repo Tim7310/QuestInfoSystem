@@ -33,6 +33,23 @@ class lab {
 
 			return $query->fetch();
 	}
+
+ //    public function fetch_data3($id, $tid){
+	// 		global $pdo;
+
+	// 		$query = $pdo->prepare("SELECT * FROM qpd_patient f, qpd_trans t, lab_hematology h,lab_microscopy m, lab_serology s WHERE f.PatientID = ? AND t.PatientID = ? AND v.PatientID = ? AND t.TransactionID = ? AND h.TransactionID = ?");
+	// 		$query->bindValue(1, $id);
+	// 		$query->bindValue(2, $id);
+	// 		$query->bindValue(3, $id);
+	// 		$query->bindValue(4, $tid);
+	// 		$query->bindValue(5, $tid);
+	// 		$query->execute();
+
+	// 		return $query->fetch();
+	// }
+
+
+
 	public function medtech(){
 		global $pdo;
 
@@ -107,6 +124,26 @@ class lab {
 		$sql = $pdo->prepare("UPDATE lab_chemistry set FBS = '$FBS', FBScon = '$FBScon', BUA = '$BUA', BUAcon = '$BUAcon', BUN = '$BUN', BUNcon = '$BUNcon', CREA = '$CREA', CREAcon = '$CREAcon', CHOL = '$CHOL', CHOLcon = '$CHOLcon', TRIG = '$TRIG', TRIGcon = '$TRIGcon', HDL = '$HDL', HDLcon = '$HDLcon', LDL = '$LDL', LDLcon = '$LDLcon', CH = '$CH', VLDL = '$VLDL', Na = '$Na', K = '$K', Cl = '$Cl', ALT = '$ALT', AST = '$AST', HB = '$HB', PathID = '$PathID', MedID = '$MedID', QualityID = '$QualityID', DateUpdate = '$Date'  where PatientID = '$PatientID' and TransactionID = '$TransactionID'");
 		$sql->execute();
 	}
+	public function addSerology( $TransactionID, $PatientID, $HBsAG, $AntiHav, $SeroOt, $PathID, $MedID, $QualityID, $Date ){
+		global $pdo;
+		$sql = $pdo->prepare("INSERT into lab_serology (TransactionID, PatientID, HBsAG, AntiHav, SeroOt, PathID, MedID, QualityID, CreationDate) values ('$TransactionID', '$PatientID','$HBsAG','$AntiHav','$SeroOt','$PathID','$MedID','$QualityID','$Date')");
+		$sql->execute();
+	}
+	public function updateSerology( $TransactionID, $PatientID, $HBsAG, $AntiHav, $SeroOt, $PathID, $MedID, $QualityID, $Date ){
+		global $pdo;
+		$sql = $pdo->prepare("UPDATE lab_serology set HBsAG = '$HBsAG', AntiHav = '$AntiHav', SeroOt = '$SeroOt', PathID = '$PathID', MedID = '$MedID', QualityID = '$QualityID', DateUpdate = '$Date' where PatientID = '$PatientID' and TransactionID = '$TransactionID'");
+		$sql->execute();
+	}
+	public function addToxi( $TransactionID, $PatientID, $Meth, $Tetra, $Drugtest ,$PathID, $MedID, $QualityID, $Date){
+		global $pdo;
+		$sql = $pdo->prepare("INSERT into lab_toxicology ( TransactionID, PatientID, Meth, Tetra, Drugtest, PathID, MedID, QualityID, CreationDate) values ( '$TransactionID', '$PatientID', '$Meth', '$Tetra', '$Drugtest' ,'$PathID', '$MedID', '$QualityID', '$Date')");
+		$sql->execute();
+	}
+	public function updateToxi( $TransactionID, $PatientID, $Meth, $Tetra, $Drugtest ,$PathID, $MedID, $QualityID, $Date ){
+		global $pdo;
+		$sql = $pdo->prepare("UPDATE lab_toxicology set Meth = '$Meth', Tetra = '$Tetra', Drugtest = '$Drugtest', PathID = '$PathID', MedID = '$MedID', QualityID = '$QualityID', DateUpdate = '$Date' where PatientID = '$PatientID' and TransactionID = '$TransactionID'");
+		$sql->execute();
+	}
 	public function fetchlabAll($table){
 		global $pdo;
 		$sql = $pdo->prepare("SELECT * from $table l, qpd_trans t, qpd_patient p where p.PatientID = l.PatientID and t.TransactionID = l.TransactionID ");
@@ -118,6 +155,12 @@ class lab {
 		$sql = $pdo->prepare("SELECT * from $table l, qpd_trans t, qpd_patient p where l.TransactionID = '$tid' and l.PatientID = '$pid' and p.PatientID = l.PatientID and t.TransactionID = l.TransactionID");
 		$sql->execute();
 		return $sql->fetch();
+	}
+	public function checkData($pid, $tid, $table){
+		global $pdo;
+		$sql = $pdo->prepare("SELECT * from $table where TransactionID = '$tid' and PatientID = '$pid'");
+		$sql->execute();
+		return $sql->rowCount();
 	}
 
 }

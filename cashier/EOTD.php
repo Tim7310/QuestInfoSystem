@@ -40,7 +40,7 @@ if (mysqli_connect_errno())
     $change = 0;
     while($row = mysqli_fetch_array($result2))
     {
-    	$change += $row['PaidOut'];
+    	$change += (int)$row['PaidOut'];
     	
     }
 
@@ -49,7 +49,7 @@ if (mysqli_connect_errno())
     $cash = 0;
     while($row = mysqli_fetch_array($result3))
     {
-    	$cash += $row['PaidIn'];
+    	$cash += (int)$row['PaidIn'];
     	
     }
 
@@ -210,7 +210,7 @@ if (mysqli_connect_errno())
 		<div class="col"><center><b>Account Listing</b></center></div>
 	</div>
 	<br>
-	<!-- <div class="row">
+	 <div class="row">
 		<div class="col">
 			<table>
 				<thead>
@@ -222,7 +222,7 @@ if (mysqli_connect_errno())
 				</thead>
 				<tbody>
 				<?php
-				    $select4 = "SELECT * FROM qpd_trans t, qpd_patient p WHERE t.TransactionType = 'ACCOUNT' AND p.PatientID = t.PatientID AND t.ItemName != 'CASH POS' AND t.TransactionDate BETWEEN '$SD' AND '$ED' ORDER BY p.CompanyName";
+				    $select4 = "SELECT * FROM qpd_trans t, qpd_patient p WHERE t.TransactionType = 'ACCOUNT' AND p.PatientID = t.PatientID AND t.ItemID != 'CASH POS' AND t.TransactionDate BETWEEN '$SD' AND '$ED' ORDER BY p.CompanyName";
 
 					$result4 = mysqli_query($con, $select4);
 				    while($row = mysqli_fetch_array($result4))
@@ -251,7 +251,7 @@ if (mysqli_connect_errno())
 				</tbody>
 			</table>
 		</div>
-	</div> -->
+	</div>
 
 
 </div>

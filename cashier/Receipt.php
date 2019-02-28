@@ -179,15 +179,11 @@ if (isset($_GET['transID'])){
 	</tr>	
 	<?php } ?> 
 		<tr class="tab" ></tr>
-				<tr style="border-top: solid grey 5px; padding-top: 3px">
-					<td style="" class="text-right" colspan="2">Receipt Total:</td>
-					<td style="" class="text-right">₱:<?php echo $price_total ?></td>
-				</tr>
 				<?php
 					if ($data['TransactionType'] == 'ACCOUNT') {
 						
 				?>
-				<tr>
+				<tr style="border-top: solid grey 5px; padding-top: 3px">
 					<td style="font-size: 18px; font-weight: bolder;" colspan="2" 
 					class="text-right">Total Accounted:</td>
 					<td style="font-size: 18px; font-weight: bolder;" class="text-right">
@@ -204,6 +200,14 @@ if (isset($_GET['transID'])){
 					if ($data['TransactionType'] == 'CASH') {
 						
 				?>
+				
+				<tr style="border-top: solid grey 5px; padding-top: 3px">
+					<td style="font-size: 18px; font-weight: bolder;" class="text-right" colspan="2">
+					Receipt Total:</td>
+					<td style="font-size: 18px; font-weight: bolder;" class="text-right">
+						₱:<?php echo $data['GrandTotal'] ?></td>
+				</tr>
+				<?php if($discount != 0){ ?>
 				<tr>
 					<td style="" class="text-right" colspan="2">Discount:</td>
 					<td style="" class="text-right">₱:
@@ -214,12 +218,7 @@ if (isset($_GET['transID'])){
 						echo $discount;
 					?></td>
 				</tr>
-				<tr>
-					<td style="font-size: 18px; font-weight: bolder;" class="text-right" colspan="2">
-					Total Accounted:</td>
-					<td style="font-size: 18px; font-weight: bolder;" class="text-right">
-						₱:<?php echo $data['GrandTotal'] ?></td>
-				</tr>	
+				<?php } ?>	
 				<tr>
 					<td style="" class="text-right" colspan="2">Amount Tendered:</td>
 					<td style="" class="text-right">₱:
@@ -245,8 +244,8 @@ if (isset($_GET['transID'])){
 				</tr>
 				<tr>
 					<td style="padding-top: 15px;" colspan="3">
-						<center><p style="border: solid 2px black;padding-left: 25px;padding-right: 25px;font-size: 17px;width: 250px">
-						online results,<br/> www.questphil.com.ph</p></center>		
+						<center><p style="border: dotted 2px black;padding-left: 25px;padding-right: 25px;font-size: 17px;width: 250px; font-weight: bold">
+						Powered By,<br/> Quest Info System</p></center>		
 					</td>
 				</tr>
 				<tr>

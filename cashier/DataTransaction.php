@@ -17,21 +17,21 @@ $pat = new Patient;
 		}
 		return $string;
 	}
-	function Transaction($tref, $pid, $ttype, $cashier, $itemIDs, $itemQTY, $biller, $tprice, $paidIn, $disc, $PaidOut, $gtotal, $status){
+	function Transaction($tref, $pid, $ttype, $cashier, $itemIDs, $itemQTY, $biller, $tprice, $paidIn, $disc, $PaidOut, $gtotal, $status, $loe, $an, $ac){
 		global $pdo;
 		date_default_timezone_set("Asia/Kuala_Lumpur");
 		$date = date("Y-m-d H:i:s");
 		$sql = "INSERT INTO qpd_trans 
-		(TransactionRef, PatientID, TransactionType, Cashier, ItemID, ItemQTY, Biller, TotalPrice, PaidIn, Discount, PaidOut, GrandTotal, TransactionDate, status) 
-		values ('$tref', '$pid', '$ttype', '$cashier', '$itemIDs', '$itemQTY', '$biller', '$tprice', '$paidIn', '$disc', '$PaidOut', '$gtotal', '$date', '$status')";
+		(TransactionRef, PatientID, TransactionType, Cashier, ItemID, ItemQTY, Biller, TotalPrice, PaidIn, Discount, PaidOut, GrandTotal, TransactionDate, status, LOE, AN, AC) 
+		values ('$tref', '$pid', '$ttype', '$cashier', '$itemIDs', '$itemQTY', '$biller', '$tprice', '$paidIn', '$disc', '$PaidOut', '$gtotal', '$date', '$status','$loe', '$an', '$ac')";
 		$stmt= $pdo->prepare($sql);
 		$stmt->execute();
 	}
-	function UpdateTransaction($tid,$tref, $pid, $ttype, $cashier, $itemIDs, $itemQTY, $biller, $tprice, $paidIn, $disc, $PaidOut, $gtotal, $status){
+	function UpdateTransaction($tid,$tref, $pid, $ttype, $cashier, $itemIDs, $itemQTY, $biller, $tprice, $paidIn, $disc, $PaidOut, $gtotal, $status,$loe, $an, $ac){
 		global $pdo;
 		date_default_timezone_set("Asia/Kuala_Lumpur");
 		$date = date("Y-m-d H:i:s");
-		$sql = "UPDATE qpd_trans SET TransactionRef = '$tref', PatientID = '$pid', TransactionType = '$ttype', Cashier = '$cashier', ItemID = '$itemIDs', ItemQTY = '$itemQTY', Biller = '$biller', TotalPrice = '$tprice', PaidIn = '$paidIn', Discount = '$disc', PaidOut = '$PaidOut', GrandTotal = '$gtotal', TransactionDate = '$date', status = '$status' where TransactionID = $tid";
+		$sql = "UPDATE qpd_trans SET TransactionRef = '$tref', PatientID = '$pid', TransactionType = '$ttype', Cashier = '$cashier', ItemID = '$itemIDs', ItemQTY = '$itemQTY', Biller = '$biller', TotalPrice = '$tprice', PaidIn = '$paidIn', Discount = '$disc', PaidOut = '$PaidOut', GrandTotal = '$gtotal', TransactionDate = '$date', status = '$status', LOE = '$loe', AN = '$an', AC = '$ac' where TransactionID = '$tid'";
 		$stmt= $pdo->prepare($sql);
 		$stmt->execute();
 	}
@@ -64,6 +64,10 @@ $pat = new Patient;
 	$transNO = $_POST['transNO'];
 	$cashier = $_POST['cashier'];
 	$transType = $_POST['transType'];
+	$loe = $_POST['LOE'];
+	$an = $_POST['AN'];
+	$ac = $_POST['AC'];
+
 	
 
 	if ( $transType == 0 ) {
@@ -77,9 +81,9 @@ $pat = new Patient;
 	try{
 		if (isset($_POST['transID'])) {
 			$transID = $_POST['transID'];
-			UpdateTransaction($transID,$transNO, $PatientID, $transType, $cashier, $iID, $iQTY, $biller, $totalAmount, $payment, $iDisc, $change, $totalAmount, $status);
+			UpdateTransaction($transID,$transNO, $PatientID, $transType, $cashier, $iID, $iQTY, $biller, $totalAmount, $payment, $iDisc, $change, $totalAmount, $status, $loe, $an, $ac);
 		}else{
-			Transaction($transNO, $PatientID, $transType, $cashier, $iID, $iQTY, $biller, $totalAmount, $payment, $iDisc, $change, $totalAmount, $status);
+			Transaction($transNO, $PatientID, $transType, $cashier, $iID, $iQTY, $biller, $totalAmount, $payment, $iDisc, $change, $totalAmount, $status, $loe, $an, $ac);
 			$transData = $trans->fetchByRef($transNO);
 			$transID = $transData['TransactionID'];
 		}

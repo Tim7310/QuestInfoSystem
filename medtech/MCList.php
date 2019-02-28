@@ -1,8 +1,10 @@
 <?php
 include_once('../connection.php');
 include_once('../classes/trans.php');
+include_once('../classes/lab.php');
 $trans = new trans;
-$patients = $trans->fetch_all();
+$lab = new lab;
+$patients = $trans->recentTrans();
 ?>
 <html>
 	<head>

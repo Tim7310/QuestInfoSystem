@@ -22,14 +22,14 @@
 	<form id="form" method="post">
 		<div class="row">
 			<div class="col-2 "  style="text-align: right;margin-top: 10px">
-				CSV of Transaction:
+				Add CSV:
 			</div>
 			<div class="col-3">
-				<label for="fileToUpload" class="btn btn-secondary">Select Transaction CSV</label>
-		    	<input type="file" name="trans" id="fileToUpload" style="display: none" required>
+				<label for="fileToUpload" class="btn btn-secondary">Select CSV</label>
+		    	<input type="file" name="csv" id="fileToUpload" style="display: none" required>
 			</div>			
 		</div>
-		<div class="row">
+		<!-- <div class="row">
 			<div class="col-2" style="text-align: right;margin-top: 10px">
 				 CSV of Patient:
 			</div>
@@ -37,7 +37,7 @@
 				<label for="fileToUpload2" class="btn btn-secondary">Select Patient CSV</label>
 	    		<input type="file" name="patient" id="fileToUpload2" style="display: none" required>
 			</div>
-		</div>	    
+		</div>	     -->
 		<div class="row">
 			<div class="col-4">
 				<center><button type="submit" class="btn btn-primary" id="submit">Import CSV</button></center>
@@ -48,7 +48,7 @@
     <div id="loadcontent"></div>
 </body>
 </html>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.form/4.2.2/jquery.form.min.js" integrity="sha384-FzT3vTVGXqf7wRfy8k4BiyzvbNfeYjK+frTVqZeNDFl8woCbF0CYG6g2fMEFFo/i" crossorigin="anonymous"></script>
+<script type="text/javascript" src="../source/jquery.form.min.js"></script>
 <script type="text/javascript">
 	$(document).ready(function(){
 		$('#fileToUpload').change(function() {
@@ -56,11 +56,11 @@
 		  var file = $('#fileToUpload')[0].files[0].name;
 		  $(this).prev('label').text(file);
 		});
-		$('#fileToUpload2').change(function() {
-		  var i = $(this).prev('label').clone();
-		  var file = $('#fileToUpload2')[0].files[0].name;
-		  $(this).prev('label').text(file);
-		});
+		// $('#fileToUpload2').change(function() {
+		//   var i = $(this).prev('label').clone();
+		//   var file = $('#fileToUpload2')[0].files[0].name;
+		//   $(this).prev('label').text(file);
+		// });
 		$("#submit").click(function(){
 			
 			var options = { 
@@ -68,7 +68,7 @@
 			url:        'importData.php', 
 				success:    function(result) { 	
 					alert("Data Imported");
-					location.reload();
+					//location.reload();
 				} 
 			}; 
 			$("#form").on('submit',(function(e) {

@@ -2,16 +2,14 @@
 include_once('../connection.php');
 include_once('../classes/trans.php');
 include_once('../classes/patient.php');
-$patient = new Patient;
-$tid = $_GET['tid'];
+include_once('../classes/lab.php');
+$lab = new lab();
 $transac = new trans;
-if (isset($_GET['id'])){
-	$id = $_GET['id'];
-	$data = $patient->fetch_data($id);
-
-if (isset($_GET['id'])){
+$patient = new Patient;
+if (isset($_GET['id']) and isset($_GET['tid'])){
 	$id = $_GET['id'];
 	$tid = $_GET['tid'];
+	$data = $patient->fetch_data($id);
 	$trans = $transac->fetch_data($id,$tid);
 ?>
 
@@ -52,6 +50,11 @@ if (isset($_GET['id'])){
 	.col p
 	{
 		text-transform: uppercase;
+	}
+	select[name="MedTechID"], select[name="qcID"], select[name="pathID"]{
+		font-size: 14px;
+		font-weight: bold;
+		cursor: pointer;
 	}
 </style>
 
@@ -528,16 +531,63 @@ include_once('labsidebar.php');
 	            	</div>
 				</div>
 				<div class="form-group row">
-	            	<div class="col">
-	            		<input type="text" name="Received" class="form-control" value ='Adelbert D. Gonzales,RMT' placeholder=" Medical Technologist">
-	            	</div>
-	            	<div class="col">
-	            		<input type="text" name="qc" class="form-control" value ='Edward S. Agustin' placeholder=" Quality Control">
-	            	</div>
-	            	<div class="col">
-	            		<input type="text" name="Printed" class="form-control" value="Emiliano Dela Cruz,MD">
-	            	</div>
-				</div>
+				<div class="col">
+					<?php if($trans['TransactionType'] == 'CASH'){ ?>
+						<input type="text" name="Clinician" class="form-control" value ='<?php echo $trans['Biller'] ?> '>
+					<?php }else{ ?>  
+						<input type="text" name="Clinician" class="form-control" value ='' placeholder="Clinician/Walk-In">
+					<?php } ?>  
+	            </div>
+	            <div class="col">
+	            	<select class="form-control" name="MedTechID">
+	            		<?php  
+	            			$medtech = $lab->medtech();
+	            				foreach ($medtech as $key) {
+	            				
+	            		?>
+						<option value="<?php echo $key['personnelID'] ?>">
+							<?php echo $key['FirstName']." ".$key['MiddleName']." ".$key['LastName'].", ".$key['PositionEXT']?>	
+						</option>
+					<?php } ?>
+					</select>
+	            	
+	            </div>
+	            <div class="col">
+	            	<select class="form-control" name="qcID">
+	            		<?php  
+	            				foreach ($medtech as $key) {
+	            				
+	            		?>
+						<option value="<?php echo $key['personnelID'] ?>">
+							<?php echo $key['FirstName']." ".$key['MiddleName']." ".$key['LastName'].", ".$key['PositionEXT']?>	
+						</option>
+					<?php } ?>
+					</select>
+	            </div>
+	            <div class="col">
+	            	<select class="form-control" name="pathID">
+	            		<?php  
+	            				foreach ($medtech as $key) {
+			            			if($key['LicenseNO'] == '0073345'){
+			            				$select = 'selected';
+	        	    				}else{
+	        	    					$select = '';
+	        	    				}
+	            				
+	            		?>
+						<option value="<?php echo $key['personnelID'] ?>" <?php echo $select ?>>
+							<?php echo $key['FirstName']." ".$key['MiddleName']." ".$key['LastName'].", ".$key['PositionEXT']?>	
+						</option>
+					<?php } ?>
+					</select>
+	            </div>
+			</div>
+			<div class="form-group row">
+				<div class="col" style="font-weight: bold; padding-top: 0px;"><center>Clinician/Walk-In</center></div>
+	            <div class="col" style="font-weight: bold; padding-top: 0px;"><center>Medical Technologist</center></div>
+	            <div class="col" style="font-weight: bold; padding-top: 0px;"><center>Quality Control</center></div>
+	            <div class="col" style="font-weight: bold; padding-top: 0px;"><center>Pathologist</center></div>
+			</div>
 
 				<center><input type="submit" class="btn btn-primary" value="SUBMIT" ></center>
 
@@ -549,6 +599,6 @@ include_once('labsidebar.php');
 </div>
 	
 </div>
-<?php }} ?>
+<?php } ?>
 </body>
 </html>

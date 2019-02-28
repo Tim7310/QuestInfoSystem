@@ -3,15 +3,22 @@ include_once("../connection.php");
 include_once("../classes/patient.php");
 $patient = new Patient;
 function randomDigits(){
-	$numbers = range(0,9);
-	$digits = '';
-	$length = 8;
-	shuffle($numbers);
-	for($i = 0; $i < $length; $i++){
-		global $digits;
-		$digits .= $numbers[$i];
-	}
-	return $digits;
+	do{
+		$patient = new Patient;
+		$numbers = range(0,9);
+	    $digits = '';
+	    $length = 8;
+	    shuffle($numbers);
+		    for($i = 0; $i < $length; $i++)
+		    {
+		    	global $digits;
+		       	$digits .= $numbers[$i];
+		    }
+		$patdata = $patient->refCount($digits);
+
+	}while($patdata != 0);
+  
+    return $digits;
 }
 function newPatient($pid, $pref, $ptype, $cn, $pos, $fn, $mn, $ln, $add, $bd, $email, $age, $gen, $conNo, $notes, $sid, $biller){
 	global $pdo;
@@ -36,7 +43,7 @@ $age = $_POST['age'];
 $gen = $_POST['gender'];
 $conNo = $_POST['contact'];
 $notes = "";
-$sid = "";
+$sid = $_POST['sid'];
 $biller = $_POST['billto'];
 try {
 	newPatient($pid, $pref, $ptype, $cn, $pos, $fn, $mn, $ln, $add, $bd, $email, $age, $gen, $conNo, $notes, $sid, $biller);

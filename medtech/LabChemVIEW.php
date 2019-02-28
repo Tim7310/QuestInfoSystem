@@ -11,6 +11,7 @@ $patient = new Patient;
 if (isset($_GET['id']) and isset($_GET['tid'])){
 	$id = $_GET['id'];
 	$tid = $_GET['tid'];
+	
 	// $data = $lab->fetch_data($id,$tid);
 	// $data1 = $qc->fetch_data($id,$tid);
 	// $trans = $transac->fetch_data($id,$tid);
@@ -458,9 +459,9 @@ include_once('labsidebar.php');
 </html>
 <?php }else{
 	echo "<script> alert('Error: No existing record found.'); </script>";
-  	echo "<script>window.open('LabHemaADD.php?id=$id&tid=$tid','_self');</script>";
+  	echo "<script>window.open('LabChemADD.php?id=$id&tid=$tid','_self');</script>";
 }
 }else{
 	echo "<script> alert('Error: Credential Error'); </script>";
-  	echo "<script>window.open('LabHema.php','_self');</script>";
+  	echo "<script>window.open('LabChem.php','_self');</script>";
 } ?></body>

@@ -1,6 +1,6 @@
 <?php
 try {
-$pdo2 = new PDO ('mysql:host=localhost;dbname=ape','root','') ;
+$pdo2 = new PDO ('mysql:host=localhost;dbname=dbqis','root','') ;
 } catch (PDOException $e) {
 	exit('Database Error.');
 }
@@ -61,6 +61,18 @@ class import{
 		$sql = "INSERT INTO qpd_trans(TransactionID, TransactionRef, PatientID, TransactionType, Cashier, ItemID, ItemName, ItemDescription, ItemQTY, ItemPrice, Biller, LOE, AN, AC, Referral, Notes, SID, TotalPrice, PaidIn, Discount, PaidOut, GrandTotal, TransactionDate) VALUES ('$tid', '$ref', '$pid', '$tt', '$cashier', '$item', '$itemname', '$desc', '$qty', '$price', '$biller', '$loe', '$an', '$ac', '$referral', '$notes', '$sid', '$tp', '$paidin', '$disc', '$paidout', '$gt', '$td')";
 		$smt = $pdo2->prepare($sql);
 		$smt->execute();		
+		}
+		
+	}
+	public function insertItem(array $array){
+		global $pdo2;
+		foreach ($array as $key) {
+			$name = $key['Item Name'];
+			$price = $key['Active Price'];
+			$desc = $key['Item Description'];
+			$type = $key['Department'];
+			$sql = $pdo2->prepare("INSERT into qpd_items(ItemName, ItemPrice, ItemDescription, ItemType) VALUES ('$name', '$price', '$desc', '$type')");
+			$sql->execute();
 		}
 		
 	}

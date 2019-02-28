@@ -35,7 +35,7 @@ include_once('cashsidebar.php');
 		cursor: pointer;
 	}
 </style>
-<div class="container" style="margin-top: 10px;">
+<div class="container-fluid" style="margin-top: 10px;">
 	<table id="example" class="table table-striped table-bordered" cellspacing="0" width="100%">
  <thead>
 						<th>Date/Time</th>
@@ -120,7 +120,13 @@ include_once('cashsidebar.php');
         scrollCollapse: true,
         "scrollX": true,
         paging:         false,
-        buttons: ['excel', 'pdf', 'colvis' ],
+        buttons: ['excel', 'pdf', 'colvis',
+        {
+                text: 'My button',
+                action: function ( e, dt, node, config ) {
+                    alert( "On Development button" );
+                }
+           } ],
         "columnDefs": [
             {
                 "targets": [ 7 ],

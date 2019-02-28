@@ -149,7 +149,7 @@ class USER
 			$header = "Location: ../error.php?privilege";
 			$header2 = "Location: ../index.php";
 			}
-		if ($page == 'cashier' or $page == 'lab' or $page == 'imaging' or $page == 'qc') {			
+		if ($page == 'cashier' or $page == 'lab' or $page == 'imaging' or $page == 'qc' or $page == 'Medical') {			
 			if($this->is_logged_in()){
 				$id = $_SESSION['userSession'];
 				$data = $this->getUser($id);
@@ -180,6 +180,13 @@ class USER
 					}
 					else if($page == 'qc'){
 						if ($data['QualityControl'] != 0) {
+							
+						}else{
+							header($header);
+						}
+					}
+					else if($page == 'Medical'){
+						if ($data['Medical'] != 0) {
 							
 						}else{
 							header($header);

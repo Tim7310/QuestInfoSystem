@@ -1,8 +1,10 @@
 <?php
 include_once('../connection.php');
 include_once('../classes/trans.php');
+include_once('../classes/lab.php');
 $trans = new trans;
-$patients = $trans->fetch_all();
+$lab = new lab;
+$patients = $trans->recentTrans();
 
 
 ?>
@@ -49,8 +51,25 @@ include_once('labsidebar.php');
 						<th nowrap>Patient Name</th>
 						<th>Action</th>
 					</thead>
-					<?php foreach  ($patients as $patient) {  ?>
-					
+					<?php foreach  ($patients as $patient) { 
+						$indus = 0;
+						$items = explode(",", $patient['ItemID']);
+						foreach ($items as $item) {
+						 	$itemdata = $trans->fetch_item($item);
+						 	if ($itemdata['ItemType'] == 'CashIndustrial' or $itemdata['ItemType'] == 'INDUSTRIAL') {
+						 		$indus++;
+						 	}
+						 }
+						 //if ($indus != 0) {
+						   
+						$pid = $patient['PatientID'];
+						$tid = $patient['TransactionID'];
+						$data = $lab->getData($pid, $tid, "lab_microscopy");
+						$data1 = $lab->getData($pid, $tid, "lab_hematology");
+						$data3 = $lab->getData($pid, $tid, "lab_serology");
+						$data4 = $lab->getData($pid, $tid, "lab_toxicology");
+					?>
+						
 					<tr>
 							<td>
 								<?php echo $patient['TransactionID']?>
@@ -67,13 +86,20 @@ include_once('labsidebar.php');
 							<td nowrap>
 								<?php echo $patient['LastName']?>,<?php echo $patient['FirstName']?> <?php echo $patient['MiddleName']?> 
 							</td>
-							<td nowrap> 
-								<button type="button" class="btn btn-primary" onclick="document.location = 'LabIndustrialVIEW.php?id=<?php echo $patient['PatientID']?>&tid=<?php echo $patient['TransactionID']?>';">VIEW RECORD</button>
+							<td nowrap>
+							<?php 
+							if(is_array($data) or is_array($data1) or is_array($data3) or is_array($data4)){
+							?>
+
+								<button type="button" class="btn btn-success" onclick="document.location = 'LabIndustrialVIEW.php?id=<?php echo $patient['PatientID']?>&tid=<?php echo $patient['TransactionID']?>';">VIEW RECORD</button>
+							<?php }else{ ?>
 								<button type="button" class="btn btn-primary" onclick="document.location = 'LabIndustrialADD.php?id=<?php echo $patient['PatientID']?>&tid=<?php echo $patient['TransactionID']?>';">ADD RECORD</button>
+							<?php } ?>	
 							</td>
 
 					</tr>
-					<?php  } 	?> 
+					<?php  //} 
+				}	?> 
     </table>
 </div>
 

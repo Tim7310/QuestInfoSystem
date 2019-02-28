@@ -30,6 +30,9 @@ include_once('qcsidebar.php');
 <div class="container" style="margin-top: 10px;">
 	<table id="example" class="table table-striped table-bordered" cellspacing="0" width="100%">
         			<thead>
+
+        				
+        				<th><center>TRANSACTION ID</center></th>
         				<th><center>DATE</center></th>
         				<th><center>COMPANY</center></th>
 		                <th><center>NAME</center></th>
@@ -47,23 +50,27 @@ include_once('qcsidebar.php');
 					</thead>
 					<?php
 					include_once('../summarycon.php');
-					 $select = "SELECT * FROM qpd_patient f, qpd_labresult l, qpd_xray x, qpd_class c, qpd_pe p, qpd_trans t WHERE 
-						f.PatientID=l.PatientID AND 
+					 $select = "SELECT * FROM qpd_patient f, lab_microscopy m, lab_hematology h, lab_serology s, qpd_xray x, qpd_class c, qpd_pe p, qpd_trans t WHERE 
+						f.PatientID=m.PatientID AND 
+						f.PatientID=h.PatientID AND 
+						f.PatientID=s.PatientID AND 
 						f.PatientID=x.PatientID AND 
 						f.PatientID=c.PatientID AND 
 						f.PatientID=p.PatientID AND 
 						f.PatientID=t.PatientID AND 
-						t.TransactionID=l.TransactionID AND 
+						t.TransactionID=m.TransactionID AND 
+						t.TransactionID=h.TransactionID AND 
+						t.TransactionID=s.TransactionID AND 
 						t.TransactionID=x.TransactionID AND 
 						t.TransactionID=c.TransactionID AND 
 						t.TransactionID=p.TransactionID AND
 						f.CreationDate >= '$SD' AND f.CreationDate <='$ED' AND 
-						f.CompanyName LIKE 'ALORICA%' ORDER BY f.LastName";
+						f.CompanyName LIKE '$Company%' GROUP BY t.TransactionID";
 					$result = mysqli_query($con, $select);
 					$i=0;
 					while($row = mysqli_fetch_array($result))
 					{
-
+							$transID = $row['TransactionID'];
 						 	$firnam = $row['FirstName'];
 			                $midnam = $row['MiddleName'];
 			                $lasnam = $row['LastName'];
@@ -86,9 +93,9 @@ include_once('qcsidebar.php');
 			                    {
 			                        $FecMicro1 = "NO SPECIMEN";
 			                    }
-			                $DT = $row['DT'];
+			                //$DT = $row['DT'];
 			                $UriOt = $row['UriOt'];
-			                $HBsAg = $row['HBsAg'];
+			                $HBsAg = $row['HBsAG'];
 		                    if ($HBsAg == "NON-REACTIVE") 
 		                    {
 		                        $HBsAg1="NR";
@@ -166,6 +173,9 @@ include_once('qcsidebar.php');
 
 					 ?>
 					<tr>
+							<td nowrap>
+								<?php echo $transID; ?>
+							</td>
 							<td nowrap>
 								<?php echo $date; ?>
 							</td>

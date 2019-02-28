@@ -552,6 +552,14 @@
 					<div class="col-4"><p class="labelName">Microscopic Findings</p></div>
 					<div class="col-8"><p class="lineRes" id="FecMicrotxt"><?php echo $data['FecMicro'] ?></p></div>
 				</div>
+				<?php 
+					}
+					if ($data['FecOt'] != "" and $data['FecOt'] != "N/A") {
+				 ?>
+				<div class="row"  style="margin-top: 5px;">
+					<div class="col-4"><p class="labelName">Other Notes</p></div>
+					<div class="col-8"><p class="lineRes" id="FecMicrotxt"><?php echo $data['FecOt'] ?></p></div>
+				</div>
 				<?php } ?>
 			</div>
 			<?php } ?>

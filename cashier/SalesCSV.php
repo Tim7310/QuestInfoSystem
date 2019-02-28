@@ -3,9 +3,12 @@ include_once("../connection.php");
 include_once("../classes/trans.php");
 $trans = new trans;
 $transact = $trans->fetch_by_date($_GET['sd'],$_GET['ed']);
+$sdate = new DateTime($_GET['sd']);
+$sdate = $sdate->format('F d Y');
+
 
 $array = array(array("Date and Time", "Receipt No.", "Transaction Type", "Patient Name", "Company Name", "Items", "Qty", "Subtotal", "Total", "Bill To", "Cashier", "Amount Tendered", "Given Change"));
-
+$grandTotal = 0;
 foreach ($transact as $key) {	
 	$patientName = $key['LastName'].", ".$key['FirstName'];
 	$Change = $key['PaidIn'] - $key['TotalPrice'];
@@ -18,6 +21,7 @@ foreach ($transact as $key) {
 	$itemids = $key['ItemID'];
 	$itemID = explode(',', $itemids);
 	$itemnum = 0;$y = 0;
+	
 
 	$array1 = array(array($key['TransactionDate'],$key['TransactionID'],$key['TransactionType'], $patientName, $key['CompanyName']," "," "," ",$key['TotalPrice'],$key['Biller'],$key['Cashier'], $key['PaidIn'], $Change));
 	$array = array_merge($array, $array1);
@@ -30,23 +34,29 @@ foreach ($transact as $key) {
 	    	 $discount = $itemsdiscount[$y] / 100 * $subTotal;
 	    	 $subTotal = $subTotal - $discount;
 	    }	   
+
 	    $quantity = $itemsquantity[$y];
 	    $y++;
 		$array2 = array(array("","","","","",$itemName,$quantity,$subTotal,"","","", "", ""));
 		$array = array_merge($array, $array2);
 		}
-	}	
+		
+	}
+	$grandTotal = $grandTotal + $key['TotalPrice'];
 }
+	$array2 = array(array("","","","","","","","TOTAL",$grandTotal,"","", "", ""));
+	$array = array_merge($array, $array2);
 //echo print_r($array[1]);
   $new_csv = fopen('/tmp/report.csv', 'w');
   for($x=0;$x < count($array);$x++){
   	fputcsv($new_csv, $array[$x]);
+  	//echo $array[$x][0];
   }
 
-	fclose($new_csv);
+	// fclose($new_csv);
 
-  // output headers so that the file is downloaded rather than displayed
+ //  // output headers so that the file is downloaded rather than displayed
   header("Content-type: text/csv");
-  header("Content-disposition: attachment; filename = Sales Report.csv");
+  header("Content-disposition: attachment; filename = $sdate.csv");
   readfile("/tmp/report.csv");
 ?>

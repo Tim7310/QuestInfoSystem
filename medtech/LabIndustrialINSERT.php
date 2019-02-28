@@ -1,14 +1,17 @@
 <?php
-$conn=mysqli_connect("localhost","root","","dbqis");
-// Check connection
-if (mysqli_connect_errno())
-  {
-  echo "Failed to connect to MySQL: " . mysqli_connect_error();
-  }
+include_once("../connection.php");
+include_once "../classes/lab.php";
+$lab = new lab;
+if (isset($_POST['id'])) {
 date_default_timezone_set("Asia/Kuala_Lumpur");
+$mdID = $_POST["MedTechID"];
+$qcID = $_POST["qcID"];
+$path = $_POST['pathID'];
 
 $id=$_POST['id'];
 $tid=$_POST['tid'];
+
+//hematology
 $WhiteBlood=$_POST['WhiteBlood'] ? $_POST['WhiteBlood'] : "N/A";
 $Hemoglobin=$_POST['Hemoglobin'] ? $_POST['Hemoglobin'] : "N/A";
 $HemoNR=$_POST['HemoNR'] ? $_POST['HemoNR'] : "N/A";
@@ -18,12 +21,17 @@ $Neutrophils=$_POST['Neutrophils'] ? $_POST['Neutrophils'] : "N/A";
 $Lymphocytes=$_POST['Lymphocytes'] ? $_POST['Lymphocytes'] : "N/A";
 $Monocytes=$_POST['Monocytes'] ? $_POST['Monocytes'] : "N/A";
 $CBCOt=$_POST['CBCOt'] ? $_POST['CBCOt'] : "N/A";
+
+//Toxicology
 $Meth=$_POST['Meth'] ;
 $Tetra=$_POST['Tetra'] ;
 $DT=$_POST['DT'] ;
+
+//serology
 $HBsAg=$_POST['HBsAg'] ;
-$PregTest=$_POST['PregTest'] ;
 $SeroOt=$_POST['SeroOt'] ;
+
+//microscopy
 $FecColor=$_POST['FecColor'] ;
 $FecCon=$_POST['FecCon'] ;
 $FecMicro=$_POST['FecMicro'] ;
@@ -42,38 +50,54 @@ $Bac=$_POST['Bac'];
 $Amorph=$_POST['Amorph'];
 $CoAx=$_POST['CoAx'];
 $UriOt=$_POST['UriOt'] ? $_POST['UriOt'] : "N/A";
+$PregTest=$_POST['PregTest'] ;
 $date=date("Y-m-d H:i:s");
-$Received=$_POST['Received'];
-$Printed=$_POST['Printed'];
-$qc=$_POST['qc'];
 
-$sql = "SELECT * FROM qpd_labresult WHERE PatientID ='$id' AND TransactionID = '$tid'";
-$result=mysqli_query($conn,$sql);
-if($rowcount=mysqli_num_rows($result) == 0) 
-{
-
-$sqlinsert= "INSERT INTO qpd_labresult (PatientID, TransactionID, WhiteBlood, Hemoglobin, HemoNR, Hematocrit, HemaNR, Neutrophils, Lymphocytes, Monocytes, CBCOt, Meth, Tetra, DT, HBsAg, PregTest, SeroOt, FecColor, FecCon, FecMicro, FecOt, UriColor, UriTrans, UriPh, UriSp, UriPro, UriGlu, RBC, WBC, ECells, MThreads, Bac, Amorph, CoAx, UriOt, CreationDate, Received, Printed) values ('$id','$tid','$WhiteBlood', '$Hemoglobin', '$HemoNR','$Hematocrit', '$HemaNR', '$Neutrophils', '$Lymphocytes', '$Monocytes', '$CBCOt','$Meth', '$Tetra', '$DT', '$HBsAg', '$PregTest', '$SeroOt','$FecColor', '$FecCon', '$FecMicro' , '$FecOt','$UriColor', '$UriTrans', '$UriPh', '$UriSp', '$UriPro', '$UriGlu', '$RBC', '$WBC', '$ECells', '$MThreads', '$Bac', '$Amorph', '$CoAx', '$UriOt', '$date', '$Received', '$Printed')";
-$sqlinsert1= "INSERT INTO qpd_class(PatientID, TransactionID, QC, CreationDate) VALUES ('$id', '$tid', '$qc', '$date')";
-
-  if ($conn->query($sqlinsert) === TRUE && $conn->query($sqlinsert1) === TRUE) 
-  {
-	echo "<script> alert('Record Added Successfully') </script>";
-	echo "<script>window.open('LabIndustrial.php','_self')</script>";
-  } 
-  else
-  {
-    echo "Error updating record: " . $conn->error;
+try{
+   $check =  $lab->getData($id, $tid, "lab_microscopy");
+   $check3 =  $lab->checkData($id, $tid, "lab_hematology");
+   $check4 =  $lab->getData($id, $tid, "lab_serology");
+   $check5 =  $lab->checkData($id, $tid, "lab_toxicology");
+   if (!is_array($check)) {
+      $lab->addMicro($tid, $id, $FecColor, $FecCon, $FecMicro, $FecOt, $UriColor, $UriTrans, $UriPh, $UriSp, $UriPro, $UriGlu, $RBC, $WBC, $Bac, $MThreads, $ECells, $Amorph, $CoAx, $UriOt, '', '', '', '', '', '', $PregTest, $path, $mdID, $qcID, $date);
+   }else{
+      $lab->updateMicro($tid, $id, $FecColor, $FecCon, $FecMicro, $FecOt, $UriColor, $UriTrans, $UriPh, $UriSp, $UriPro, $UriGlu, $RBC, $WBC, $Bac, $MThreads, $ECells, $Amorph, $CoAx, $UriOt, '', '', '', '', '', '', $PregTest, $path, $mdID, $qcID, $date);
+   }
+  if ($check3 == 0) {
+      $lab->addHema($tid, $id, $WhiteBlood, $Hemoglobin, $HemoNR, $Hematocrit, $HemaNR, $Neutrophils, $Lymphocytes, $Monocytes, $CBCOt, '', '', '', '', $path, $mdID, $qcID, $date);
+  }else{
+      $lab->updateHema($tid, $id, $WhiteBlood, $Hemoglobin, $HemoNR, $Hematocrit, $HemaNR, $Neutrophils, $Lymphocytes, $Monocytes, $CBCOt, '', '', '', '', $path, $mdID, $qcID, $date);
   }
-} 
-else 
-{
-  // do other stuff...
- echo "Patient's Record Exist. Please use update instead";
-  echo "Error updating record: " . $conn->error;
+ 
+    if (!is_array($check4)) {
+       if ($HBsAg != 'N/A' and $HBsAg != '') {
+        $lab->addSerology( $tid, $id, $HBsAg, '', $SeroOt, $path, $mdID, $qcID, $date );
+       }
+    }else{
+      $lab->updateSerology( $tid, $id, $HBsAg, '', $SeroOt, $path, $mdID, $qcID, $date );
+    }
+ 
+  
+    if ($check5 == 0) {
+      if ($DT != 'N/A' and $Tetra != 'N/A' and $Meth != 'N/A') {
+        $lab->addToxi(  $tid, $id, $Meth, $Tetra, $DT, $path, $mdID, $qcID, $date );
+      }
+    }else{
+      $lab->updateToxi(  $tid, $id, $Meth, $Tetra, $DT, $path, $mdID, $qcID, $date);
+    }
+  
+   echo "<script> alert('Record Added/Updated Successfully'); </script>";
+   echo "<script>window.open('LabIndustrialView.php?id=$id&tid=$tid','_self');</script>";
+}catch (Exception $e) {
+     echo "<script> alert('Error: $e->getMessage()'); </script>";
+      echo "<script>window.open('LabIndustrial.php','_self');</script>";
+  }
+}else{
+  echo "<script> alert('Error: Patient ID is Not Set'); </script>";
+  echo "<script>window.open('LabIndustrial.php','_self');</script>";
 }
 
 
-$conn->close();
 
 
 
