@@ -9,6 +9,9 @@ if (!isset($_SESSION)) {
 $stmt = $user->runQuery("SELECT * FROM tbl_users WHERE userID=:uid");
 $stmt->execute(array(":uid"=>$_SESSION['userSession']));
 $row = $stmt->fetch(PDO::FETCH_ASSOC);
+date_default_timezone_set("Asia/Kuala_Lumpur");
+$month = date("m");
+$year = date("Y");
 ?>
 <!DOCTYPE html>
 <html>
@@ -57,7 +60,7 @@ $row = $stmt->fetch(PDO::FETCH_ASSOC);
     <div class="navbar-nav">
        
      <a class="nav-item nav-link" href="Cash1.php" ><i class="fas fa-money-bill-alt"></i>&nbsp; Transact</a>
-      <a class="nav-item nav-link" href="TransactionListCash.php"><i class="fas fa-list-ul"></i>&nbsp; Transaction List</a>
+      <a class="nav-item nav-link" href="TransactionListCash.php?month=<?php echo $month ?>&year=<?php echo $year ?>"><i class="fas fa-list-ul"></i>&nbsp; Transaction List</a>
       <a class="nav-item nav-link" href="ItemCash.php"><i class="fas fa-archive"></i>&nbsp; Manage Tests Packages</a>
       <a class="nav-item nav-link" href="CashSalesReport.php"><i class="far fa-newspaper"></i>&nbsp; Sales Report</a>
       <a class="nav-item nav-link" href="Exchange.php"><i class="fas fa-exchange-alt"></i>&nbsp; Refund / Exchange</a>

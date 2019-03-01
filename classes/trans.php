@@ -19,7 +19,14 @@ class trans {
 		return $query->fetchAll();
 
 	}
+	public function fetchByMonth($month,$year){
+		global $pdo;
 
+		$query = $pdo->prepare("SELECT * FROM qpd_patient f, qpd_trans t WHERE f.PatientID = t.PatientID and MONTH(t.TransactionDate) = '$month' and YEAR(t.TransactionDate) = '$year'");
+		$query->execute();
+
+		return $query->fetchAll();
+	}
 	public function fetch_data($id, $tid){
 			global $pdo;
 
