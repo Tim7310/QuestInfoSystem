@@ -33,7 +33,7 @@ $rad= $rad->fetch_all();
 <?php
 include_once('radsidebar.php');
 ?>
-<div class="container" style="margin-top: 10px;">
+<div class="container-fluid" style="margin-top: 10px;">
 	<table id="example" class="table table-striped table-bordered table-hover" cellspacing="0" width="50%" style="overflow-x:scroll;">
 		<thead>
                     	<th>ID</th>

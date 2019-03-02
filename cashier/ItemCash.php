@@ -186,7 +186,9 @@ $pack = $pack->fetch_all();
 							<td > 
 								
 								
-								<button type="button" class="btn btn-danger" onclick="javascript:confirmationDelete($(this));return false;" href = 'DeletePack.php?id=<?php echo $pack['ItemID']?>';>DELETE</button>
+								<button type="button" class="btn btn-danger" onclick="javascript:confirmationDelete($(this));return false;" href = 'DeletePack.php?id=<?php echo $pack['ItemID']?>'; disabled>DELETE</button>
+								<button type="button" class="btn btn-secondary editItem" >EDIT</button>
+								<input type="hidden" name="" class="itemid" value="<?php echo $pack['ItemID']?>">
 							</td>
 							<?php } ?> 
 					</tr> 
@@ -207,9 +209,13 @@ function confirmationDelete(anchor)
 	if(conf)
 	window.location=anchor.attr("href");
 }
-
-
 	$(document).ready(function() {
+	$(".editItem").click(function(){
+		var id = $(this).siblings(".itemid").val();
+		$.post("editItem.php",{id:id},function(e){
+			alert(e);
+		});
+	});
     var table = $('#example').DataTable( {
         lengthChange: false,
         scrollY:       500,
