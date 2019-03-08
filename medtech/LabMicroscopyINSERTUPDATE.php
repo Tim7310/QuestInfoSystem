@@ -54,16 +54,24 @@ $path = $_POST['pathID'];
   $BIL=$_POST['BIL'] ;
   $PregTest = $_POST['pregTest'];
   $date=date("Y-m-d H:i:s");
+  //AFB stain
+  $AFBVA1 = $_POST['AFBVA1'];
+  $AFBVA2 = $_POST['AFBVA2'];
+  $AFBR1 = $_POST['AFBR1'];
+  $AFBR2 = $_POST['AFBR2'];
+  $AFBD = $_POST['AFBD'];
+
+
 
   try{
     $check =  $lab->getData($PatientID, $id, "lab_microscopy");
      if (!is_array($check)) {
 
-    $lab->addMicro($id, $PatientID, $FecColor, $FecCon, $FecMicro , $FecOt, $UriColor, $UriTrans, $UriPh, $UriSp, $UriPro, $UriGlu, $RBC, $WBC, $Bac, $MThreads, $ECells, $Amorph, $CoAx, $UriOt,$LE, $NIT,$URO,$BLD,$KET,$BIL,$PregTest,$path,$mdID,$qcID,$date);
+    $lab->addMicro($id, $PatientID, $FecColor, $FecCon, $FecMicro , $FecOt, $UriColor, $UriTrans, $UriPh, $UriSp, $UriPro, $UriGlu, $RBC, $WBC, $Bac, $MThreads, $ECells, $Amorph, $CoAx, $UriOt,$LE, $NIT,$URO,$BLD,$KET,$BIL,$PregTest,$path,$mdID,$qcID,$date,$AFBVA1, $AFBVA2, $AFBR1, $AFBR2, $AFBD);
       echo "<script> alert('Record Added Successfully'); </script>";
       echo "<script>window.open('LabMicroscopyView.php?id=$PatientID&tid=$id','_self');</script>";
     }else{
-      $lab->updateMicro($id, $PatientID, $FecColor, $FecCon, $FecMicro , $FecOt, $UriColor, $UriTrans, $UriPh, $UriSp, $UriPro, $UriGlu, $RBC, $WBC, $Bac, $MThreads, $ECells, $Amorph, $CoAx, $UriOt,$LE, $NIT,$URO,$BLD,$KET,$BIL,$PregTest,$path,$mdID,$qcID,$date);
+      $lab->updateMicro($id, $PatientID, $FecColor, $FecCon, $FecMicro , $FecOt, $UriColor, $UriTrans, $UriPh, $UriSp, $UriPro, $UriGlu, $RBC, $WBC, $Bac, $MThreads, $ECells, $Amorph, $CoAx, $UriOt,$LE, $NIT,$URO,$BLD,$KET,$BIL,$PregTest,$path,$mdID,$qcID,$date,$AFBVA1, $AFBVA2, $AFBR1, $AFBR2, $AFBD);
        echo "<script> alert('Record Updated Successfully'); </script>";
        echo "<script>window.open('LabMicroscopyView.php?id=$PatientID&tid=$id','_self');</script>";
     }

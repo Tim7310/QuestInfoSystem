@@ -496,15 +496,22 @@ else if ($Company == 'DNATA' || $Company == 'DNATA TRAVEL INC')
                 <th><center>REMARKS</center></th>";
 
            
-                           $select = "SELECT * FROM qpd_patient f, qpd_labresult l, qpd_xray x, qpd_class c, qpd_pe p, qpd_trans t WHERE 
-                        f.PatientID=l.PatientID AND 
-                        f.PatientID=x.PatientID AND 
-                        f.PatientID=c.PatientID AND 
+                           $select = "SELECT * FROM qpd_patient f, lab_microscopy m, lab_hematology h, lab_toxicology s, qpd_xray x, qpd_class c, qpd_vital v, qpd_medhis d, qpd_pe p, qpd_trans t WHERE
+                        f.PatientID=m.PatientID AND 
+                        f.PatientID=h.PatientID AND 
+                        f.PatientID=x.PatientID AND
+                        f.PatientID=c.PatientID AND
+                        f.PatientID=v.PatientID AND
+                        f.PatientID=d.PatientID AND
                         f.PatientID=p.PatientID AND 
                         f.PatientID=t.PatientID AND 
-                        t.TransactionID=l.TransactionID AND 
+                        t.TransactionID=m.TransactionID AND 
+                        t.TransactionID=h.TransactionID AND
                         t.TransactionID=x.TransactionID AND 
-                        t.TransactionID=c.TransactionID AND 
+                        t.TransactionID=s.TransactionID AND
+                        t.TransactionID=c.TransactionID AND
+                        t.TransactionID=v.TransactionID AND
+                        t.TransactionID=d.TransactionID AND 
                         t.TransactionID=p.TransactionID AND
                         f.CreationDate >= '$SD' AND f.CreationDate <='$ED' AND 
                         f.CompanyName LIKE '$Company%' ORDER BY f.LastName";
@@ -522,9 +529,9 @@ else if ($Company == 'DNATA' || $Company == 'DNATA TRAVEL INC')
                 $gen = $row['Gender'];
                 $connum = $row['ContactNo'];
                 $CBCOt = $row['CBCOt'];
-                $DT = $row['DT'];
+                $DT = $row['Drugtest'];
                 $Preg = $row['PregTest'];
-                $HBsAg = $row['HBsAg'];
+                /*$HBsAg = $row['HBsAg'];
                     if ($HBsAg == "NON-REACTIVE") 
                     {
                         $HBsAg1="NR";
@@ -540,7 +547,7 @@ else if ($Company == 'DNATA' || $Company == 'DNATA TRAVEL INC')
                     else
                     {
                         $HBsAg1 = "N/A";
-                    }
+                    }*/
                 $FecMicro = $row['FecMicro'];
                 if ($FecMicro == "NO INTESTINAL PARASITE SEEN") 
                     {

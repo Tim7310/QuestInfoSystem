@@ -346,6 +346,38 @@ include_once('labsidebar.php');
 	            		<b><?php echo $check['PregTest'] ?></b>
 	            	</div>
 				</div>
+<!-- AFB -->
+				<div class="form-group row">
+	            	<div class="col-3 ">
+	            		<b>AFB</b>
+	            	</div>
+	            	<div class="col-2"><center><b>Specimen 1</center></b></div>
+	            	<div class="col-2"><center><b>Specimen 2</center></b></div>
+				</div>
+				<div class="form-group row">					
+					<label for="FecColor" class="col-3 text-right">Visual Appearance:</label>	            	
+	            	<div class="col-2">
+	            		<center><b><?php echo $check['AFBVA1'] ?></b></center>
+	            	</div>
+	            	<div class="col-2">
+	            		<center><b><?php echo $check['AFBVA2'] ?></b></center>
+	            	</div>
+				</div>
+				<div class="form-group row">					
+					<label for="FecColor" class="col-3 text-right">Reading:</label>	            	
+	            	<div class="col-2">
+	            		<center><b><?php echo $check['AFBR1'] ?></b></center>
+	            	</div>
+	            	<div class="col-2">
+	            		<center><b><?php echo $check['AFBR2'] ?></b></center>
+	            	</div>
+				</div>
+				<div class="form-group row">					
+					<label for="FecColor" class="col-3 text-right">Reading:</label>	            	
+	            	<div class="col-4">
+	            		<center><b><?php echo $check['AFBD'] ?></b></center>
+	            	</div>	  
+				</div>
 <!-- NAMES -->
 		<hr>
 			<div class="form-group row">

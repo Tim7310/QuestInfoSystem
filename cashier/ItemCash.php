@@ -116,24 +116,36 @@ $pack = $pack->fetch_all();
 <body>
 <?php include_once('cashsidebar.php');?>
 <div class="container-fluid">
-<div class="col-md-10 offset-sm-1">
+<div class="col-md-10 offset-md-1">
 	<div class="card card-info" style="border-radius: 0px; margin-top: 10px;">
  		<div class="card-header"><center><b>CREATE PACKAGES</b></center></div>
 		<div class="card-block">
-			<div class="row">
-				<div class="col">
-					<form method="POST">
-					<input type="" name="txtItemName" placeholder="Item Name" required="">
-					<input type="" name="txtItemDescription" placeholder="Item Description" required="">
-					<input type="" name="txtItemPrice" placeholder="Item Price" required="">
-					<select name="CashType">
-						<option value="CashIndustrial">CASH INDUSTRIAL</option>
-						<option value="CashLab" selected>CASH LAB</option>
-						<option value="CashImaging">CASH IMAGING</option>
-					</select>
-					<input type="submit" name="btnCreatePackage" value="CREATE NEW PACKAGE">
-					</form>
-				</div>
+			<div class="contaienr">
+			<div >
+				<form method="POST" class="form-inline">
+					<div class="form-group mr-2">
+						<input type="" name="txtItemName" placeholder="Item Name" required="" class="form-control">
+					</div>
+					<div class="form-group mr-2">
+						<input type="" name="txtItemDescription" placeholder="Item Description" required="" class="form-control">
+					</div>
+					<div class="form-group mr-2">
+						<input type="" name="txtItemPrice" placeholder="Item Price" required="" class="form-control">
+					</div>
+					<div class="form-group mr-2">
+						<select name="CashType" class="form-control">
+							<option value="CashIndustrial">CASH INDUSTRIAL</option>
+							<option value="CashLab" selected>CASH LAB</option>
+							<option value="CashImaging">CASH IMAGING</option>
+							<option value="AccountIndustrial">ACCOUNT INDUSTRIAL</option>
+							<option value="AccountHMO">ACCOUNT HMO</option>
+						</select>
+					</div>
+					<div class="form-group mr-2">
+						<input type="submit" class="form-control btn-primary" name="btnCreatePackage" value="CREATE">
+					</div>
+				</form>				
+			</div>
 			</div> 
 		</div>
 	</div>
@@ -149,7 +161,7 @@ $pack = $pack->fetch_all();
 						<th>Item Name</th>
 						<th>Item Price</th>
 						<!-- <th>Item Description</th> -->
-						<th width="50px">Special Test?</th>
+						<th width="50px">Quick Access</th>
 						<th>Action</th>
 
 					</thead>
@@ -186,8 +198,8 @@ $pack = $pack->fetch_all();
 							<td > 
 								
 								
-								<button type="button" class="btn btn-danger" onclick="javascript:confirmationDelete($(this));return false;" href = 'DeletePack.php?id=<?php echo $pack['ItemID']?>'; disabled>DELETE</button>
-								<button type="button" class="btn btn-secondary editItem" >EDIT</button>
+								<!-- <button type="button" class="btn btn-danger" onclick="javascript:confirmationDelete($(this));return false;" href = 'DeletePack.php?id=<?php echo $pack['ItemID']?>'; disabled>DELETE</button> -->
+								<button type="button" class="btn btn-info editItem" >EDIT</button>
 								<input type="hidden" name="" class="itemid" value="<?php echo $pack['ItemID']?>">
 							</td>
 							<?php } ?> 
@@ -197,7 +209,7 @@ $pack = $pack->fetch_all();
 	</div>
 </div>
 <!-- Trigger/Open The Modal -->
-
+<div id="modalLoader"></div>
 
 
 </div>
@@ -212,8 +224,8 @@ function confirmationDelete(anchor)
 	$(document).ready(function() {
 	$(".editItem").click(function(){
 		var id = $(this).siblings(".itemid").val();
-		$.post("editItem.php",{id:id},function(e){
-			alert(e);
+		$("#modalLoader").load("editItem.php",{id:id},function(e){
+			$("#modal").modal("show");
 		});
 	});
     var table = $('#example').DataTable( {
@@ -245,7 +257,7 @@ function confirmationDelete(anchor)
         		type = 0;
         		$(this).siblings(".testtype").val(0);
         	}
-        	$.post("UpdateItemType.php",{id: id, type: type},function(e){
+        	$.post("UpdateItemQA.php",{id: id, type: type},function(e){
         		if (e == 0) {
         			thisbtn.html('<i class="fas fa-times-circle"></i>');
         		}else{

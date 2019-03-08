@@ -7,6 +7,7 @@
 	<link rel="icon" type="image/png" href="../assets/qpd.png">
 	<link href="../source/bootstrap4/css/bootstrap.min.css" media="all" rel="stylesheet"/>
 	<script type="text/javascript" src="../source/jquery.min.js"></script>
+	<link href="../source/switch.css" rel="stylesheet" />
 
 </head>
 <?php 
@@ -58,6 +59,10 @@ include_once('cashsidebar.php');
         <div class="card" style="border-radius: 0px; margin-top: 10px;">
             <div class="card-header card-inverse card-info"><center><b>Sales Details</b></center></div>
             <div class="card-block">
+            	<span class="switch">
+				  <input type="checkbox" class="switch" id="switch-id">
+				  <label for="switch-id" style="font-weight: bolder;"></label>
+				</span>
             	<div class="row">
             		<div class="col">
 	            		<label>Start Date</label>
@@ -67,8 +72,12 @@ include_once('cashsidebar.php');
 	            		<label>End Date</label>
 	                	<input class="form-control" type="text" name="ED" id="ed1" style="width: 300px; height: 50px; margin-left: 10px; margin-right: 20px;" class="form-control" placeholder="YYYY-MM-DD HH:MM:SS">
 	            	</div>
-            	</div>
-            	<center><input type="submit" class="btn btn-success" value="Generate Report" name="gen"></center> 
+            	</div>            
+				
+            	<center>
+            		<input type="submit" class="btn btn-success" value="Generate Report" name="gen">
+            		<input type="submit" class="btn btn-success" value="Generate End of the Day" name="eotd">
+            	</center> 
             	<button class="btn btn-primary mt-2" type="button" name="tdReport" >Generate Today's Report</button>
             	<button class="btn btn-primary mt-2" type="button" name="eotdReport" >Generate End of the Day Report</button>
             </div>
@@ -83,20 +92,37 @@ include_once('cashsidebar.php');
 </html>
 <script type="text/javascript">
 	$(document).ready(function(){
+		$( "#switch-id" ).trigger("click");
+		var ttype;
+		$( "#switch-id" ).change(function() {
+		  var input = $( this );
+			if (input.is(":checked")) {
+				$(this).siblings("label").html("CASH");
+				ttype = "CASH";
+			}else{
+				$(this).siblings("label").html("ACCOUNT");
+				ttype = "ACCOUNT";
+			}
+		}).change();
 		$("input[name='gen']").click(function(){
 			var sd1 = $('#sd1').val();
 			var ed1 = $('#ed1').val();
-			window.open("SalesCSV.php?sd="+sd1+"&ed="+ed1);
+			window.open("SalesCSV.php?sd="+sd1+"&ed="+ed1+"&type="+ttype);
+		});
+		$("input[name='eotd']").click(function(){
+			var sd1 = $('#sd1').val();
+			var ed1 = $('#ed1').val();
+			window.open("eotd.php?sd="+sd1+"&ed="+ed1+"&type="+ttype);
 		});
 		$("button[name='tdReport'").click(function(){
 			var sd2 = "<?php echo $dnSD?>";
 			var ed2 = "<?php echo $dnED?>";
-			window.open("SalesCSV.php?sd="+sd2+"&ed="+ed2);
+			window.open("SalesCSV.php?sd="+sd2+"&ed="+ed2+"&type="+ttype);
 		});
 		$("button[name='eotdReport'").click(function(){
 			var sd2 = "<?php echo $dnSD?>";
 			var ed2 = "<?php echo $dnED?>";
-			window.open("eotd.php?sd="+sd2+"&ed="+ed2);
+			window.open("eotd.php?sd="+sd2+"&ed="+ed2+"&type="+ttype);
 		});
 	});
 </script>

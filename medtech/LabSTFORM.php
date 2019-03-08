@@ -211,8 +211,8 @@ hr
 	    <div class="col-6" >
 	        <span class="lineName">
 	        	<?php 
-	        if ($data['Biller'] != "WALK-IN") {
-	        	echo $data['Biller']; 
+	        if ($data['CompanyName'] != "WALK-IN") {
+	        	echo $data['CompanyName']; 
 	        } ?></span>
 	    </div>
 	</div>
@@ -286,34 +286,53 @@ hr
 				SEROLOGY
 			</div>
 		</div>
+		<?php if( $data2['HBsAG'] != '' and $data2['HBsAG'] != 'N/A'){ ?>
 		<div class="row">
-			<div class="col-4 names p-4" style="font-size: 20px">
+			<div class="col-5 names p-4" style="font-size: 20px">
 				HBsAG
-			</div>
-			<div class="col-3 line p-4" style="font-size: 20px">
-				<?php echo $data2['HBsAG'] ?>
 			</div>		
+			<div class="col-5 line p-4" style="font-size: 20px">
+				<?php echo $data2['HBsAG'] ?>
+			</div>				
 		</div>
+		<?php } ?>
+		<?php if( $data2['AntiHav'] != '' and $data2['AntiHav'] != 'N/A'){ ?>
 		<div class="row">
-			<div class="col-4 names p-4" style="font-size: 20px">
+			<div class="col-5 names p-4" style="font-size: 20px">
 				Anti Hav
 			</div>
-			<div class="col-3 line p-4 ">
+			<div class="col-5 line p-4 ">
 				<?php echo $data2['AntiHav'] ?>
-			</div>		
+			</div>
 		</div>
+		<?php } ?>	
+		<?php if( $data2['VDRL'] != '' and $data2['VDRL'] != 'N/A'){ ?>
 		<div class="row">
-			<div class="col-4 names p-4" style="font-size: 20px">
+			<div class="col-5 names p-4" style="font-size: 20px">
+				VDRL/RPR Screening
+			</div>
+			<div class="col-5 line p-4 ">
+				<?php echo $data2['VDRL'] ?>
+			</div>
+		</div>
+		<?php } ?>
+		<?php if( $data2['SeroOt'] != '' and $data2['SeroOt'] != 'N/A'){ ?>
+		<div class="row">
+			<div class="col-5 names p-4" style="font-size: 20px">
 				OTHER NOTES
 			</div>
-			<div class="col-3 line p-4 ">
+			<div class="col-5 line p-4 ">
 				<?php echo $data2['SeroOt'] ?>
 			</div>		
 		</div>
-		
+		<?php } ?>	
 	</div>
 	<?php } ?>
-	<?php if(is_array($data1)){ ?>
+	<?php if(is_array($data1)){ 
+		// if ($data1['Meth'] != 'N/A' and $data['Tetra'] ) {
+			# code...
+		
+	?>
 	<div class="container-fluid">
 		<div class="row">
 			<div class="col-12 labelName pt-5">
@@ -321,26 +340,26 @@ hr
 			</div>
 		</div>
 		<div class="row">
-			<div class="col-4 names p-4" style="font-size: 20px">
+			<div class="col-5 names p-4" style="font-size: 20px">
 				Methamphethamine
 			</div>
-			<div class="col-3 line p-4" style="font-size: 20px">
+			<div class="col-4 line p-4" >
 				<?php echo $data1['Meth'] ?>
 			</div>		
 		</div>
 		<div class="row">
-			<div class="col-4 names p-4" style="font-size: 20px">
+			<div class="col-5 names p-4" style="font-size: 20px">
 				Tetrahydrocanabinol
 			</div>
-			<div class="col-3 line p-4 ">
+			<div class="col-4 line p-4 " >
 				<?php echo $data1['Tetra'] ?>
 			</div>		
 		</div>
 		<div class="row">
-			<div class="col-4 names p-4" style="font-size: 20px">
+			<div class="col-5 names p-4" style="font-size: 25px">
 				DRUG TEST RESULT
 			</div>
-			<div class="col-3 line p-4 ">
+			<div class="col-4 line p-4 " style="font-size: 25px">
 				<?php echo $data1['Drugtest'] ?>
 			</div>		
 		</div>

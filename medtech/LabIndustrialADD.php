@@ -464,7 +464,7 @@ include_once('labsidebar.php');
 	            	<div class="col-2">
 	            		<SELECT class="form-control" name="HBsAg" id="HBsAg">
 				 	 		<OPTION >N/A</OPTION>
-				 	 		<OPTION value="NONREACTIVE">NON-REACTIVE</OPTION>
+				 	 		<OPTION value="NON-REACTIVE">NON-REACTIVE</OPTION>
 				 	 		<OPTION value="REACTIVE">REACTIVE</OPTION>
 				 	 	</SELECT>
 	            	</div>

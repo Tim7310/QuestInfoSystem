@@ -41,6 +41,22 @@ $PLT=$_POST['PLT'];
 $HemoNR = "";
 $HemaNR = "";
 $CBCOt = $_POST['CBCOt'];
+//PT and APTT
+$PTime = $_POST['PTime'];
+$PTControl = $_POST['PTControl'];
+$ActPercent = $_POST['ActPercent'];
+$INR = $_POST['INR'];
+$PR131 = $_POST['PR131'];
+$APTTime = $_POST['APTTime'];
+$APTControl = $_POST['APTControl'];
+$PTimeNV = $_POST['PTimeNV']; 
+$PTControlNV = $_POST['PTControlNV'];
+$ActPercentNV = $_POST['ActPercentNV']; 
+$INRNV = $_POST['INRNV']; 
+$APTTimeNV = $_POST['APTTimeNV'];
+$APTControlNV = $_POST['APTControlNV'];
+//Malarial Smear
+$MS = $_POST['MS'];
 
 $date=date("Y-m-d H:i:s");
 
@@ -48,17 +64,17 @@ $date=date("Y-m-d H:i:s");
     $check =  $lab->getData($PatientID, $id, "lab_hematology");
      if (!is_array($check)) {
 
-    $lab->addHema($id, $PatientID, $WhiteBlood, $Hemoglobin, $HemoNR, $Hematocrit, $HemaNR, $Neutrophils, $Lymphocytes, $Monocytes, $CBCOt, $EOS, $BAS, $CBCRBC, $PLT, $path, $mdID, $qcID, $date);
+    $lab->addHema($id, $PatientID, $WhiteBlood, $Hemoglobin, $HemoNR, $Hematocrit, $HemaNR, $Neutrophils, $Lymphocytes, $Monocytes, $CBCOt, $EOS, $BAS, $CBCRBC, $PLT, $PTime, $PTControl, $ActPercent, $INR, $PR131, $APTTime, $APTControl, $path, $mdID, $qcID, $date, $PTimeNV, $PTControlNV, $ActPercentNV, $INRNV, $APTTimeNV, $APTControlNV, $MS);
       echo "<script> alert('Record Added Successfully'); </script>";
       echo "<script>window.open('LabHemaView.php?id=$PatientID&tid=$id','_self');</script>";
     }else{
-      $lab->updateHema($id, $PatientID, $WhiteBlood, $Hemoglobin, $HemoNR, $Hematocrit, $HemaNR, $Neutrophils, $Lymphocytes, $Monocytes, $CBCOt, $EOS, $BAS, $CBCRBC, $PLT, $path, $mdID, $qcID, $date);
+      $lab->updateHema($id, $PatientID, $WhiteBlood, $Hemoglobin, $HemoNR, $Hematocrit, $HemaNR, $Neutrophils, $Lymphocytes, $Monocytes, $CBCOt, $EOS, $BAS, $CBCRBC, $PLT, $PTime, $PTControl, $ActPercent, $INR, $PR131, $APTTime, $APTControl, $path, $mdID, $qcID, $date, $PTimeNV, $PTControlNV, $ActPercentNV, $INRNV, $APTTimeNV, $APTControlNV, $MS);
        echo "<script> alert('Record Updated Successfully'); </script>";
        echo "<script>window.open('LabHemaView.php?id=$PatientID&tid=$id','_self');</script>";
     }
   }catch (Exception $e) {
-     echo "<script> alert('Error: $e->getMessage()'); </script>";
-      echo "<script>window.open('LabHema.php','_self');</script>";
+    echo "<script> alert('Error: $e->getMessage()'); </script>";
+    echo "<script>window.open('LabHema.php','_self');</script>";
   }
 }else{
   echo "<script> alert('Error: Patient ID is Not Set'); </script>";

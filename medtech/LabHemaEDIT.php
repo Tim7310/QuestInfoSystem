@@ -291,7 +291,134 @@ include_once('labsidebar.php');
 	            		<input type="text" name="CBCOt" class="form-control" id="CBCOt" value="<?php echo $data['CBCOt'] ?>">
 	            	</div>
 				</div>
-            
+            <div class="row">
+	            <div class="col">
+	            	<b>PROTHROMBIN TIME</b>
+	            </div>
+			</div>
+			<div class="form-group row">
+	            <label for="PTime" class="col-3 col-form-label">Patient Time :</label>
+	            <div class="col-2">
+	            	<input type="text" name="PTime"  class="form-control" id="PTime" value="<?php echo $data['PTime'] ?>">
+	            </div>
+	             <div class="col-1">
+	            	SECS
+	            </div>
+	              <div class="col-1">
+	            	NV :
+	            </div>
+	            <div class="col-2">
+	            	<input type="text" name="PTimeNV"  class="form-control" id="PTimeNV" value="<?php echo $data['PTimeNV'] ?>">
+	            </div>
+	            <div class="col-2">
+	            	SECS
+	            </div>
+			</div>
+			<div class="form-group row">
+	            <label for="PTControl" class="col-3 col-form-label">Control :</label>
+	            <div class="col-2">
+	            	<input type="text" name="PTControl"  class="form-control" id="PTControl" value="<?php echo $data['PTControl'] ?>">
+	            </div>
+	             <div class="col-1">
+	            	SECS
+	            </div>
+	             <div class="col-1">
+	            	NV :
+	            </div>
+	            <div class="col-2">
+	            	<input type="text" name="PTControlNV"  class="form-control" id="PTControlNV" 
+	            	value="<?php echo $data['PTControlNV'] ?>">
+	            </div>
+	            <div class="col-2">
+	            	SECS
+	            </div>
+			</div>
+			<div class="form-group row">
+	            <label for="ActPercent" class="col-3 col-form-label">% Activity:</label>
+	            <div class="col-2">
+	            	<input type="text" name="ActPercent"  class="form-control" id="ActPercent" value="<?php echo $data['ActPercent'] ?>">
+	            </div>
+	            <div class="col-1">
+	            	%
+	            </div>
+	           <div class="col-1">
+	            	NV :
+	            </div>
+	            <div class="col-2">
+	            	<input type="text" name="ActPercentNV"  class="form-control" id="ActPercentNV" value="<?php echo $data['ActPercentNV'] ?>">
+	            </div>
+	            <div class="col-2">
+	            	%
+	            </div>
+			</div>
+			<div class="form-group row">
+	            <label for="INR" class="col-3 col-form-label">INR</label>
+	            <div class="col-2">
+	            	<input type="text" name="INR"  class="form-control" id="INR" value="<?php echo $data['INR'] ?>">
+	            </div>
+	             <div class="col-1">
+	            	
+	            </div>
+	           <div class="col-1">
+	            	NV :
+	            </div>
+	            <div class="col-2">
+	            	<input type="text" name="INRNV"  class="form-control" id="INRNV" value="<?php echo $data['INRNV'] ?>">
+	            </div>
+			</div>
+			<div class="form-group row">
+	            <label for="PR1.31" class="col-3 col-form-label">PR1.31</label>
+	            <div class="col-2">
+	            	<input type="text" name="PR131"  class="form-control" id="PR1.31" value="<?php echo $data['PR131'] ?>">
+	            </div>
+			</div>
+			<div class="row">
+	            <div class="col">
+	            	<b>APTT</b>
+	            </div>
+			</div>
+			<div class="form-group row">
+	            <label for="APTTime" class="col-3 col-form-label">Patient Time :</label>
+	            <div class="col-2">
+	            	<input type="text" name="APTTime"  class="form-control" id="APTTime" value="<?php echo $data['APTTime'] ?>">
+	            </div>
+	           <div class="col-1">
+	            	SECS
+	            </div>
+	              <div class="col-1">
+	            	NV :
+	            </div>
+	            <div class="col-2">
+	            	<input type="text" name="APTTimeNV"  class="form-control" id="APTTimeNV" value="<?php echo $data['APTTimeNV'] ?>">
+	            </div>
+	            <div class="col-2">
+	            	SECS
+	            </div>
+			</div>
+			<div class="form-group row">
+	            <label for="APTControl" class="col-3 col-form-label">Control :</label>
+	            <div class="col-2">
+	            	<input type="text" name="APTControl"  class="form-control" id="APTControl" value="<?php echo $data['APTControl'] ?>">
+	            </div>
+	            <div class="col-1">
+	            	SECS
+	            </div>
+	             <div class="col-1">
+	            	NV :
+	            </div>
+	            <div class="col-2">
+	            	<input type="text" name="APTControlNV"  class="form-control" id="APTControlNV" value="<?php echo $data['APTControlNV'] ?>">
+	            </div>
+	            <div class="col-2">
+	            	SECS
+	            </div>
+			</div>
+			<div class="form-group row">
+	            <label for="MS" class="col-3 col-form-label"><b>Malarial Smear :</b></label>
+	            <div class="col-2">
+	            	<input type="text" name="MS"  class="form-control" id="MS" value="<?php echo $data['MS'] ?>">
+	            </div>
+			</div>
 
 			<div class="form-group row">
 				<div class="col">

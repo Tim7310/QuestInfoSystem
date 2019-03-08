@@ -50,156 +50,156 @@ $printCount = $lab->checkPrint($id, $tid, 'CHEMISTRY');
     <script type="text/javascript" src="../source/jquery-confirm.min.js"></script>
 	<link rel="stylesheet" type="text/css" href="../source/jquery-confirm.min.css">
 	<script type="text/javascript">
-	window.onload = function() 
-	{ 
-		var x = "<?php echo $C ?>";
-		if ( x == "WALK-IN") 
-		{
-			//document.getElementById("Check").style.visibility = "hidden";
-		}
-		else if ( x == "") 
-		{
-			document.getElementById("CheckAgain").innerHTML = "-";
-		}
+	// window.onload = function() 
+	// { 
+	// 	var x = "<?php echo $C ?>";
+	// 	if ( x == "WALK-IN") 
+	// 	{
+	// 		//document.getElementById("Check").style.visibility = "hidden";
+	// 	}
+	// 	else if ( x == "") 
+	// 	{
+	// 		document.getElementById("CheckAgain").innerHTML = "-";
+	// 	}
 
-		var FBS = "<?php echo $FBS ?>";
-		if ( FBS == "") 
-		{
-			var divOne = document.getElementById("CheckFBS");
-			divOne.remove();
-		}
+	// 	var FBS = "<?php echo $FBS ?>";
+	// 	if ( FBS == "") 
+	// 	{
+	// 		var divOne = document.getElementById("CheckFBS");
+	// 		divOne.remove();
+	// 	}
 
-		var BUA = "<?php echo $BUA ?>";
-		if ( BUA == "") 
-		{
-			var divTwo = document.getElementById("CheckBUA");
-			divTwo.remove();
-		}
+	// 	var BUA = "<?php echo $BUA ?>";
+	// 	if ( BUA == "") 
+	// 	{
+	// 		var divTwo = document.getElementById("CheckBUA");
+	// 		divTwo.remove();
+	// 	}
 
-		var BUN = "<?php echo $BUN ?>";
-		if ( BUN == "") 
-		{
-			var divThree = document.getElementById("CheckBUN");
-			divThree.remove();
-		}
+	// 	var BUN = "<?php echo $BUN ?>";
+	// 	if ( BUN == "") 
+	// 	{
+	// 		var divThree = document.getElementById("CheckBUN");
+	// 		divThree.remove();
+	// 	}
 
-		var CREA = "<?php echo $CREA ?>";
-		if ( CREA == "") 
-		{
-			var divFour = document.getElementById("CheckCREA");
-			divFour.remove();
-		}
+	// 	var CREA = "<?php echo $CREA ?>";
+	// 	if ( CREA == "") 
+	// 	{
+	// 		var divFour = document.getElementById("CheckCREA");
+	// 		divFour.remove();
+	// 	}
 
-		var CHOL = "<?php echo $CHOL ?>";
-		if ( CHOL == "") 
-		{
-			var divFive = document.getElementById("CheckCHOL");
-			divFive.remove();
+	// 	var CHOL = "<?php echo $CHOL ?>";
+	// 	if ( CHOL == "") 
+	// 	{
+	// 		var divFive = document.getElementById("CheckCHOL");
+	// 		divFive.remove();
 
-		}
+	// 	}
 
-		var TRIG = "<?php echo $TRIG ?>";
-		if ( TRIG == "") 
-		{
-			var divSeven = document.getElementById("CheckTRIG");
-			divSeven.remove();
-		}
+	// 	var TRIG = "<?php echo $TRIG ?>";
+	// 	if ( TRIG == "") 
+	// 	{
+	// 		var divSeven = document.getElementById("CheckTRIG");
+	// 		divSeven.remove();
+	// 	}
 
-		var HDL = "<?php echo $HDL ?>";
-		if ( HDL == "") 
-		{
-			var divEight = document.getElementById("CheckHDL");
-			divEight.remove();
-		}
+	// 	var HDL = "<?php echo $HDL ?>";
+	// 	if ( HDL == "") 
+	// 	{
+	// 		var divEight = document.getElementById("CheckHDL");
+	// 		divEight.remove();
+	// 	}
 
-		var LDL = "<?php echo $LDL ?>";
-		if ( LDL == "") 
-		{
-			var divNine = document.getElementById("CheckLDL");
-			divNine.remove();
-		}
+	// 	var LDL = "<?php echo $LDL ?>";
+	// 	if ( LDL == "") 
+	// 	{
+	// 		var divNine = document.getElementById("CheckLDL");
+	// 		divNine.remove();
+	// 	}
 
-		var CH = "<?php echo $CH ?>";
-		if ( CH == "") 
-		{
-			var divTen = document.getElementById("CheckCH");
-			divTen.remove();
-		}
+	// 	var CH = "<?php echo $CH ?>";
+	// 	if ( CH == "") 
+	// 	{
+	// 		var divTen = document.getElementById("CheckCH");
+	// 		divTen.remove();
+	// 	}
 
-		var VLDL = "<?php echo $VLDL ?>";
-		if ( VLDL == "") 
-		{
-			var divEle = document.getElementById("CheckVLDL");
-			divEle.remove();
-		}
+	// 	var VLDL = "<?php echo $VLDL ?>";
+	// 	if ( VLDL == "") 
+	// 	{
+	// 		var divEle = document.getElementById("CheckVLDL");
+	// 		divEle.remove();
+	// 	}
 
-		var Na = "<?php echo $Na ?>";
-		if ( Na == "") 
-		{
-			var divTwe = document.getElementById("CheckNa");
-			divTwe.remove();
-		}
+	// 	var Na = "<?php echo $Na ?>";
+	// 	if ( Na == "") 
+	// 	{
+	// 		var divTwe = document.getElementById("CheckNa");
+	// 		divTwe.remove();
+	// 	}
 
-		var K = "<?php echo $K ?>";
-		if ( K == "") 
-		{
-			var divThi = document.getElementById("CheckK");
-			divThi.remove();
-		}
+	// 	var K = "<?php echo $K ?>";
+	// 	if ( K == "") 
+	// 	{
+	// 		var divThi = document.getElementById("CheckK");
+	// 		divThi.remove();
+	// 	}
 
-		var Cl = "<?php echo $Cl ?>";
-		if ( Cl == "") 
-		{
-			var divFou = document.getElementById("CheckCl");
-			divFou.remove();
-		}
+	// 	var Cl = "<?php echo $Cl ?>";
+	// 	if ( Cl == "") 
+	// 	{
+	// 		var divFou = document.getElementById("CheckCl");
+	// 		divFou.remove();
+	// 	}
 
-		var ALT = "<?php echo $ALT ?>";
-		if ( ALT == "") 
-		{
-			var divFif = document.getElementById("CheckALT");
-			divFif.remove();
-		}
+	// 	var ALT = "<?php echo $ALT ?>";
+	// 	if ( ALT == "") 
+	// 	{
+	// 		var divFif = document.getElementById("CheckALT");
+	// 		divFif.remove();
+	// 	}
 
-		var AST = "<?php echo $AST ?>";
-		if ( AST == "") 
-		{
-			var divSixt = document.getElementById("CheckAST");
-			divSixt.remove();
-		}
+	// 	var AST = "<?php echo $AST ?>";
+	// 	if ( AST == "") 
+	// 	{
+	// 		var divSixt = document.getElementById("CheckAST");
+	// 		divSixt.remove();
+	// 	}
 
-		var HB = "<?php echo $HB ?>";
-		if ( HB == "") 
-		{
-			var divSev = document.getElementById("CheckHB");
-			divSev.remove();
-		}
+	// 	var HB = "<?php echo $HB ?>";
+	// 	if ( HB == "") 
+	// 	{
+	// 		var divSev = document.getElementById("CheckHB");
+	// 		divSev.remove();
+	// 	}
 
-		if(FBS == "" && BUA == "" && BUN == "" && CREA == "")
-		{
-			var LabelOne = document.getElementById("CHEM");
-			LabelOne.remove();
-		}
+	// 	if(FBS == "" && BUA == "" && BUN == "" && CREA == "")
+	// 	{
+	// 		var LabelOne = document.getElementById("CHEM");
+	// 		LabelOne.remove();
+	// 	}
 
-		if(CHOL == "" && TRIG == "" && HDL == "" && LDL == "" && CH == "" && VLDL == "")
-		{
-			var LabelTwo = document.getElementById("LP");
-			LabelTwo.remove();
-		}
-		if(Na == "" && K == "" && Cl == "")
-		{
-			var LabelThree = document.getElementById("E");
-			LabelThree.remove();
-		}
-		if(ALT == "" && AST == "")
-		{
-			var LabelFour = document.getElementById("EN");
-			LabelFour.remove();
-		}
+	// 	if(CHOL == "" && TRIG == "" && HDL == "" && LDL == "" && CH == "" && VLDL == "")
+	// 	{
+	// 		var LabelTwo = document.getElementById("LP");
+	// 		LabelTwo.remove();
+	// 	}
+	// 	if(Na == "" && K == "" && Cl == "")
+	// 	{
+	// 		var LabelThree = document.getElementById("E");
+	// 		LabelThree.remove();
+	// 	}
+	// 	if(ALT == "" && AST == "")
+	// 	{
+	// 		var LabelFour = document.getElementById("EN");
+	// 		LabelFour.remove();
+	// 	}
 
 
 
-	}		
+	// }		
 	</script>
 </head>
 <style type="text/css">
@@ -373,9 +373,8 @@ hr
 	    </div>
 	    <div class="col-6" >
 	        <span class="lineName">
-	        	<?php 
-	        if ($data['Biller'] != "WALK-IN") {
-	        	echo $data['Biller']; 
+	        <?php if ($data['CompanyName'] != "WALK-IN") {
+	        	echo $data['CompanyName']; 
 	        } ?></span>
 	    </div>
 	</div>
@@ -457,6 +456,7 @@ hr
 			<div class="row" id="CHEM">
 			    <p class="label">CHEMISTRY</p><br>
 			</div>
+		<?php if($data['FBS'] != "" and $data['FBS'] != "N/A"){ ?>
 			<div class="row" id="CheckFBS">
 	            <label class="col-3"><p class="label">Fasting Blood Sugar</p></label>
 	            <div class="col-2">
@@ -472,6 +472,25 @@ hr
 	            	<p class="label">mg/dl 75 -107</p>
 	            </div>
 			</div>
+		<?php } ?>
+		<?php if($data['RBS'] != "" and $data['RBS'] != "N/A"){ ?>
+			<div class="row" >
+	            <label class="col-3"><p class="label">Random Blood Sugar</p></label>
+	            <div class="col-2">
+	            	<span class="line"><?php echo $data['RBS'] ?></span>
+	            </div>
+	            <div class="col-3">
+	            	<p class="label">mmol/L < 7.7</p>
+	            </div>
+	            <div class="col-1">
+	            	<span class="line"><?php echo $data['RBScon'] ?></span>
+	            </div>
+	            <div class="col-3">
+	            	<p class="label">mg/dl < 140</p>
+	            </div>
+			</div>
+		<?php } ?>
+		<?php if($data['BUA'] != "" and $data['BUA'] != "N/A"){ ?>
 			<div class="row" id="CheckBUA">
 	            <label class="col-3"><p class="label">Uric Acid</p></label>
 	            <div class="col-2">
@@ -487,6 +506,8 @@ hr
 	            	<p class="label">mg/dl 3 - 7.1</p>
 	            </div>
 			</div>
+		<?php } ?>	
+		<?php if($data['BUN'] != "" and $data['BUN'] != "N/A"){ ?>
 			<div class="row" id="CheckBUN">
 	            <label class="col-3"><p class="label">Blood Urea Nitrogen</p></label>
 	            <div class="col-2">
@@ -502,6 +523,8 @@ hr
 	            	<p class="label">mg/dl 7 - 21</p>
 	            </div>
 			</div>
+		<?php } ?>
+		<?php if($data['CREA'] != "" and $data['CREA'] != "N/A"){ ?>
 			<div class="row" id="CheckCREA">
 	            <label class="col-3"><p class="label">Creatinine</p></label>
 	            <div class="col-2">
@@ -519,9 +542,13 @@ hr
 	            	<p class="label">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Male: 0.80 - 1.30</p><br>
 	            </div>
 			</div>
+		<?php } ?>
+		<?php if ($data['CHOL'] != "" and $data['CHOL'] or $data['TRIG'] != "" and  $data['TRIG'] != "N/A" or $data['HDL'] != "" and $data['HDL'] != "N/A" and $data['HDL'] != 0 and $data['HDL'] != "NAN" or $data['LDL'] != "" and $data['LDL'] != "N/A" and $data['LDL'] != 0 and $data['LDL'] != "NAN" or $data['CH'] != "" and $data['CH'] != "N/A" and $data['CH'] != 0 and $data['CH'] != "NAN" or $data['VLDL'] != "" and $data['VLDL'] != "N/A" and $data['VLDL'] != 0 and $data['VLDL'] != "NAN") {
+		 ?>
 			<div class="row" id="LP">
 			    <p class="label">LIPID PROFILE</p><br>
 			</div>
+			<?php if($data['CHOL'] != "" and $data['CHOL'] != "N/A"){ ?>
 			<div class="row" id="CheckCHOL">
 	            <label class="col-3"><p class="label">Cholesterol</p></label>
 	            <div class="col-2">
@@ -537,6 +564,8 @@ hr
 	            	<p class="label">mg/dl < 200</p>
 	            </div>
 			</div>
+			<?php } ?>
+			<?php if($data['TRIG'] != "" and $data['TRIG'] != "N/A"){ ?>
 			<div class="row" id="CheckTRIG">
 	            <label class="col-3"><p class="label">Triglycerides</p></label>
 	            <div class="col-2">
@@ -552,6 +581,8 @@ hr
 	            	<p class="label">mg/dl 27-150</p>
 	            </div>
 			</div>
+			<?php } ?>
+			<?php if($data['HDL'] != "" and $data['HDL'] != "N/A" and $data['HDL'] != 0 and $data['HDL'] != "NAN"){ ?>
 			<div class="row" id="CheckHDL">
 	            <label class="col-3"><p class="label">HDL</p></label>
 	            <div class="col-2">
@@ -567,6 +598,8 @@ hr
 	            	<p class="label">mg/dl 35-85.32</p>
 	            </div>
 			</div>
+			<?php } ?>
+			<?php if($data['LDL'] != "" and $data['LDL'] != "N/A" and $data['LDL'] != 0 and $data['LDL'] != "NAN"){ ?>
 			<div class="row" id="CheckLDL">
 	            <label class="col-3"><p class="label">LDL</p></label>
 	            <div class="col-2">
@@ -582,6 +615,8 @@ hr
 	            	<p class="label">mg/dl 96.52-158.30</p>
 	            </div>
 			</div>
+			<?php } ?>
+			<?php if($data['CH'] != "" and $data['CH'] != "N/A" and $data['CH'] != 0 and $data['CH'] != "NAN"){ ?>
 			<div class="row" id="CheckCH">
 	            <label class="col-3"><p class="label">Cholesterol/HDL Ratio</p></label>
 	            <div class="col-2">
@@ -591,6 +626,8 @@ hr
 	            	<p class="label">mmol/L < 4.40 </p>
 	            </div>
 			</div>
+			<?php } ?>
+			<?php if($data['VLDL'] != "" and $data['VLDL'] != "N/A" and $data['VLDL'] != 0 and $data['VLDL'] != "NAN"){ ?>
 			<div class="row" id="CheckVLDL">
 	            <label class="col-3"><p class="label">VLDL</p></label>
 	            <div class="col-2">
@@ -600,11 +637,12 @@ hr
 	            	<p class="label">mmol/L 0.050-1.04</p><br>
 	            </div>
 			</div>
-			
+			<?php } }?>
+			<?php if($data['Na'] != "" and $data['Na'] != "N/A" or $data['K'] != "" and $data['K'] != "N/A" or $data['Cl'] != "" and $data['Cl'] != "N/A"){ ?>
 			<div class="row" id="E">
 			   <p class="label">ELECTROLYTES</p><br>
 			</div>
-			
+			<?php if($data['Na'] != "" and $data['Na'] != "N/A"){ ?>
 			<div class="row" id="CheckNa">
 	            <label class="col-3"><p class="label">Sodium</p></label>
 	            <div class="col-2">
@@ -614,6 +652,8 @@ hr
 	            	<p class="label">mmol/L 135 - 153</p>
 	            </div>
 			</div>
+			<?php } ?>
+			<?php if($data['K'] != "" and $data['K'] != "N/A"){ ?>
 			<div class="row" id="CheckK">
 	            <label class="col-3"><p class="label">Potassium</p></label>
 	            <div class="col-2">
@@ -623,6 +663,8 @@ hr
 	            	<p class="label">mmol/L 3.50 - 5.30</p>
 	            </div>
 			</div>
+			<?php } ?>
+			<?php if($data['Cl'] != "" and $data['Cl'] != "N/A"){ ?>	
 			<div class="row" id="CheckCl">
 	            <label class="col-3"><p class="label">Chloride</p></label>
 	            <div class="col-2">
@@ -632,9 +674,12 @@ hr
 	            	<p class="label">mmol/L 98-107</p><br>
 	            </div>
 			</div>
+			<?php } }?>
+			<?php if($data['ALT'] != "" and $data['ALT'] != "N/A" or $data['AST'] != "" and $data['AST'] != "N/A"){ ?>
 			<div class="row" id="EN">
 			    <p class="label">ENZYMES</p><br>
 			</div>
+			<?php if($data['ALT'] != "" and $data['ALT'] != "N/A"){ ?>
 			<div class="row" id="CheckALT">
 	            <label class="col-3"><p class="label">SGPT/ALT</p></label>
 	            <div class="col-2">
@@ -644,6 +689,8 @@ hr
 	            	<p class="label">U/L Female: 5 - 31  Male: 10 - 41</p>
 	            </div>
 			</div>
+			<?php } ?>
+			<?php if($data['AST'] != "" and $data['AST'] != "N/A"){ ?>
 			<div class="row" id="CheckAST">
 	            <label class="col-3"><p class="label">	SGOT/AST</p></label>
 	            <div class="col-2">
@@ -653,7 +700,8 @@ hr
 	            	<p class="label">U/L 0 - 40</p><br>
 	            </div>
 			</div>
-
+			<?php } }?>
+			<?php if($data['HB'] != "" and $data['HB'] != "N/A"){ ?>
 			<div class="row" id="CheckHB">
 			    <div class="col-3"><p class="label">HBA1C</p></div>
 			    <div class="col-2">
@@ -663,35 +711,44 @@ hr
 	            	<p class="label">% 4.3 - 6.3</p><br>
 	            </div>
 			</div>
-			
+			<?php } ?>
+			<?php if ($data['ALP'] != '' and $data['ALP'] != 'N/A') {			
+			?>
+			<div class="row mt-3" >
+			    <div class="col-3"><p class="label">Alkaline Phosphatase</p></div>
+			    <div class="col-2">
+	            	<span class="line"><?php echo $data['ALP'] ?></span>
+	            </div>
+	            <div class="col-3">
+	            	<p class="label">U/L up to 105</p><br>
+	            </div>
+			</div>
+			<?php } ?>
+			<?php if ($data['PSA'] != '' and $data['PSA'] != 'N/A') {			
+			?>
+			<div class="row mt-3" >
+			    <div class="col-3"><p class="label">PSA ( Prostate-Specific Antigen )</p></div>
+			    <div class="col-2">
+	            	<span class="line"><?php echo $data['PSA'] ?></span>
+	            </div>
+	            <div class="col-3">
+	            	<p class="label">ng/mL 0-4</p><br>
+	            </div>
+			</div>
+			<?php } ?>
+			<?php if ($data['GGTP'] != '' and $data['GGTP'] != 'N/A') {			
+			?>
+			<div class="row mt-3" >
+			    <div class="col-3"><p class="label">GGTP</p></div>
+			    <div class="col-2">
+	            	<span class="line"><?php echo $data['GGTP'] ?></span>
+	            </div>
+			</div>
+			<?php } ?>
 	</div>
 	</div>
 </div>
-<!-- <div class="col-md-10">
-<div class="card" style="border-radius: 0px; margin-top: 20px;">
-	<div class="card-block" style="height: 1.3in;" >
-			<div class="row">
-				<div class="col" style="padding-left: 0px"><center><span class="Names"><br><b><?php echo $data['Received'] ?></b></span></center></div>
-				<div class="col" style="padding-left: 0px"><center><span class="Names"><br><b><?php echo $data['QC'] ?></b></span></center></div>
-				<div class="col" style="padding-left: 0px"><center><span class="Names"><br><b><?php echo $data['Printed'] ?></b></span></center></div>
-			</div>
-			<div class="row">
-				<div class="col" style="padding-left: 0px"><center><span class="lineNameSig"><br><b>LIC NO. <?php echo $data['RMTLIC'] ?></b></span></center></div>
-				<div class="col" style="padding-left: 0px"><center><span class="lineNameSig"><br><b>LIC NO. <?php echo $data['QCLIC'] ?></b></span></center></div>
-				<div class="col" style="padding-left: 0px"><center><span class="lineNameSig"><br><b>LIC NO. <?php echo $data['PATHLIC'] ?></b></span></center></div>
-			</div>
-			<div class="row">
-				<div class="col"><center><p class="labelName">Registered Medical Technologist</p></center></div>
-				<div class="col"><center><p class="labelName">Quality Control</p></center></div>
-				<div class="col"><center><p class="labelName">Pathologist</p></center></div>		
-			</div>
-			 <center><p style="font-size: 12px;margin-top: -7px">**Report Electronically Signed Out**</p></center> 
-	</div>
-</div>
-</div>
-<div class="col-md-10" style="margin-top: 5px">
-	<img src="../assets/QISFooter.png" height="50px" width="100%">
-</div> -->
+
 <script type="text/javascript">
 	$(document).ready(function(){
 		var pcount = "<?php echo $printCount; ?>";

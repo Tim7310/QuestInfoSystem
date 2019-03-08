@@ -145,7 +145,7 @@ include_once('qcsidebar.php');
 						<OPTION selected="" value="">Select Company..</OPTION>
 		                <?php 
 		                include_once('../summarycon.php');
-		                $select = "SELECT DISTINCT comnam FROM qpd_form ORDER BY comnam ASC";
+		                $select = "SELECT DISTINCT CompanyName FROM qpd_patient ORDER BY CompanyName ASC";
 				        $result = mysqli_query($con, $select);
 				        $i=0;
 				        while($row = mysqli_fetch_array($result))

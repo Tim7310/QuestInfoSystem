@@ -57,6 +57,10 @@ if (is_array($check)) {
 	{
 		text-transform: uppercase;
 	}
+	input, select{
+		font-size: 14px !important;
+		font-weight: bold;
+	}
 	select[name="MedTechID"], select[name="qcID"], select[name="pathID"]{
 		font-size: 14px;
 		font-weight: bold;
@@ -321,6 +325,37 @@ include_once('labsidebar.php');
 	            	<label for="FecOt" class="col-3 col-form-label text-right">Pregnancy Test Result : </label>
 	            	<div class="col-4">
 	            		<input type="text" name="pregTest" class="form-control" value="<?php echo $check['PregTest']?>" >
+	            	</div>
+				</div>
+				<div class="form-group row">
+	            	<div class="col-3 ">
+	            		<b>AFB</b>
+	            	</div>
+	            	<div class="col-2"><center><b>Specimen 1</b></center></div>
+	            	<div class="col-2"><center><b>Specimen 2</b></center></div>
+				</div>
+				<div class="form-group row">
+	            	<label class="col-3 col-form-label text-right">Visual Appearance : </label>
+	            	<div class="col-2">
+	            		<input type="text" name="AFBVA1" class="form-control" value="<?php echo $check['AFBVA1']?>">
+	            	</div>
+	            	<div class="col-2">
+	            		<input type="text" name="AFBVA2" class="form-control" value="<?php echo $check['AFBVA2']?>">
+	            	</div>
+				</div>
+				<div class="form-group row">
+	            	<label class="col-3 col-form-label text-right">Reading : </label>
+	            	<div class="col-2">
+	            		<input type="text" name="AFBR1" class="form-control" value="<?php echo $check['AFBR1']?>">
+	            	</div>
+	            	<div class="col-2">
+	            		<input type="text" name="AFBR2" class="form-control" value="<?php echo $check['AFBR2']?>">
+	            	</div>
+				</div>
+				<div class="form-group row">
+					<label class="col-3 col-form-label text-right">Diagnosis : </label>
+	            	<div class="col-4">
+	            		<input type="text" name="AFBD" class="form-control" value="<?php echo $check['AFBD']?>">
 	            	</div>
 				</div>
 				<div class="form-group row">

@@ -61,10 +61,11 @@ $year = date("Y");
        
      <a class="nav-item nav-link" href="Cash1.php" ><i class="fas fa-money-bill-alt"></i>&nbsp; Transact</a>
       <a class="nav-item nav-link" href="TransactionListCash.php?month=<?php echo $month ?>&year=<?php echo $year ?>"><i class="fas fa-list-ul"></i>&nbsp; Transaction List</a>
+       <a class="nav-item nav-link" href="TransactionListHMO.php?month=<?php echo $month ?>&year=<?php echo $year ?>"><i class="fas fa-list-ul"></i>&nbsp; HMO List</a>
       <a class="nav-item nav-link" href="ItemCash.php"><i class="fas fa-archive"></i>&nbsp; Manage Tests Packages</a>
       <a class="nav-item nav-link" href="CashSalesReport.php"><i class="far fa-newspaper"></i>&nbsp; Sales Report</a>
       <a class="nav-item nav-link" href="Exchange.php"><i class="fas fa-exchange-alt"></i>&nbsp; Refund / Exchange</a>
-      <div style="padding-left:150px"></div>
+      <div style="padding-left:50px"></div>
       <a class="nav-item nav-link" href="../logout.php" style="float: right; "><i class="fas fa-sign-out-alt"></i>&nbsp LOGOUT</a>
     </div>
 

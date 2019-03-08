@@ -14,8 +14,20 @@ $stmt = $user_home->runQuery("SELECT * FROM tbl_users WHERE userID=:uid");
 $stmt->execute(array(":uid"=>$_SESSION['userSession']));
 $row = $stmt->fetch(PDO::FETCH_ASSOC);
 $cashierName =  $row['userName'];
+$cashierID = $row['userID'];
+$cashierpriv = $user_home->getUser($cashierID);
+$cashierpriv = $cashierpriv['CashierCash'];
+
 $pack = new Pack;
 $packData = $pack->fetch_all();
+if ($cashierpriv != 0) {
+	$optlabel = "QUICK ACCESS";
+	$QAitem = $pack->fetch_QA();
+}else{
+	$optlabel = "ACCOUNTS ITEM";
+	$QAitem = $pack->fetch_Account();
+}
+
 $biller = "";//biller here
 
 $trans = new trans;
@@ -211,11 +223,12 @@ include_once('cashsidebar.php');
 	<div class="row" style="margin-top: 10px;">
 		<div class="col-7">
 			<div class="input-group" >
+
 			  <select class="custom-select" id="itemList" name="itemList" aria-label="Select Item Here" 
 			  placeholder="Select Item Here">
 			   		<?php foreach ($packData as $key){ ?>
 						<option value="<?php echo $key['ItemID'];?>" class="itemval" >
-							<?php echo $key['TestType']." | ".$key['ItemName']." | ". $key['ItemPrice'] ;?></option>
+							<?php echo $key['ItemName']." | ". $key['ItemPrice'] ;?></option>
 					<?php } ?>
 			  </select>
 			  <div class="input-group-append">
@@ -240,11 +253,20 @@ include_once('cashsidebar.php');
 	</div>
 
 	<div class="row">
-		<div class="col-2">
+		<div class="col-5">
+			<span style="font-weight: bolder"> <?php echo $optlabel ?> </span> <br>
+			<div class="input-group" >
 			
+			<select class="custom-select" id="itemList2" name="itemList" aria-label="Select Item Here" 
+			  placeholder="Select Item Here">
+			   		<?php foreach ($QAitem as $key){ ?>
+						<option value="<?php echo $key['ItemID'];?>" class="itemval" >
+							<?php echo $key['ItemName']." | ". $key['ItemPrice'] ;?></option>
+					<?php } ?>
+			  </select>
+			</div>
 		</div>
-
-		<div class="col-6"></div>
+		<div class="col-3"></div>
 		<div class="col">
 			<div id="searchloader" class="form-control" style="overflow-y: scroll;max-height:100px; background-color: #2980b9;"></div>
 		</div>
@@ -258,7 +280,8 @@ include_once('cashsidebar.php');
 		<div class="col-2" style="font-weight: bold;">Item Name</div>
 		<div class="col-2" style="font-weight: bold;">Attribute</div>
 		<div class="col-5" style="font-weight: bold;">Quantity &nbsp;
-			 <button class="btn btn-primary pt-1 pb-1" id="spdiscount">Add 20% Discount</button>
+			 <button class="btn btn-primary pt-1 pb-1" id="spdiscount">20% Discount</button>
+			 <button class="btn btn-primary pt-1 pb-1" id="spdiscount2">10% Discount</button>
 		</div>
 		<div class="col-1" style="font-weight: bold;">Price</div>
 		<div class="col-1" style="font-weight: bold;">Ext Price</div>
@@ -266,7 +289,12 @@ include_once('cashsidebar.php');
 	<div class="row mt-3">
 		<div class="col-8"> </div>
 		<div class="col-2" style="text-align: right">Transaction Type: </div>
-		<button id="Cash" class="btn btn-primary">CASH</button>
+		<?php if ($cashierpriv != 0) {
+			$cashdis = "";
+		}else{
+			$cashdis = "disabled";
+		} ?>
+		<button id="Cash" class="btn btn-primary" <?php echo $cashdis ?>>CASH</button>
 		<button id="Account" class="btn btn-primary" style="float: right;">ACCOUNT</button>
 	</div>
 	<div id="transDivCash" style="display: none">
@@ -489,8 +517,11 @@ include_once('cashsidebar.php');
 <script type="text/javascript">
 	$(document).ready(function(){
 		verify();
+		var itemChooser = 0;//default for itemList ID
 		$.fn.select2.defaults.set( "theme", "bootstrap" );
 		$('#itemList').select2({
+		});
+		$('#itemList2').select2({	
 		});
 		$(".hmo").hide();
 		//var xx = new array
@@ -518,6 +549,7 @@ include_once('cashsidebar.php');
 			$("#ADc").html(stprice);
 			$("#subTotala").html(stprice);
 			$("#ADa").html(stprice);
+			$("#AR").val(stprice);
 		}
 		function change(){
 			var stc = $("#subTotalc").text();
@@ -600,6 +632,11 @@ include_once('cashsidebar.php');
 		$("#itemList").change(function(){
 			$("#addItem").trigger("click");
 		});
+		$("#itemList2").change(function(){
+			itemChooser = 1;//rewrite itemchooser to itemList2 ID
+			$("#addItem").trigger("click");
+			
+		});
 		$("#discardTrans").click(function(){
 			var heldtransID = $("#heldtransID").val();
 			$.post("discard.php",{ tid:heldtransID }, function(){
@@ -612,6 +649,16 @@ include_once('cashsidebar.php');
 				var test_type = $(this).children(".testtype").val();
 				if (test_type == 0) {
 					$(this).children("div").children(".Disc").val("20");
+					$(this).children("div").children(".Disc").change();
+
+				}
+			});
+		});
+		$("#spdiscount2").click(function(){
+			$(".itemdivID").each(function(){
+				var test_type = $(this).children(".testtype").val();
+				if (test_type == 0) {
+					$(this).children("div").children(".Disc").val("10");
 					$(this).children("div").children(".Disc").change();
 
 				}
@@ -633,7 +680,12 @@ include_once('cashsidebar.php');
 			// e.preventDefault();
 			var existItem;
 			var isExist = 0;
-			var itemNum = $("#itemList").val();
+			if (itemChooser == 1) {
+				var itemNum = $("#itemList2").val();
+			}else{
+				var itemNum = $("#itemList").val();
+			}
+			
 			$(".itemNum").each(function(){
 				existItem = $(this).text();
 				if (existItem == itemNum) {
@@ -645,12 +697,16 @@ include_once('cashsidebar.php');
 				}
 			});
 			if (isExist == 0) {
-			var itemtxt = $( "#itemList option:selected" ).text().split("|");
-			var itemName = itemtxt[1];
-			var itemPrice = itemtxt[2];
+			if (itemChooser == 1) {
+				var itemtxt = $( "#itemList2 option:selected" ).text().split("|");
+			}else{
+				var itemtxt = $( "#itemList option:selected" ).text().split("|");
+			}		
+			var itemName = itemtxt[0];
+			var itemPrice = itemtxt[1];
 			//var tempArray = [itemNum, itemName, itemPrice, Price, TotalPrice];
-			var testtype = itemtxt[0];
-			$("#addItemdiv").after('<div class="row itemdivID col-12" id="itemdivID'+ xx +'"><div class="col-1 itemNum">'+ itemNum +'</div>'+'<input type="hidden" name="testtype" value="'+testtype+'" class="testtype">'+
+			//var testtype = itemtxt[0];
+			$("#addItemdiv").after('<div class="row itemdivID col-12" id="itemdivID'+ xx +'"><div class="col-1 itemNum">'+ itemNum +'</div>'+'<input type="hidden" name="testtype" value="0" class="testtype">'+
 			'<div class="col-2">'+ itemName +'</div>'+
 			'<div class="col-2">Item Price:&nbsp;'+
 			'<input name="itemPrice" class="itemPrice " value="'+ itemPrice +'" style="width:80px;border:none;background-color:white" disabled></div>'+
@@ -760,12 +816,12 @@ include_once('cashsidebar.php');
 				var payment = "";
 			}
 					if (uporin == 0) {
-						$.post("DataTransaction.php",{status: status, PatientID: PatientID, itemsID: itemsID, itemsQTY: itemsQTY, itemsDisc: itemsDisc, change: changeValue, totalAmount: subTotalcash, payment: payment, cashier: CN, transNO: TN, transType: transType, biller: biller}, function(e){
+						$.post("DataTransaction.php",{status: status, PatientID: PatientID, itemsID: itemsID, itemsQTY: itemsQTY, itemsDisc: itemsDisc, change: changeValue, totalAmount: subTotalcash, payment: payment, cashier: CN, transNO: TN, transType: transType, biller: biller,LOE: "", AN: "", AC: ""}, function(e){
 							alert(e);
 							location.reload();
 						});
 					}else{
-						$.post("DataTransaction.php",{transID: idtrans, status: status, PatientID: PatientID, itemsID: itemsID, itemsQTY: itemsQTY, itemsDisc: itemsDisc, change: changeValue, totalAmount: subTotalcash, payment: payment, cashier: CN, transNO: TN, transType: transType, biller: biller}, function(e){
+						$.post("DataTransaction.php",{transID: idtrans, status: status, PatientID: PatientID, itemsID: itemsID, itemsQTY: itemsQTY, itemsDisc: itemsDisc, change: changeValue, totalAmount: subTotalcash, payment: payment, cashier: CN, transNO: TN, transType: transType, biller: biller, LOE: "", AN: "", AC: ""}, function(e){
 							alert(e);
 							location.reload();
 						});
@@ -812,7 +868,8 @@ include_once('cashsidebar.php');
 				if (changeVal == 0 && transType == 2) {
 					alert("Please Enter higher Amount");
 				}else{
-
+				var r = confirm("Are you sure you want to save it?");
+				if (r == true) {
 					if (uporin == 0) {
 						$.post("DataTransaction.php",{status: status, PatientID: PatientID, itemsID: itemsID, itemsQTY: itemsQTY, itemsDisc: itemsDisc, change: changeValue, totalAmount: subTotalcash, payment: payment, cashier: CN, transNO: TN, transType: transType, biller: biller, LOE: LOE, AN: AN, AC: AC}, function(e){
 							// $.post("AccountReceipt.php",{transID: e},function(){
@@ -826,9 +883,12 @@ include_once('cashsidebar.php');
 						$.post("DataTransaction.php",{transID: idtrans, status: status, PatientID: PatientID, itemsID: itemsID, itemsQTY: itemsQTY, itemsDisc: itemsDisc, change: changeValue, totalAmount: subTotalcash, payment: payment, cashier: CN, transNO: TN, transType: transType, biller: biller}, function(e){
 							
 							window.open("Receipt.php?transID="+idtrans+"&patID="+PatientID);
-							location.reload();
+							//location.reload();
 						});
 					}
+				}else{
+					alert("Transaction Cancelled");
+				}
 				}
 			}
 			// if (transType == 1) {
@@ -872,6 +932,7 @@ include_once('cashsidebar.php');
 			$('#newPatientDiv').children('div').children("input").val("");
 		});
 		$(".holdtrans").click(function(){
+
 			$("#discardTrans").removeAttr("disabled");
 			if ($(".removeItem")) {
 				$(".removeItem").trigger("click");
@@ -972,6 +1033,7 @@ include_once('cashsidebar.php');
 				totalPrice();
 				change();
 				verify();
+				$("input").change();
 			});
 		});
 		

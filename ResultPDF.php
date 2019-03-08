@@ -36,7 +36,10 @@ $lab = new lab;
 if (isset($_GET['id'])){
 	$id = $_GET['id'];
 	$tid = $_GET['tid'];
-	$res = $lab->fetch_data($id,$tid);
+	$data1 = $lab->getData($id, $tid, "lab_hematology");
+	$data2 = $lab->getData($id, $tid, "lab_microscopy");
+	$data3 = $lab->getData($id, $tid, "lab_serology");
+	$data4 = $lab->getData($id, $tid, "lab_toxicology");
 
 $rad = new rad;
 if (isset($_GET['id'])){
@@ -72,11 +75,11 @@ else
 }
 
 $Notes = $qc['Notes'];
-$HBSAG = $res['HBsAg'];
-$PT = $res['PregTest'];
-$METH = $res['Meth'];
-$TETRA = $res['Tetra'];
-$UriNotes = $res['UriOt'];
+$HBSAG = $data3['HBsAG'];
+$PT = $data2['PregTest'];
+$METH = $data4['Meth'];
+$TETRA = $data4['Tetra'];
+$UriNotes = $data2['UriOt'];
 ?>
 <!DOCTYPE html>
 
@@ -862,40 +865,40 @@ $UriNotes = $res['UriOt'];
 				</div>
 				<div class="row">
 					<div class="col-5"><p class="labelName">White Blood</p></div>
-					<div class="col-2"><p class="lineRes"><?php echo $res['WhiteBlood'] ?></p></div>
+					<div class="col-2"><p class="lineRes"><?php echo $data1['WhiteBlood'] ?></p></div>
 					<div class="col-2"><p class="labelName">x10^9/L</p></div>
 					<div class="col-3"><p class="labelName">4.23-11.07</p></div>
 				</div>
 				<div class="row">
 					<div class="col-5"><p class="labelName">Hemoglobin</p></div>
-					<div class="col-2"><p class="lineRes"><?php echo $res['Hemoglobin'] ?></p></div>
+					<div class="col-2"><p class="lineRes"><?php echo $data1['Hemoglobin'] ?></p></div>
 					<div class="col-2"><p class="labelName">g/L</p></div>
-					<div class="col-3"><p class="labelName"><?php echo $res['HemoNR'] ?></p></div>
+					<div class="col-3"><p class="labelName"><?php echo $data1['HemoNR'] ?></p></div>
 				</div>
 				<div class="row">
 					<div class="col-5"><p class="labelName">Hematocrit</p></div>
-					<div class="col-2"><p class="lineRes"><?php echo $res['Hematocrit'] ?></p></div>
+					<div class="col-2"><p class="lineRes"><?php echo $data1['Hematocrit'] ?></p></div>
 					<div class="col-2"><p class="labelName">VF</p></div>
-					<div class="col-3"><p class="labelName"><?php echo $res['HemaNR'] ?></p></div>
+					<div class="col-3"><p class="labelName"><?php echo $data1['HemaNR'] ?></p></div>
 				</div>
 				<div class="row">
 					<div class="col"><p class="labelName">Differential Count</p></div>
 				</div>
 				<div class="row">
 					<div class="col-5"><p class="labelName">Neutrophils</p></div>
-					<div class="col-2"><p class="lineRes"><?php echo $res['Neutrophils'] ?></p></div>
+					<div class="col-2"><p class="lineRes"><?php echo $data1['Neutrophils'] ?></p></div>
 					<div class="col-2"><p class="labelName">%</p></div>
 					<div class="col-3"><p class="labelName">34-71</p></div>
 				</div>
 				<div class="row">
 					<div class="col-5"><p class="labelName">Lymphocytes</p></div>
-					<div class="col-2"><p class="lineRes"><?php echo $res['Lymphocytes'] ?></p></div>
+					<div class="col-2"><p class="lineRes"><?php echo $data1['Lymphocytes'] ?></p></div>
 					<div class="col-2"><p class="labelName">%</p></div>
 					<div class="col-3"><p class="labelName">22-53</p></div>
 				</div>
 				<div class="row">
 					<div class="col-5"><p class="labelName">Monocytes</p></div>
-					<div class="col-2"><p class="lineRes"><?php echo $res['Monocytes'] ?></p></div>
+					<div class="col-2"><p class="lineRes"><?php echo $data1['Monocytes'] ?></p></div>
 					<div class="col-2"><p class="labelName">%</p></div>
 					<div class="col-3"><p class="labelName">5-12</p></div>
 				</div>
@@ -905,15 +908,15 @@ $UriNotes = $res['UriOt'];
 				</div>
 				<div class="row">
 					<div class="col-5"><p class="labelName">HBsAg</p></div>
-					<div class="col"><p class="lineRes1" id="HBSAG"><?php echo $res['HBsAg'] ?></p></div>
+					<div class="col"><p class="lineRes1" id="HBSAG"><?php echo $data3['HBsAG'] ?></p></div>
 				</div>
 				<div class="row">
 					<div class="col-5"><p class="labelName">Pregnancy Test</p></div>
-					<div class="col"><p class="lineRes1" id="PT"><?php echo $res['PregTest'] ?></p></div>
+					<div class="col"><p class="lineRes1" id="PT"><?php echo $data2['PregTest'] ?></p></div>
 				</div>
 				<div class="row">
 					<div class="col-5"><p class="labelName">Others/Notes</p></div>
-					<div class="col"><p class="lineRes1"><?php echo $res['SeroOt'] ?></p></div>
+					<div class="col"><p class="lineRes1"><?php echo $data3['SeroOt'] ?></p></div>
 				</div>
 				<br>
 				<div class="row">
@@ -921,11 +924,11 @@ $UriNotes = $res['UriOt'];
 				</div>
 				<div class="row">
 					<div class="col-5"><p class="labelName">Methamphethamine</p></div>
-					<div class="col"><p class="lineRes1" id="DT1"><?php echo $res['Meth'] ?></p></div>
+					<div class="col"><p class="lineRes1" id="DT1"><?php echo $data4['Meth'] ?></p></div>
 				</div>
 				<div class="row">
 					<div class="col-5"><p class="labelName">Tetrahydrocanabinol</p></div>
-					<div class="col"><p class="lineRes1" id="DT2"><?php echo $res['Tetra'] ?></p></div>
+					<div class="col"><p class="lineRes1" id="DT2"><?php echo $data4['Tetra'] ?></p></div>
 				</div>
 				<br>
 				<div class="row">
@@ -933,19 +936,19 @@ $UriNotes = $res['UriOt'];
 				</div>
 				<div class="row">
 					<div class="col-5"><p class="labelName">Color</p></div>
-					<div class="col"><p class="lineRes1"><?php echo $res['FecColor'] ?></p></div>
+					<div class="col"><p class="lineRes1"><?php echo $data2['FecColor'] ?></p></div>
 				</div>
 				<div class="row">
 					<div class="col-5"><p class="labelName">Consistency</p></div>
-					<div class="col"><p class="lineRes1"><?php echo $res['FecCon'] ?></p></div>
+					<div class="col"><p class="lineRes1"><?php echo $data2['FecCon'] ?></p></div>
 				</div>
 				<div class="row">
 					<div class="col-5"><p class="labelName">Microscopic Findings</p></div>
-					<div class="col"><p class="lineRes1"><?php echo $res['FecMicro'] ?></p></div>
+					<div class="col"><p class="lineRes1"><?php echo $data2['FecMicro'] ?></p></div>
 				</div>
 				<div class="row">
 					<div class="col-5"><p class="labelName">Others/Notes</p></div>
-					<div class="col"><p class="lineRes1"><?php echo $res['FecOt'] ?></p></div>
+					<div class="col"><p class="lineRes1"><?php echo $data2['FecOt'] ?></p></div>
 				</div>
 			</div>
 			<div class="col">
@@ -960,27 +963,27 @@ $UriNotes = $res['UriOt'];
 				</div>
 				<div class="row">
 					<div class="col-5"><p class="labelName">Color</p></div>
-					<div class="col-3"><p class="lineRes1"><?php echo $res['UriColor'] ?></p></div>
+					<div class="col-3"><p class="lineRes1"><?php echo $data2['UriColor'] ?></p></div>
 				</div>
 				<div class="row">
 					<div class="col-5"><p class="labelName">Transparency</p></div>
-					<div class="col-3"><p class="lineRes1"><?php echo $res['UriTrans'] ?></p></div>
+					<div class="col-3"><p class="lineRes1"><?php echo $data2['UriTrans'] ?></p></div>
 				</div>
 				<div class="row">
 					<div class="col-5"><p class="labelName">pH</p></div>
-					<div class="col-3"><p class="lineRes1"><?php echo $res['UriPh'] ?></p></div>
+					<div class="col-3"><p class="lineRes1"><?php echo $data2['UriPh'] ?></p></div>
 				</div>
 				<div class="row">
 					<div class="col-5"><p class="labelName">Sp.Gravity</p></div>
-					<div class="col-3"><p class="lineRes1"><?php echo $res['UriSp'] ?></p></div>
+					<div class="col-3"><p class="lineRes1"><?php echo $data2['UriSp'] ?></p></div>
 				</div>
 				<div class="row">
 					<div class="col-5"><p class="labelName">Protein</p></div>
-					<div class="col-3"><p class="lineRes1"><?php echo $res['UriPro'] ?></p></div>
+					<div class="col-3"><p class="lineRes1"><?php echo $data2['UriPro'] ?></p></div>
 				</div>
 				<div class="row">
 					<div class="col-5"><p class="labelName">Glucose</p></div>
-					<div class="col-3"><p class="lineRes1"><?php echo $res['UriGlu'] ?></p></div>
+					<div class="col-3"><p class="lineRes1"><?php echo $data2['UriGlu'] ?></p></div>
 				</div>
 				<br>
 				<div class="row">
@@ -989,48 +992,57 @@ $UriNotes = $res['UriOt'];
 				</div>
 				<div class="row">
 					<div class="col-5"><p class="labelName">RBC</p></div>
-					<div class="col-2"><p class="lineRes1"><?php echo $res['RBC'] ?></p></div>
+					<div class="col-2"><p class="lineRes1"><?php echo $data2['RBC'] ?></p></div>
 					<div class="col-2"><p class="labelName">/hpf</p></div>
 					<div class="col"><p class="labelName">0-3</p></div>
 				</div>
 				<div class="row">
 					<div class="col-5"><p class="labelName">WBC</p></div>
-					<div class="col-2"><p class="lineRes1"><?php echo $res['WBC'] ?></p></div>
+					<div class="col-2"><p class="lineRes1"><?php echo $data2['WBC'] ?></p></div>
 					<div class="col-2"><p class="labelName">/hpf</p></div>
 					<div class="col"><p class="labelName">0-5</p></div>
 				</div>
 				<br>
 				<div class="row">
 					<div class="col-5"><p class="labelName">E.Cells</p></div>
-					<div class="col-2"><p class="lineRes1"><?php echo $res['ECells'] ?></p></div>
+					<div class="col-2"><p class="lineRes1"><?php echo $data2['ECells'] ?></p></div>
 				</div>
 				<div class="row">
 					<div class="col-5"><p class="labelName">M.Threads</p></div>
-					<div class="col-2"><p class="lineRes1"><?php echo $res['MThreads'] ?></p></div>
+					<div class="col-2"><p class="lineRes1"><?php echo $data2['MThreads'] ?></p></div>
 				</div>
 				<div class="row">
 					<div class="col-5"><p class="labelName">Amorphous</p></div>
-					<div class="col-2"><p class="lineRes1"><?php echo $res['Amorph'] ?></p></div>
+					<div class="col-2"><p class="lineRes1"><?php echo $data2['Amorph'] ?></p></div>
 				</div>
 				<div class="row">
 					<div class="col-5"><p class="labelName">Bacteria</p></div>
-					<div class="col-2"><p class="lineRes1"><?php echo $res['Bac'] ?></p></div>
+					<div class="col-2"><p class="lineRes1"><?php echo $data2['Bac'] ?></p></div>
 				</div>
 				<div class="row">
 					<div class="col-5"><p class="labelName">CaOx</p></div>
-					<div class="col-2"><p class="lineRes1"><?php echo $res['CoAx'] ?></p></div>
+					<div class="col-2"><p class="lineRes1"><?php echo $data2['CoAx'] ?></p></div>
 				</div>
 				<div class="row">
 					<div class="col-5"><p class="labelName">Others/Notes</p></div>
-					<div class="col-2"><p class="lineRes1" id="UriNotes"><?php echo $res['UriOt'] ?></p></div>
+					<div class="col-2"><p class="lineRes1" id="UriNotes"><?php echo $data2['UriOt'] ?></p></div>
 				</div>
 			</div>
 		</div>
 		<br><br>
 			<div class="row">
-				<div class="col" style="padding-left: 0px"><center><span class="lineNameSig"><br><b><?php echo $res['Received'] ?></b></span></center></div>
-				<div class="col" style="padding-left: 0px"><center><span class="lineNameSig"><br><b><?php echo $qc['QC'] ?></b></span></center></div>
-				<div class="col" style="padding-left: 0px"><center><span class="lineNameSig"><br><b><?php echo $res['Printed'] ?></b></span></center></div>
+				<div class="col" style="padding-left: 0px"><center><span class="lineNameSig"><br><b>
+					<?php $rec = $lab->medtechByID($data2['MedID']);
+	            	echo $rec['FirstName']." ". $rec['MiddleName'] ." ". $rec['LastName'].", ".$rec['PositionEXT'] ?> 
+				</b></span></center></div>
+				<div class="col" style="padding-left: 0px"><center><span class="lineNameSig"><br><b>
+					<?php $qc = $lab->medtechByID($data2['QualityID']);
+	            	echo $qc['FirstName']." ". $qc['MiddleName'] ." ". $qc['LastName'].", ".$qc['PositionEXT']  ?>
+				</b></span></center></div>
+				<div class="col" style="padding-left: 0px"><center><span class="lineNameSig"><br><b>
+					<?php $path = $lab->medtechByID($data2['PathID']);
+		            	echo $path['FirstName']." ". $path['MiddleName'] ." ". $path['LastName'].", ".$path['PositionEXT']  ?>
+				</b></span></center></div>
 			</div>
 			<div class="row">
 				<div class="col"><center><p class="labelName">Registered Medical Technologist</p></center></div>

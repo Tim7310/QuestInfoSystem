@@ -50,17 +50,15 @@ include_once('qcsidebar.php');
 					</thead>
 					<?php
 					include_once('../summarycon.php');
-					 $select = "SELECT * FROM qpd_patient f, lab_microscopy m, lab_hematology h, lab_serology s, qpd_xray x, qpd_class c, qpd_pe p, qpd_trans t WHERE 
+					 $select = "SELECT * FROM qpd_patient f, lab_microscopy m, lab_hematology h, qpd_xray x, qpd_class c, qpd_pe p, qpd_trans t WHERE 
 						f.PatientID=m.PatientID AND 
 						f.PatientID=h.PatientID AND 
-						f.PatientID=s.PatientID AND 
 						f.PatientID=x.PatientID AND 
 						f.PatientID=c.PatientID AND 
 						f.PatientID=p.PatientID AND 
 						f.PatientID=t.PatientID AND 
 						t.TransactionID=m.TransactionID AND 
-						t.TransactionID=h.TransactionID AND 
-						t.TransactionID=s.TransactionID AND 
+						t.TransactionID=h.TransactionID AND
 						t.TransactionID=x.TransactionID AND 
 						t.TransactionID=c.TransactionID AND 
 						t.TransactionID=p.TransactionID AND
@@ -95,7 +93,7 @@ include_once('qcsidebar.php');
 			                    }
 			                //$DT = $row['DT'];
 			                $UriOt = $row['UriOt'];
-			                $HBsAg = $row['HBsAG'];
+/*			                //$HBsAg = $row['HBsAG'];
 		                    if ($HBsAg == "NON-REACTIVE") 
 		                    {
 		                        $HBsAg1="NR";
@@ -111,7 +109,7 @@ include_once('qcsidebar.php');
 		                    else
 		                    {
 		                        $HBsAg1 = "N/A";
-		                    }
+		                    }*/
 			                $xray = $row['Impression'];
 			                if ($xray == "NORMAL CHEST FINDINGS" || $xray == "CONSIDERED NORMAL CHEST PA")
 			                {

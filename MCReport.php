@@ -27,8 +27,9 @@ if (isset($_GET['id'])){
 	$tid = $_GET['tid'];
 	$qc = $qc->fetch_data($id,$tid);
 
-	$data2 = $lab->getData($id, $tid, "lab_microscopy");
+	
 	$data1 = $lab->getData($id, $tid, "lab_hematology");
+	$data2 = $lab->getData($id, $tid, "lab_microscopy");
 	$data3 = $lab->getData($id, $tid, "lab_serology");
 	$data4 = $lab->getData($id, $tid, "lab_toxicology");
 if(is_array($data) or is_array($data1) or is_array($data3) or is_array($data4)){

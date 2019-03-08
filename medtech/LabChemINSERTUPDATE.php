@@ -53,6 +53,11 @@ $path = $_POST['pathID'];
   $ALT=$_POST['ALT'];
   $AST=$_POST['AST'];
   $HB=$_POST['HB'];
+  $ALP = $_POST['ALP'];
+  $PSA = $_POST['PSA'];
+  $RBS = $_POST['RBS'];
+  $GGTP = $_POST['GGTP'];
+  $RBScon = $_POST['RBScon'];
 
 $date=date("Y-m-d H:i:s");
 
@@ -60,11 +65,11 @@ $date=date("Y-m-d H:i:s");
     $check =  $lab->getData($PatientID, $id, "lab_chemistry");
      if (!is_array($check)) {
 
-    $lab->addChem($id, $PatientID, $FBS, $FBScon, $BUA, $BUAcon, $BUN, $BUNcon, $CREA, $CREAcon, $CHOL, $CHOLcon, $TRIG, $TRIGcon, $HDL, $HDLcon, $LDL, $LDLcon, $CH, $VLDL, $Na, $K, $Cl, $ALT, $AST, $HB, $path, $mdID, $qcID, $date);
+    $lab->addChem($id, $PatientID, $FBS, $FBScon, $BUA, $BUAcon, $BUN, $BUNcon, $CREA, $CREAcon, $CHOL, $CHOLcon, $TRIG, $TRIGcon, $HDL, $HDLcon, $LDL, $LDLcon, $CH, $VLDL, $Na, $K, $Cl, $ALT, $AST, $HB, $ALP,  $PSA, $RBS, $RBScon, $GGTP, $path, $mdID, $qcID, $date);
       echo "<script> alert('Record Added Successfully'); </script>";
       echo "<script>window.open('LabChemView.php?id=$PatientID&tid=$id','_self');</script>";
     }else{
-      $lab->updateChem($id, $PatientID, $FBS, $FBScon, $BUA, $BUAcon, $BUN, $BUNcon, $CREA, $CREAcon, $CHOL, $CHOLcon, $TRIG, $TRIGcon, $HDL, $HDLcon, $LDL, $LDLcon, $CH, $VLDL, $Na, $K, $Cl, $ALT, $AST, $HB, $path, $mdID, $qcID, $date);
+      $lab->updateChem($id, $PatientID, $FBS, $FBScon, $BUA, $BUAcon, $BUN, $BUNcon, $CREA, $CREAcon, $CHOL, $CHOLcon, $TRIG, $TRIGcon, $HDL, $HDLcon, $LDL, $LDLcon, $CH, $VLDL, $Na, $K, $Cl, $ALT, $AST, $HB, $ALP, $PSA, $RBS, $RBScon, $GGTP, $path, $mdID, $qcID, $date);
         echo "<script> alert('Record Updated Successfully'); </script>";
         echo "<script>window.open('LabChemView.php?id=$PatientID&tid=$id','_self');</script>";
     }

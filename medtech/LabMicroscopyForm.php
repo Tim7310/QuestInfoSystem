@@ -289,8 +289,8 @@
 	    </div>
 	    <div class="col">
 	        <span class="lineName"><?php 
-	        if ($data['Biller'] != "WALK-IN") {
-	        	echo $data['Biller']; 
+	        if ($data['CompanyName'] != "WALK-IN") {
+	        	echo $data['CompanyName']; 
 	        } ?>
 	        </span>
 	    </div>
@@ -585,42 +585,35 @@
 </div>
 </div>
 </div>
-<!--Footer-->
-
-<!-- <div class="col-sm-14 " style="margin-top: 0px;">
-	<span style="font-size: 15px;">Note: Specimen rechecked, result/s verified.</span>
-	<div class="card" style="border-radius: 0px; margin-top: 10px;">
-		<div class="card-block" style="height: 1.3in;" >
-				<div class="row">
-					<div class="col" style="padding-left: 0px"><center><span class="Names"><br>
-						<b><?php echo $data['Received'] ?></b></span></center></div>
-					<div class="col" style="padding-left: 0px"><center><span class="Names"><br>
-						<b><?php echo $data['QC'] ?></b></span></center></div>
-					<div class="col" style="padding-left: 0px"><center><span class="Names"><br>
-						<b><?php echo $data['Printed'] ?></b></span></center></div>
-				</div>
-				<div class="row">
-					<div class="col" style="padding-left: 0px"><center><span class="lineNameSig"><br>
-						<b>LIC NO. <?php echo $data['RMTLIC'] ?></b></span></center></div>
-					<div class="col" style="padding-left: 0px"><center><span class="lineNameSig"><br>
-						<b>LIC NO. <?php echo $data['QCLIC'] ?></b></span></center></div>
-					<div class="col" style="padding-left: 0px"><center><span class="lineNameSig"><br>
-						<b>LIC NO. <?php echo $data['PATHLIC'] ?></b></span></center></div>
-				</div>
-				<div class="row">
-					<div class="col"><center><p class="labelName">Registered Medical Technologist</p></center></div>
-					<div class="col"><center><p class="labelName">Quality Control</p></center></div>
-					<div class="col"><center><p class="labelName">Pathologist</p></center></div>		
-				</div>
-		</div>
+<?php if($data['AFBVA1'] = ""){ ?>
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-3" style="padding-left: 0px">
+	        <b>AFB</b>
+	    </div>
+	    <div class="col-3" style="padding-left: 0px">
+	        <center><b>Specimen 1</b></center>
+	    </div>
+	    <div class="col-3" style="padding-left: 0px">
+	        <center><b>Specimen 2</b></center>
+	    </div>
 	</div>
+	<div class="row mt-2" >
+		<div class="col-3 pl-4" ><p class="labelName">Visual Appearance</p></div>
+		<div class="col-3"><center><p class="lineRes" ><?php echo $data['AFBVA1'] ?></p></center></div>
+		<div class="col-3"><center><p class="lineRes" ><?php echo $data['AFBVA2'] ?></p></center></div>
 	</div>
-	<div class="col-md-14" style="margin-top: 24px; position: fixed;">
-		<img src="../assets/QISFooter.png" height="50px" width="100%">
+	<div class="row mt-2" >
+		<div class="col-3 pl-4" ><p class="labelName">Reading</p></div>
+		<div class="col-3"><center><p class="lineRes" ><?php echo $data['AFBR1'] ?></p></center></div>
+		<div class="col-3"><center><p class="lineRes" ><?php echo $data['AFBR2'] ?></p></center></div>
 	</div>
-</div> -->
-
-
+	<div class="row mt-2" >
+		<div class="col-3 pl-4" ><p class="labelName">Diagnosis</p></div>
+		<div class="col-6"><center><p class="lineRes" ><?php echo $data['AFBD'] ?></p></center></div>
+	</div>
+</div>
+<?php } ?>
 
 </body>
 <script type="text/javascript">

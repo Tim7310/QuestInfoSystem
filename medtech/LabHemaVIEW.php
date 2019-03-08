@@ -313,6 +313,100 @@ include_once('labsidebar.php');
 	            	<?php echo $data['CBCOt'] ?>
 	            </div>
 			</div>
+			<div class="row">
+	            <div class="col">
+	            	<b>PROTHROMBIN TIME</b>
+	            </div>
+			</div>
+			<div class="form-group row">
+	            <label for="PTime" class="col-3 col-form-label">Patient Time :</label>
+	            <div class="col-2">
+	            	<?php echo $data['PTime'] ?>
+	            </div>
+	            <div class="col-2">
+	            	SECS
+	            </div>
+	            <div class="col-2">
+	            	<?php echo $data['PTimeNV'] ?> SECS
+	            </div>
+			</div>
+			<div class="form-group row">
+	            <label for="PTControl" class="col-3 col-form-label">Control :</label>
+	            <div class="col-2">
+	            	<?php echo $data['PTControl'] ?>
+	            </div>
+	            <div class="col-2">
+	            	SECS
+	            </div>
+	            <div class="col-2">
+	            	<?php echo $data['PTControlNV'] ?> SECS
+	            </div>
+			</div>
+			<div class="form-group row">
+	            <label for="ActPercent" class="col-3 col-form-label">% Activity:</label>
+	            <div class="col-2">
+	            	<?php echo $data['ActPercent'] ?>
+	            </div>
+	            <div class="col-2">
+	            	%
+	            </div>
+	            <div class="col-2">
+	            	<?php echo $data['ActPercentNV'] ?> %
+	            </div>
+			</div>
+			<div class="form-group row">
+	            <label for="INR" class="col-3 col-form-label">INR</label>
+	            <div class="col-2">
+	            	<?php echo $data['INR'] ?>
+	            </div>
+	             <div class="col-2">
+	            	
+	            </div>
+	            <div class="col-2">
+	            	<?php echo $data['ActPercentNV'] ?> 
+	            </div>
+			</div>
+			<div class="form-group row">
+	            <label for="PR1.31" class="col-3 col-form-label">PR1.31</label>
+	            <div class="col-2">
+	            	<?php echo $data['PR131'] ?>
+	            </div>
+			</div>
+			<div class="row">
+	            <div class="col">
+	            	<b>APTT</b>
+	            </div>
+			</div>
+			<div class="form-group row">
+	            <label for="APTTime" class="col-3 col-form-label">Patient Time :</label>
+	            <div class="col-2">
+	            	<?php echo $data['APTTime'] ?>
+	            </div>
+	            <div class="col-2">
+	            	SECS
+	            </div>
+	             <div class="col-2">
+	            	<?php echo $data['APTTimeNV'] ?> SECS
+	            </div>
+			</div>
+			<div class="form-group row">
+	            <label for="APTControl" class="col-3 col-form-label">Control :</label>
+	            <div class="col-2">
+	            	<?php echo $data['APTControl'] ?>
+	            </div>
+	            <div class="col-2">
+	            	SECS
+	            </div>
+	             <div class="col-2">
+	            	<?php echo $data['APTControlNV'] ?> SECS
+	            </div>
+			</div>
+			<div class="form-group row">
+	            <label for="MS" class="col-3 col-form-label"><b>Malarial Smear :</b></label>
+	            <div class="col-2">
+	            	<?php echo $data['MS'] ?>
+	            </div>
+			</div>
 
 <!-- NAMES -->
 		<hr>

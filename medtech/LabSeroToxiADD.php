@@ -64,6 +64,10 @@ if (!is_array($check) and !is_array($check2)) {
 	{
 		padding-top: 7px;
 	}
+	select,input{
+		font-size: 14px !important;
+		font-weight: bold;
+	}
 	select[name="MedTechID"], select[name="qcID"], select[name="pathID"]{
 		font-size: 14px;
 		font-weight: bold;
@@ -158,8 +162,8 @@ include_once('labsidebar.php');
         <div class="card" style="border-radius: 0px; margin-top: 10px;">
             <div class="card-header card-inverse card-info"><center><b>LABORATORY SCIENCES RESULTS</b></center></div>
             <div class="card-block">
-            <div class="container-fluid">
-            	<div class="row">
+    <div class="container-fluid">
+        <div class="row">
             <div class="col-6">            	
             	<div class="form-group row">
 	            	<div class="col-6 ">
@@ -208,7 +212,7 @@ include_once('labsidebar.php');
 	            	<div class="col-4">
 	            		<SELECT class="form-control" name="HBsAg" id="HBsAg">
 				 	 		<OPTION >N/A</OPTION>
-				 	 		<OPTION value="NONREACTIVE">NON-REACTIVE</OPTION>
+				 	 		<OPTION value="NON-REACTIVE">NON-REACTIVE</OPTION>
 				 	 		<OPTION value="REACTIVE">REACTIVE</OPTION>
 				 	 	</SELECT>
 	            	</div>
@@ -218,7 +222,17 @@ include_once('labsidebar.php');
 	            	<div class="col-4">
 	            		<SELECT class="form-control" name="aHav" id="aHav">
 				 	 		<OPTION >N/A</OPTION>
-				 	 		<OPTION value="NONREACTIVE">NON-REACTIVE</OPTION>
+				 	 		<OPTION value="NON-REACTIVE">NON-REACTIVE</OPTION>
+				 	 		<OPTION value="REACTIVE">REACTIVE</OPTION>
+				 	 	</SELECT>
+	            	</div>
+				</div>
+				<div class="form-group row">
+	            	<label for="HBsAg" class="col-6 col-form-label text-right">VDRL/RPR:</label>
+	            	<div class="col-4">
+	            		 <SELECT class="form-control" name="VDRL" id="VDRL">
+				 	 		<OPTION >N/A</OPTION>
+				 	 		<OPTION value="NON-REACTIVE">NON-REACTIVE</OPTION>
 				 	 		<OPTION value="REACTIVE">REACTIVE</OPTION>
 				 	 	</SELECT>
 	            	</div>
@@ -230,8 +244,10 @@ include_once('labsidebar.php');
 	            	</div>
 				</div>
             </div>
-            </div>
-            </div>
+        </div>
+    </div>
+ 
+
 			<div class="form-group row">
 				<div class="col">
 					<?php if($trans['TransactionType'] == 'CASH'){ ?>

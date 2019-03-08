@@ -211,6 +211,21 @@ include_once('labsidebar.php');
 	            </div>
 			</div>
 			<div class="form-group row">
+	            <label for="RBS" class="col-3 col-form-label">Fasting Blood Sugar :</label>
+	            <div class="col-2">
+	            	<p><?php echo $data['RBS'] ?></p>
+	            </div>
+	            <div class="col-3">
+	            	mmol/L < 7.7
+	            </div>
+	            <div class="col-1">
+	            	<p><?php echo $data['RBScon'] ?></p>
+	            </div>
+	            <div class="col-3">
+	            	mg/dl < 140
+	            </div>
+			</div>
+			<div class="form-group row">
 	            <label for="BUA" class="col-3 col-form-label">Uric Acid :</label>
 	            <div class="col-2">
 	            	<p><?php echo $data['BUA'] ?></p>
@@ -413,6 +428,30 @@ include_once('labsidebar.php');
 	            </div>
 	            <div class="col-4">
 	            	% 4.3 - 6.3
+	            </div>
+			</div>
+			<div class="form-group row">
+	            <label for="ALP" class="col-3 col-form-label"><b>ALP :</b></label>
+	            <div class="col-2">
+	            	<p><?php echo $data['ALP'] ?></p>
+	            </div>
+	            <div class="col-4">
+	            	U/L up to 105
+	            </div>
+			</div>
+			<div class="form-group row">
+	            <label for="PSA" class="col-3 col-form-label"><b>PSA :</b></label>
+	            <div class="col-2">
+	            	<b><?php echo $data['PSA']; ?></b>
+	            </div>
+	            <div class="col-4">
+	            	ng/mL 0-4
+	            </div>
+			</div>
+			<div class="form-group row">
+	            <label for="PSA" class="col-3 col-form-label"><b>GGTP :</b></label>
+	            <div class="col-2">
+	            	<b><?php echo $data['GGTP']; ?></b>
 	            </div>
 			</div>
 <!-- NAMES -->

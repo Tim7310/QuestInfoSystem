@@ -10,6 +10,7 @@ if (mysqli_connect_errno())
   	$SD = $_GET['sd'];
     $ED = $_GET['ed'];
     $j=0;
+    if ($_GET['type'] == "CASH") {  
     $select = "SELECT GrandTotal FROM qpd_trans WHERE TransactionType = 'CASH' AND TransactionDate >= '$SD' AND TransactionDate <= '$ED'  AND status = '1'";
 	$result = mysqli_query($con, $select);
 
@@ -24,7 +25,18 @@ if (mysqli_connect_errno())
     $tots1 = explode(", ",$tots);
     $totalcash = array_sum($tots1);
 
+    $refund = "SELECT * FROM qpd_trans WHERE TransactionType = 'CASH' AND TransactionDate >= '$SD' AND TransactionDate <= '$ED'  AND status = '1' and SalesType = 'refund'";
+	$refund = mysqli_query($con, $refund);
+	$refundCount = 0;
+		while($row = mysqli_fetch_array($refund)){
+			$refundCount++;
+	    }	
+	}else{
+		$totalcash = 0;
+		$refundCount = 0;
+	}
     $i=0;
+    if ($_GET['type'] == "ACCOUNT") {   
 	$select1 = "SELECT TotalPrice FROM qpd_trans WHERE TransactionType = 'ACCOUNT' AND TransactionDate >= '$SD' AND TransactionDate <= '$ED' AND status = '1'";
 	$result1 = mysqli_query($con, $select1);
     $totalaccount = 0;
@@ -32,9 +44,10 @@ if (mysqli_connect_errno())
     {
     	$totalaccount += $row['TotalPrice'];
     	$i++;
-    	
     }
-
+     }else{
+    	$totalaccount = 0;
+    }
 	$select2 = "SELECT PaidOut FROM qpd_trans WHERE TransactionDate >= '$SD' AND TransactionDate <= '$ED'  AND status = '1'";
 	$result2 = mysqli_query($con, $select2);
     $change = 0;
@@ -158,9 +171,10 @@ if (mysqli_connect_errno())
 		<div class="col">Sales:</div>
 		<div class="col text-right"><?php echo $count;?></div>
 	</div>
+	<?php if ($_GET['type'] == "CASH") {?>
 	<div class="row">
 		<div class="col">Returns:</div>
-		<div class="col text-right">0</div>
+		<div class="col text-right"><?php echo $refundCount; ?></div>
 	</div>
 	<div class="row">
 		<div class="col">Deposits:</div>
@@ -175,6 +189,7 @@ if (mysqli_connect_errno())
 		<div class="col text-right">0</div>
 	</div>
 	<br>
+	
 	<div class="row">
 		<div class="col"><b>Dollars</b></div>
 	</div>
@@ -191,7 +206,8 @@ if (mysqli_connect_errno())
 		<div class="col text-right"><?php echo number_format((float)$totalcash, 2, '.', '');?></div>
 	</div>
 	<br>
-	<div class="row">
+	<?php } if ($_GET['type'] == "ACCOUNT") {?>
+	<!-- <div class="row">
 		<div class="col"><b>Account</b></div>
 	</div>
 	<div class="row">
@@ -205,7 +221,8 @@ if (mysqli_connect_errno())
 	<div class="row">
 		<div class="col">Net:</div>
 		<div class="col text-right"><?php echo number_format((float)$totalaccount, 2, '.', '');?></div>
-	</div>
+	</div> -->
+
 	<div class="row">
 		<div class="col"><center><b>Account Listing</b></center></div>
 	</div>
@@ -222,6 +239,7 @@ if (mysqli_connect_errno())
 				</thead>
 				<tbody>
 				<?php
+				
 				    $select4 = "SELECT * FROM qpd_trans t, qpd_patient p WHERE t.TransactionType = 'ACCOUNT' AND p.PatientID = t.PatientID AND t.ItemID != 'CASH POS' AND t.TransactionDate BETWEEN '$SD' AND '$ED' ORDER BY p.CompanyName";
 
 					$result4 = mysqli_query($con, $select4);
@@ -246,13 +264,14 @@ if (mysqli_connect_errno())
 					<td><b>TOTAL</b></td>
 					<td><b><?php echo $i;?>--ACCOUNTS</b></td>
 				</tr>
+			
 				<tr>
 				</tr>
 				</tbody>
 			</table>
 		</div>
 	</div>
-
+	<?php } ?>
 
 </div>
 </div>

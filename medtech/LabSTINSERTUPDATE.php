@@ -26,7 +26,8 @@ $Tetra=$_POST['Tetra'] ;
 $DT=$_POST['DT'] ;
 
 $PatientID = $_POST['PatientID'];
- 
+//VDRL
+$VDRL = $_POST['VDRL'];
 
 $date=date("Y-m-d H:i:s");
 
@@ -35,17 +36,19 @@ $date=date("Y-m-d H:i:s");
     $check = $lab->getData($PatientID, $id, "lab_serology");
    
     if (!is_array($check)) {
-      if ($HBsAG != 'N/A' and $AntiHav != 'N/A') {
-        $lab->addSerology( $id, $PatientID, $HBsAG, $AntiHav, $SeroOt, $path, $mdID, $qcID, $date );
+      if ($HBsAG != 'N/A' or $AntiHav != 'N/A' or $VDRL != '' and $VDRL != 'N/A') {
+          $lab->addSerology( $id, $PatientID, $HBsAG, $AntiHav, $SeroOt, $path, $mdID, $qcID, $date, $VDRL );    
       }
     }else{
-      $lab->updateSerology( $id, $PatientID, $HBsAG, $AntiHav, $SeroOt, $path, $mdID, $qcID, $date );
+      $lab->updateSerology( $id, $PatientID, $HBsAG, $AntiHav, $SeroOt, $path, $mdID, $qcID, $date, $VDRL );
     }
   
  
     if (!is_array($check2)) {
       if ($DT != '' or $Tetra != '' or $Meth != '') {
+        if ($DT != 'N/A' or $Tetra != 'N/A' or $Meth != 'N/A') {
         $lab->addToxi(  $id, $PatientID, $Meth, $Tetra, $DT, $path, $mdID, $qcID, $date );
+        }
       }
     }else{
       $lab->updateToxi(  $id, $PatientID, $Meth, $Tetra, $DT, $path, $mdID, $qcID, $date);

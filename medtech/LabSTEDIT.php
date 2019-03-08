@@ -191,6 +191,12 @@ include_once('labsidebar.php');
 	            	</div>
 				</div>
 				<div class="form-group row">
+	            	<label class="col-6 col-form-label text-right">VDRL/RPR:</label>
+	            	<div class="col-4">
+	            		<input type="text" name="VDRL" class="form-control" value="<?php echo $check2['VDRL'] ?>">
+	            	</div>
+				</div>
+				<div class="form-group row">
 	            	<label for="SeroOt" class="col-6 col-form-label text-right">OTHERS/NOTES :</label>
 	            	<div class="col-4">
 	            		<input type="text" name="SeroOt" class="form-control" id="SeroOt" value="<?php echo $check2['SeroOt'] ?>">

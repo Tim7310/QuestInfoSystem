@@ -64,13 +64,13 @@ try{
       $lab->updateMicro($tid, $id, $FecColor, $FecCon, $FecMicro, $FecOt, $UriColor, $UriTrans, $UriPh, $UriSp, $UriPro, $UriGlu, $RBC, $WBC, $Bac, $MThreads, $ECells, $Amorph, $CoAx, $UriOt, '', '', '', '', '', '', $PregTest, $path, $mdID, $qcID, $date);
    }
   if ($check3 == 0) {
-      $lab->addHema($tid, $id, $WhiteBlood, $Hemoglobin, $HemoNR, $Hematocrit, $HemaNR, $Neutrophils, $Lymphocytes, $Monocytes, $CBCOt, '', '', '', '', $path, $mdID, $qcID, $date);
+      $lab->addHema($tid, $id, $WhiteBlood, $Hemoglobin, $HemoNR, $Hematocrit, $HemaNR, $Neutrophils, $Lymphocytes, $Monocytes, $CBCOt, '', '', '', '', '', '', '', '', '', '', '', $path, $mdID, $qcID, $date);
   }else{
-      $lab->updateHema($tid, $id, $WhiteBlood, $Hemoglobin, $HemoNR, $Hematocrit, $HemaNR, $Neutrophils, $Lymphocytes, $Monocytes, $CBCOt, '', '', '', '', $path, $mdID, $qcID, $date);
+      $lab->updateHema($tid, $id, $WhiteBlood, $Hemoglobin, $HemoNR, $Hematocrit, $HemaNR, $Neutrophils, $Lymphocytes, $Monocytes, $CBCOt, '', '', '', '', '', '', '', '', '', '', '', $path, $mdID, $qcID, $date);
   }
  
     if (!is_array($check4)) {
-       if ($HBsAg != 'N/A' and $HBsAg != '') {
+       if ($HBsAg != 'N/A' and $HBsAg != '' or $SeroOt != '' and $SeroOt != 'N/A') {
         $lab->addSerology( $tid, $id, $HBsAg, '', $SeroOt, $path, $mdID, $qcID, $date );
        }
     }else{
@@ -79,8 +79,10 @@ try{
  
   
     if ($check5 == 0) {
-      if ($DT != 'N/A' and $Tetra != 'N/A' and $Meth != 'N/A') {
-        $lab->addToxi(  $tid, $id, $Meth, $Tetra, $DT, $path, $mdID, $qcID, $date );
+      if ($DT != 'N/A' or $Tetra != 'N/A' or $Meth != 'N/A') {
+        if ($DT != 'N/A' or $Tetra != 'N/A' or $Meth != 'N/A') {
+          $lab->addToxi(  $tid, $id, $Meth, $Tetra, $DT, $path, $mdID, $qcID, $date );
+        }
       }
     }else{
       $lab->updateToxi(  $tid, $id, $Meth, $Tetra, $DT, $path, $mdID, $qcID, $date);

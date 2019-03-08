@@ -463,6 +463,38 @@ include_once('labsidebar.php');
 	            		<input type="text" name="pregTest" class="form-control" >
 	            	</div>
 				</div>
+				<!-- AFB Stain -->
+				<div class="form-group row">
+	            	<div class="col-3 ">
+	            		<b>AFB</b>
+	            	</div>
+	            	<div class="col-2"><center><b>Specimen 1</b></center></div>
+	            	<div class="col-2"><center><b>Specimen 2</b></center></div>
+				</div>
+				<div class="form-group row">
+	            	<label class="col-3 col-form-label text-right">Visual Appearance : </label>
+	            	<div class="col-2">
+	            		<input type="text" name="AFBVA1" class="form-control" >
+	            	</div>
+	            	<div class="col-2">
+	            		<input type="text" name="AFBVA2" class="form-control" >
+	            	</div>
+				</div>
+				<div class="form-group row">
+	            	<label class="col-3 col-form-label text-right">Reading : </label>
+	            	<div class="col-2">
+	            		<input type="text" name="AFBR1" class="form-control" >
+	            	</div>
+	            	<div class="col-2">
+	            		<input type="text" name="AFBR2" class="form-control" >
+	            	</div>
+				</div>
+				<div class="form-group row">
+					<label class="col-3 col-form-label text-right">Diagnosis : </label>
+	            	<div class="col-4">
+	            		<input type="text" name="AFBD" class="form-control" >
+	            	</div>
+				</div>
 			<div class="form-group row">
 				<div class="col">
 					<?php if($trans['TransactionType'] == 'CASH'){ ?>

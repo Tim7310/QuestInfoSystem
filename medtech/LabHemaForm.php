@@ -269,8 +269,8 @@ $printCount = $lab->checkPrint($id, $tid, 'HEMATOLOGY');
 	    </div>
 	    <div class="col-6">
 	        <span class="lineName"><?php 
-	        if ($data['Biller'] != "WALK-IN") {
-	        	echo $data['Biller']; 
+	        if ($data['CompanyName'] != "WALK-IN") {
+	        	echo $data['CompanyName']; 
 	        } ?></span>
 	    </div>
 	</div>
@@ -348,7 +348,7 @@ $printCount = $lab->checkPrint($id, $tid, 'HEMATOLOGY');
 	<hr>
 
           
-<div class="card-block col-ms-22" style="margin-top: 20px;">
+<div class="container-fluid" style="">
 <!-- U/A -->	
 				<div class="row">
 	            	<div class="col-4 ">
@@ -360,7 +360,8 @@ $printCount = $lab->checkPrint($id, $tid, 'HEMATOLOGY');
 	            		<b>SI Units</b>
 	            	</div>
 				</div>
-
+			<?php if($data['WhiteBlood'] != '' and $data['WhiteBlood'] != 'N/A'){
+			?>
 				<div class="row" style="margin-top: 10px;">
 	            	<div class="col-3 ">
 	            		<b>Complete Blood Count</b>
@@ -404,16 +405,12 @@ $printCount = $lab->checkPrint($id, $tid, 'HEMATOLOGY');
 					<div class="col"><p class="labelName">0.00~1.00</p></div>
 				</div>
 				<div class="row" style="margin: 10px;"></div>
-				<div class="row" style="margin: 10px;"></div>
-				<div class="row" style="margin: 10px;"></div>
 				<div class="row" style="margin: 10px;">
 					<div class="col-4"><p class="labelName">RBC</p></div>
 					<div class="col-2"><p class="lineRes"><?php echo $data['CBCRBC'] ?></p></div>
 					<div class="col"><p class="labelName">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;%</p></div>
 					<div class="col"><p class="labelName">4.32~5.72</p></div>
 				</div>
-				<div class="row" style="margin: 10px;"></div>
-				<div class="row" style="margin: 10px;"></div>
 				<div class="row" style="margin: 10px;"></div>
 				<div class="row" style="margin: 10px;">
 					<div class="col-4"><p class="labelName">Hemoglobin</p></div>
@@ -430,8 +427,6 @@ $printCount = $lab->checkPrint($id, $tid, 'HEMATOLOGY');
 					<div class="col-2"><p class="labelName" style="font-size: 16px">F: 0.34~0.45</p></div>
 				</div>
 				<div class="row" style="margin: 10px;"></div>
-				<div class="row" style="margin: 10px;"></div>
-				<div class="row" style="margin: 10px;"></div>
 				<div class="row" style="margin: 10px;">
 					<div class="col-4"><p class="labelName">Platelet</p></div>
 					<div class="col-2"><p class="lineRes"><?php echo $data['PLT'] ?></p></div>
@@ -439,7 +434,80 @@ $printCount = $lab->checkPrint($id, $tid, 'HEMATOLOGY');
 					<div class="col"><p class="labelName">150~400</p></div>
 				</div>
 				</div>
-
+				<?php }
+				if ($data['PTime'] != "" and $data['PTime'] != "N/A") {
+					
+				?>
+				<div class="row" style="margin-top: 10px;">
+	            	<div class="col-3 ">
+	            		<b>PROTHROMBIN TIME</b>
+	            	</div>
+				</div>
+				<div class="row" style="margin: 10px;">
+					<div class="col-4"><p class="labelName">Patient Time :</p></div>
+					<div class="col-2"><p class="lineRes"><?php echo $data['PTime'] ?></p></div>
+					<div class="col"><p class="labelName">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SECS</p></div>
+					<div class="col"><p class="labelName"><?php echo $data['PTimeNV'] ?> SECS</p></div>
+				</div>
+				<div class="row" style="margin: 10px;">
+					<div class="col-4"><p class="labelName">Control :</p></div>
+					<div class="col-2"><p class="lineRes"><?php echo $data['PTControl'] ?></p></div>
+					<div class="col"><p class="labelName">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SECS</p></div>
+					<div class="col"><p class="labelName"><?php echo $data['PTControlNV'] ?> SECS</p></div>
+				</div>
+				<div class="row" style="margin: 10px;">
+					<div class="col-4"><p class="labelName">% Activity:</p></div>
+					<div class="col-2"><p class="lineRes"><?php echo $data['ActPercent'] ?></p></div>
+					<div class="col"><p class="labelName">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;%</p></div>
+					<div class="col"><p class="labelName"><?php echo $data['ActPercentNV'] ?> %</p></div>
+				</div>
+				<div class="row" style="margin: 10px;">
+					<div class="col-4"><p class="labelName">INR:</p></div>
+					<div class="col-2"><p class="lineRes"><?php echo $data['INR'] ?></p></div>
+					<div class="col"><p class="labelName">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p></div>
+					<div class="col"><p class="labelName"><?php echo $data['INRNV'] ?> </p></div>
+				</div>
+				<?php if($data["PR131"] != "" and $data["PR131"] != "N/A"){?>
+				<div class="row" style="margin: 10px;">
+					<div class="col-4"><p class="labelName">PR1.31:</p></div>
+					<div class="col-2"><p class="lineRes"><?php echo $data['PR131'] ?></p></div>
+				</div>
+				<?php }} ?>
+				<?php if ($data['APTTime'] != "" and $data['APTTime'] != "N/A") {
+					
+				?>
+				<div class="row" style="margin-top: 10px;">
+	            	<div class="col-3 ">
+	            		<b>APTT</b>
+	            	</div>
+				</div>
+				<div class="row" style="margin: 10px;">
+					<div class="col-4"><p class="labelName">Patient Time :</p></div>
+					<div class="col-2"><p class="lineRes"><?php echo $data['APTTime'] ?></p></div>
+					<div class="col"><p class="labelName">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SECS</p></div>
+					<div class="col"><p class="labelName"><?php echo $data['APTTimeNV'] ?> SECS</p></div>
+				</div>
+				<div class="row" style="margin: 10px;">
+					<div class="col-4"><p class="labelName">Control :</p></div>
+					<div class="col-2"><p class="lineRes"><?php echo $data['APTControl'] ?></p></div>
+					<div class="col"><p class="labelName">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SECS</p></div>
+					<div class="col"><p class="labelName"><?php echo $data['APTControlNV'] ?> SECS</p></div>
+				</div>
+				<?php } 
+				if ($data['MS'] != '' and $data['MS'] != 'N/A') {
+				?>
+				<div class="row" style="margin-top: 10px;">
+	            	<div class="col-3 ">
+	            		<b>Malarial Smear</b>
+	            	</div>
+				</div>
+				<div class="row" style="margin: 10px;">
+					<div class="col-4"><p class="labelName">Results:</p></div>
+					<div class="col-2"><p class="lineRes"><?php echo $data['MS'] ?></p></div>
+				</div>
+				<?php
+					}
+				?>
 				<!-- <div class="row">
 
 					<div class="col-5">

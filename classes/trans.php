@@ -19,10 +19,19 @@ class trans {
 		return $query->fetchAll();
 
 	}
+	
 	public function fetchByMonth($month,$year){
 		global $pdo;
 
 		$query = $pdo->prepare("SELECT * FROM qpd_patient f, qpd_trans t WHERE f.PatientID = t.PatientID and MONTH(t.TransactionDate) = '$month' and YEAR(t.TransactionDate) = '$year'");
+		$query->execute();
+
+		return $query->fetchAll();
+	}
+	public function fetchHMOMonth($month,$year){
+		global $pdo;
+
+		$query = $pdo->prepare("SELECT * FROM qpd_patient f, qpd_trans t WHERE f.PatientID = t.PatientID and MONTH(t.TransactionDate) = '$month' and YEAR(t.TransactionDate) = '$year' and t.AN != ''");
 		$query->execute();
 
 		return $query->fetchAll();
@@ -172,6 +181,15 @@ class trans {
 		return $query->fetchAll();
 
 	}
+	public function fetchDateType($date1,$date2,$type){
+		global $pdo;
+
+		$query = $pdo->prepare("SELECT f.*, t.* FROM qpd_patient f, qpd_trans t WHERE f.PatientID = t.PatientID and t.TransactionDate BETWEEN '$date1' and '$date2'  AND status = '1' and TransactionType = '$type' ORDER BY t.TransactionDate");
+		$query->execute();
+
+		return $query->fetchAll();
+
+	}
 	public function randomDigits(){
 		do{
 			$trans = new trans;
@@ -198,7 +216,7 @@ class trans {
 		$gtotal = $gtotal * -1;
 		date_default_timezone_set("Asia/Kuala_Lumpur");
 		$tdate = date("Y-m-d H:i:s");
-		$sql = $pdo->prepare("INSERT INTO qpd_trans( TransactionRef, PatientID, TransactionType, Cashier, ItemID, ItemQTY, Biller, Discount, GrandTotal, TransactionDate, SalesType, status) VALUES ('$tref', '$pid', '$ttype', '$cashier', '$itemid', '$quantity', '$biller', '$discount', '$gtotal', '$tdate', 'refund', '1')");
+		$sql = $pdo->prepare("INSERT INTO qpd_trans( TransactionRef, PatientID, TransactionType, Cashier, ItemID, ItemQTY, Biller, TotalPrice, Discount, GrandTotal, TransactionDate, SalesType, status) VALUES ('$tref', '$pid', '$ttype', '$cashier', '$itemid', '$quantity', '$biller', '$gtotal', '$discount', '$gtotal', '$tdate', 'refund', '1')");
 
 		$sql->execute();
 
@@ -246,6 +264,11 @@ class trans {
 	public function deleteTrans($tid){
 		global $pdo;
 		$sql = $pdo->prepare("DELETE FROM qpd_trans WHERE TransactionID = '$tid' and status = '0'");
+		$sql->execute();
+	}
+	public function updateHMO($tid,$an,$ac,$loe,$tdate){
+		global $pdo;
+		$sql = $pdo->prepare("UPDATE qpd_trans set AC = '$ac', AN = '$an', LOE = '$loe', TransactionDate = '$tdate' where TransactionID = '$tid'");
 		$sql->execute();
 	}
 }

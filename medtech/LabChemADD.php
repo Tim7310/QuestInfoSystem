@@ -203,6 +203,21 @@ include_once('labsidebar.php');
 	            </div>
 			</div>
 			<div class="form-group row">
+	            <label  class="col-3 col-form-label">Random Blood Sugar :</label>
+	            <div class="col-2">
+	            	<input type="text" name="RBS"  class="form-control" id="RBS" >
+	            </div>
+	            <div class="col-3">
+	            	mmol/L < 7.7
+	            </div>
+	            <div class="col-1">
+	            	<input type="text" name="RBScon" class="form-control" id="RBScon" >
+	            </div>
+	            <div class="col-3">
+	            	mg/dl < 140
+	            </div>
+			</div>
+			<div class="form-group row">
 	            <label for="BUA" class="col-3 col-form-label">Uric Acid :</label>
 	            <div class="col-2">
 	            	<input type="text" name="BUA"  class="form-control" id="BUA" >
@@ -405,6 +420,34 @@ include_once('labsidebar.php');
 	            	% 4.3 - 6.3
 	            </div>
 			</div>
+			<div class="form-group row">
+	            <label for="ALP" class="col-3 col-form-label"><b>ALP :</b></label>
+	            <div class="col-2">
+	            	<input type="text" name="ALP"  class="form-control" id="ALP">
+	            </div>
+	            <div class="col-4">
+	            	U/L up to 105
+	            </div>
+			</div>
+			<div class="form-group row">
+	            <label for="PSA" class="col-3 col-form-label"><b>PSA :</b></label>
+	            <div class="col-2">
+	            	<input type="text" name="PSA"  class="form-control" id="PSA">
+	            </div>
+	            <div class="col-4">
+	            	ng/mL 0-4
+	            </div>
+			</div>
+			<div class="form-group row">
+	            <label class="col-3 col-form-label"><b>GGTP :</b></label>
+	            <div class="col-2">
+	            	<select name="GGTP">
+	            		<option value="">N/A</option>
+	            		<option value="POSITIVE">POSITIVE</option>
+	            		<option value="NEGATIVE">NEGATIVE</option>
+	            	</select>
+	            </div>
+			</div>
 
 			<div class="form-group row">
 				<div class="col">
@@ -493,6 +536,7 @@ include_once('labsidebar.php');
 			});		
 		}
 		chemCalc("0.055","FBS","FBScon");
+		chemCalc("0.055","RBS","RBScon");
 		chemCalc("59.48","BUA","BUAcon");
 		chemCalc("0.357","BUN","BUNcon");
 		chemCalc("88.4","CREA","CREAcon");
