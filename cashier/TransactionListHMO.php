@@ -74,9 +74,9 @@ include_once('cashsidebar.php');
 							<td nowrap>
 								<?php echo $trans['LastName']?>,&nbsp;<br><?php echo $trans['FirstName']?> <?php echo $trans['MiddleName']?> 
 							</td>
-							<td>
+							 <td>
 								<?php echo $trans['CompanyName']?>
-							</td>
+							</td> 
 							<td>
 								<?php echo $trans['Age']?>/<?php echo $trans['Gender']?>
 							</td>
@@ -84,7 +84,7 @@ include_once('cashsidebar.php');
 								<?php echo $trans['ContactNo']?>
 							</td>
 							
-							<td style="word-wrap: break-word;">
+							<td style="word-wrap: break-word;max-width: 350px">
 								<?php 
 									$items = $transac->each_item($trans['ItemID']);
 									foreach ($items as $key) {
@@ -107,7 +107,7 @@ include_once('cashsidebar.php');
 								 ?>
 							</td>
 							<td > 
-								<!-- <button type="button" class="btn btn-primary" onclick="document.location = 'Receipt.php?patID=<?php echo $trans['PatientID']?>&transID=<?php echo $trans['TransactionID']?>';">Reprint Receipt</button> -->
+								<button type="button" class="btn btn-primary" onclick="document.location = 'Receipt.php?patID=<?php echo $trans['PatientID']?>&transID=<?php echo $trans['TransactionID']?>';">Receipt</button> 
                                 <button type="button" class="btn btn-info editInfo" >Edit</button>
                                 <input type="hidden" name="" class="transID" value="<?php echo $trans['TransactionID']?>">
 							</td>
@@ -144,73 +144,73 @@ include_once('cashsidebar.php');
                     {
                         text: 'January',
                         action: function ( e, dt, node, config ) {
-                           window.location.href = "TransactionListCash.php?month=1&year=<?php echo $year ?>";
+                           window.location.href = "TransactionListHMO.php?month=1&year=<?php echo $year ?>";
                         }
                     },
                     {
                         text: 'February',
                         action: function ( e, dt, node, config ) {
-                           window.location.href = "TransactionListCash.php?month=2&year=<?php echo $year ?>";
+                           window.location.href = "TransactionListHMO.php?month=2&year=<?php echo $year ?>";
                         }
             		},
             		{
                         text: 'March',
                         action: function ( e, dt, node, config ) {
-                           window.location.href = "TransactionListCash.php?month=3&year=<?php echo $year ?>";
+                           window.location.href = "TransactionListHMO.php?month=3&year=<?php echo $year ?>";
                         }
             		},
             		{
                         text: 'April',
                         action: function ( e, dt, node, config ) {
-                           window.location.href = "TransactionListCash.php?month=4&year=<?php echo $year ?>";
+                           window.location.href = "TransactionListHMO.php?month=4&year=<?php echo $year ?>";
                         }
                     },
                     {
                         text: 'May',
                         action: function ( e, dt, node, config ) {
-                           window.location.href = "TransactionListCash.php?month=5&year=<?php echo $year ?>";
+                           window.location.href = "TransactionListHMO.php?month=5&year=<?php echo $year ?>";
                         }
             		},
             		{
                         text: 'June',
                         action: function ( e, dt, node, config ) {
-                           window.location.href = "TransactionListCash.php?month=6&year=<?php echo $year ?>";
+                           window.location.href = "TransactionListHMO.php?month=6&year=<?php echo $year ?>";
                         }
             		},
             		{
                         text: 'July',
                         action: function ( e, dt, node, config ) {
-                           window.location.href = "TransactionListCash.php?month=7&year=<?php echo $year ?>";
+                           window.location.href = "TransactionListHMO.php?month=7&year=<?php echo $year ?>";
                         }
                     },
                     {
                         text: 'August',
                         action: function ( e, dt, node, config ) {
-                           window.location.href = "TransactionListCash.php?month=8&year=<?php echo $year ?>";
+                           window.location.href = "TransactionListHMO.php?month=8&year=<?php echo $year ?>";
                         }
             		},
             		{
                         text: 'September',
                         action: function ( e, dt, node, config ) {
-                           window.location.href = "TransactionListCash.php?month=9&year=<?php echo $year ?>";
+                           window.location.href = "TransactionListHMO.php?month=9&year=<?php echo $year ?>";
                         }
             		},
             		{
                         text: 'October',
                         action: function ( e, dt, node, config ) {
-                           window.location.href = "TransactionListCash.php?month=10&year=<?php echo $year ?>";
+                           window.location.href = "TransactionListHMO.php?month=10&year=<?php echo $year ?>";
                         }
                     },
                     {
                         text: 'November',
                         action: function ( e, dt, node, config ) {
-                           window.location.href = "TransactionListCash.php?month=11&year=<?php echo $year ?>";
+                           window.location.href = "TransactionListHMO.php?month=11&year=<?php echo $year ?>";
                         }
             		},
             		{
                         text: 'December',
                         action: function ( e, dt, node, config ) {
-                           window.location.href = "TransactionListCash.php?month=12&year=<?php echo $year ?>";
+                           window.location.href = "TransactionListHMO.php?month=12&year=<?php echo $year ?>";
                         }
             		}
             		]
@@ -227,6 +227,15 @@ include_once('cashsidebar.php');
             },
             {
                 "targets": [ 1 ],
+                "visible": false
+            },
+            {
+                "targets": [ 2 ],
+                "visible": false
+            }
+            ,
+            {
+                "targets": [ 5 ],
                 "visible": false
             }
         ]

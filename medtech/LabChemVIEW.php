@@ -35,6 +35,7 @@ if (is_array($data)) {
 	}
 	.card-header
 	{
+		background-color: #2980B9 !important;
 		font-family: "Century Gothic";
 		font-size: 24px;
 	}
@@ -439,7 +440,7 @@ include_once('labsidebar.php');
 	            	U/L up to 105
 	            </div>
 			</div>
-			<div class="form-group row">
+			<!-- <div class="form-group row">
 	            <label for="PSA" class="col-3 col-form-label"><b>PSA :</b></label>
 	            <div class="col-2">
 	            	<b><?php echo $data['PSA']; ?></b>
@@ -447,7 +448,7 @@ include_once('labsidebar.php');
 	            <div class="col-4">
 	            	ng/mL 0-4
 	            </div>
-			</div>
+			</div> -->
 			<div class="form-group row">
 	            <label for="PSA" class="col-3 col-form-label"><b>GGTP :</b></label>
 	            <div class="col-2">

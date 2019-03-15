@@ -1,8 +1,8 @@
 <?php
 include_once('../connection.php');
 include_once('../classes/rad.php');
-$rad = new rad;
-$rad= $rad->fetch_all();
+$rads = new rad;
+$rad= $rads->fetch_all();
 ?>
 <html>
 	<head>
@@ -19,7 +19,7 @@ $rad= $rad->fetch_all();
 		<script type="text/javascript" src="../source/CDN/buttons.html5.min.js"></script>
 		<script type="text/javascript" src="../source/CDN/buttons.print.min.js"></script>
 		<script type="text/javascript" src="../source/CDN/buttons.colVis.min.js"></script>
-		<link rel="stylesheet" type="text/css" href="../source/bootstrap4/css/bootstrap.css">
+		<link rel="stylesheet" type="text/css" href="../source/bootstrap4/css/flatly-bootstrap.min.css">
 		<link rel="stylesheet" type="text/css" href="../source/CDN/dataTables.bootstrap4.min.css">
 		<link rel="stylesheet" type="text/css" href="../source/CDN/buttons.bootstrap4.min.css	">
 	</head>
@@ -28,13 +28,18 @@ $rad= $rad->fetch_all();
 		{
 			white-space: nowrap;
 		}
+		button{
+			cursor: pointer;
+			width: 200px !important;
+			margin-bottom: 2px !important;
+		}
 	</style>
 <body>
 <?php
 include_once('radsidebar.php');
 ?>
 <div class="container-fluid" style="margin-top: 10px;">
-	<table id="example" class="table table-striped table-bordered table-hover" cellspacing="0" width="50%" style="overflow-x:scroll;">
+	<table id="example" class="table table-striped table-bordered table-hover" cellspacing="0" style="overflow-x:scroll;">
 		<thead>
                     	<th>ID</th>
                     	<th>Date</th>
@@ -73,7 +78,7 @@ include_once('radsidebar.php');
 								<?php echo $rad['QA']?>
 							</td>
 							<td>
-								<button type="button" class="btn btn-primary" onclick="document.location = 'XRayEDIT.php?id=<?php echo $rad['PatientID']?>&tid=<?php echo $rad['TransactionID']?>';">UPDATE RECORD</button>
+								<button type="button" class="btn btn-info" onclick="document.location = 'XRayEDIT.php?id=<?php echo $rad['PatientID']?>&tid=<?php echo $rad['TransactionID']?>';">UPDATE RECORD</button>
 								<button type="button" class="btn btn-primary" onclick="document.location = 'XRayResult.php?id=<?php echo $rad['PatientID']?>&tid=<?php echo $rad['TransactionID']?>';">PRINT RESULT</button>
 							</td>
 

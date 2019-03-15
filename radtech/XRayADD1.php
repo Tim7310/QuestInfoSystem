@@ -1,11 +1,14 @@
 <?php
 include_once('../connection.php');
 include_once('../classes/trans.php');
+include_once('../classes/rad.php');
 $trans = new trans;
+$rads = new rad;
 if (isset($_GET['id'])){
     $id = $_GET['id'];
     $tid = $_GET['tid'];
     $data = $trans->fetch_data($id, $tid);
+     $radhis = $rads->fetchHis($id, $tid);
 
 ?>
 <html>
@@ -39,6 +42,7 @@ if (isset($_GET['id'])){
 	}
 	.card-header
 	{
+        background-color: #2980B9 !important;
 		font-family: "Calibri";
 		font-size: 24px;
 	}
@@ -71,7 +75,7 @@ include_once('radsidebar.php');
 <form action="XRayINSERT.php" method="post" autocomplete="off" enctype="multipart/form-data">
 <center><p style="font-size: 36px; font-family: 'Century Gothic';">Add Radiology Results</p></center>
 <div class="row">
-    <div class="col-md-10 offset-sm-1">
+    <div class="col-md-12">
         <div class="card" style="border-radius: 0px; margin-top: 10px;">
             <div class="card-header card-inverse card-info"><center><b>PATIENT INFORMATION</b></center></div>
             <div class="card-block">
@@ -108,12 +112,19 @@ include_once('radsidebar.php');
                         <p><b><?php echo $data['Gender'] ?></b></p>
                     </div>
 				</div>
+                <div class="row">
+                    <?php foreach($radhis as $his){ ?>
+                        <div class="col-md-auto">
+                        <p><b><?php echo $his['CreationDate'] ?></b> - <?php echo $his['Impression'] ?></p>
+                        </div>
+                    <?php } ?>
+                </div>
             </div>
         </div>
     </div>	
 </div>
 <div class="row">
-	<div class="col-7 offset-sm-1">
+	<div class="col-8">
         <div class="card" style="border-radius: 0px; margin-top: 10px;">
             <div class="card-header card-inverse card-info"><center><b>Radiology Report</b></center></div>
             <div class="card-block">
@@ -162,7 +173,7 @@ include_once('radsidebar.php');
             </div>
         </div>
 	</div>
-	<div class="col-3">
+	<div class="col-4">
         <div class="card" style="border-radius: 0px; margin-top: 10px;">
             <div class="card-header card-inverse card-info"><center><b>Normal Templates</b></center></div>
             <div class="card-block">

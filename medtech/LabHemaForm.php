@@ -508,6 +508,7 @@ $printCount = $lab->checkPrint($id, $tid, 'HEMATOLOGY');
 				<?php
 					}
 				?>
+				
 				<!-- <div class="row">
 
 					<div class="col-5">

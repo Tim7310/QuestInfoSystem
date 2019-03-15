@@ -3,7 +3,7 @@ class trans {
 	public function fetch_all(){
 		global $pdo;
 
-		$query = $pdo->prepare("SELECT f.*, t.* FROM qpd_patient f, qpd_trans t WHERE f.PatientID = t.PatientID ORDER BY t.TransactionID");
+		$query = $pdo->prepare("SELECT f.*, t.* FROM qpd_patient f, qpd_trans t WHERE f.PatientID = t.PatientID ORDER BY t.TransactionID and t.status = '1'");
 		$query->execute();
 
 		return $query->fetchAll();
@@ -19,11 +19,16 @@ class trans {
 		return $query->fetchAll();
 
 	}
-	
+	public function itemXray($id){
+		global $pdo;
+		$query = $pdo->prepare("SELECT * from qpd_items where ItemID = '$id' and HaveXray = '1' ");
+		$query->execute();
+		return $query->rowCount();
+	}
 	public function fetchByMonth($month,$year){
 		global $pdo;
 
-		$query = $pdo->prepare("SELECT * FROM qpd_patient f, qpd_trans t WHERE f.PatientID = t.PatientID and MONTH(t.TransactionDate) = '$month' and YEAR(t.TransactionDate) = '$year'");
+		$query = $pdo->prepare("SELECT * FROM qpd_patient f, qpd_trans t WHERE f.PatientID = t.PatientID and MONTH(t.TransactionDate) = '$month' and YEAR(t.TransactionDate) = '$year' and t.status = '1' ");
 		$query->execute();
 
 		return $query->fetchAll();
@@ -32,6 +37,13 @@ class trans {
 		global $pdo;
 
 		$query = $pdo->prepare("SELECT * FROM qpd_patient f, qpd_trans t WHERE f.PatientID = t.PatientID and MONTH(t.TransactionDate) = '$month' and YEAR(t.TransactionDate) = '$year' and t.AN != ''");
+		$query->execute();
+
+		return $query->fetchAll();
+	}
+	public function fetchCompanies(){
+		global $pdo;
+		$query = $pdo->prepare("SELECT * FROM qpd_company");
 		$query->execute();
 
 		return $query->fetchAll();
@@ -269,6 +281,11 @@ class trans {
 	public function updateHMO($tid,$an,$ac,$loe,$tdate){
 		global $pdo;
 		$sql = $pdo->prepare("UPDATE qpd_trans set AC = '$ac', AN = '$an', LOE = '$loe', TransactionDate = '$tdate' where TransactionID = '$tid'");
+		$sql->execute();
+	}
+	public function addCompany($name,$add){
+		global $pdo;
+		$sql = $pdo->prepare("INSERT into qpd_company (NameCompany, CompanyAddress) values ('$name','$add')");
 		$sql->execute();
 	}
 }

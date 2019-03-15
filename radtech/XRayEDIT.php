@@ -6,12 +6,12 @@ $patient = new Patient;
 if (isset($_GET['id'])){
       $id = $_GET['id'];
       $data = $patient->fetch_data($id);
-$rad = new rad;
+$rads = new rad;
 if (isset($_GET['id'])){
       $id = $_GET['id'];
       $tid = $_GET['tid'];
-      $rad = $rad->fetch_data($id, $tid);
-
+      $rad = $rads->fetch_data($id, $tid);
+      $radhis = $rads->fetchHis($id, $tid);
 ?>
 <html>
 <head>
@@ -28,7 +28,8 @@ if (isset($_GET['id'])){
 	}
 	.card-header
 	{
-		font-family: "Calibri";
+		background-color: #2980B9 !important;
+            font-family: "Calibri";
 		font-size: 24px;
 	}
 	.card-block, .checkbox
@@ -60,7 +61,7 @@ include_once('radsidebar.php');
 <form action="XRayUPDATE.php" method="post" autocomplete="off" enctype="multipart/form-data">
 <center><p style="font-size: 36px; font-family: 'Century Gothic';">Edit Radiology Results</p></center>
 <div class="row">
-    <div class="col-md-10 offset-sm-1">
+    <div class="col-md-12">
         <div class="card" style="border-radius: 0px; margin-top: 10px;">
             <div class="card-header card-inverse card-info"><center><b>PATIENT INFORMATION</b></center></div>
             <div class="card-block">
@@ -91,14 +92,21 @@ include_once('radsidebar.php');
                                     <label>Gender:</label><br>
                                     <p><b><?php echo $data['Gender'] ?></b></p>
                               </div>
+                               <div class="col col-md-auto">
+                                    <label>History:</label><br>
+                              <?php 
+                                    foreach($radhis as $his){ ?>
+                                          <p><b><?php echo $his['TransactionID'] ?></b> - <?php echo $his['Impression'] ?></p>
+                              <?php } ?>
+                              </div>
 			</div>
             </div>
         </div>
     </div>	
 </div>
 <div class="row">
-	<div class="col-7 offset-sm-1">
-        <div class="card" style="border-radius: 0px; margin-top: 10px;">
+	<div class="col-7">
+        <div class="card shadow-lg" style="border-radius: 0px; margin-top: 10px;">
             <div class="card-header card-inverse card-info"><center><b>Radiology Report</b></center></div>
             <div class="card-block">
             <div class="row">
@@ -120,7 +128,7 @@ include_once('radsidebar.php');
             </div>
             <div class="row">
             	<div class="col">
-            		<textarea name="imp" cols="40" rows="5" class="form-control" placeholder="Impression">
+            		<textarea name="imp" cols="40" rows="3" class="form-control" placeholder="Impression">
             			<?php echo $rad['Impression'] ?>
             		</textarea>
             	</div>
@@ -146,7 +154,7 @@ include_once('radsidebar.php');
             </div>
         </div>
 	</div>
-	<div class="col-3">
+	<div class="col-5">
         <div class="card" style="border-radius: 0px; margin-top: 10px;">
             <div class="card-header card-inverse card-info"><center><b>Normal Templates</b></center></div>
             <div class="card-block">

@@ -109,9 +109,16 @@ if (isset($_GET['transID'])){
 		</b></td>
 	</tr>
 	<tr>
+		<td class="text-right">Phone #:</td>
+		<td class="" colspan="2" style="font-size: 18px;letter-spacing: 2px"><b>
+			&nbsp;&nbsp;<?php echo $data['ContactNo'] ?>
+		</b></td>
+	</tr>
+	<tr>
 		<?php 
 		if ($data['Biller'] == "" or $data['Biller'] == " ") {
-			$reff = $data['CompanyName'];
+			//$reff = $data['CompanyName'];
+			$reff = $data['Biller'];
 		} else {
 			$reff = $data['Biller'];
 		}

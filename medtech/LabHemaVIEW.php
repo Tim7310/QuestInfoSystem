@@ -34,6 +34,7 @@ if (is_array($data)) {
 	}
 	.card-header
 	{
+		background-color: #2980B9 !important;
 		font-family: "Calibri";
 		font-size: 24px;
 	}
@@ -407,6 +408,7 @@ include_once('labsidebar.php');
 	            	<?php echo $data['MS'] ?>
 	            </div>
 			</div>
+
 
 <!-- NAMES -->
 		<hr>

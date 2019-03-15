@@ -1,11 +1,22 @@
 <?php
 include_once('../connection.php');
 include_once('../classes/pack.php');
-$pack = new pack;
-$pack = $pack->fetch_all();
-?>
-<?php 
+if (!isset($_SESSION)) {
+   session_start();
+}
+  require_once '../class.user.php';
+  $user = new USER;
+  $user->bypass('Admin');
 
+$stmt = $user->runQuery("SELECT * FROM tbl_users WHERE userID=:uid");
+$stmt->execute(array(":uid"=>$_SESSION['userSession']));
+$row = $stmt->fetch(PDO::FETCH_ASSOC);
+
+$pack = new pack;
+$pack = $pack->fetchAll();
+
+	$itemcheck = array("U/A","Chest PA", "F/A", "P.E", "CBC", "Drug Test", "Pregnancy Test", "HBsAg", "Lipid Profile", "FBS");
+	$packtest = array("XRay", "Blood", "Specimen", "PE");
 	$conn=mysqli_connect("localhost","root","","dbqis");
 	// Check connection
 	if (mysqli_connect_errno())
@@ -16,7 +27,26 @@ $pack = $pack->fetch_all();
 	{
 
 		if (isset($_POST['btnCreatePackage'])) {
-			
+			if (!empty($_POST['XRay'])) {
+				$xray = 1;
+			}else{
+				$xray = 0;
+			}
+			if (!empty($_POST['Blood'])) {
+				$blood = 1;
+			}else{
+				$blood = 0;
+			}
+			if (!empty($_POST['Specimen'])) {
+				$spec = 1;
+			}else{
+				$spec = 0;
+			}
+			if (!empty($_POST['PE'])) {
+				$pe = 1;
+			}else{
+				$pe = 0;
+			}
 
 			$nameitem = $_POST['txtItemName'];
 			$priceitem = $_POST['txtItemPrice'];
@@ -24,8 +54,9 @@ $pack = $pack->fetch_all();
 			$typecash = $_POST['CashType'];
 
 
-			$sql_query = "INSERT INTO qpd_items (ItemName, ItemPrice, ItemDescription, ItemType)
-			VALUES ('$nameitem', '$priceitem', '$descriptionitem', '$typecash')";
+
+			$sql_query = "INSERT INTO qpd_items (ItemName, ItemPrice, ItemDescription, ItemType, HaveXray, HaveSpec, HaveBlood, HavePE)
+			VALUES ('$nameitem', '$priceitem', '$descriptionitem', '$typecash', '$xray', '$blood', '$spec', '$pe')";
 
 			if ($conn->query($sql_query) === TRUE)
 			{
@@ -40,6 +71,7 @@ $pack = $pack->fetch_all();
 
 		}
 	}
+	
 
  ?>
 <html>
@@ -57,9 +89,10 @@ $pack = $pack->fetch_all();
 		<script type="text/javascript" src="../source/CDN/buttons.html5.min.js"></script>
 		<script type="text/javascript" src="../source/CDN/buttons.print.min.js"></script>
 		<script type="text/javascript" src="../source/CDN/buttons.colVis.min.js"></script>
-		<link rel="stylesheet" type="text/css" href="../source/bootstrap4/css/bootstrap.css">
+		<link rel="stylesheet" type="text/css" href="../source/bootstrap4/css/bootstrap.min.css" >
 		<link rel="stylesheet" type="text/css" href="../source/CDN/dataTables.bootstrap4.min.css">
-		<link rel="stylesheet" type="text/css" href="../source/CDN/buttons.bootstrap4.min.css	">	
+		<link rel="stylesheet" type="text/css" href="../source/CDN/buttons.bootstrap4.min.css	">		
+		<link rel="stylesheet" type="text/css" href="../source/awesome-checkbox/awesome-bootstrap-checkbox.css	">		
 	</head>
 <style type="text/css" media="all">
 	.form-control
@@ -112,6 +145,16 @@ $pack = $pack->fetch_all();
 	button{
 		cursor: pointer;
 	}
+	.cp input, .cp select{
+		font-size: 15px;
+		font-weight: bold;
+	}
+	.checkbox label{
+		font-weight: bold;
+		padding: 3px;
+		cursor: pointer;
+		margin: 2px;
+	}
 </style>
 <body>
 <?php include_once('cashsidebar.php');?>
@@ -120,17 +163,31 @@ $pack = $pack->fetch_all();
 	<div class="card card-info" style="border-radius: 0px; margin-top: 10px;">
  		<div class="card-header"><center><b>CREATE PACKAGES</b></center></div>
 		<div class="card-block">
-			<div class="contaienr">
-			<div >
+			<div class="container cp">
+				<div class="row">
+					<div class="col-12">
+					<?php 
+					$cnum = 0;
+					foreach ($itemcheck as $check) {
+					 ?>						
+					  <span class="checkbox">
+					    <input type="checkbox" class="checkboxes" id="<?php echo 'cid'.$cnum ?>" value="<?php echo $check ?>">
+					    <label for="<?php echo 'cid'.$cnum ?>">
+					        <?php echo $check." " ?>
+					    </label>
+					  </span>
+					<?php $cnum++; } ?>
+					</div>
+				</div>		
 				<form method="POST" class="form-inline">
 					<div class="form-group mr-2">
 						<input type="" name="txtItemName" placeholder="Item Name" required="" class="form-control">
 					</div>
 					<div class="form-group mr-2">
-						<input type="" name="txtItemDescription" placeholder="Item Description" required="" class="form-control">
+						<input type="" name="txtItemDescription" placeholder="Item Description" required="" class="form-control" style="width: 400px" id="itemdesc">
 					</div>
 					<div class="form-group mr-2">
-						<input type="" name="txtItemPrice" placeholder="Item Price" required="" class="form-control">
+						<input type="" name="txtItemPrice" placeholder="Price" required="" class="form-control" style="width: 70px">
 					</div>
 					<div class="form-group mr-2">
 						<select name="CashType" class="form-control">
@@ -144,8 +201,22 @@ $pack = $pack->fetch_all();
 					<div class="form-group mr-2">
 						<input type="submit" class="form-control btn-primary" name="btnCreatePackage" value="CREATE">
 					</div>
-				</form>				
-			</div>
+					<span style="font-weight: bolder">Test: &nbsp;&nbsp; </span> 					
+					<?php 
+							foreach ($packtest as $check1) {
+							 ?>						
+							 
+							    <input type="checkbox" name="<?php echo $check1 ?>" value="<?php echo $check1 ?>" id="<?php echo $check1 ?>" style="" class="checkbox2">
+							    <label for="<?php echo $check1 ?>" class="badge badge-info ml-2 mr-2" style="cursor: pointer;">
+							        <?php echo $check1." " ?>
+							    </label>
+							 
+						<?php } ?> 
+					</div>
+						
+					
+				</form>	
+					
 			</div> 
 		</div>
 	</div>
@@ -161,7 +232,7 @@ $pack = $pack->fetch_all();
 						<th>Item Name</th>
 						<th>Item Price</th>
 						<!-- <th>Item Description</th> -->
-						<th width="50px">Quick Access</th>
+						<th width="50px">Delete Items</th>
 						<th>Action</th>
 
 					</thead>
@@ -184,16 +255,16 @@ $pack = $pack->fetch_all();
 							</td> -->
 							<td>
 								<input type="hidden" name="" class="itemid" value="<?php echo $pack['ItemID']?>">
-								<input type="hidden" name="" class="testtype" value="<?php echo $pack['TestType']?>">
-								<button class="btn btn-primary specifydisc">
+								<input type="hidden" name="" class="testtype" value="<?php echo $pack['DeletedItem']?>">
+								
 								<?php
-									if ($pack['TestType'] == 0) {
-										echo '<i class="fas fa-times-circle"></i>';
+									if ($pack['DeletedItem'] == 0) {
+										echo '<button class="btn btn-primary specifydisc"><i class="fas fa-times-circle"></i></button>';
 									}else{
-										echo '<i class="fas fa-check-circle"></i>';
+										echo '<button class="btn btn-danger specifydisc"><i class="fas fa-check-circle"></i></button>';
 									}
 								?>
-								</button>
+								
 							</td>
 							<td > 
 								
@@ -228,6 +299,25 @@ function confirmationDelete(anchor)
 			$("#modal").modal("show");
 		});
 	});
+	$(".checkbox input").click(function(){
+		var descitem = [];
+		$(".checkboxes").each(function(){			
+			if($(this).prop("checked")){
+				descitem.push($(this).val());				
+			}
+		});
+
+		$("#itemdesc").val(descitem.join(", "));
+	});
+	$(".checkbox2").change(function(){
+		// $(this).siblings(".btn").button('toggle');
+		// $(this).toggleClass("btn");
+		// if($(this).prop("checked")){
+		// 	$(this).siblings("label").button('toggle');
+		// }else{
+		// 	$(this).siblings("label").css({"color":"#0275D8","background-color":"none"});
+		// }
+	});
     var table = $('#example').DataTable( {
         lengthChange: false,
         scrollY:       500,
@@ -257,11 +347,13 @@ function confirmationDelete(anchor)
         		type = 0;
         		$(this).siblings(".testtype").val(0);
         	}
-        	$.post("UpdateItemQA.php",{id: id, type: type},function(e){
+        	$.post("UpdateItemDel.php",{id: id, type: type},function(e){
         		if (e == 0) {
         			thisbtn.html('<i class="fas fa-times-circle"></i>');
+        			thisbtn.removeClass("btn-danger").addClass("btn-primary");
         		}else{
         			thisbtn.html('<i class="fas fa-check-circle"></i>');
+        			thisbtn.removeClass("btn-primary").addClass("btn-danger");
         		}
         	});
         });

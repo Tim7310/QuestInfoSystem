@@ -26,14 +26,17 @@ if(!$user->is_logged_in())
   <!--     Fonts and icons     -->
   <link rel="stylesheet" type="text/css" href="../assets/css/MaterialIcons.css" />
  
-  <link rel="stylesheet" type="text/css" href="../source/bootstrap4/css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="../source/bootstrap4/css/cosmo-bootstrap.min.css">
 <script type="text/javascript" src="../source/popper.min.js"></script>
 <script type="text/javascript" src="../source/jquery.min.js"></script>
+
 <link href="../source/fontawesome/css/all.css" rel="stylesheet"/>
   <!-- CSS Files -->
   <link href="dashboard/assets/css/material-dashboard.css?v=2.1.1" rel="stylesheet" />
   <!-- CSS Just for demo purpose, don't include it in your project -->
   <link href="dashboard/assets/demo/demo.css" rel="stylesheet" />
+  <link href="assets/css/gsdk.css" rel="stylesheet" />  
+  <link href="assets/css/demo.css" rel="stylesheet" /> 
 </head>
 <style type="text/css">
   ::-webkit-scrollbar {
@@ -258,6 +261,13 @@ if(!$user->is_logged_in())
   <script src="dashboard/assets/js/material-dashboard.js?v=2.1.1" type="text/javascript"></script>
   <!-- Material Dashboard DEMO methods, don't include it in your project! -->
   <script src="dashboard/assets/demo/demo.js"></script>
+  <!-- for GSDK -->
+  <script src="assets/js/jquery-ui-1.10.4.custom.min.js" type="text/javascript"></script>
+  <script src="assets/js/gsdk-checkbox.js"></script>
+  <script src="assets/js/gsdk-radio.js"></script>
+  <script src="assets/js/gsdk-bootstrapswitch.js"></script>
+  <script src="assets/js/get-shit-done.js"></script>
+  <script src="assets/js/custom.js"></script>
   <script>
     $(document).ready(function() {
     $("#content").load("sales.php",{},function(){});
@@ -275,6 +285,7 @@ if(!$user->is_logged_in())
          $("#content").load("userManagement.php",{},function(){});
       }
     });
+    
     
     });
   </script>

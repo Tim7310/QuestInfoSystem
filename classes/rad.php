@@ -30,6 +30,22 @@ class rad {
 		$query->execute();
 		return $query->fetchAll();
 	}
+	public function fetchHis($pid, $tid){
+		global $pdo;
+		$query = $pdo->prepare("SELECT * from qpd_xray where PatientID = '$pid' and TransactionID != '$tid' ");
+		$query->execute();
+		return $query->fetchAll();
+	}
+	public function checkXray($pid, $tid){
+		global $pdo;
+		$query = $pdo->prepare("SELECT * from qpd_xray where PatientID = '$pid' and TransactionID = '$tid' ");
+		$query->execute();
+		if ($query->rowCount() > 0) {
+			return True;
+		}else{
+			return False;
+		}
+	}
 
 }
 ?>

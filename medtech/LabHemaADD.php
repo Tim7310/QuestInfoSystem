@@ -31,6 +31,7 @@ if (!is_array($check)) {
 	}
 	.card-header
 	{
+		background-color: #2980B9 !important;
 		font-family: "Calibri";
 		font-size: 24px;
 	}
@@ -422,7 +423,6 @@ include_once('labsidebar.php');
 	            	</select>
 	            </div>
 			</div>
-
 
 			<div class="form-group row">
 				<div class="col">

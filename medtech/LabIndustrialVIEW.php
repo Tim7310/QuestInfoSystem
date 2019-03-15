@@ -35,6 +35,7 @@ if(is_array($data) or is_array($data1) or is_array($data3) or is_array($data4)){
 	}
 	.card-header
 	{
+		background-color: #2980B9 !important;
 		font-family: "Century Gothic";
 		font-size: 24px;
 	}

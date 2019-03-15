@@ -20,19 +20,18 @@ $cashierpriv = $cashierpriv['CashierCash'];
 
 $pack = new Pack;
 $packData = $pack->fetch_all();
-if ($cashierpriv != 0) {
-	$optlabel = "QUICK ACCESS";
-	$QAitem = $pack->fetch_QA();
-}else{
+
 	$optlabel = "ACCOUNTS ITEM";
 	$QAitem = $pack->fetch_Account();
-}
+	
+
 
 $biller = "";//biller here
 
 $trans = new trans;
 $pat = new Patient;
 $holdTrans = $trans->hold_trans();
+$companies = $trans->fetchCompanies();
 //Generate 8 digit random number for REFERENCE
 		function randomDigits()
 			{
@@ -163,9 +162,15 @@ $TransNo = randomDigits();
 	}
 	.itemdivID{
 		padding: 10px;
-		background-color: #025aa5;
-		color: white;
+		background-color: white;
 		text-align: left;
+		font-weight: bolder;
+	}
+	.itemdivID input{
+		background-color: white;
+		text-align: left;
+		font-weight: bolder;
+		text-align: center;
 	}
 	.removeItem:hover{
 		text-decoration: none;
@@ -225,7 +230,7 @@ include_once('cashsidebar.php');
 			<div class="input-group" >
 
 			  <select class="custom-select" id="itemList" name="itemList" aria-label="Select Item Here" 
-			  placeholder="Select Item Here">
+			  placeholder="Select Item Here" style="width: 500px !important">
 			   		<?php foreach ($packData as $key){ ?>
 						<option value="<?php echo $key['ItemID'];?>" class="itemval" >
 							<?php echo $key['ItemName']." | ". $key['ItemPrice'] ;?></option>
@@ -258,7 +263,7 @@ include_once('cashsidebar.php');
 			<div class="input-group" >
 			
 			<select class="custom-select" id="itemList2" name="itemList" aria-label="Select Item Here" 
-			  placeholder="Select Item Here">
+			  placeholder="Select Item Here" style="width: 500px !important">
 			   		<?php foreach ($QAitem as $key){ ?>
 						<option value="<?php echo $key['ItemID'];?>" class="itemval" >
 							<?php echo $key['ItemName']." | ". $key['ItemPrice'] ;?></option>
@@ -268,7 +273,7 @@ include_once('cashsidebar.php');
 		</div>
 		<div class="col-3"></div>
 		<div class="col">
-			<div id="searchloader" class="form-control" style="overflow-y: scroll;max-height:100px; background-color: #2980b9;"></div>
+			<div id="searchloader" class="form-control" style="overflow-y: scroll;height:100px !important; background-color: #2980b9;"></div>
 		</div>
 	</div>
 
@@ -375,6 +380,7 @@ include_once('cashsidebar.php');
 				    		<div class="col-3"> Transaction ID </div>
 				    		<div class="col-3">Patient Name </div>
 				    		<div class="col-3">Items </div>
+				    		<!-- <div class="col-3">Price </div> -->
 				    		<div class="col-3">Transaction Date </div>
 				    	</div>
 				    	<hr style="margin-top: 2px;">
@@ -399,10 +405,12 @@ include_once('cashsidebar.php');
 				    			$itemids = $key['ItemID'];
 		            			$itemID = explode(',', $itemids);
 		            			$Package = "";$itemnum = 0;$yy = 0;
+		            			$htprice = 0;
 		            			if ($itemids != ""){
 		            			foreach ($itemID as $key1) {
 		            				$items = $trans->fetch_item($key1);
 		            				$Package .= "[".$items['ItemName']."] ";
+		            				$htprice = ($itemsdiscount[$yy] / 100) * $items['ItemPrice'] + $htprice;
 		            				$itemnum++; 
 		            		?>
 		            			<input type="hidden" name="" class="itemsid" value="<?php echo $items['ItemID']; ?>">
@@ -416,6 +424,7 @@ include_once('cashsidebar.php');
 				    		<input type="hidden" name="" class="idpatient" value="<?php echo $idpatient; ?>">
 				    		<input type="hidden" name="" class="idtrans" value="<?php echo $idtrans; ?>">
 				    		<div class="col-3"><?php echo $Package?> </div>
+				    		<!-- <div class="col-3"><?php echo $htprice ?> </div> -->
 				    		<div class="col-3"><?php echo $key['TransactionDate'] ?> </div>
 				    		
 				    	</div>
@@ -463,7 +472,14 @@ include_once('cashsidebar.php');
       	 	<div class="col">
        			<input type="hidden"  name="idpatient" class="form-control newPatStyle" value="" id="myInput" required />
 				<label for="" class="newPatLabel">Company Name:</label>
-				<input type="text"  name="company" class="form-control newPatStyle" value="" id="myInput" required />
+				 <select class="custom-select company"  name="company" aria-label="Select Company Here" 
+				  placeholder="Select Company Here" style="width: 230px">
+				   		<?php foreach ($companies as $company){ ?>
+							<option value="<?php echo  $company['NameCompany'];?>" class="itemval" >
+								<?php echo $company['NameCompany'];?></option>
+						<?php } ?>
+				  </select>
+				<!-- <input type="text"  name="company" class="form-control newPatStyle" value="" id="myInput" required /> -->
 				<label for="" class="newPatLabel">Applied Position:</label>
 				<input type="text" name="position" class="form-control newPatStyle" value="" id="myInput" required />
 				<label for="" class="newPatLabel">First Name:</label>
@@ -489,7 +505,13 @@ include_once('cashsidebar.php');
 				<label for="" class="newPatLabel">Email Address:</label>
 				<input type="text"  name="email" class="form-control newPatStyle" value="" id="myInput" />
 				<label for="" class="newPatLabel">Bill to:</label>
-				<input type="text"  name="billto" id="billto" class="form-control newPatStyle" id="myInput" value="" />
+				 <select class="custom-select company"  name="billto" style="width: 230px">
+				   		<?php foreach ($companies as $company){ ?>
+							<option value="<?php echo  $company['NameCompany'];?>" class="itemval" >
+								<?php echo $company['NameCompany'];?></option>
+						<?php } ?>
+				  </select>
+				<!-- <input type="text"  name="billto" id="billto" class="form-control newPatStyle" id="myInput" value="" /> -->
 				<label for="" class="newPatLabel">Senior/PWD ID:</label>
 				<input type="text"  name="sid" id="SID" class="form-control newPatStyle" id="myInput" value="" />
 				<br>
@@ -522,6 +544,8 @@ include_once('cashsidebar.php');
 		$('#itemList').select2({
 		});
 		$('#itemList2').select2({	
+		});
+		$('.company').select2({	
 		});
 		$(".hmo").hide();
 		//var xx = new array

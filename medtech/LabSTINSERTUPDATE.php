@@ -28,7 +28,8 @@ $DT=$_POST['DT'] ;
 $PatientID = $_POST['PatientID'];
 //VDRL
 $VDRL = $_POST['VDRL'];
-
+//PSA
+$PSA = $_POST['PSA'];
 $date=date("Y-m-d H:i:s");
 
   try{
@@ -36,11 +37,11 @@ $date=date("Y-m-d H:i:s");
     $check = $lab->getData($PatientID, $id, "lab_serology");
    
     if (!is_array($check)) {
-      if ($HBsAG != 'N/A' or $AntiHav != 'N/A' or $VDRL != '' and $VDRL != 'N/A') {
-          $lab->addSerology( $id, $PatientID, $HBsAG, $AntiHav, $SeroOt, $path, $mdID, $qcID, $date, $VDRL );    
+      if ($HBsAG != 'N/A' or $AntiHav != 'N/A' or $VDRL != '' and $VDRL != 'N/A' or $PSA != '' and $PSA != "N/A") {
+          $lab->addSerology( $id, $PatientID, $HBsAG, $AntiHav, $SeroOt, $path, $mdID, $qcID, $date, $VDRL,$PSA );    
       }
     }else{
-      $lab->updateSerology( $id, $PatientID, $HBsAG, $AntiHav, $SeroOt, $path, $mdID, $qcID, $date, $VDRL );
+      $lab->updateSerology( $id, $PatientID, $HBsAG, $AntiHav, $SeroOt, $path, $mdID, $qcID, $date, $VDRL, $PSA );
     }
   
  

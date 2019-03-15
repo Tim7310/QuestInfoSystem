@@ -14,14 +14,14 @@ $row = $stmt->fetch(PDO::FETCH_ASSOC);
 <!DOCTYPE html>
 <html>
 <head lang="en">
-    <meta charset="UTF-8">
+      <meta charset="UTF-8">
     <link href="../source/bootstrap4/css/bootstrap.css" rel="stylesheet"/>
-    <link href="../source/bootstrap4/css/bootstrap.min.css" rel="stylesheet"/>
-    <script type="javascript" href="../source/bootstrap3.3.7/js/bootstrap.js"></script>
-    <script type="javascript" href="../source/bootstrap3.3.7/js/bootstrap.min.js"> </script>
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
-    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-    <!-- <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> -->
+    <link href="../source/bootstrap4/css/cosmo-bootstrap.min.css" rel="stylesheet"/>
+    <link href="../source/fontawesome/css/all.css" rel="stylesheet"/>
+   
+    <link rel="icon" type="image/png" href="assets/QPD.png">
+    <script src="../source/tether/dist/js/tether.min.js"></script>
+    <script src="../source/bootstrap4/js/bootstrap.min.js"></script>
 
 
 </head>
@@ -60,15 +60,16 @@ $row = $stmt->fetch(PDO::FETCH_ASSOC);
   <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-  <a class="navbar-brand">
+ 
+  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+     <a class="navbar-brand">
     <img src="../assets/QPDLogo.png" width="40" height="40" class="d-inline-block align-center" alt="">
     
   </a>
-  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
     <div class="navbar-nav">
       <a class="nav-item nav-link" href="../home.php" ><i class="fas fa-home"></i>&nbsp; Home</a>
       <a class="nav-item nav-link" href="../medtech/ListOfPatients.php"><i class="fas fa-user-cog"></i>&nbsp;Patient Summary</a>
-      <a class="nav-item nav-link" href="../medtech/LABSummary.php"><i class="fas fa-flask"></i>&nbsp;Lab Summary</a>
+     <!--  <a class="nav-item nav-link" href="../medtech/LABSummary.php"><i class="fas fa-flask"></i>&nbsp;Lab Summary</a> -->
       <a class="nav-item nav-link" href="../medtech/LabSections.php"><i class="fas fa-users"></i>&nbsp;Laboratory Sections</a>
       <a class="nav-item nav-link" href="../medtech/ResSections.php"><i class="fas fa-th-list"></i>&nbsp;Result Sections</a>
       <a class="nav-item nav-link" href="../logout.php" style="padding-left:330px; "><i class="fas fa-sign-out-alt"></i>&nbsp; LOGOUT</a>

@@ -316,6 +316,18 @@ hr
 			</div>
 		</div>
 		<?php } ?>
+		<?php if ($data2['PSAnti'] != '' and $data2['PSAnti'] != 'N/A') {			
+			?>
+			<div class="row mt-3" >
+			    <div class="col-3"><p class="label">PSA ( Prostate-Specific Antigen )</p></div>
+			    <div class="col-2">
+	            	<span class="line"><?php echo $data2['PSAnti'] ?></span>
+	            </div>
+	            <div class="col-3">
+	            	<p class="label">ng/mL 0-4</p><br>
+	            </div>
+			</div>
+			<?php } ?>
 		<?php if( $data2['SeroOt'] != '' and $data2['SeroOt'] != 'N/A'){ ?>
 		<div class="row">
 			<div class="col-5 names p-4" style="font-size: 20px">

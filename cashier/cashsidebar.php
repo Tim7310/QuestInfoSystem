@@ -6,10 +6,13 @@ if (!isset($_SESSION)) {
   $user = new USER;
   $user->bypass('cashier');
 
+
+
 $stmt = $user->runQuery("SELECT * FROM tbl_users WHERE userID=:uid");
 $stmt->execute(array(":uid"=>$_SESSION['userSession']));
 $row = $stmt->fetch(PDO::FETCH_ASSOC);
 date_default_timezone_set("Asia/Kuala_Lumpur");
+$priv = $user->getUser($_SESSION['userSession']);
 $month = date("m");
 $year = date("Y");
 ?>
@@ -18,7 +21,7 @@ $year = date("Y");
 <head lang="en">
     <meta charset="UTF-8">
     <link href="../source/bootstrap4/css/bootstrap.css" rel="stylesheet"/>
-    <link href="../source/bootstrap4/css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="../source/bootstrap4/css/cosmo-bootstrap.min.css" rel="stylesheet"/>
     <link href="../source/fontawesome/css/all.css" rel="stylesheet"/>
    
     <link rel="icon" type="image/png" href="assets/QPD.png">
@@ -52,21 +55,28 @@ $year = date("Y");
   <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-  <a class="navbar-brand" href="../home.php">
+ 
+  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+     <a class="navbar-brand" href="../home.php">
     <img src="../assets/QPDLogo.png" width="40" height="40" class="d-inline-block align-center" alt="">
     
   </a>
-  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
     <div class="navbar-nav">
        
      <a class="nav-item nav-link" href="Cash1.php" ><i class="fas fa-money-bill-alt"></i>&nbsp; Transact</a>
       <a class="nav-item nav-link" href="TransactionListCash.php?month=<?php echo $month ?>&year=<?php echo $year ?>"><i class="fas fa-list-ul"></i>&nbsp; Transaction List</a>
        <a class="nav-item nav-link" href="TransactionListHMO.php?month=<?php echo $month ?>&year=<?php echo $year ?>"><i class="fas fa-list-ul"></i>&nbsp; HMO List</a>
+       <?php if($priv['Admin'] > 0){ ?>
       <a class="nav-item nav-link" href="ItemCash.php"><i class="fas fa-archive"></i>&nbsp; Manage Tests Packages</a>
+      <?php } ?>
       <a class="nav-item nav-link" href="CashSalesReport.php"><i class="far fa-newspaper"></i>&nbsp; Sales Report</a>
+      <?php if($priv['Admin'] > 0){ ?>
       <a class="nav-item nav-link" href="Exchange.php"><i class="fas fa-exchange-alt"></i>&nbsp; Refund / Exchange</a>
       <div style="padding-left:50px"></div>
-      <a class="nav-item nav-link" href="../logout.php" style="float: right; "><i class="fas fa-sign-out-alt"></i>&nbsp LOGOUT</a>
+       <?php }else{ ?>
+      <div style="padding-left:550px"></div>
+      <?php } ?>
+      <a class="nav-item nav-link float-right" href="../logout.php" style="float: right; "><i class="fas fa-sign-out-alt"></i>&nbsp LOGOUT</a>
     </div>
 
   </div>

@@ -4,7 +4,14 @@ include_once('../classes/trans.php');
 include_once('../classes/lab.php');
 $trans = new trans;
 $lab = new lab;
-$patients = $trans->recentTrans();
+if (isset($_GET['year'])) {
+	date_default_timezone_set("Asia/Kuala_Lumpur");
+	$year = date("Y");
+}else{
+	$year = $_GET['year'];
+}
+$month = $_GET['month'];
+$patients = $trans->fetchByMonth($month,$year);
 
 ?>
 <html>
@@ -39,15 +46,16 @@ $patients = $trans->recentTrans();
 <?php
 include_once('labsidebar.php');
 ?>
-<div class="container" style="margin-top: 10px;">
+<div class="container-fluid" style="margin-top: 10px;">
 <center><p>LABORATORY CHEMISTRY</p></center>
 	<table id="example" class="table table-striped table-bordered" cellspacing="0" width="100%">
         			<thead>
-                    	<th nowrap>Transaction No.</th>
+                    	<th >Transaction No.</th>
                     	<th>Patient ID</th>
-                    	<th nowrap>Transaction Date</th>
+                    	<th >Transaction Date</th>
 						<th>Company Name</th>
-						<th nowrap>Patient Name</th>
+						<th >Patient Name</th>
+						<th >Package</th>
 						<th>Action</th>
 					</thead>
 					<?php foreach  ($patients as $patient) { 
@@ -72,6 +80,28 @@ include_once('labsidebar.php');
 							<td nowrap>
 								<?php echo $patient['LastName']?>,<?php echo $patient['FirstName']?> <?php echo $patient['MiddleName']?> 
 							</td>
+							<td style="word-wrap: break-word;">
+								<?php 
+									$items = $trans->each_item($patient['ItemID']);
+									foreach ($items as $key) {
+									
+								?>
+								<b><?php echo $key['ItemName']; 
+								if ($key['ItemDescription'] != " ") {
+										# code...
+									
+								?></b> 
+								
+								<?php
+												
+									
+								 } 
+								 $itemEnd = end($items);
+								 if ($key[0] != $itemEnd[0]) {
+								 	echo ", ";
+								 }}
+								 ?>
+							</td>
 							<td nowrap> 
 								<?php if(is_array($data)){ ?>
 								<button type="button" class="btn btn-success" onclick="document.location = 'LabChemVIEW.php?id=<?php echo $patient['PatientID']?>&tid=<?php echo $patient['TransactionID']?>';">VIEW RECORD</button>
@@ -94,12 +124,92 @@ include_once('labsidebar.php');
         scrollCollapse: true,
         "scrollX": true,
         paging:         false,
-        buttons: ['excel', 'pdf', 'colvis' ]
+        "order": [[0,"desc"]],
+        buttons: ['excel', 'pdf', 'colvis', 
+        {
+                extend: 'collection',
+                text: 'Month',
+                buttons: [
+                    {
+                        text: 'January',
+                        action: function ( e, dt, node, config ) {
+                           window.location.href = "LabChem.php?month=1&year=<?php echo $year ?>";
+                        }
+                    },
+                    {
+                        text: 'February',
+                        action: function ( e, dt, node, config ) {
+                           window.location.href = "LabChem.php?month=2&year=<?php echo $year ?>";
+                        }
+            		},
+            		{
+                        text: 'March',
+                        action: function ( e, dt, node, config ) {
+                           window.location.href = "LabChem.php?month=3&year=<?php echo $year ?>";
+                        }
+            		},
+            		{
+                        text: 'April',
+                        action: function ( e, dt, node, config ) {
+                           window.location.href = "LabChem.php?month=4&year=<?php echo $year ?>";
+                        }
+                    },
+                    {
+                        text: 'May',
+                        action: function ( e, dt, node, config ) {
+                           window.location.href = "LabChem.php?month=5&year=<?php echo $year ?>";
+                        }
+            		},
+            		{
+                        text: 'June',
+                        action: function ( e, dt, node, config ) {
+                           window.location.href = "LabChem.php?month=6&year=<?php echo $year ?>";
+                        }
+            		},
+            		{
+                        text: 'July',
+                        action: function ( e, dt, node, config ) {
+                           window.location.href = "LabChem.php?month=7&year=<?php echo $year ?>";
+                        }
+                    },
+                    {
+                        text: 'August',
+                        action: function ( e, dt, node, config ) {
+                           window.location.href = "LabChem.php?month=8&year=<?php echo $year ?>";
+                        }
+            		},
+            		{
+                        text: 'September',
+                        action: function ( e, dt, node, config ) {
+                           window.location.href = "LabChem.php?month=9&year=<?php echo $year ?>";
+                        }
+            		},
+            		{
+                        text: 'October',
+                        action: function ( e, dt, node, config ) {
+                           window.location.href = "LabChem.php?month=10&year=<?php echo $year ?>";
+                        }
+                    },
+                    {
+                        text: 'November',
+                        action: function ( e, dt, node, config ) {
+                           window.location.href = "LabChem.php?month=11&year=<?php echo $year ?>";
+                        }
+            		},
+            		{
+                        text: 'December',
+                        action: function ( e, dt, node, config ) {
+                           window.location.href = "LabChem.php?month=12&year=<?php echo $year ?>";
+                        }
+            		}
+            		]
+           }
+        ]
     } );
  
     table.buttons().container()
         .appendTo( '#example_wrapper .col-md-6:eq(0)' );
 } );	
-</script>	
+</script>
 </body>
 </html> 

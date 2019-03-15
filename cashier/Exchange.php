@@ -1,3 +1,15 @@
+<?php 
+if (!isset($_SESSION)) {
+   session_start();
+}
+  require_once '../class.user.php';
+  $user = new USER;
+  $user->bypass('Admin');
+
+$stmt = $user->runQuery("SELECT * FROM tbl_users WHERE userID=:uid");
+$stmt->execute(array(":uid"=>$_SESSION['userSession']));
+$row = $stmt->fetch(PDO::FETCH_ASSOC);
+?>
 <!DOCTYPE html>
 <html>
 <head>

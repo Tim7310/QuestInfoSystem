@@ -1,6 +1,8 @@
 <?php
 include_once('../connection.php');
 include_once('../classes/trans.php');
+include_once('../classes/rad.php');
+$rad = new rad;
 $trans = new trans;
 $patients = $trans->fetch_all();
 $partsArray = array("CHEST PA", 
@@ -80,7 +82,18 @@ $partsArray = array("CHEST PA",
 					<th nowrap>Patient Name</th>
 					<th>Action</th>
 				</thead>
-				<?php foreach  ($patients as $patient) {  ?>
+				<?php foreach  ($patients as $patient) {  
+						$havexray = 0;
+						$items = $trans->each_item($patient['ItemID']);
+						foreach ($items as $item) {
+							$xcount = $trans->itemXray($item['ItemID']);
+							$havexray = $xcount + $havexray;
+
+						}
+						if ($havexray > 0 ) {
+							//echo $havexray;
+						
+					?>
 				
 
 					<tr>
@@ -132,7 +145,7 @@ $partsArray = array("CHEST PA",
 						</form>
 					</tr>
 				
-				<?php  } 	?> 
+				<?php  } }	?> 
 		    </table>
 		</div>
 	

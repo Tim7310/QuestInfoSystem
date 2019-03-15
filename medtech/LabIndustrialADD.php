@@ -28,6 +28,7 @@ if (isset($_GET['id']) and isset($_GET['tid'])){
 	}
 	.card-header
 	{
+		background-color: #2980B9 !important;
 		font-family: "Calibri";
 		font-size: 24px;
 	}

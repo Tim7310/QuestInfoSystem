@@ -545,10 +545,12 @@ hr
 		<?php } ?>
 		<?php if ($data['CHOL'] != "" and $data['CHOL'] or $data['TRIG'] != "" and  $data['TRIG'] != "N/A" or $data['HDL'] != "" and $data['HDL'] != "N/A" and $data['HDL'] != 0 and $data['HDL'] != "NAN" or $data['LDL'] != "" and $data['LDL'] != "N/A" and $data['LDL'] != 0 and $data['LDL'] != "NAN" or $data['CH'] != "" and $data['CH'] != "N/A" and $data['CH'] != 0 and $data['CH'] != "NAN" or $data['VLDL'] != "" and $data['VLDL'] != "N/A" and $data['VLDL'] != 0 and $data['VLDL'] != "NAN") {
 		 ?>
+		 <?php if ($data['CHOL'] != "" and $data['CHOL'] and $data['TRIG'] != "" and  $data['TRIG'] != "N/A" and $data['HDL'] != "" and $data['HDL'] != "N/A" and $data['HDL'] != 0 and $data['HDL'] != "NAN" and $data['LDL'] != "" and $data['LDL'] != "N/A" and $data['LDL'] != 0 and $data['LDL'] != "NAN" and $data['CH'] != "" and $data['CH'] != "N/A" and $data['CH'] != 0 and $data['CH'] != "NAN" and $data['VLDL'] != "" and $data['VLDL'] != "N/A" and $data['VLDL'] != 0 and $data['VLDL'] != "NAN") {
+		 ?>
 			<div class="row" id="LP">
 			    <p class="label">LIPID PROFILE</p><br>
 			</div>
-			<?php if($data['CHOL'] != "" and $data['CHOL'] != "N/A"){ ?>
+			<?php }if($data['CHOL'] != "" and $data['CHOL'] != "N/A"){ ?>
 			<div class="row" id="CheckCHOL">
 	            <label class="col-3"><p class="label">Cholesterol</p></label>
 	            <div class="col-2">

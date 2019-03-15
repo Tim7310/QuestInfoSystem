@@ -1,8 +1,11 @@
 <?php
 include_once('../connection.php');
-include_once('../classes/patient.php');
-$patient = new Patient;
+include_once('../classes/trans.php');
+$patient = new trans;
 $patients = $patient->fetch_all();
+date_default_timezone_set("Asia/Kuala_Lumpur");
+$month = date("m");
+$year = date("Y");
 ?>
 <html>
 	<head>
@@ -10,7 +13,7 @@ $patients = $patient->fetch_all();
     	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<title>Laboratory Sections</title>
 		<link rel="icon" type="image/png" href="../assets/qpd.png">
-	    <link rel="stylesheet" type="text/css" href="../source/bootstrap4/css/bootstrap.min.css">
+	   
 	    <link rel="stylesheet" href="style.css">
 		<link href="../sorting/dataTables.bootstrap.css" rel="stylesheet">
 	    <link href="../sorting/dataTables.responsive.css" rel="stylesheet">
@@ -88,7 +91,7 @@ include_once('labsidebar.php');
 		<div class="card-block">
 			<div class="row">
 				<div class="col-3">
-					<button onclick="window.location.href='LabIndustrial.php'">INDUSTRIAL</button>
+					<button onclick="window.location.href='LabIndustrial.php?month=<?php echo $month ?>&year=<?php echo $year ?>'">INDUSTRIAL</button>
 				</div>
 				<div class="col">
 					<p><b>*CBC *Urinalysis *Fecalysis *Drug Screening *Pregnancy Test *HBsAg Screening *Anti-HAV</b></p>
@@ -96,7 +99,7 @@ include_once('labsidebar.php');
 			</div>
 			<div class="row">
 				<div class="col-3">
-					<button onclick="window.location.href='LabMicroscopy.php'">CLINICAL MICROSCOPY</button>
+					<button onclick="window.location.href='LabMicroscopy.php?month=<?php echo $month ?>&year=<?php echo $year ?>'">CLINICAL MICROSCOPY</button>
 				</div>
 				<div class="col">
 					<p><b>*Urinalysis *Fecalysis *Pregnancy Test</b></p>
@@ -104,7 +107,7 @@ include_once('labsidebar.php');
 			</div> 
 			<div class="row">
 				<div class="col-3">
-					<button onclick="window.location.href='LabHema.php'">HEMATOLOGY</button>
+					<button onclick="window.location.href='LabHema.php?month=<?php echo $month ?>&year=<?php echo $year ?>'">HEMATOLOGY</button>
 				</div>
 				<div class="col">
 					<p><b>*Complete Blood Count *RBC *Platelet</b></p>
@@ -112,7 +115,7 @@ include_once('labsidebar.php');
 			</div> 
 			<div class="row">
 				<div class="col-3">
-					<button onclick="window.location.href='LabChem.php'">CHEMISTRY</button>
+					<button onclick="window.location.href='LabChem.php?month=<?php echo $month ?>&year=<?php echo $year ?>'">CHEMISTRY</button>
 				</div>
 				<div class="col">
 					<p><b>*FBS *BUA *BUN *Creatinine *Lipid Profile *Electrolytes *Enzymes *HBA1C</b></p>
@@ -120,7 +123,7 @@ include_once('labsidebar.php');
 			</div> 
 			<div class="row">
 				<div class="col-3">
-					<button onclick="window.location.href='LabSeroToxi.php'">SEROLOGY/TOXICOLOGY</button>
+					<button onclick="window.location.href='LabSeroToxi.php?month=<?php echo $month ?>&year=<?php echo $year ?>'">SEROLOGY/TOXICOLOGY</button>
 				</div>
 				<div class="col">
 					<p><b>*Drug Screening *HBsAg Screening *Anti-HAV</b></p>

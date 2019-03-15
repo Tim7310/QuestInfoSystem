@@ -34,6 +34,7 @@ if (!is_array($check)) {
 	}
 	.card-header
 	{
+		background-color: #2980B9 !important;
 		font-family: "Calibri";
 		font-size: 24px;
 	}
@@ -429,7 +430,7 @@ include_once('labsidebar.php');
 	            	U/L up to 105
 	            </div>
 			</div>
-			<div class="form-group row">
+			<!-- <div class="form-group row">
 	            <label for="PSA" class="col-3 col-form-label"><b>PSA :</b></label>
 	            <div class="col-2">
 	            	<input type="text" name="PSA"  class="form-control" id="PSA">
@@ -437,11 +438,11 @@ include_once('labsidebar.php');
 	            <div class="col-4">
 	            	ng/mL 0-4
 	            </div>
-			</div>
+			</div> -->
 			<div class="form-group row">
 	            <label class="col-3 col-form-label"><b>GGTP :</b></label>
 	            <div class="col-2">
-	            	<select name="GGTP">
+	            	<select name="GGTP" class="form-control">
 	            		<option value="">N/A</option>
 	            		<option value="POSITIVE">POSITIVE</option>
 	            		<option value="NEGATIVE">NEGATIVE</option>
@@ -555,13 +556,20 @@ include_once('labsidebar.php');
 		var vldl = trig / 2.175;
 		vldl = parseFloat(Math.round(vldl * 100) / 100).toFixed(2);
 		chdl = parseFloat(Math.round(chdl * 100) / 100).toFixed(2);
-		if (chdl != "Infinity") {
-			$("#CH").val(chdl);
-		}		
-		$("#VLDL").val(vldl);
-		$("#LDLcon").val(ldlval2);
-		$("#LDL").val(ldlval);
-
+		
+		if (chole != "" && trig != "" & hdl != "") {
+			if (chdl != "Infinity") {
+				$("#CH").val(chdl);
+			}		
+			$("#VLDL").val(vldl);
+			$("#LDLcon").val(ldlval2);
+			$("#LDL").val(ldlval);
+		}else{
+			$("#VLDL").val("");
+			$("#LDLcon").val("");
+			$("#LDL").val("");
+			$("#CH").val("");
+		}
 	});
 
 	});

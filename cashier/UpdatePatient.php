@@ -14,8 +14,9 @@ $add = $_POST['address'];
 $pos = $_POST['pos'];
 $pat = new Patient;
 $biller = $_POST['biller'];
+$email = $_POST['Email'];
 $SID = $_POST['SID'];
-$pat->Update_Patient($pid, $fname, $mname, $lname, $age, $gender, $comname, $contact, $bod, $add, $pos, $biller, $SID);
+$pat->Update_Patient($pid, $fname, $mname, $lname, $age, $gender, $comname, $contact, $bod, $add, $pos, $biller, $SID, $email);
 echo $pid;
 
 ?>

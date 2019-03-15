@@ -32,6 +32,7 @@ if (is_array($check) or is_array($check2)) {
 	}
 	.card-header
 	{
+		background-color: #2980B9 !important;
 		font-family: "Century Gothic";
 		font-size: 24px;
 	}
@@ -208,6 +209,15 @@ include_once('labsidebar.php');
 	            	<div class="col-2">
 	            		<b><?php echo $check2['VDRL'] ?></b>
 	            	</div>
+				</div>
+				<div class="form-group row">
+		            <label for="PSA" class="col-3 col-form-label text-right"><b>PSA :</b></label>
+		            <div class="col-2">
+		            	<b><?php echo $check2['PSAnti']; ?></b>
+		            </div>
+		            <div class="col-4">
+		            	ng/mL 0-4
+		            </div>
 				</div>
 				<div class="form-group row">
 	            	<label for="SeroOt" class="col-3 col-form-label text-right">OTHERS/NOTES :</label>

@@ -492,6 +492,22 @@
 				</div>
 				<?php } ?>
 				<?php 
+					if($data['Amorph'] != "" and $data['Amorph'] != "N/A"){
+				?>
+				<div class="row" style="margin-top: 5px;">
+					<div class="col-4"><p class="labelName">Amorphus</p></div>
+					<div class="col-3"><p class="lineRes"><?php echo $data['Amorph'] ?></p></div>
+				</div>
+				<?php } ?>
+				<?php 
+					if($data['CoAx'] != "" and $data['CoAx'] != "N/A"){
+				?>
+				<div class="row" style="margin-top: 5px;">
+					<div class="col-4"><p class="labelName">CoAx</p></div>
+					<div class="col-3"><p class="lineRes"><?php echo $data['CoAx'] ?></p></div>
+				</div>
+				<?php } ?>
+				<?php 
 					if($data['Bac'] != "" and $data['Bac'] != "N/A"){
 				?>
 				<div class="row" style="margin-top: 5px;">
