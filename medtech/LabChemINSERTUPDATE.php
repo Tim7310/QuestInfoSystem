@@ -60,17 +60,27 @@ $path = $_POST['pathID'];
   $GGTP = $_POST['GGTP'];
   $RBScon = $_POST['RBScon'];
 
+  $LDH = $_POST['LDH'];
+  $Calcium = $_POST['Calcium'];
+  $Amylase = $_POST['Amylase'];
+  $Lipase = $_POST['Lipase'];
+  $InPhos = $_POST['InPhos'];
+  $Protein = $_POST['Protein'];
+  $Albumin = $_POST['Albumin'];
+  $Globulin = $_POST['Globulin'];
+
+
 $date=date("Y-m-d H:i:s");
 
   try{
     $check =  $lab->getData($PatientID, $id, "lab_chemistry");
      if (!is_array($check)) {
 
-    $lab->addChem($id, $PatientID, $FBS, $FBScon, $BUA, $BUAcon, $BUN, $BUNcon, $CREA, $CREAcon, $CHOL, $CHOLcon, $TRIG, $TRIGcon, $HDL, $HDLcon, $LDL, $LDLcon, $CH, $VLDL, $Na, $K, $Cl, $ALT, $AST, $HB, $ALP,  $PSA, $RBS, $RBScon, $GGTP, $path, $mdID, $qcID, $date);
-      echo "<script> alert('Record Added Successfully'); </script>";
-      echo "<script>window.open('LabChemView.php?id=$PatientID&tid=$id','_self');</script>";
+    $lab->addChem($id, $PatientID, $FBS, $FBScon, $BUA, $BUAcon, $BUN, $BUNcon, $CREA, $CREAcon, $CHOL, $CHOLcon, $TRIG, $TRIGcon, $HDL, $HDLcon, $LDL, $LDLcon, $CH, $VLDL, $Na, $K, $Cl, $ALT, $AST, $HB, $ALP,  $PSA, $RBS, $RBScon, $GGTP, $path, $mdID, $qcID, $date, $LDH, $Calcium, $Amylase, $Lipase, $InPhos, $Protein, $Albumin, $Globulin);
+      // echo "<script> alert('Record Added Successfully'); </script>";
+      // echo "<script>window.open('LabChemView.php?id=$PatientID&tid=$id','_self');</script>";
     }else{
-      $lab->updateChem($id, $PatientID, $FBS, $FBScon, $BUA, $BUAcon, $BUN, $BUNcon, $CREA, $CREAcon, $CHOL, $CHOLcon, $TRIG, $TRIGcon, $HDL, $HDLcon, $LDL, $LDLcon, $CH, $VLDL, $Na, $K, $Cl, $ALT, $AST, $HB, $ALP, $PSA, $RBS, $RBScon, $GGTP, $path, $mdID, $qcID, $date);
+      $lab->updateChem($id, $PatientID, $FBS, $FBScon, $BUA, $BUAcon, $BUN, $BUNcon, $CREA, $CREAcon, $CHOL, $CHOLcon, $TRIG, $TRIGcon, $HDL, $HDLcon, $LDL, $LDLcon, $CH, $VLDL, $Na, $K, $Cl, $ALT, $AST, $HB, $ALP, $PSA, $RBS, $RBScon, $GGTP, $path, $mdID, $qcID, $date, $LDH, $Calcium, $Amylase, $Lipase, $InPhos, $Protein, $Albumin, $Globulin);
         echo "<script> alert('Record Updated Successfully'); </script>";
         echo "<script>window.open('LabChemView.php?id=$PatientID&tid=$id','_self');</script>";
     }

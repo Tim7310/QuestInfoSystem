@@ -25,6 +25,8 @@ if (is_array($data)) {
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<title>Laboratory Chemistry Results</title>
     <link href="../source/bootstrap4/css/bootstrap.min.css" media="all" rel="stylesheet"/>
+    <script type="text/javascript" src="../source/jquery.min.js"></script>
+
 </head>
 <style type="text/css" media="all">
 
@@ -423,6 +425,24 @@ include_once('labsidebar.php');
 	            </div>
 			</div>
 			<div class="form-group row">
+	            <label for="Amylase" class="col-3 col-form-label">Amylase:</label>
+	            <div class="col-2">
+	            	<p><?php echo $data['Amylase'] ?></p>
+	            </div>
+	            <div class="col-4">
+	            	U/L 22 - 80
+	            </div>
+			</div>
+			<div class="form-group row">
+	            <label for="Lipase" class="col-3 col-form-label">Lipase:</label>
+	            <div class="col-2">
+	            	<p><?php echo $data['Lipase'] ?></p>
+	            </div>
+	            <div class="col-4">
+	            	U/L 0 - 62
+	            </div>
+			</div>
+			<div class="form-group row">
 	            <label for="HB" class="col-3 col-form-label"><b>HBA1C :</b></label>
 	            <div class="col-2">
 	            	<p><?php echo $data['HB'] ?></p>
@@ -454,6 +474,65 @@ include_once('labsidebar.php');
 	            <div class="col-2">
 	            	<b><?php echo $data['GGTP']; ?></b>
 	            </div>
+			</div>
+			<button class="btn btn-info mb-2" type="button" data-toggle="collapse" data-target="#collapseMore" aria-expanded="false" aria-controls="collapseMore" id="more" style="padding-top: 0px;padding-bottom: 0px;">
+		    	More Test &nbsp;<i class='fas fa-arrow-alt-circle-right'></i>
+		  	</button>
+			<div class="collapse" id="collapseMore">				
+				<div class="form-group row">
+		            <label for="LDH" class="col-3 col-form-label"><b>LDH :</b></label>
+		            <div class="col-2">
+		            	<p><?php echo $data['LDH'] ?></p>
+		            </div>
+		            <div class="col-4">
+		            	U/L 132-228
+		            </div>
+				</div>	
+				<div class="form-group row">
+		            <label for="Calcium" class="col-3 col-form-label"><b>TOTAL CALCIUM :</b></label>
+		            <div class="col-2">
+		            	<p><?php echo $data['Calcium'] ?></p>
+		            </div>
+		            <div class="col-4">
+		            	mmo/L 2.10-2.63
+		            </div>
+				</div>	
+				<div class="form-group row">
+		            <label for="Protein" class="col-3 col-form-label"><b>TOTAL PROTEIN :</b></label>
+		            <div class="col-2">
+		            	<p><?php echo $data['Protein'] ?></p>
+		            </div>
+		            <div class="col-4">
+		            	g/L 66-83
+		            </div>
+				</div>
+				<div class="form-group row">
+		            <label for="InPhos" class="col-3 col-form-label"><b>Inorganic Phosphorus :</b></label>
+		            <div class="col-2">
+		            	<p><?php echo $data['InPhos'] ?></p>
+		            </div>
+		            <div class="col-4">
+		            	mmo/L 0.8-1.50
+		            </div>
+				</div>
+				<div class="form-group row">
+		            <label for="Albumin" class="col-3 col-form-label"><b>Albumin :</b></label>
+		            <div class="col-2">
+		            	<p><?php echo $data['Albumin'] ?></p>
+		            </div>
+		            <div class="col-4">
+		            	g/L 38-51
+		            </div>
+				</div>	
+				<div class="form-group row">
+		            <label for="Globulin" class="col-3 col-form-label"><b>Globulin :</b></label>
+		            <div class="col-2">
+		            	<p><?php echo $data['Globulin'] ?></p>
+		            </div>
+		            <div class="col-4">
+		            	g/L 23-35
+		            </div>
+				</div>				
 			</div>
 <!-- NAMES -->
 		<hr>
@@ -496,6 +575,14 @@ include_once('labsidebar.php');
 	
 </div>
 </body>
+<script type="text/javascript">
+	$('#collapseMore').on('hide.bs.collapse', function () {
+	  $("#more").html("More Test &nbsp; <i class='fas fa-arrow-alt-circle-right'></i>");
+	});
+	$('#collapseMore').on('show.bs.collapse', function () {
+	  $("#more").html("Hide Test &nbsp; <i class='fas fa-arrow-alt-circle-up'></i>");
+	})
+</script>
 </html>
 <?php }else{
 	echo "<script> alert('Error: No existing record found.'); </script>";
@@ -504,4 +591,4 @@ include_once('labsidebar.php');
 }else{
 	echo "<script> alert('Error: Credential Error'); </script>";
   	echo "<script>window.open('LabChem.php','_self');</script>";
-} ?></body>
+} ?>

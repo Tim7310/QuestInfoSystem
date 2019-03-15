@@ -413,6 +413,24 @@ include_once('labsidebar.php');
 	            </div>
 			</div>
 			<div class="form-group row">
+	            <label for="Amylase" class="col-3 col-form-label">Amylase:</label>
+	            <div class="col-2">
+	            	<input type="text" name="Amylase"  class="form-control" id="Amylase" >
+	            </div>
+	            <div class="col-4">
+	            	U/L 22 - 80
+	            </div>
+			</div>
+			<div class="form-group row">
+	            <label for="Lipase" class="col-3 col-form-label">Lipase:</label>
+	            <div class="col-2">
+	            	<input type="text" name="Lipase"  class="form-control" id="Lipase" >
+	            </div>
+	            <div class="col-4">
+	            	U/L 0 - 62
+	            </div>
+			</div>
+			<div class="form-group row">
 	            <label for="HB" class="col-3 col-form-label"><b>HBA1C :</b></label>
 	            <div class="col-2">
 	            	<input type="text" name="HB"  class="form-control" id="HB">
@@ -449,7 +467,65 @@ include_once('labsidebar.php');
 	            	</select>
 	            </div>
 			</div>
-
+			<button class="btn btn-info mb-2" type="button" data-toggle="collapse" data-target="#collapseMore" aria-expanded="false" aria-controls="collapseMore" id="more" style="padding-top: 0px;padding-bottom: 0px;">
+		    	More Test &nbsp;<i class='fas fa-arrow-alt-circle-right'></i>
+		  	</button>
+			<div class="collapse" id="collapseMore">				
+				<div class="form-group row">
+		            <label for="LDH" class="col-3 col-form-label"><b>LDH :</b></label>
+		            <div class="col-2">
+		            	<input type="text" name="LDH"  class="form-control" id="LDH">
+		            </div>
+		            <div class="col-4">
+		            	U/L 132-228
+		            </div>
+				</div>	
+				<div class="form-group row">
+		            <label for="Calcium" class="col-3 col-form-label"><b>TOTAL CALCIUM :</b></label>
+		            <div class="col-2">
+		            	<input type="text" name="Calcium"  class="form-control" id="Calcium">
+		            </div>
+		            <div class="col-4">
+		            	mmo/L 2.10-2.63
+		            </div>
+				</div>	
+				<div class="form-group row">
+		            <label for="Protein" class="col-3 col-form-label"><b>TOTAL PROTEIN :</b></label>
+		            <div class="col-2">
+		            	<input type="text" name="Protein"  class="form-control" id="Protein">
+		            </div>
+		            <div class="col-4">
+		            	g/L 66-83
+		            </div>
+				</div>
+				<div class="form-group row">
+		            <label for="InPhos" class="col-3 col-form-label"><b>Inorganic Phosphorus :</b></label>
+		            <div class="col-2">
+		            	<input type="text" name="InPhos"  class="form-control" id="InPhos">
+		            </div>
+		            <div class="col-4">
+		            	mmo/L 0.8-1.50
+		            </div>
+				</div>
+				<div class="form-group row">
+		            <label for="Albumin" class="col-3 col-form-label"><b>Albumin :</b></label>
+		            <div class="col-2">
+		            	<input type="text" name="Albumin"  class="form-control" id="Albumin">
+		            </div>
+		            <div class="col-4">
+		            	g/L 38-51
+		            </div>
+				</div>	
+				<div class="form-group row">
+		            <label for="Globulin" class="col-3 col-form-label"><b>Globulin :</b></label>
+		            <div class="col-2">
+		            	<input type="text" name="Globulin"  class="form-control" id="Globulin">
+		            </div>
+		            <div class="col-4">
+		            	g/L 23-35
+		            </div>
+				</div>				
+			</div>
 			<div class="form-group row">
 				<div class="col">
 					<?php if($trans['TransactionType'] == 'CASH'){ ?>
@@ -522,6 +598,13 @@ include_once('labsidebar.php');
 </body>
 <script type="text/javascript">
 	$(document).ready(function(){
+		$('#collapseMore').on('hide.bs.collapse', function () {
+		  $("#more").html("More Test &nbsp; <i class='fas fa-arrow-alt-circle-right'></i>");
+		});
+		$('#collapseMore').on('show.bs.collapse', function () {
+		  $("#more").html("Hide Test &nbsp; <i class='fas fa-arrow-alt-circle-up'></i>");
+		})
+
 		function chemCalc(divide, id, id2){
 			var idName = "#" + id;
 			var idName2 = "#" + id2;

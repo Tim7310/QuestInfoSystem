@@ -677,7 +677,7 @@ hr
 	            </div>
 			</div>
 			<?php } }?>
-			<?php if($data['ALT'] != "" and $data['ALT'] != "N/A" or $data['AST'] != "" and $data['AST'] != "N/A"){ ?>
+			<?php if($data['ALT'] != "" and $data['ALT'] != "N/A" or $data['AST'] != "" and $data['AST'] != "N/A" or $data['Amylase'] != "" and $data != "0" or $data['Lipase'] != "" and $data['Lipase'] != "0"){ ?>
 			<div class="row" id="EN">
 			    <p class="label">ENZYMES</p><br>
 			</div>
@@ -702,7 +702,30 @@ hr
 	            	<p class="label">U/L 0 - 40</p><br>
 	            </div>
 			</div>
-			<?php } }?>
+			<?php } ?>
+			<?php if($data['Amylase'] != "" and $data['Amylase'] != "0"){ ?>
+			<div class="row">
+	            <label class="col-3"><p class="label">Amylase</p></label>
+	            <div class="col-2">
+	            	<span class="line"><?php echo $data['Amylase'] ?></span>
+	            </div>
+	            <div class="col-4">
+	            	<p class="label">U/L 22 - 80</p>
+	            </div>
+			</div>
+			<?php } ?>
+			<?php if($data['Lipase'] != "" and $data['Lipase'] != "0"){ ?>
+			<div class="row">
+	            <label class="col-3"><p class="label">Lipase</p></label>
+	            <div class="col-2">
+	            	<span class="line"><?php echo $data['Lipase'] ?></span>
+	            </div>
+	            <div class="col-4">
+	            	<p class="label">U/L 0 - 62</p>
+	            </div>
+			</div>
+			<?php } ?>
+			<?php }?>
 			<?php if($data['HB'] != "" and $data['HB'] != "N/A"){ ?>
 			<div class="row" id="CheckHB">
 			    <div class="col-3"><p class="label">HBA1C</p></div>
@@ -728,7 +751,7 @@ hr
 			<?php } ?>
 			<?php if ($data['PSA'] != '' and $data['PSA'] != 'N/A') {			
 			?>
-			<div class="row mt-3" >
+			<div class="row mt-2" >
 			    <div class="col-3"><p class="label">PSA ( Prostate-Specific Antigen )</p></div>
 			    <div class="col-2">
 	            	<span class="line"><?php echo $data['PSA'] ?></span>
@@ -740,10 +763,82 @@ hr
 			<?php } ?>
 			<?php if ($data['GGTP'] != '' and $data['GGTP'] != 'N/A') {			
 			?>
-			<div class="row mt-3" >
+			<div class="row mt-2" >
 			    <div class="col-3"><p class="label">GGTP</p></div>
 			    <div class="col-2">
 	            	<span class="line"><?php echo $data['GGTP'] ?></span>
+	            </div>
+			</div>
+			<?php } ?>
+			<?php if ($data['LDH'] != '' and $data['LDH'] != '0') {			
+			?>
+			<div class="row mt-2" >
+			    <div class="col-3"><p class="label">LDH</p></div>
+			    <div class="col-2">
+	            	<span class="line"><?php echo $data['LDH'] ?></span>
+	            </div>
+	             <div class="col-3">
+	            	<p class="label">U/L 132-228</p><br>
+	            </div>
+			</div>
+			<?php } ?>
+			<?php if ($data['Calcium'] != '' and $data['Calcium'] != '0') {			
+			?>
+			<div class="row mt-2" >
+			    <div class="col-3"><p class="label">TOTAL CALCIUM</p></div>
+			    <div class="col-2">
+	            	<span class="line"><?php echo $data['Calcium'] ?></span>
+	            </div>
+	             <div class="col-3">
+	            	<p class="label">U/L 2.10-2.63</p><br>
+	            </div>
+			</div>
+			<?php } ?>
+			<?php if ($data['Protein'] != '' and $data['Protein'] != '0') {			
+			?>
+			<div class="row mt-2" >
+			    <div class="col-3"><p class="label">TOTAL PROTEIN</p></div>
+			    <div class="col-2">
+	            	<span class="line"><?php echo $data['Protein'] ?></span>
+	            </div>
+	             <div class="col-3">
+	            	<p class="label">U/L 66 - 83</p><br>
+	            </div>
+			</div>
+			<?php } ?>
+			<?php if ($data['InPhos'] != '' and $data['InPhos'] != '0') {			
+			?>
+			<div class="row mt-2" >
+			    <div class="col-3"><p class="label">Inoraganic Phosphorus</p></div>
+			    <div class="col-2">
+	            	<span class="line"><?php echo $data['InPhos'] ?></span>
+	            </div>
+	             <div class="col-3">
+	            	<p class="label">U/L 0.8 - 1.50</p><br>
+	            </div>
+			</div>
+			<?php } ?>
+			<?php if ($data['Albumin'] != '' and $data['Albumin'] != '0') {			
+			?>
+			<div class="row mt-2" >
+			    <div class="col-3"><p class="label">Albumin</p></div>
+			    <div class="col-2">
+	            	<span class="line"><?php echo $data['Albumin'] ?></span>
+	            </div>
+	             <div class="col-3">
+	            	<p class="label">U/L 38 - 51</p><br>
+	            </div>
+			</div>
+			<?php } ?>
+			<?php if ($data['Globulin'] != '' and $data['Globulin'] != '0') {			
+			?>
+			<div class="row mt-2" >
+			    <div class="col-3"><p class="label">Globulin</p></div>
+			    <div class="col-2">
+	            	<span class="line"><?php echo $data['Globulin'] ?></span>
+	            </div>
+	             <div class="col-3">
+	            	<p class="label">U/L 23 - 35</p><br>
 	            </div>
 			</div>
 			<?php } ?>

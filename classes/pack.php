@@ -66,6 +66,11 @@ class pack {
 
 		$sql->execute();
 	}
+	public function createItem($name,$desc,$price,$type,$xray,$blood,$spec,$pe){
+		global $pdo;
+		$sql = $pdo->prepare("INSERT into qpd_items (ItemName, Itemdescription, ItemPrice, ItemType, HaveXray, HaveSpec, HaveBlood, HavePE) values ('$name', '$desc', '$price', '$type', '$xray', '$spec', '$blood', '$pe' )");
+		$sql->execute();
+	}
 	public function updateItem($id, $name, $Desc, $price, $type){
 		global $pdo;
 		$sql = $pdo->prepare("UPDATE qpd_items set 

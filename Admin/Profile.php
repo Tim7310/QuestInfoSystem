@@ -5,7 +5,7 @@ $user = new USER();
 
 if(!$user->is_logged_in())
 {
-    $user->redirect('index.php');
+    $user->redirect('../index.php');
 }else{
     $data = $user->getUser($_SESSION['userSession']);
     $userData = $user->userData($_SESSION['userSession']);
@@ -26,17 +26,20 @@ if(!$user->is_logged_in())
   <!--     Fonts and icons     -->
   <link rel="stylesheet" type="text/css" href="../assets/css/MaterialIcons.css" />
  
-  <link rel="stylesheet" type="text/css" href="../source/bootstrap4/css/cosmo-bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="../source/bootstrap4/css/bootstrap.min.css">
 <script type="text/javascript" src="../source/popper.min.js"></script>
 <script type="text/javascript" src="../source/jquery.min.js"></script>
+<link rel="stylesheet" type="text/css" href="../source/jquery-confirm.min.css">
 
 <link href="../source/fontawesome/css/all.css" rel="stylesheet"/>
+<link href="assets/bootstrap3/css/font-awesome.css"/>
   <!-- CSS Files -->
   <link href="dashboard/assets/css/material-dashboard.css?v=2.1.1" rel="stylesheet" />
+  <link href="../source/bootstrap-select/dist/css/bootstrap-select.min.css" rel="stylesheet" />
+  <script type="text/javascript" src="../source/bootstrap-select/dist/js/bootstrap-select.min.js"></script>
   <!-- CSS Just for demo purpose, don't include it in your project -->
-  <link href="dashboard/assets/demo/demo.css" rel="stylesheet" />
-  <link href="assets/css/gsdk.css" rel="stylesheet" />  
-  <link href="assets/css/demo.css" rel="stylesheet" /> 
+  <!-- <link href="dashboard/assets/demo/demo.css" rel="stylesheet" /> -->
+
 </head>
 <style type="text/css">
   ::-webkit-scrollbar {
@@ -186,41 +189,7 @@ if(!$user->is_logged_in())
       <div class="content" id="content">
         
       </div>
-<!--       <footer class="footer">
-        <div class="container-fluid">
-          <nav class="float-left">
-            <ul>
-              <li>
-                <a href="https://www.creative-tim.com">
-                  Creative Tim
-                </a>
-              </li>
-              <li>
-                <a href="https://creative-tim.com/presentation">
-                  About Us
-                </a>
-              </li>
-              <li>
-                <a href="http://blog.creative-tim.com">
-                  Blog
-                </a>
-              </li>
-              <li>
-                <a href="https://www.creative-tim.com/license">
-                  Licenses
-                </a>
-              </li>
-            </ul>
-          </nav>
-          <div class="copyright float-right">
-            &copy;
-            <script>
-              document.write(new Date().getFullYear())
-            </script>, made with <i class="material-icons">favorite</i> by
-            <a href="https://www.creative-tim.com" target="_blank">Creative Tim</a> for a better web.
-          </div>
-        </div>
-      </footer> -->
+
     </div>
   </div>
   <!--   Core JS Files   -->
@@ -261,13 +230,8 @@ if(!$user->is_logged_in())
   <script src="dashboard/assets/js/material-dashboard.js?v=2.1.1" type="text/javascript"></script>
   <!-- Material Dashboard DEMO methods, don't include it in your project! -->
   <script src="dashboard/assets/demo/demo.js"></script>
-  <!-- for GSDK -->
-  <script src="assets/js/jquery-ui-1.10.4.custom.min.js" type="text/javascript"></script>
-  <script src="assets/js/gsdk-checkbox.js"></script>
-  <script src="assets/js/gsdk-radio.js"></script>
-  <script src="assets/js/gsdk-bootstrapswitch.js"></script>
-  <script src="assets/js/get-shit-done.js"></script>
-  <script src="assets/js/custom.js"></script>
+  <script type="text/javascript" src="../source/jquery-confirm.min.js"></script>
+
   <script>
     $(document).ready(function() {
     $("#content").load("sales.php",{},function(){});
