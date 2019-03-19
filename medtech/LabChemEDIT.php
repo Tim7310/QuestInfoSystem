@@ -511,6 +511,147 @@ include_once('labsidebar.php');
 		            <div class="col-4">
 		            	g/L 23-35
 		            </div>
+				</div>
+				<div class="form-group row">
+		            <label for="Magnesium" class="col-3 col-form-label"><b>Magnesium :</b></label>
+		            <div class="col-2">
+		            	<input type="text" name="Magnesium"  class="form-control" id="Magnesium" value="<?php echo $data['Magnesium'] ?>">
+		            </div>
+		            <div class="col-4">
+		            	mmol/L 0.70 - 0.98
+		            </div>
+				</div>
+				<div class="row mb-3">
+		            <div class="col">
+		            	<b>Oral Glucose Tolerance Test (OGTT)</b>
+		            </div>
+				</div>
+				<div class="form-group row">
+		            <label for="OGTT1" class="col-3 col-form-label ">&nbsp;&nbsp;OGTT 1 HR :</label>
+		            <div class="col-2">
+		            	<input type="text" name="OGTT1"  class="form-control" id="OGTT1" value="<?php echo $data['OGTT1'] ?>">
+		            </div>
+		            <div class="col-3">
+		            	mmol/L < 11.0
+		            </div>
+		            <div class="col-1">
+	            	<input type="text" name="OGTT1con" class="form-control" id="OGTT1con" value="<?php echo $data['OGTT1con'] ?>">
+		            </div>
+		            <div class="col-3">
+		            	mg/dl < 200
+		            </div>
+				</div>
+				<div class="form-group row">
+		            <label for="OGTT2" class="col-3 col-form-label ">&nbsp;&nbsp;OGTT 2 HR :</label>
+		            <div class="col-2 ">
+		            	<input type="text" name="OGTT2"  class="form-control" id="OGTT2" value="<?php echo $data['OGTT2'] ?>">
+		            </div>
+		            <div class="col-3">
+		            	mmo/L < 7.7
+		            </div>
+		            <div class="col-1">
+	            	<input type="text" name="OGTT2con" class="form-control" id="OGTT2con" value="<?php echo $data['OGTT2con'] ?>">
+		            </div>
+		            <div class="col-3">
+		            	mg/dl < 140
+		            </div>
+				</div>
+				<div class="form-group row">
+		            <label for="OGCT" class="col-3 col-form-label"><b>OGCT (50G) :</b></label>
+		            <div class="col-2">
+		            	<input type="text" name="OGCT"  class="form-control" id="OGCT" value="<?php echo $data['OGCT'] ?>">
+		            </div>
+		            <div class="col-3">
+		            	mmol/L < 7.7
+		            </div>
+		            <div class="col-1">
+	            	<input type="text" name="OGCTcon" class="form-control" id="OGCTcon" value="<?php echo $data['OGCTcon'] ?>">
+		            </div>
+		            <div class="col-3">
+		            	mg/dl < 140
+		            </div>
+				</div>
+				<div class="row mb-3">
+		            <div class="col">
+		            	<b>Creatine phosphokinase (CPK)</b>
+		            </div>
+				</div>
+				<div class="form-group row">
+		            <label for="CPKMB" class="col-3 col-form-label ">&nbsp;&nbsp;CPK - MB :</label>
+		            <div class="col-2 ">
+		            	<input type="text" name="CPKMB"  class="form-control" id="CPKMB" value="<?php echo $data['CPKMB'] ?>">
+		            </div>
+		            <div class="col-3">
+		            	U/L 0 - 25
+		            </div>
+				</div>
+				<div class="form-group row">
+		            <label for="CPKMM" class="col-3 col-form-label ">&nbsp;&nbsp;CPK - MM :</label>
+		            <div class="col-2 ">
+		            	<input type="text" name="CPKMM"  class="form-control" id="CPKMM" value="<?php echo $data['CPKMM'] ?>">
+		            </div>
+		            <div class="col-3">
+		            	U/L 25 - 170
+		            </div>
+				</div>
+				<div class="form-group row">
+		            <label for="totalCPK" class="col-3 col-form-label ">&nbsp;&nbsp;TOTAL CPK :</label>
+		            <div class="col-2 ">
+		            	<input type="text" name="totalCPK"  class="form-control" id="totalCPK" value="<?php echo $data['totalCPK'] ?>">
+		            </div>
+		            <div class="col-3">
+		            	U/L 25 - 195
+		            </div>
+				</div>
+				<div class="form-group row">
+		            <label for="IonCalcium" class="col-3 col-form-label"><b>Ionized Calcium :</b></label>
+		            <div class="col-2">
+		            	<input type="text" name="IonCalcium"  class="form-control" id="IonCalcium" value="<?php echo $data['IonCalcium'] ?>">
+		            </div>
+		            <div class="col-4">
+		            	mmol/L 0.93 - 1.32
+		            </div>
+				</div>
+				<div class="row mb-3">
+		            <div class="col">
+		            	<b>BILIRUBIN</b>
+		            </div>
+				</div>
+				<div class="form-group row">
+		            <label for="BILTotal" class="col-3 col-form-label">&nbsp;&nbsp; Total ( Adult ) :</label>
+		            <div class="col-2">
+		            	<input type="text" name="BILTotal"  class="form-control" id="BILTotal" value="<?php echo $data['BILTotal'] ?>">
+		            </div>
+		            <div class="col-4">
+		            	umol/L 0 - 20
+		            </div>
+				</div>
+				<div class="form-group row">
+		            <label for="BILDirect" class="col-3 col-form-label">&nbsp;&nbsp; Direct :</label>
+		            <div class="col-2">
+		            	<input type="text" name="BILDirect"  class="form-control" id="BILDirect" value="<?php echo $data['BILDirect'] ?>">
+		            </div>
+		            <div class="col-4">
+		            	umol/L 0 - 9
+		            </div>
+				</div>
+				<div class="form-group row">
+		            <label for="BILIndirect" class="col-3 col-form-label">&nbsp;&nbsp; Indirect :</label>
+		            <div class="col-2">
+		            	<input type="text" name="BILIndirect"  class="form-control" id="BILIndirect" value="<?php echo $data['BILIndirect'] ?>">
+		            </div>
+		            <div class="col-4">
+		            	umol/L 0 - 11
+		            </div>
+				</div>
+				<div class="form-group row">
+		            <label for="AGRatio" class="col-3 col-form-label"><b>A/G Ratio :</b></label>
+		            <div class="col-2">
+		            	<input type="text" name="AGRatio"  class="form-control" id="A/GRatio" value="<?php echo $data['AGRatio'] ?>">
+		            </div>
+		            <div class="col-4">
+		            	1.5 - 3.0
+		            </div>
 				</div>				
 			</div>
 
@@ -624,6 +765,9 @@ include_once('labsidebar.php');
 		chemCalc("0.0113","TRIG","TRIGcon");
 		chemCalc("0.0259","HDL","HDLcon");
 		chemCalc("0.0259","LDL","LDLcon");
+		chemCalc("0.055","OGTT1","OGTT1con");
+		chemCalc("0.055","OGTT2","OGTT2con");
+		chemCalc("0.055","OGCT","OGCTcon");
 	$("#HDL, #TRIG, #CHOL").keyup(function(){
 		var chole = $("#CHOL").val();
 		var trig = $("#TRIG").val();

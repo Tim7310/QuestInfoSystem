@@ -57,6 +57,10 @@ $APTTimeNV = $_POST['APTTimeNV'];
 $APTControlNV = $_POST['APTControlNV'];
 //Malarial Smear
 $MS = $_POST['MS'];
+//ESR
+$ESR = $_POST['ESR'];
+$ESRMethod = $_POST['ESRMethod'];
+
 
 $date=date("Y-m-d H:i:s");
 
@@ -64,11 +68,11 @@ $date=date("Y-m-d H:i:s");
     $check =  $lab->getData($PatientID, $id, "lab_hematology");
      if (!is_array($check)) {
 
-    $lab->addHema($id, $PatientID, $WhiteBlood, $Hemoglobin, $HemoNR, $Hematocrit, $HemaNR, $Neutrophils, $Lymphocytes, $Monocytes, $CBCOt, $EOS, $BAS, $CBCRBC, $PLT, $PTime, $PTControl, $ActPercent, $INR, $PR131, $APTTime, $APTControl, $path, $mdID, $qcID, $date, $PTimeNV, $PTControlNV, $ActPercentNV, $INRNV, $APTTimeNV, $APTControlNV, $MS);
+    $lab->addHema($id, $PatientID, $WhiteBlood, $Hemoglobin, $HemoNR, $Hematocrit, $HemaNR, $Neutrophils, $Lymphocytes, $Monocytes, $CBCOt, $EOS, $BAS, $CBCRBC, $PLT, $PTime, $PTControl, $ActPercent, $INR, $PR131, $APTTime, $APTControl, $path, $mdID, $qcID, $date, $PTimeNV, $PTControlNV, $ActPercentNV, $INRNV, $APTTimeNV, $APTControlNV, $MS, $ESR, $ESRMethod);
       echo "<script> alert('Record Added Successfully'); </script>";
       echo "<script>window.open('LabHemaView.php?id=$PatientID&tid=$id','_self');</script>";
     }else{
-      $lab->updateHema($id, $PatientID, $WhiteBlood, $Hemoglobin, $HemoNR, $Hematocrit, $HemaNR, $Neutrophils, $Lymphocytes, $Monocytes, $CBCOt, $EOS, $BAS, $CBCRBC, $PLT, $PTime, $PTControl, $ActPercent, $INR, $PR131, $APTTime, $APTControl, $path, $mdID, $qcID, $date, $PTimeNV, $PTControlNV, $ActPercentNV, $INRNV, $APTTimeNV, $APTControlNV, $MS);
+      $lab->updateHema($id, $PatientID, $WhiteBlood, $Hemoglobin, $HemoNR, $Hematocrit, $HemaNR, $Neutrophils, $Lymphocytes, $Monocytes, $CBCOt, $EOS, $BAS, $CBCRBC, $PLT, $PTime, $PTControl, $ActPercent, $INR, $PR131, $APTTime, $APTControl, $path, $mdID, $qcID, $date, $PTimeNV, $PTControlNV, $ActPercentNV, $INRNV, $APTTimeNV, $APTControlNV, $MS, $ESR, $ESRMethod);
        echo "<script> alert('Record Updated Successfully'); </script>";
        echo "<script>window.open('LabHemaView.php?id=$PatientID&tid=$id','_self');</script>";
     }

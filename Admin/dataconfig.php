@@ -73,7 +73,7 @@ $pack = $pack->fetchAll();
                         </div>
                       </div>
                       <div class="col-md-3">                                        
-                            <select class="selectpicker " data-style="btn-info" title="Item Type" name="CashType">
+                            <select class="selectpicker " data-style="btn-info" title="Item Type" name="CashType" required>
                               <option value="CashIndustrial">CASH INDUSTRIAL</option>
                               <option value="CashLab" selected="">CASH LAB</option>
                               <option value="CashImaging">CASH IMAGING</option>
@@ -165,6 +165,10 @@ $pack = $pack->fetchAll();
 <script type="text/javascript" src="../source/jquery.form.min.js"></script>
 <script type="text/javascript">
 	$(document).ready(function(){
+    jQuery.validator.setDefaults({
+      debug: true,
+      success: "valid"
+    });
     $(function () {
         $('select').selectpicker();
     });
@@ -215,30 +219,28 @@ $pack = $pack->fetchAll();
           descitem.push($(this).val());       
         }
       });
+      $("#itemdesc").val(descitem.join(", "));
+      $("#itemdesc").keyup();
+    });
 //Add Item Script
-$("#addItem").click(function(e){
+$("#addItemForm").submit(function(e){
   e.preventDefault();
       var option = { 
           target: "#Postloader",
           dataType: "json",
           url:        'dataconfig/addItem.php', 
           success:    function(data) { 
-              $.alert({                     
-                theme: "modern", title: data.title, content: data.text, icon: data.icon,            
-              });
+              $.alert({ theme: "modern", title: data.title, content: data.text, icon: data.icon });
               $("#dataconfig").trigger("click");
           } 
         }; 
         $.confirm({
-              title: "Add Item",
-              content: "Are you Sure?",
-              theme: 'modern',
+              title: "Add Item", content: "Are you Sure?", theme: 'modern',
               buttons: {
                 cancel: {
                   text: 'Cancel',
                   btnClass: 'btn-danger',
-                  action: function(){
-                    
+                  action: function(){   
                   }
                 },
                 yes: {
@@ -252,8 +254,7 @@ $("#addItem").click(function(e){
            }); 
  });       
 // script End
-      $("#itemdesc").val(descitem.join(", "));
-      $("#itemdesc").keyup();
-    });
+      
+    
 	});
 </script>

@@ -196,7 +196,7 @@ class trans {
 	public function fetchDateType($date1,$date2,$type){
 		global $pdo;
 
-		$query = $pdo->prepare("SELECT f.*, t.* FROM qpd_patient f, qpd_trans t WHERE f.PatientID = t.PatientID and t.TransactionDate BETWEEN '$date1' and '$date2'  AND status = '1' and TransactionType = '$type' ORDER BY t.TransactionDate");
+		$query = $pdo->prepare("SELECT f.*, t.* FROM qpd_patient f, qpd_trans t WHERE f.PatientID = t.PatientID and t.TransactionDate BETWEEN '$date1' and '$date2'  AND status = '1' and TransactionType = '$type' ORDER BY t.Biller");
 		$query->execute();
 
 		return $query->fetchAll();

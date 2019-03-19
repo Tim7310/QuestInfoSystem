@@ -842,6 +842,177 @@ hr
 	            </div>
 			</div>
 			<?php } ?>
+			<?php if ($data['Magnesium'] != '' and $data['Magnesium'] != '0') {			
+			?>
+			<div class="row mt-2" >
+			    <div class="col-3"><p class="label">Magnesium</p></div>
+			    <div class="col-2">
+	            	<span class="line"><?php echo $data['Magnesium'] ?></span>
+	            </div>
+	             <div class="col-3">
+	            	<p class="label">mmol/L 0.70 - 0.98</p><br>
+	            </div>
+			</div>
+			<?php } ?>
+			<?php if($data['OGTT1'] != "" and $data['OGTT1'] != "N/A" or $data['OGTT2'] != "" and $data['OGTT2'] != "N/A"){ ?>			
+			<div class="row" id="EN">
+			    <p class="label">Oral Glucose Tolerance Test (OGTT)</p><br>
+			</div>
+			<?php if($data['OGTT1'] != "" and $data['OGTT1'] != "0"){ ?>
+			<div class="row">	
+				<label class="col-3"><p class="label" style="font-size: 16px">OGTT 1 HR</p></label>
+				<div class="col-2">
+	            	<span class="line"><?php echo $data['OGTT1'] ?></span>
+	            </div>
+	            <div class="col-3">
+	            	<p class="label">mmol/L < 11.0</p>
+	            </div>
+	            <div class="col-1">
+	            	<span class="line"><?php echo $data['OGTT1con'] ?></span>
+	            </div>
+	            <div class="col-3">
+	            	<p class="label">mg/dl < 200</p>
+	            </div>
+	        </div>    
+			<?php } ?>
+			<?php if($data['OGTT2'] != "" and $data['OGTT2'] != "0"){ ?>
+			<div class="row">
+				<label class="col-3"><p class="label" style="font-size: 16px">OGTT 2 HR</p></label>
+				<div class="col-2">
+	            <span class="line"><?php echo $data['OGTT2'] ?></span>
+	            </div>
+	            <div class="col-3">
+	            	<p class="label">mmo/L < 7.7</p>
+	            </div>
+	            <div class="col-1">
+	            	<span class="line"><?php echo $data['OGTT2con'] ?></span>
+	            </div>
+	            <div class="col-3">
+	            	<p class="label">mg/dl < 140</p>
+	            </div>
+	        </div>
+			<?php } ?>
+			<?php }?>
+			<?php if ($data['OGCT'] != '' and $data['OGCT'] != '0') {			
+			?>
+			<div class="row mt-2" >
+			    <div class="col-3"><p class="label">Oral Glucose Challenge Test (OGCT)</p></div>
+			    <div class="col-2">
+	            	<span class="line"><?php echo $data['OGCT'] ?></span>
+	            </div>
+	             <div class="col-3">
+	            	<p class="label"> mmol/L < 7.7</p><br>
+	            </div>
+	            <div class="col-1">
+	            	<span class="line"><?php echo $data['OGCTcon'] ?></span>
+	            </div>
+	            <div class="col-3">
+	            	<p class="label">mg/dl < 140</p>
+	            </div>
+			</div>
+			<?php } ?>
+			<?php if($data['CPKMB'] != "" and $data['CPKMB'] != "N/A" or $data['CPKMM'] != "" and $data['CPKMM'] != "N/A" or $data['totalCPK'] != "" and $data['totalCPK'] != "N/A"){ ?>			
+			<div class="row" id="EN">
+			    <p class="label">Creatine Phosphokinase (CPK)</p><br>
+			</div>
+			<?php if($data['CPKMB'] != "" and $data['CPKMB'] != "0"){ ?>
+			<div class="row">	
+				<label class="col-3"><p class="label" style="font-size: 16px">CPK - MB </p></label>
+				<div class="col-2">
+	            	<span class="line"><?php echo $data['CPKMB'] ?></span>
+	            </div>
+	            <div class="col-3">
+	            	<p class="label">U/L 0 - 25</p>
+	            </div>
+	        </div>    
+			<?php } ?>
+			<?php if($data['CPKMM'] != "" and $data['CPKMM'] != "0"){ ?>
+			<div class="row">	
+				<label class="col-3"><p class="label" style="font-size: 16px">CPK - MM </p></label>
+				<div class="col-2">
+	            	<span class="line"><?php echo $data['CPKMM'] ?></span>
+	            </div>
+	            <div class="col-3">
+	            	<p class="label">U/L 25 - 170</p>
+	            </div>
+	        </div>    
+			<?php } ?>
+			<?php if($data['totalCPK'] != "" and $data['totalCPK'] != "0"){ ?>
+			<div class="row">	
+				<label class="col-3"><p class="label" style="font-size: 16px">TOTAL CPK  </p></label>
+				<div class="col-2">
+	            	<span class="line"><?php echo $data['totalCPK'] ?></span>
+	            </div>
+	            <div class="col-3">
+	            	<p class="label">U/L 25 - 195</p>
+	            </div>
+	        </div>    
+			<?php } ?>
+			<?php } ?>
+			<?php if ($data['IonCalcium'] != '' and $data['IonCalcium'] != '0') {			
+			?>
+			<div class="row mt-2" >
+			    <div class="col-3"><p class="label">Ionized Calcium</p></div>
+			    <div class="col-2">
+	            	<span class="line"><?php echo $data['IonCalcium'] ?></span>
+	            </div>
+	             <div class="col-3">
+	            	<p class="label">mmol/L 0.93 - 1.32</p><br>
+	            </div>
+			</div>
+			<?php } ?>
+			<?php if($data['BILTotal'] != "" and $data['BILTotal'] != "N/A" or $data['BILDirect'] != "" and $data['BILDirect'] != "N/A" or $data['BILIndirect'] != "" and $data['BILIndirect'] != "N/A"){ ?>			
+			<div class="row" >
+			    <p class="label">BILIRUBIN</p><br>
+			</div>
+			<?php if($data['BILTotal'] != "" and $data['BILTotal'] != "0"){ ?>
+			<div class="row">	
+				<label class="col-3"><p class="label" style="font-size: 16px">Total ( Adult ) </p></label>
+				<div class="col-2">
+	            	<span class="line"><?php echo $data['BILTotal'] ?></span>
+	            </div>
+	            <div class="col-3">
+	            	<p class="label">umol/L 0 - 20</p>
+	            </div>
+	        </div>    
+			<?php } ?>
+			<?php if($data['BILDirect'] != "" and $data['BILDirect'] != "0"){ ?>
+			<div class="row">	
+				<label class="col-3"><p class="label" style="font-size: 16px">Direct </p></label>
+				<div class="col-2">
+	            	<span class="line"><?php echo $data['BILDirect'] ?></span>
+	            </div>
+	            <div class="col-3">
+	            	<p class="label">umol/L 0 - 9</p>
+	            </div>
+	        </div>    
+			<?php } ?>
+			<?php if($data['BILIndirect'] != "" and $data['BILIndirect'] != "0"){ ?>
+			<div class="row">	
+				<label class="col-3"><p class="label" style="font-size: 16px">Indirect  </p></label>
+				<div class="col-2">
+	            	<span class="line"><?php echo $data['BILIndirect'] ?></span>
+	            </div>
+	            <div class="col-3">
+	            	<p class="label">umol/L 0 - 11</p>
+	            </div>
+	        </div>    
+			<?php } ?>
+			<?php } ?>
+			<?php if ($data['AGRatio'] != '' and $data['AGRatio'] != '0') {			
+			?>
+			<div class="row mt-2" >
+			    <div class="col-3"><p class="label">A/G Ratio</p></div>
+			    <div class="col-2">
+	            	<span class="line"><?php echo $data['AGRatio'] ?></span>
+	            </div>
+	             <div class="col-3">
+	            	<p class="label">1.5 - 3.0</p><br>
+	            </div>
+			</div>
+			<?php } ?>
+
+
 	</div>
 	</div>
 </div>

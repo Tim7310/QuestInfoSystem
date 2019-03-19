@@ -240,7 +240,7 @@ if (mysqli_connect_errno())
 				<tbody>
 				<?php
 				
-				    $select4 = "SELECT * FROM qpd_trans t, qpd_patient p WHERE t.TransactionType = 'ACCOUNT' AND p.PatientID = t.PatientID AND t.ItemID != 'CASH POS' AND t.TransactionDate BETWEEN '$SD' AND '$ED' ORDER BY p.CompanyName";
+				    $select4 = "SELECT * FROM qpd_trans t, qpd_patient p WHERE t.TransactionType = 'ACCOUNT' AND p.PatientID = t.PatientID AND t.ItemID != 'CASH POS' AND t.TransactionDate BETWEEN '$SD' AND '$ED' ORDER BY t.Biller";
 
 					$result4 = mysqli_query($con, $select4);
 				    while($row = mysqli_fetch_array($result4))

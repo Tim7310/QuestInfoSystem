@@ -508,6 +508,25 @@ $printCount = $lab->checkPrint($id, $tid, 'HEMATOLOGY');
 				<?php
 					}
 				?>
+				<?php  
+				if ($data['ESR'] != '' and $data['ESR'] != 'N/A') {
+				?>
+				<div class="row" style="margin-top: 10px;">
+	            	<div class="col-3 ">
+	            		<b>Erythrocyte Sedimentation Rate</b>
+	            	</div>
+				</div>
+				<div class="row" style="margin: 10px;">
+					<div class="col-4"><p class="labelName">ESR:</p></div>
+					<div class="col-2"><p class="lineRes"><?php echo $data['ESR'] ?></p></div>
+				</div>
+				<div class="row" style="margin: 10px;">
+					<div class="col-4"><p class="labelName">ESR Method:</p></div>
+					<div class="col-2"><p class="lineRes"><?php echo $data['ESRMethod'] ?></p></div>
+				</div>
+				<?php
+					}
+				?>
 				
 				<!-- <div class="row">
 

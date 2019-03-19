@@ -1,15 +1,18 @@
 <?php
 include_once("../connection.php");
 include_once("../classes/patient.php");
-
+include_once('../classes/trans.php');
+$trans = new trans;
 $patient = new Patient;
 $patID = $_POST['patID'];
 $patID = preg_replace('/\s+/', '', $patID);
 $patData = $patient->fetch_data($patID);
 if ($patID != 0) {
-
-
+$companies = $trans->fetchCompanies();
+$patCompany = $patData['CompanyName'];
+$patBiller = $patData['PatientBiller'];
 ?>
+
 <div style="background-color: white;padding: 5px; font-weight: bolder">
 	<i class="fas fa-user-check"></i> &nbsp;
 	<?php 
@@ -21,6 +24,7 @@ if ($patID != 0) {
 </div>
 <input type="text" name="" id="SelectedPID" value="<?php echo $_POST['patID'];?>" style="display: none">
 <?php } ?>
+
 <!-- Edit Patient Modal -->
 <div class="modal" tabindex="-1" role="dialog" id="editPatientModal" >
   <!-- <div class="modal-dialog modal-lg" role="document"> -->
@@ -56,9 +60,23 @@ if ($patID != 0) {
 		  	</div>
 		  	<div class="col">
 		  		<label for="" class="newPatLabel">Company Name / Doctor:</label>
-				<input type="text"  name="EditComName" id="EditComName" class="form-control newPatStyle" 
+				<!-- <input type="text"  name="EditComName" id="EditComName" class="form-control newPatStyle" 
 				style="font-size: 15px;font-weight: bold"
-				value="<?php echo $patData['CompanyName']; ?>" required />
+				value="<?php echo $patData['CompanyName']; ?>" required /> -->
+				 <select class="custom-select company form-control"  name="EditComName" id="EditComName" aria-label="Select Company Here" 
+				  placeholder="Select Company Here" style="width: 230px">
+				   		<?php foreach ($companies as $company){ 
+				   			
+				   			if ($company['NameCompany'] == $patCompany) {
+				   				$select = "selected";
+				   			}else{
+				   				$select = "";
+				   			}
+				   		?>
+							<option value="<?php echo  $company['NameCompany'];?>" class="itemval" <?php echo $select; ?>>
+								<?php echo $company['NameCompany'];?></option>
+						<?php } ?>
+				  </select>
 				<label for="" class="newPatLabel">Contact No:</label>
 				<input type="text"  name="EditContact" class="form-control newPatStyle" id="EditContact" 
 				style="font-size: 15px;font-weight: bold"
@@ -79,8 +97,22 @@ if ($patID != 0) {
 				<input type="text"  name="EditEmail" id="EditEmail" class="form-control newPatStyle" 
 				style="font-size: 15px;font-weight: bold;" value="<?php echo $patData['Email']; ?>" required />
 		  		<label for="" class="newPatLabel">Biller</label>
-				<input type="text"  name="EditBiller" id="EditBiller" class="form-control newPatStyle" 
-				style="font-size: 15px;font-weight: bold;" value="<?php echo $patData['PatientBiller']; ?>" required />
+				<!-- <input type="text"  name="EditBiller" id="EditBiller" class="form-control newPatStyle" 
+				style="font-size: 15px;font-weight: bold;" value="<?php echo $patData['PatientBiller']; ?>" required /> -->
+				 <select class="custom-select company form-control"  name="EditBiller" id="EditBiller" aria-label="Select Company Here" 
+				  placeholder="Select Company Here" style="width: 230px">
+				   		<?php foreach ($companies as $company){ 
+				   			
+				   			if ($company['NameCompany'] == $patBiller) {
+				   				$select = "selected";
+				   			}else{
+				   				$select = "";
+				   			}
+				   		?>
+							<option value="<?php echo  $company['NameCompany'];?>" class="itemval" <?php echo $select; ?>>
+								<?php echo $company['NameCompany'];?></option>
+						<?php } ?>
+				  </select>
 				<label for="" class="newPatLabel">PWD/Senior ID</label>
 				<input type="text"  name="PWD" id="PWD" class="form-control newPatStyle" style="font-size: 15px;font-weight: bold"
 				value="<?php echo $patData['SID']; ?>"/>
@@ -97,6 +129,7 @@ if ($patID != 0) {
 <!-- end -->
 <script type="text/javascript">
 	$(document).ready(function(){
+		$('.company').select2({	});
 		var EditFName = $("#EditFName").val();
 		var EditMName = $("#EditMName").val();
 		var EditLName = $("#EditLName").val();
@@ -122,7 +155,7 @@ if ($patID != 0) {
 			$("#EditBOD").val(EditBOD);
 			$("#EditAdd").val(EditAdd);
 			$("#EditPos").val(EditPos);
-			$("#EditBiller").val(EditBilelr);
+			$("#EditBiller").val(EditBiller);
 			$("#EditEmail").val(EditEmail);
 			$("#PWD").val(PWD);
 			$('#editPatientModal').modal('toggle');

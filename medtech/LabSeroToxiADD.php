@@ -164,8 +164,8 @@ include_once('labsidebar.php');
             <div class="card-header card-inverse card-info"><center><b>LABORATORY SCIENCES RESULTS</b></center></div>
             <div class="card-block">
     <div class="container-fluid">
-        <div class="row">
-            <div class="col-6">            	
+    	<div class="row">
+    		<div class="col-6">            	
             	<div class="form-group row">
 	            	<div class="col-6 ">
 	            		<b>DRUG SCREENING</b>
@@ -202,6 +202,10 @@ include_once('labsidebar.php');
 	            	</div>
 				</div>
             </div>
+    	</div>
+    </div>
+    <div class="container-fluid">
+        <div class="row">
             <div class="col-6">
             	<div class="form-group row">
 	            	<div class="col-6 ">
@@ -253,6 +257,9 @@ include_once('labsidebar.php');
 	            		<input type="text" name="SeroOt" class="form-control" id="SeroOt">
 	            	</div>
 				</div>
+            </div>
+             <div class="col-6">
+            	
             </div>
         </div>
     </div>

@@ -379,6 +379,12 @@ include_once('labsidebar.php');
 	            		<center><b><?php echo $check['AFBD'] ?></b></center>
 	            	</div>	  
 				</div>
+				<div class="form-group row">
+	            	<label for="OccultBLD" class="col-3 col-form-label "><b>Occult Blood Test: </b></label>
+	            	<div class="col-2">
+	            		<b><?php echo $check['OccultBLD'] ?></b>
+	            	</div>
+				</div>
 <!-- NAMES -->
 		<hr>
 			<div class="form-group row">

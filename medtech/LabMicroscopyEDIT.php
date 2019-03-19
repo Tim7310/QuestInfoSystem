@@ -360,6 +360,12 @@ include_once('labsidebar.php');
 	            	</div>
 				</div>
 				<div class="form-group row">
+	            	<label for="OccultBLD" class="col-3 col-form-label "><b>Occult Blood Test: </b></label>
+	            	<div class="col-2">
+	            		<input type="text" name="OccultBLD" class="form-control" id="OccultBLD"  value="<?php echo $check['OccultBLD'] ?>">
+	            	</div>
+				</div>
+				<div class="form-group row">
 				<div class="col">
 						<?php if($check['TransactionType'] == 'CASH'){ ?>
 						<input type="text" name="Clinician" class="form-control" value ='<?php echo $check['Biller'] ?> '>

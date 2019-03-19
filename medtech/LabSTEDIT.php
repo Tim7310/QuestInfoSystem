@@ -145,34 +145,37 @@ include_once('labsidebar.php');
         <div class="card" style="border-radius: 0px; margin-top: 10px;">
             <div class="card-header card-inverse card-info"><center><b>LABORATORY SCIENCES RESULTS</b></center></div>
             <div class="card-block">
-
-             <div class="container-fluid">
+            <div class="container-fluid">
             	<div class="row">
-            <div class="col-6">            	
-            	<div class="form-group row">
-	            	<div class="col-6 ">
-	            		<b>DRUG SCREENING</b>
-	            	</div>
-				</div>
-				<div class="form-group row">
-	            	<label for="Meth" class="col-6 col-form-label text-right">METHAMPHETHAMINE:</label>
-	            	<div class="col-4">
-	            		<input type="text" name="Meth" class="form-control" id="Meth" value="<?php echo $check['Meth'] ?>">
-	            	</div>
-				</div>
-				<div class="form-group row">
-	            	<label for="Tetra" class="col-6 col-form-label text-right">TETRAHYDROCANABINOL:</label>
-	            	<div class="col-4">
-	            		<input type="text" name="Tetra" class="form-control" id="Tetra" value="<?php echo $check['Tetra'] ?>">
-	            	</div>
-				</div>
-				<div class="form-group row">
-	            	<label for="DT" class="col-6 col-form-label text-right">DT RESULT:</label>
-	            	<div class="col-4">
-	            		<input type="text" name="DT" class="form-control" id="DT" value="<?php echo $check['Drugtest'] ?>">
-	            	</div>
-				</div>
+            		<div class="col-6">            	
+	            	<div class="form-group row">
+		            	<div class="col-6 ">
+		            		<b>DRUG SCREENING</b>
+		            	</div>
+					</div>
+					<div class="form-group row">
+		            	<label for="Meth" class="col-6 col-form-label text-right">METHAMPHETHAMINE:</label>
+		            	<div class="col-4">
+		            		<input type="text" name="Meth" class="form-control" id="Meth" value="<?php echo $check['Meth'] ?>">
+		            	</div>
+					</div>
+					<div class="form-group row">
+		            	<label for="Tetra" class="col-6 col-form-label text-right">TETRAHYDROCANABINOL:</label>
+		            	<div class="col-4">
+		            		<input type="text" name="Tetra" class="form-control" id="Tetra" value="<?php echo $check['Tetra'] ?>">
+		            	</div>
+					</div>
+					<div class="form-group row">
+		            	<label for="DT" class="col-6 col-form-label text-right">DT RESULT:</label>
+		            	<div class="col-4">
+		            		<input type="text" name="DT" class="form-control" id="DT" value="<?php echo $check['Drugtest'] ?>">
+		            	</div>
+					</div>
+            		</div>
+            	</div>
             </div>
+             <div class="container-fluid">
+            <div class="row">           
             <div class="col-6">
             	<div class="form-group row">
 	            	<div class="col-6 ">
@@ -212,6 +215,9 @@ include_once('labsidebar.php');
 	            		<input type="text" name="SeroOt" class="form-control" id="SeroOt" value="<?php echo $check2['SeroOt'] ?>">
 	            	</div>
 				</div>
+            </div>
+            <div class="col-6">
+            	
             </div>
             </div>
             </div>

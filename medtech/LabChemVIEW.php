@@ -532,6 +532,147 @@ include_once('labsidebar.php');
 		            <div class="col-4">
 		            	g/L 23-35
 		            </div>
+				</div>
+				<div class="form-group row">
+		            <label for="Magnesium" class="col-3 col-form-label"><b>Magnesium :</b></label>
+		            <div class="col-2">
+		            	<p><?php echo $data['Magnesium'] ?></p>
+		            </div>
+		            <div class="col-4">
+		            	mmol/L 0.70 - 0.98
+		            </div>
+				</div>
+				<div class="row mb-3">
+		            <div class="col">
+		            	<b>Oral Glucose Tolerance Test (OGTT)</b>
+		            </div>
+				</div>
+				<div class="form-group row">
+		            <label for="OGTT1" class="col-3 col-form-label ">&nbsp;&nbsp;OGTT 1 HR :</label>
+		            <div class="col-2">
+		            	<p><?php echo $data['OGTT1'] ?></p>
+		            </div>
+		            <div class="col-3">
+		            	mmol/L < 11.0
+		            </div>
+		            <div class="col-1">
+	            		<p><?php echo $data['OGTT1con'] ?></p>
+		            </div>
+		            <div class="col-3">
+		            	mg/dl < 200
+		            </div>
+				</div>
+				<div class="form-group row">
+		            <label for="OGTT2" class="col-3 col-form-label ">&nbsp;&nbsp;OGTT 2 HR :</label>
+		            <div class="col-2 ">
+		            	<p><?php echo $data['OGTT2'] ?></p>
+		            </div>
+		            <div class="col-3">
+		            	mmo/L < 7.7
+		            </div>
+		            <div class="col-1">
+	            		<p><?php echo $data['OGTT2con'] ?></p>
+		            </div>
+		            <div class="col-3">
+		            	mg/dl < 140
+		            </div>
+				</div>
+				<div class="form-group row">
+		            <label for="OGCT" class="col-3 col-form-label"><b>OGCT (50G) :</b></label>
+		            <div class="col-2">
+		            	<p><?php echo $data['OGCT'] ?></p>
+		            </div>
+		            <div class="col-3">
+		            	mmol/L < 7.7
+		            </div>
+		            <div class="col-1">
+	            		<p><?php echo $data['OGCTcon'] ?></p>
+		            </div>
+		            <div class="col-3">
+		            	mg/dl < 140
+		            </div>
+				</div>
+				<div class="row mb-3">
+		            <div class="col">
+		            	<b>Creatine phosphokinase (CPK)</b>
+		            </div>
+				</div>
+				<div class="form-group row">
+		            <label for="CPKMB" class="col-3 col-form-label ">&nbsp;&nbsp;CPK - MB :</label>
+		            <div class="col-2 ">
+		            	<p><?php echo $data['CPKMB'] ?></p>
+		            </div>
+		            <div class="col-3">
+		            	U/L 0 - 25
+		            </div>
+				</div>
+				<div class="form-group row">
+		            <label for="CPKMM" class="col-3 col-form-label ">&nbsp;&nbsp;CPK - MM :</label>
+		            <div class="col-2 ">
+		            	<p><?php echo $data['CPKMM'] ?></p>
+		            </div>
+		            <div class="col-3">
+		            	U/L 25 - 170
+		            </div>
+				</div>
+				<div class="form-group row">
+		            <label for="totalCPK" class="col-3 col-form-label ">&nbsp;&nbsp;TOTAL CPK :</label>
+		            <div class="col-2 ">
+		            	<p><?php echo $data['totalCPK'] ?></p>
+		            </div>
+		            <div class="col-3">
+		            	U/L 25 - 195
+		            </div>
+				</div>
+				<div class="form-group row">
+		            <label for="IonCalcium" class="col-3 col-form-label"><b>Ionized Calcium :</b></label>
+		            <div class="col-2">
+		            	<p><?php echo $data['IonCalcium'] ?></p>
+		            </div>
+		            <div class="col-4">
+		            	mmol/L 0.93 - 1.32
+		            </div>
+				</div>
+				<div class="row mb-3">
+		            <div class="col">
+		            	<b>BILIRUBIN</b>
+		            </div>
+				</div>
+				<div class="form-group row">
+		            <label for="BILTotal" class="col-3 col-form-label">&nbsp;&nbsp; Total ( Adult ) :</label>
+		            <div class="col-2">
+		            	<p><?php echo $data['BILTotal'] ?></p>
+		            </div>
+		            <div class="col-4">
+		            	umol/L 0 - 20
+		            </div>
+				</div>
+				<div class="form-group row">
+		            <label for="BILDirect" class="col-3 col-form-label">&nbsp;&nbsp; Direct :</label>
+		            <div class="col-2">
+		            	<p><?php echo $data['BILDirect'] ?></p>
+		            </div>
+		            <div class="col-4">
+		            	umol/L 0 - 9
+		            </div>
+				</div>
+				<div class="form-group row">
+		            <label for="BILIndirect" class="col-3 col-form-label">&nbsp;&nbsp; Indirect :</label>
+		            <div class="col-2">
+		            	<p><?php echo $data['BILIndirect'] ?></p>
+		            </div>
+		            <div class="col-4">
+		            	umol/L 0 - 11
+		            </div>
+				</div>
+				<div class="form-group row">
+		            <label for="AGRatio" class="col-3 col-form-label"><b>A/G Ratio :</b></label>
+		            <div class="col-2">
+		            	<p><?php echo $data['AGRatio'] ?></p>
+		            </div>
+		            <div class="col-4">
+		            	1.5 - 3.0
+		            </div>
 				</div>				
 			</div>
 <!-- NAMES -->

@@ -69,6 +69,21 @@ $path = $_POST['pathID'];
   $Albumin = $_POST['Albumin'];
   $Globulin = $_POST['Globulin'];
 
+  $Magnesium = $_POST['Magnesium'];
+  $OGTT1 = $_POST['OGTT1']; 
+  $OGTT1con = $_POST['OGTT1con']; 
+  $OGTT2 = $_POST['OGTT2']; 
+  $OGTT2con = $_POST['OGTT2con']; 
+  $OGCT = $_POST['OGCT']; 
+  $OGCTcon = $_POST['OGCTcon']; 
+  $CPKMB = $_POST['CPKMB']; 
+  $CPKMM = $_POST['CPKMM']; 
+  $totalCPK = $_POST['totalCPK']; 
+  $IonCalcium = $_POST['IonCalcium']; 
+  $BILTotal = $_POST['BILTotal']; 
+  $BILDirect = $_POST['BILDirect']; 
+  $BILIndirect = $_POST['BILIndirect'];
+  $AGRatio = $_POST['AGRatio'];
 
 $date=date("Y-m-d H:i:s");
 
@@ -76,11 +91,11 @@ $date=date("Y-m-d H:i:s");
     $check =  $lab->getData($PatientID, $id, "lab_chemistry");
      if (!is_array($check)) {
 
-    $lab->addChem($id, $PatientID, $FBS, $FBScon, $BUA, $BUAcon, $BUN, $BUNcon, $CREA, $CREAcon, $CHOL, $CHOLcon, $TRIG, $TRIGcon, $HDL, $HDLcon, $LDL, $LDLcon, $CH, $VLDL, $Na, $K, $Cl, $ALT, $AST, $HB, $ALP,  $PSA, $RBS, $RBScon, $GGTP, $path, $mdID, $qcID, $date, $LDH, $Calcium, $Amylase, $Lipase, $InPhos, $Protein, $Albumin, $Globulin);
-      // echo "<script> alert('Record Added Successfully'); </script>";
-      // echo "<script>window.open('LabChemView.php?id=$PatientID&tid=$id','_self');</script>";
+    $lab->addChem($id, $PatientID, $FBS, $FBScon, $BUA, $BUAcon, $BUN, $BUNcon, $CREA, $CREAcon, $CHOL, $CHOLcon, $TRIG, $TRIGcon, $HDL, $HDLcon, $LDL, $LDLcon, $CH, $VLDL, $Na, $K, $Cl, $ALT, $AST, $HB, $ALP,  $PSA, $RBS, $RBScon, $GGTP, $path, $mdID, $qcID, $date, $LDH, $Calcium, $Amylase, $Lipase, $InPhos, $Protein, $Albumin, $Globulin, $Magnesium, $OGTT1, $OGTT1con, $OGTT2, $OGTT2con, $OGCT, $OGCTcon, $CPKMB, $CPKMM, $totalCPK, $IonCalcium, $BILTotal, $BILDirect, $BILIndirect, $AGRatio);
+       echo "<script> alert('Record Added Successfully'); </script>";
+       echo "<script>window.open('LabChemView.php?id=$PatientID&tid=$id','_self');</script>";
     }else{
-      $lab->updateChem($id, $PatientID, $FBS, $FBScon, $BUA, $BUAcon, $BUN, $BUNcon, $CREA, $CREAcon, $CHOL, $CHOLcon, $TRIG, $TRIGcon, $HDL, $HDLcon, $LDL, $LDLcon, $CH, $VLDL, $Na, $K, $Cl, $ALT, $AST, $HB, $ALP, $PSA, $RBS, $RBScon, $GGTP, $path, $mdID, $qcID, $date, $LDH, $Calcium, $Amylase, $Lipase, $InPhos, $Protein, $Albumin, $Globulin);
+      $lab->updateChem($id, $PatientID, $FBS, $FBScon, $BUA, $BUAcon, $BUN, $BUNcon, $CREA, $CREAcon, $CHOL, $CHOLcon, $TRIG, $TRIGcon, $HDL, $HDLcon, $LDL, $LDLcon, $CH, $VLDL, $Na, $K, $Cl, $ALT, $AST, $HB, $ALP, $PSA, $RBS, $RBScon, $GGTP, $path, $mdID, $qcID, $date, $LDH, $Calcium, $Amylase, $Lipase, $InPhos, $Protein, $Albumin, $Globulin, $Magnesium, $OGTT1, $OGTT1con, $OGTT2, $OGTT2con, $OGCT, $OGCTcon, $CPKMB, $CPKMM, $totalCPK, $IonCalcium, $BILTotal, $BILDirect, $BILIndirect, $AGRatio);
         echo "<script> alert('Record Updated Successfully'); </script>";
         echo "<script>window.open('LabChemView.php?id=$PatientID&tid=$id','_self');</script>";
     }

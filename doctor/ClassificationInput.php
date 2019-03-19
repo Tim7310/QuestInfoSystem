@@ -772,7 +772,7 @@ include_once('doctorsidebar.php');
 				<div class="form-group row">
 	            	<label for="DT" class="col-3 col-form-label text-right">DT RESULT:</label>
 	            	<div class="col-2">
-	            		<b><?php echo $data4['DT'] ?></b>
+	            		<b><?php echo $data4['Drugtest'] ?></b>
 	            	</div>
 				</div>
 <!-- Serology -->

@@ -408,6 +408,31 @@ include_once('labsidebar.php');
 	            	<?php echo $data['MS'] ?>
 	            </div>
 			</div>
+			<div class="row mb-2">
+	            <div class="col">
+	            	<b>Erythrocyte Sedimentation Rate</b>
+	            </div>
+			</div>
+			<div class="form-group row ">
+	            <label for="ESR" class="col-3 col-form-label" >ESR :</label>
+	            <div class="col-2">
+	            	<?php echo $data['ESR'] ?>
+	            </div>
+	            <div class="col-2">
+	            	mm/hr
+	            </div>
+	            <div class="col-2">
+	            	M: 0~15 mm/hr
+	            </div>
+	            <div class="col-2">
+	            	F: 1~20 mm/hr
+	            </div>
+						
+	            <label for="ESRMethod" class="col-3 col-form-label" >ESR Method:</label>
+	            <div class="col-3">
+	            	<?php echo $data['ESRMethod'] ?>
+	            </div>
+	         </div>
 
 
 <!-- NAMES -->

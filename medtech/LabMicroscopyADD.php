@@ -496,6 +496,16 @@ include_once('labsidebar.php');
 	            		<input type="text" name="AFBD" class="form-control" >
 	            	</div>
 				</div>
+				<div class="form-group row">
+	            	<label for="OccultBLD" class="col-3 col-form-label "><b>Occult Blood Test: </b></label>
+	            	<div class="col-2">
+	            		<SELECT class="form-control" name="OccultBLD" id="OccultBLD">
+				 	 		<OPTION >N/A</OPTION>
+				 	 		<OPTION value="Negative">Negative</OPTION>
+				 	 		<OPTION value="Positive">Positive</OPTION>
+				 	 	</SELECT>
+	            	</div>
+				</div>
 			<div class="form-group row">
 				<div class="col">
 					<?php if($trans['TransactionType'] == 'CASH'){ ?>
