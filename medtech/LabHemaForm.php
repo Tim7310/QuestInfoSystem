@@ -519,6 +519,8 @@ $printCount = $lab->checkPrint($id, $tid, 'HEMATOLOGY');
 				<div class="row" style="margin: 10px;">
 					<div class="col-4"><p class="labelName">ESR:</p></div>
 					<div class="col-2"><p class="lineRes"><?php echo $data['ESR'] ?></p></div>
+					<div class="col"><p class="labelName">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;mm/hr</p></div>
+					<div class="col"><p class="labelName">M: 0~15 mm/hr &nbsp;&nbsp; F: 1~20 mm/hr</p></div>
 				</div>
 				<div class="row" style="margin: 10px;">
 					<div class="col-4"><p class="labelName">ESR Method:</p></div>

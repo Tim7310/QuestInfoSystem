@@ -123,15 +123,17 @@ class lab {
 		global $pdo;
 		$sql = $pdo->prepare("UPDATE lab_chemistry set FBS = '$FBS', FBScon = '$FBScon', BUA = '$BUA', BUAcon = '$BUAcon', BUN = '$BUN', BUNcon = '$BUNcon', CREA = '$CREA', CREAcon = '$CREAcon', CHOL = '$CHOL', CHOLcon = '$CHOLcon', TRIG = '$TRIG', TRIGcon = '$TRIGcon', HDL = '$HDL', HDLcon = '$HDLcon', LDL = '$LDL', LDLcon = '$LDLcon', CH = '$CH', VLDL = '$VLDL', Na = '$Na', K = '$K', Cl = '$Cl', ALT = '$ALT', AST = '$AST', HB = '$HB', ALP = '$ALP', PSA = '$PSA', RBS = '$RBS', RBScon = '$RBScon', GGTP = '$GGTP', LDH = '$LDH', Calcium = '$Calcium', Amylase = '$Amylase', Lipase = '$Lipase', InPhos = '$InPhos', Protein = '$Protein', Albumin = '$Albumin', Globulin = '$Globulin', Magnesium = '$Magnesium', OGTT1 = '$OGTT1', OGTT1con = '$OGTT1con', OGTT2 = '$OGTT2', OGTT2con = '$OGTT2con', OGCT = '$OGCT', OGCTcon = '$OGCTcon', CPKMB = '$CPKMB', CPKMM = '$CPKMM', totalCPK = '$totalCPK', IonCalcium = '$IonCalcium', BILTotal = '$BILTotal', BILDirect = '$BILDirect', BILIndirect = '$BILIndirect', AGRatio = '$AGRatio', PathID = '$PathID', MedID = '$MedID', QualityID = '$QualityID', DateUpdate = '$Date'  where PatientID = '$PatientID' and TransactionID = '$TransactionID'");
 		$sql->execute();
-	}
-	public function addSerology( $TransactionID, $PatientID, $HBsAG, $AntiHav, $SeroOt, $PathID, $MedID, $QualityID, $Date, $VDRL="",$psa=""){
+	} 
+	 // 
+	// 
+	public function addSerology( $TransactionID, $PatientID, $HBsAG, $AntiHav, $SeroOt, $PathID, $MedID, $QualityID, $Date, $VDRL="",$psa="",$AntiHBS="", $HBeAG="", $AntiHBE="", $AntiHBC="", $TYDOTIgM="", $TYDOTIgG="", $CEA="", $AFP="", $CA125="", $CA19="", $CA15="", $TSH="", $FT3="", $FT4="",$CRPdil="",$CRPRes="",$HIV1="",$HIV2=""){
 		global $pdo;
-		$sql = $pdo->prepare("INSERT into lab_serology (TransactionID, PatientID, HBsAG, AntiHav, SeroOt, VDRL, PSAnti, PathID, MedID, QualityID, CreationDate) values ('$TransactionID', '$PatientID','$HBsAG','$AntiHav','$SeroOt', '$VDRL', '$psa','$PathID','$MedID','$QualityID','$Date')");
+		$sql = $pdo->prepare("INSERT into lab_serology (TransactionID, PatientID, HBsAG, AntiHav, SeroOt, VDRL, PSAnti, AntiHBS, HBeAG, AntiHBE, AntiHBC, TYDOTIgM, TYDOTIgG, CEA, AFP, CA125, CA19, CA15, TSH, FT3, FT4, CRPdil, CRPRes, HIV1, HIV2, PathID, MedID, QualityID, CreationDate) values ('$TransactionID', '$PatientID','$HBsAG','$AntiHav','$SeroOt', '$VDRL', '$psa', '$AntiHBS', '$HBeAG', '$AntiHBE', '$AntiHBC', '$TYDOTIgM', '$TYDOTIgG', '$CEA', '$AFP', '$CA125', '$CA19', '$CA15', '$TSH', '$FT3', '$FT4', '$CRPdil', '$CRPRes', '$HIV1', '$HIV2', '$PathID','$MedID','$QualityID','$Date')");
 		$sql->execute();
 	}
-	public function updateSerology( $TransactionID, $PatientID, $HBsAG, $AntiHav, $SeroOt, $PathID, $MedID, $QualityID, $Date, $VDRL="",$psa="" ){
+	public function updateSerology( $TransactionID, $PatientID, $HBsAG, $AntiHav, $SeroOt, $PathID, $MedID, $QualityID, $Date, $VDRL="",$psa="",$AntiHBS="", $HBeAG="", $AntiHBE="", $AntiHBC="", $TYDOTIgM="", $TYDOTIgG="", $CEA="", $AFP="", $CA125="", $CA19="", $CA15="", $TSH="", $FT3="", $FT4="",$CRPdil="",$CRPRes="",$HIV1="",$HIV2="" ){
 		global $pdo;
-		$sql = $pdo->prepare("UPDATE lab_serology set HBsAG = '$HBsAG', AntiHav = '$AntiHav', SeroOt = '$SeroOt', VDRL = '$VDRL', PSAnti = '$psa', PathID = '$PathID', MedID = '$MedID', QualityID = '$QualityID', DateUpdate = '$Date' where PatientID = '$PatientID' and TransactionID = '$TransactionID'");
+		$sql = $pdo->prepare("UPDATE lab_serology set HBsAG = '$HBsAG', AntiHav = '$AntiHav', SeroOt = '$SeroOt', VDRL = '$VDRL', PSAnti = '$psa', AntiHBS = '$AntiHBS', HBeAG = '$HBeAG', AntiHBE = '$AntiHBE', AntiHBC = '$AntiHBC', TYDOTIgM = '$TYDOTIgM', TYDOTIgG = '$TYDOTIgG', CEA = '$CEA', AFP = '$AFP', CA125 = '$CA125', CA19 = '$CA19', CA15 = '$CA15', TSH = '$TSH', FT3 = '$FT3', FT4 = '$FT4', CRPdil = '$CRPdil', CRPRes = '$CRPRes', HIV1 = '$HIV1', HIV2 = '$HIV2', PathID = '$PathID', MedID = '$MedID', QualityID = '$QualityID', DateUpdate = '$Date' where PatientID = '$PatientID' and TransactionID = '$TransactionID'");
 		$sql->execute();
 	}
 	public function addToxi( $TransactionID, $PatientID, $Meth, $Tetra, $Drugtest ,$PathID, $MedID, $QualityID, $Date){

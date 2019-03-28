@@ -601,7 +601,7 @@
 </div>
 </div>
 </div>
-<?php if($data['AFBVA1'] != ""){ ?>
+<?php if($data['AFBVA1'] != "" and $data['AFBVA1'] != "N/A"){ ?>
 <div class="container-fluid">
 	<div class="row">
 		<div class="col-3" style="padding-left: 0px">
@@ -631,11 +631,14 @@
 </div>
 <?php } ?>
 <div class="container-fluid">
+	<?php if($data['OccultBLD'] != "" and $data['OccultBLD'] != "N/A"){ ?>
 	<div class="row" style="margin-top: 5px;">
 		<div class="col-4"><p class="labelName">Occult Blood Test</p></div>
 		<div class="col-2"><p class="lineRes"><?php echo $data['OccultBLD'] ?></p></div>
 	</div>
+<?php } ?>
 </div>
+
 </body>
 <script type="text/javascript">
 	$(document).ready(function(){

@@ -50,26 +50,30 @@
 	<link rel="stylesheet" type="text/css" href="../source/bootstrap4/css/bootstrap.min.css">
 <style>
 	table{
-		border-collapse: collapse;
-	}
-	table, th, td {
-		border: 2px solid black;
-	}
+		  border-collapse: collapse;
+		  border: 2px solid black;
+		}
+		.bb{
+			border-bottom: 2px solid black;
+		}
+		.bl{
+			border-left: 2px solid black;
+		}
 </style>
 <body>
 	<div class="container-fluid ">
 		<div class="row">
 			<?php foreach($datas as $data){?>
-			<div class="col-6 mt-2">
+			<div class="col-6 mt-4">
 				<table width = "450px" height = "80px" style = "font-size: 13px">
 				<tr>
-					<td colspan = "3"><center>QUESTPHIL DIAGNOSTICS</center></td>
+					<td colspan = "3" class="bb"><center>QUESTPHIL DIAGNOSTICS</center></td>
 				</tr>
 				<tr>
 					<td width = "300px">
 						<b><?php echo $data['LastName'] ?>, <?php echo $data['FirstName'] ?></b>
 					</td>
-					<td rowspan = "3" colspan = "2" style = "width: 50px; font-size: 40px">
+					<td rowspan = "3" colspan = "2" style = "width: 50px; font-size: 40px" class="bb bl">
 						<center><b><?php echo intval($data['TransactionID']) ?></b></font></center>
 					</td>
 				</tr>
@@ -77,16 +81,16 @@
 					<td><b> <?php echo $data['Age'] ?>/<?php echo $data['Gender'] ?></b></td>
 				</tr>
 				<tr>
-					<td><b> <?php echo $data['CompanyName'] ?> </b></td>
+					<td class="bb"><b> <?php echo $data['CompanyName'] ?> </b></td>
 				</tr>
 				<tr>
-					<td>
+					<td >
 						<b><?php echo $data['xrayType'] ?> </b>
 					</td> 
-					<td style="width: 100px">
+					<td style="width: 100px" class="bl">
 						<center><?php echo $data['radTech'] ?> </center>
 					</td>
-					<td style="width: 100px">
+					<td style="width: 100px" class="bl">
 						<center><?php $tdate = explode(" ", $data['TransactionDate']); 
 							echo $tdate[0];
 						?> </center>

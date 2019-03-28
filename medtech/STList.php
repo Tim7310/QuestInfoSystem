@@ -4,7 +4,7 @@ include_once('../classes/trans.php');
 include_once('../classes/lab.php');
 $trans = new trans;
 $lab = new lab;
-$data = $trans->recentTrans();
+$data = $trans->fetch_all();
 ?>
 <html>
 	<head>

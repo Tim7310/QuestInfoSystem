@@ -135,8 +135,8 @@ class trans {
 	 	$discTotal = 0;
 	 	for ($x=0;$x < count($arr['id']);$x++) {
 	 		$price = $this->fetch_item($arr["id"][$x]);
-	 		$priceV = $price['ItemPrice'] * $arr["qty"][$x];
-	 		$discPrice = $arr["dis"][$x] / 100 * $priceV;
+	 		$priceV = $price['ItemPrice'] * floatval($arr["qty"][$x]);
+	 		$discPrice = floatval($arr["dis"][$x]) / 100 * $priceV;
 	 		$discTotal = $discTotal + $discPrice;
 	 	}	 	
 	 	return $discTotal;

@@ -163,6 +163,26 @@ hr
 	line-height:1px;
 
 }
+.seroname{
+	font-family: "Garamond";
+	margin-top: 8px;
+	font-size: 20px;
+	font-weight: bold;
+	color: #104E8B;
+}
+.serores{
+	font-family: "Garamond";
+	font-size: 20px;
+	font-weight: bolder;
+	border-bottom: 1px solid black;
+	text-align: center;
+	height: 30px;	
+
+}
+.resunit{
+	font-weight: bold;
+	margin-top: 5px;
+}
 
 </style>
 
@@ -280,65 +300,287 @@ hr
 	<div class="card-block" style="height: 7in;">
 	<!--Serology-->
 	<?php if(is_array($data2)){ ?>
-	<div class="container-fluid">
+	<div class="container-fluid" id="serology">
 		<div class="row">
-			<div class="col-12 labelName pt-5">
+			<div class="col-12 labelName">
 				SEROLOGY
 			</div>
 		</div>
 		<?php if( $data2['HBsAG'] != '' and $data2['HBsAG'] != 'N/A'){ ?>
 		<div class="row">
-			<div class="col-5 names p-4" style="font-size: 20px">
+			<div class="col-5 seroname" >
 				HBsAG
 			</div>		
-			<div class="col-5 line p-4" style="font-size: 20px">
+			<div class="col-3 serores" >
 				<?php echo $data2['HBsAG'] ?>
 			</div>				
 		</div>
 		<?php } ?>
 		<?php if( $data2['AntiHav'] != '' and $data2['AntiHav'] != 'N/A'){ ?>
 		<div class="row">
-			<div class="col-5 names p-4" style="font-size: 20px">
+			<div class="col-5 seroname" >
 				Anti Hav
 			</div>
-			<div class="col-5 line p-4 ">
+			<div class="col-3 serores">
 				<?php echo $data2['AntiHav'] ?>
 			</div>
 		</div>
 		<?php } ?>	
 		<?php if( $data2['VDRL'] != '' and $data2['VDRL'] != 'N/A'){ ?>
 		<div class="row">
-			<div class="col-5 names p-4" style="font-size: 20px">
+			<div class="col-5 seroname" >
 				VDRL/RPR Screening
 			</div>
-			<div class="col-5 line p-4 ">
+			<div class="col-3 serores">
 				<?php echo $data2['VDRL'] ?>
 			</div>
 		</div>
 		<?php } ?>
+		
+		
+		<?php if( $data2['AntiHBS'] != '' and $data2['AntiHBS'] != 'N/A'){ ?>
+		<div class="row">
+			<div class="col-5 seroname" >
+				Anti-HBS
+			</div>
+			<div class="col-3 serores">
+				<?php echo $data2['AntiHBS'] ?>
+			</div>		
+		</div>
+		<?php } ?>
+		<?php if( $data2['HBeAG'] != '' and $data2['HBeAG'] != 'N/A'){ ?>
+		<div class="row">
+			<div class="col-5 seroname">
+				Anti-HBS
+			</div>
+			<div class="col-3 serores">
+				<?php echo $data2['HBeAG'] ?>
+			</div>		
+		</div>
+		<?php } ?>
+		<?php if( $data2['AntiHBE'] != '' and $data2['AntiHBE'] != 'N/A'){ ?>
+		<div class="row">
+			<div class="col-5 seroname" >
+				Anti-HBS
+			</div>
+			<div class="col-3 serores">
+				<?php echo $data2['AntiHBE'] ?>
+			</div>		
+		</div>
+		<?php } ?>
+		<?php if( $data2['AntiHBC'] != '' and $data2['AntiHBC'] != 'N/A'){ ?>
+		<div class="row">
+			<div class="col-5 seroname" >
+				Anti-HBC
+			</div>
+			<div class="col-3 serores">
+				<?php echo $data2['AntiHBC'] ?>
+			</div>		
+		</div>
+		<?php } ?>
+		<?php if( $data2['TYDOTIgM'] != '' and $data2['TYDOTIgM'] != 'N/A'){ ?>
+		<div class="row">
+			<div class="col-4 seroname" >
+				TYPHIDOT
+			</div>
+			<div class="col-1 resunit">
+				IgM: 
+			</div>
+			<div class="col-3  serores">
+				<?php echo $data2['TYDOTIgM'] ?>
+			</div>	
+		</div>
+		<div class="row">
+			<div class="col-4 seroname" >
+				
+			</div>
+			<div class="col-1 resunit">
+				IgG: 
+			</div>
+			<div class="col-3 serores">
+				<?php echo $data2['TYDOTIgG'] ?>
+			</div>		
+		</div>
+		<?php } ?>
 		<?php if ($data2['PSAnti'] != '' and $data2['PSAnti'] != 'N/A') {			
 			?>
-			<div class="row mt-3" >
-			    <div class="col-3"><p class="label">PSA ( Prostate-Specific Antigen )</p></div>
-			    <div class="col-2">
-	            	<span class="line"><?php echo $data2['PSAnti'] ?></span>
+			<div class="row " >
+			    <div class="col-5 seroname">PSA ( Prostate-Specific Antigen )</div>
+			    <div class="col-2 serores">
+	            	<?php echo $data2['PSAnti'] ?>
 	            </div>
-	            <div class="col-3">
-	            	<p class="label">ng/mL 0-4</p><br>
+	            <div class="col-1"></div>
+	            <div class="col-2">
+	            	<p class="resunit">ng/mL 0-4</p>
 	            </div>
 			</div>
-			<?php } ?>
+		<?php } ?>
+		<?php if ($data2['CEA'] != '' and $data2['CEA'] != 'N/A') {			
+			?>
+			<div class="row" >
+			    <div class="col-5 seroname">Carcinoembryonic Antigen (CEA)</div>
+			    <div class="col-2 serores">
+	            	<?php echo $data2['CEA'] ?>
+	            </div>
+	            <div class="col-1"></div>
+	             <div class="col-2">
+	            	<p class="resunit">ng/mL 0 - 5</p>
+	            </div>
+			</div>
+		<?php } ?>
+		<?php if ($data2['AFP'] != '' and $data2['AFP'] != 'N/A') {			
+			?>
+			<div class="row" >
+			    <div class="col-5 seroname">Alpha-fetoprotein (AFP)</div>
+			    <div class="col-2 serores">
+	            	<?php echo $data2['AFP'] ?>
+	            </div>
+	            <div class="col-1"></div>
+	             <div class="col-2">
+	            	<p class="resunit">IU/mL 0.5 - 5.5</p>
+	            </div>
+			</div>
+		<?php } ?>
+		<?php if ($data2['CA125'] != '' and $data2['CA125'] != 'N/A') {			
+			?>
+			<div class="row" >
+			    <div class="col-5 seroname">Cancer Antigen 125 (CA 125)</div>
+			    <div class="col-2 serores">
+	            	<?php echo $data2['CA125'] ?>
+	            </div>
+	            <div class="col-1"></div>
+	             <div class="col-2">
+	            	<p class="resunit">U/mL 0 - 35</p>
+	            </div>
+			</div>
+		<?php } ?>
+		<?php if ($data2['CA19'] != '' and $data2['CA19'] != 'N/A') {			
+			?>
+			<div class="row" >
+			    <div class="col-5 seroname">CA 19-9</div>
+			    <div class="col-2 serores">
+	            	<?php echo $data2['CA19'] ?>
+	            </div>
+	            <div class="col-1"></div>
+	             <div class="col-2">
+	            	<p class="resunit">U/mL 0 - 39</p>
+	            </div>
+			</div>
+		<?php } ?>
+		<?php if ($data2['CA15'] != '' and $data2['CA15'] != 'N/A') {			
+			?>
+			<div class="row" >
+			    <div class="col-5 seroname">Cancer Antigen 15-3 (CA 15-3)</div>
+			    <div class="col-2 serores">
+	            	<?php echo $data2['CA15'] ?>
+	            </div>
+	            <div class="col-1"></div>
+	             <div class="col-2">
+	            	<p class="resunit">U/mL 0 - 25</p>
+	            </div>
+			</div>
+		<?php } ?>
+		<?php if ($data2['TSH'] != '' and $data2['TSH'] != 'N/A') {			
+			?>
+			<div class="row" >
+			    <div class="col-5 seroname">Thyroid Stimulating Hormone (TSH)</div>
+			    <div class="col-2 serores">
+	            	<?php echo $data2['TSH'] ?>
+	            </div>
+	            <div class="col-1"></div>
+	             <div class="col-2">
+	            	<p class="resunit">uIU/mL 0.40 - 4.0</p>
+	            </div>
+			</div>
+		<?php } ?>
+		<?php if ($data2['FT3'] != '' and $data2['FT3'] != 'N/A') {			
+			?>
+			<div class="row" >
+			    <div class="col-5 seroname">Free Triiodothyronine (FT3)</div>
+			    <div class="col-2 serores">
+	            	<?php echo $data2['FT3'] ?>
+	            </div>
+	            <div class="col-1"></div>
+	             <div class="col-2">
+	            	<p class="resunit">ng/dL 1.4-4.2</p>
+	            </div>
+			</div>
+		<?php } ?>
+		<?php if ($data2['FT4'] != '' and $data2['FT4'] != 'N/A') {			
+			?>
+			<div class="row" >
+			    <div class="col-5 seroname">Free Thyroxine (FT4)</div>
+			    <div class="col-2 serores">
+	            	<?php echo $data2['FT4'] ?>
+	            </div>
+	            <div class="col-1"></div>
+	             <div class="col-2">
+	            	<p class="resunit">ng/dL 0.8-4.2</p>
+	            </div>
+			</div>
+		<?php } ?>
+		<?php if( $data2['CRPRes'] != '' and $data2['CRPRes'] != 'N/A'){ ?>
+		<div class="row">
+			<div class="col-4 seroname" >
+				C-Reactive Protein (CRP)
+			</div>
+			<div class="col-1 resunit">
+				Dilution: 
+			</div>
+			<div class="col-2  serores">
+				<?php echo $data2['CRPdil'] ?>
+			</div>	
+		</div>
+		<div class="row">
+			<div class="col-4 seroname" >
+				
+			</div>
+			<div class="col-1 resunit">
+				Result: 
+			</div>
+			<div class="col-2 serores">
+				<?php echo $data2['CRPRes'] ?>
+			</div>	
+			 <div class="col-1"></div>
+			<div class="col-2">
+            	<p class="resunit">< 6 mg/L</p>
+            </div>	
+		</div>
+		<?php } ?>
+		<?php if( $data2['HIV1'] != '' and $data2['HIV1'] != 'N/A'){ ?>
+		<div class="row">
+			<div class="col-4 seroname" >
+				Human Immunodeficiency Viruses ( HIV )
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-5 seroname">
+				TEST 1
+			</div>
+			<div class="col-3 serores">
+				<?php echo $data2['HIV1'] ?>
+			</div>		
+		</div>
+		<div class="row">
+			<div class="col-5 seroname">
+				TEST 2
+			</div>
+			<div class="col-3 serores">
+				<?php echo $data2['HIV2'] ?>
+			</div>		
+		</div>
+		<?php } ?>
 		<?php if( $data2['SeroOt'] != '' and $data2['SeroOt'] != 'N/A'){ ?>
 		<div class="row">
-			<div class="col-5 names p-4" style="font-size: 20px">
+			<div class="col-5 seroname" >
 				OTHER NOTES
 			</div>
-			<div class="col-5 line p-4 ">
+			<div class="col-5 serores">
 				<?php echo $data2['SeroOt'] ?>
 			</div>		
 		</div>
 		<?php } ?>	
-	</div>
+</div>
 	<?php } ?>
 	<?php if(is_array($data1)){ 
 		// if ($data1['Meth'] != 'N/A' and $data['Tetra'] ) {

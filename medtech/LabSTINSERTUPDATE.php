@@ -32,16 +32,35 @@ $VDRL = $_POST['VDRL'];
 $PSA = $_POST['PSA'];
 $date=date("Y-m-d H:i:s");
 
+$AntiHBS = $_POST['AntiHBS'];
+$HBeAG = $_POST['HBeAG'];
+$AntiHBE = $_POST['AntiHBE'];
+$AntiHBC = $_POST['AntiHBC'];
+$TYDOTIgM = $_POST['TYDOTIgM'];
+$TYDOTIgG = $_POST['TYDOTIgG'];
+$CEA = $_POST['CEA'];
+$AFP = $_POST['AFP'];
+$CA125 = $_POST['CA125'];
+$CA19 = $_POST['CA19'];
+$CA15 = $_POST['CA15'];
+$TSH = $_POST['TSH'];
+$FT3 = $_POST['FT3'];
+$FT4 = $_POST['FT4'];
+$CRPdil = $_POST['CRPDil'];
+$CRPRes =$_POST['CRPRes'];
+$HIV1 = $_POST['HIV1'];
+$HIV2 = $_POST['HIV2'];
+
   try{
     $check2 = $lab->getData($PatientID, $id, "lab_toxicology");
     $check = $lab->getData($PatientID, $id, "lab_serology");
    
     if (!is_array($check)) {
-      if ($HBsAG != 'N/A' or $AntiHav != 'N/A' or $VDRL != '' and $VDRL != 'N/A' or $PSA != '' and $PSA != "N/A") {
-          $lab->addSerology( $id, $PatientID, $HBsAG, $AntiHav, $SeroOt, $path, $mdID, $qcID, $date, $VDRL,$PSA );    
+      if ($HBsAG != 'N/A' or $AntiHav != 'N/A' or $VDRL != '' and $VDRL != 'N/A' or $PSA != '' and $PSA != "N/A" or $AntiHBS != '' or $HBeAG != '' or $AntiHBE != "" or $AntiHBC != "" or $TYDOTIgM != "" or $TYDOTIgG != "" or $CEA != "" or $AFP != "" or $CA125 != "" or $CA15 != "" or $TSH != "" or $FT3 != "" or $FT4 != "" or $CRPDil != "" or $CRPRes != "" or $HIV1 != "") {
+          $lab->addSerology( $id, $PatientID, $HBsAG, $AntiHav, $SeroOt, $path, $mdID, $qcID, $date, $VDRL,$PSA,$AntiHBS, $HBeAG, $AntiHBE, $AntiHBC, $TYDOTIgM, $TYDOTIgG, $CEA, $AFP, $CA125, $CA19, $CA15, $TSH, $FT3, $FT4,$CRPdil,$CRPRes, $HIV1, $HIV2 );  
       }
     }else{
-      $lab->updateSerology( $id, $PatientID, $HBsAG, $AntiHav, $SeroOt, $path, $mdID, $qcID, $date, $VDRL, $PSA );
+      $lab->updateSerology( $id, $PatientID, $HBsAG, $AntiHav, $SeroOt, $path, $mdID, $qcID, $date, $VDRL, $PSA, $AntiHBS, $HBeAG, $AntiHBE, $AntiHBC, $TYDOTIgM, $TYDOTIgG, $CEA, $AFP, $CA125, $CA19, $CA15, $TSH, $FT3, $FT4,$CRPdil,$CRPRes, $HIV1, $HIV2 );
     }
   
  

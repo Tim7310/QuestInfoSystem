@@ -42,23 +42,27 @@
 	<style>
 		table{
 		  border-collapse: collapse;
-		}
-
-		table, th, td {
 		  border: 2px solid black;
 		}
+		.bb{
+			border-bottom: 2px solid black;
+		}
+		.bl{
+			border-left: 2px solid black;
+		}
+		
 	</style>
 	<body>
 		
 		<table width = "350px"; height = "80px"; style = "font-size: 13px">
 			<tr>
-				<td colspan = "3"><center>QUESTPHIL DIAGNOSTICS</center></td>
+				<td colspan = "3" class="bb"><center>QUEST PHIL DIAGNOSTICS</center></td>
 			</tr>
 			<tr>
-				<td width = "300px">
+				<td width = "300px" >
 					<b><?php echo $data['LastName'] ?>, <?php echo $data['FirstName'] ?></b>
 				</td>
-				<td rowspan = "3" colspan = "2" style = "width: 50px; font-size: 40px">
+				<td rowspan = "3" colspan = "2" style = "width: 50px; font-size: 40px;" class="bl bb">
 					<center><b><?php echo intval($tid) ?></b></font></center>
 				</td>
 			</tr>
@@ -66,16 +70,16 @@
 				<td><b> <?php echo $data['Age'] ?>/<?php echo $data['Gender'] ?></b></td>
 			</tr>
 			<tr>
-				<td><b> <?php echo $data['CompanyName'] ?> </b></td>
+				<td class="bb"><b> <?php echo $data['CompanyName'] ?> </b></td>
 			</tr>
 			<tr>
 				<td>
 					<b><?php echo $part ?> </b>
 				</td> 
-				<td style="width: 100px">
+				<td style="width: 100px" class="bl">
 					<center><?php echo $radtech ?> </center>
 				</td>
-				<td style="width: 100px">
+				<td style="width: 100px" class="bl">
 					<center><?php echo $date[0];?> </center>
 				</td>
 			</tr>

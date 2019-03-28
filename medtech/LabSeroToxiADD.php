@@ -165,14 +165,14 @@ include_once('labsidebar.php');
             <div class="card-block">
     <div class="container-fluid">
     	<div class="row">
-    		<div class="col-6">            	
+    		<div class="col-8">            	
             	<div class="form-group row">
 	            	<div class="col-6 ">
 	            		<b>DRUG SCREENING</b>
 	            	</div>
 				</div>
 				<div class="form-group row">
-	            	<label for="Meth" class="col-6 col-form-label text-right">METHAMPHETHAMINE:</label>
+	            	<label for="Meth" class="col-5 col-form-label text-right">METHAMPHETHAMINE:</label>
 	            	<div class="col-4">
 	            		<SELECT class="form-control" name="Meth" id="Meth">
 				 	 		<OPTION >N/A</OPTION>
@@ -182,7 +182,7 @@ include_once('labsidebar.php');
 	            	</div>
 				</div>
 				<div class="form-group row">
-	            	<label for="Tetra" class="col-6 col-form-label text-right">TETRAHYDROCANABINOL:</label>
+	            	<label for="Tetra" class="col-5 col-form-label text-right">TETRAHYDROCANABINOL:</label>
 	            	<div class="col-4">
 	            		<SELECT class="form-control" name="Tetra" id="Tetra">
 				 	 		<OPTION >N/A</OPTION>
@@ -192,7 +192,7 @@ include_once('labsidebar.php');
 	            	</div>
 				</div>
 				<div class="form-group row">
-	            	<label for="DT" class="col-6 col-form-label text-right">DT RESULT:</label>
+	            	<label for="DT" class="col-5 col-form-label text-right">DT RESULT:</label>
 	            	<div class="col-4">
 	            		<SELECT class="form-control" name="DT" id="DT">
 				 	 		<OPTION >N/A</OPTION>
@@ -205,15 +205,15 @@ include_once('labsidebar.php');
     	</div>
     </div>
     <div class="container-fluid">
+    	<div class="form-group row">
+        	<div class="col-6 ">
+        		<b>SEROLOGY</b>
+        	</div>
+		</div>
         <div class="row">
             <div class="col-6">
-            	<div class="form-group row">
-	            	<div class="col-6 ">
-	            		<b>SEROLOGY</b>
-	            	</div>
-				</div>
 				<div class="form-group row">
-	            	<label for="HBsAg" class="col-6 col-form-label text-right">HBsAg:</label>
+	            	<label for="HBsAg" class="col-5 col-form-label text-right"><b>HBsAg:</b></label>
 	            	<div class="col-4">
 	            		<SELECT class="form-control" name="HBsAg" id="HBsAg">
 				 	 		<OPTION >N/A</OPTION>
@@ -223,7 +223,7 @@ include_once('labsidebar.php');
 	            	</div>
 				</div>
 				<div class="form-group row">
-	            	<label for="HBsAg" class="col-6 col-form-label text-right">Anti-HAV:</label>
+	            	<label for="HBsAg" class="col-5 col-form-label text-right"><b>Anti-HAV:</b></label>
 	            	<div class="col-4">
 	            		<SELECT class="form-control" name="aHav" id="aHav">
 				 	 		<OPTION >N/A</OPTION>
@@ -233,7 +233,7 @@ include_once('labsidebar.php');
 	            	</div>
 				</div>
 				<div class="form-group row">
-	            	<label for="HBsAg" class="col-6 col-form-label text-right">VDRL/RPR:</label>
+	            	<label for="HBsAg" class="col-5 col-form-label text-right"><b>VDRL/RPR:</b></label>
 	            	<div class="col-4">
 	            		 <SELECT class="form-control" name="VDRL" id="VDRL">
 				 	 		<OPTION >N/A</OPTION>
@@ -243,23 +243,200 @@ include_once('labsidebar.php');
 	            	</div>
 				</div>
 				<div class="form-group row">
-		            <label for="PSA" class="col-6 col-form-label text-right"><b>PSA :</b></label>
+		            <label for="PSA" class="col-5 col-form-label text-right"><b>PSA :</b></label>
 		            <div class="col-3">
 		            	<input type="text" name="PSA"  class="form-control" id="PSA">
 		            </div>
-		            <div class="col-3">
+		            <div class="col-4">
 		            	ng/mL 0-4
 		            </div>
 				</div>
+				<!-- added -->
 				<div class="form-group row">
-	            	<label for="SeroOt" class="col-6 col-form-label text-right">OTHERS/NOTES :</label>
+					<label  class="col-3 col-form-label"><b>TYPHIDOT :</b></label>
+	            	<label for="TYDOTIgM" class="col-2 col-form-label text-right">IgM :</label>
+	            	<div class="col-4">
+	            		<SELECT class="form-control" name="TYDOTIgM" id="TYDOTIgM">
+				 	 		<OPTION >N/A</OPTION>
+				 	 		<OPTION value="NEGATIVE">NEGATIVE</OPTION>
+				 	 		<OPTION value="POSITIVE">POSITIVE</OPTION>
+				 	 	</SELECT>
+	            	</div>	    
+				</div>
+				<div class="form-group row">
+					<label for="TYDOTIgG" class="col-5 col-form-label text-right">IgG :</label>
+	            	<div class="col-4">	       
+	            		<SELECT class="form-control" name="TYDOTIgG" id="TYDOTIgG">
+				 	 		<OPTION >N/A</OPTION>
+				 	 		<OPTION value="NEGATIVE">NEGATIVE</OPTION>
+				 	 		<OPTION value="POSITIVE">POSITIVE</OPTION>
+				 	 	</SELECT>
+	            	</div>
+				</div>
+				<div class="form-group row">
+		            <label for="CEA" class="col-5 col-form-label text-right"><b>CEA:</b></label>
+		            <div class="col-3">
+		            	<input type="text" name="CEA"  class="form-control" id="CEA">
+		            </div>
+		            <div class="col-4">
+		            	ng/mL 0-5
+		            </div>
+				</div>
+				<div class="form-group row">
+		            <label for="AFP" class="col-5 col-form-label text-right"><b>AFP:</b></label>
+		            <div class="col-3">
+		            	<input type="text" name="AFP"  class="form-control" id="AFP">
+		            </div>
+		            <div class="col-4">
+		            	IU/mL 0.5-5.5
+		            </div>
+				</div>
+				<div class="form-group row">
+		            <label for="CA125" class="col-5 col-form-label text-right"><b>CA125:</b></label>
+		            <div class="col-3">
+		            	<input type="text" name="CA125"  class="form-control" id="CA125">
+		            </div>
+		            <div class="col-4">
+		            	U/mL 0-35
+		            </div>
+				</div>
+				<div class="form-group row">
+		            <label for="CA19" class="col-5 col-form-label text-right"><b>CA19-9:</b></label>
+		            <div class="col-3">
+		            	<input type="text" name="CA19"  class="form-control" id="CA19">
+		            </div>
+		            <div class="col-4">
+		            	U/mL 0-39
+		            </div>
+				</div>
+				<div class="form-group row">
+		            <label for="CA15" class="col-5 col-form-label text-right"><b>CA15-3:</b></label>
+		            <div class="col-3">
+		            	<input type="text" name="CA15"  class="form-control" id="CA15">
+		            </div>
+		            <div class="col-4">
+		            	U/mL 0-25
+		            </div>
+				</div>
+				<div class="form-group row">
+	            	<label for="SeroOt" class="col-6 col-form-label text-right"><b>OTHERS/NOTES :</b></label>
 	            	<div class="col-4">
 	            		<input type="text" name="SeroOt" class="form-control" id="SeroOt">
 	            	</div>
 				</div>
             </div>
-             <div class="col-6">
-            	
+            <div class="col-6">           	
+            	<div class="form-group row">
+	            	<label for="AntiHBS" class="col-6 col-form-label text-right"><b>Anti-HBS:</b></label>
+	            	<div class="col-4">
+	            		 <SELECT class="form-control" name="AntiHBS" id="AntiHBS">
+				 	 		<OPTION >N/A</OPTION>
+				 	 		<OPTION value="NON-REACTIVE">NON-REACTIVE</OPTION>
+				 	 		<OPTION value="REACTIVE">REACTIVE</OPTION>
+				 	 	</SELECT>
+	            	</div>
+				</div>	
+				<div class="form-group row">
+	            	<label for="HBeAG" class="col-6 col-form-label text-right"><b>HBeAG:</b></label>
+	            	<div class="col-4">
+	            		 <SELECT class="form-control" name="HBeAG" id="HBeAG">
+				 	 		<OPTION >N/A</OPTION>
+				 	 		<OPTION value="NON-REACTIVE">NON-REACTIVE</OPTION>
+				 	 		<OPTION value="REACTIVE">REACTIVE</OPTION>
+				 	 	</SELECT>
+	            	</div>
+				</div>	
+				<div class="form-group row">
+	            	<label for="AntiHBE" class="col-6 col-form-label text-right"><b>Anti-Hbe:</b></label>
+	            	<div class="col-4">
+	            		 <SELECT class="form-control" name="AntiHBE" id="AntiHBE">
+				 	 		<OPTION >N/A</OPTION>
+				 	 		<OPTION value="NON-REACTIVE">NON-REACTIVE</OPTION>
+				 	 		<OPTION value="REACTIVE">REACTIVE</OPTION>
+				 	 	</SELECT>
+	            	</div>
+				</div>
+				<div class="form-group row">
+	            	<label for="AntiHBC" class="col-6 col-form-label text-right"><b>Anti-Hbc:</b></label>
+	            	<div class="col-4">
+	            		 <SELECT class="form-control" name="AntiHBC" id="AntiHBC">
+				 	 		<OPTION >N/A</OPTION>
+				 	 		<OPTION value="NON-REACTIVE">NON-REACTIVE</OPTION>
+				 	 		<OPTION value="REACTIVE">REACTIVE</OPTION>
+				 	 	</SELECT>
+	            	</div>
+				</div>
+				<div class="row ">
+					<label  class="col-4 col-form-label mt-4"><b>THYROID :</b></label>
+				</div>
+				<div class="form-group row">
+		            <label for="TSH" class="col-5 col-form-label text-right">TSH:</label>
+		            <div class="col-3">
+		            	<input type="text" name="TSH"  class="form-control" id="TSH">
+		            </div>
+		            <div class="col-4">
+		            	uIU/mL 0.40-4.0
+		            </div>
+				</div>
+				<div class="form-group row">
+		            <label for="FT3" class="col-5 col-form-label text-right">FT3:</label>
+		            <div class="col-3">
+		            	<input type="text" name="FT3"  class="form-control" id="FT3">
+		            </div>
+		            <div class="col-4">
+		            	ng/dL 1.4-4.2
+		            </div>
+				</div>
+				<div class="form-group row">
+		            <label for="FT4" class="col-5 col-form-label text-right">FT4:</label>
+		            <div class="col-3">
+		            	<input type="text" name="FT4"  class="form-control" id="FT4">
+		            </div>
+		            <div class="col-4">
+		            	ng/dL 0.8-4.2
+		            </div>
+				</div>
+				<div class="row ">
+					<label  class="col-12 col-form-label "><b>C-Reactive Protein :</b></label>
+				</div>
+				<div class="form-group row">
+		            <label for="CRPDil" class="col-5 col-form-label text-right">Dilution:</label>
+		            <div class="col-3">
+		            	<input type="text" name="CRPDil"  class="form-control" id="CRPDil">
+		            </div>
+				</div>
+				<div class="form-group row">
+		            <label for="CRPRes" class="col-5 col-form-label text-right">Result:</label>
+		            <div class="col-3">
+		            	<input type="text" name="CRPRes"  class="form-control" id="CRPRes">
+		            </div>
+		             <div class="col-4">
+		            	< 6 mg/L
+		            </div>
+				</div>
+				<div class=" row">
+	            	<label class="col-6 col-form-label"><b>Human Immunodeficiency Viruses ( HIV ):</b></label>	  
+				</div>
+				<div class="form-group row">
+	            	<label for="HIV1" class="col-5 col-form-label text-right">Test 1:</label>
+	            	<div class="col-4">
+	            		 <SELECT class="form-control" name="HIV1" id="HIV1">
+				 	 		<OPTION >N/A</OPTION>
+				 	 		<OPTION value="NON-REACTIVE">NON-REACTIVE</OPTION>
+				 	 		<OPTION value="REACTIVE">REACTIVE</OPTION>
+				 	 	</SELECT>
+	            	</div>
+				</div>
+				<div class="form-group row">
+	            	<label for="HIV2" class="col-5 col-form-label text-right">Test 2:</label>
+	            	<div class="col-4">
+	            		 <SELECT class="form-control" name="HIV2" id="HIV2">
+				 	 		<OPTION >N/A</OPTION>
+				 	 		<OPTION value="NON-REACTIVE">NON-REACTIVE</OPTION>
+				 	 		<OPTION value="REACTIVE">REACTIVE</OPTION>
+				 	 	</SELECT>
+	            	</div>
+				</div>
             </div>
         </div>
     </div>

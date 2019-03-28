@@ -378,8 +378,7 @@ hr
 	        } ?></span>
 	    </div>
 	</div>
-	<div class="row" style="margin-top: 10px;"
-	`1>
+	<div class="row" style="margin-top: 10px;">
 	    <div class="col col-sm-auto"><p class="labelName">Date Received:</p></div>
 	    <div class="col col-sm-auto">
 	        <u><?php echo $data['CreationDate'] ?></u>
@@ -440,7 +439,7 @@ hr
 <div class="col-md-12" >
 	<div class="card" style="border-radius: 0px; margin-top: 20px;border-width: 0px">
 	<div class="card-header"><center><b>LABORATORY RESULTS</b></center></div>
-	<div class="card-block" style="height: 7in;">
+	<div class="card-block" id="content">
 
 	<div class="row">
 	    <div class="col-3"><p class="label">TEST</p></div>
@@ -1016,7 +1015,136 @@ hr
 	</div>
 	</div>
 </div>
+</div>
+<div class="container-fluid" style="margin-top: 240px" id="container2">
+<div class="col-md-12" style="margin-top: 5px;">
+	<img src="../assets/QPDHeader.jpg" height="100px" width="100%">
+</div>
+<div class="col-md-12" style="">
+	<div class="card" style="border-radius: 0px; border:none; margin-top: 0px;">
+	<!-- <div class="card-header"><center><b>QUEST PHIL DIAGNOSTICS</b></center></div> -->
+	<div class="card-block" style="padding-bottom: 0px ">
+	<div class="row">
+	    <div class="col-1"><p class="labelName">Name:</p></div>
+	    <div class="col-5">
+	        <span class="lineName"><?php echo $data['LastName'] ?>, <?php echo $data['FirstName'] ?> <?php echo $data['MiddleName'] ?>
+	        </span>
+	    </div>
+	    <div class="col-2 text-right">
+	        <p class="labelName">Lab Number:</p>
+	    </div>
+	    <div class="col-4">
+	        <span class="lineName"><?php echo $data['TransactionID'] ?></span>
+	    </div>
+	</div>
+	<div class="row" style="margin-top: 10px;">
+	    <div class="col-1"><p class="labelName">Gender:</p></div>
+	    <div class="col-5">
+	        <span class="lineName"><?php echo $data['Gender'] ?></span>
+	    </div>
+	    <div class="col-2 text-right">
+	        <p class="labelName">QuestID:</p>
+	    </div>
+	    <div class="col-4">
+	        <span class="lineName"><?php echo $data['PatientID'] ?></span>
+	    </div>
+	</div>
+	<div class="row" style="margin-top: 10px;">
+	    <div class="col-1"><p class="labelName">Age:</p></div>
+	    <div class="col-3">
+	        <span class="lineName"><?php echo $data['Age'] ?></span>
+	    </div>
+	    <div class="col-2 text-right">
+	        <p class="labelName">Referred by:</p>
+	    </div>
+	    <div class="col-6" >
+	        <span class="lineName">
+	        <?php if ($data['CompanyName'] != "WALK-IN") {
+	        	echo $data['CompanyName']; 
+	        } ?></span>
+	    </div>
+	</div>
+	<div class="row" style="margin-top: 10px;">
+	    <div class="col col-sm-auto"><p class="labelName">Date Received:</p></div>
+	    <div class="col col-sm-auto">
+	        <u><?php echo $data['CreationDate'] ?></u>
+	    </div>
+	    <div class="col"></div>
+	    <div class="col col-sm-auto">
+	        <p class="labelName">Reported:</p>
+	    </div>
+	    <div class="col col-sm-auto">
+	        <u><?php echo $data['CreationDate'] ?></u>
+	    </div>
+	    <div class="col"></div>
+	    <div class="col col-sm-auto">
+	        <p class="labelName">Printed:</p>
+	    </div>
+	    <div class="col col-sm-auto">
+	        <u><?php echo $printdate ?></u>
+	    </div>
+	</div>
+	</div>
+	</div>
+</div>
+<!--Footer-->
+<div  style="position: absolute;margin-top: 810px;margin-left:-10px;">
+	<div class="col-md-12 ">
+	<div class="card" style="border-radius: 0px; margin-top: 10px;">
+		<div class="card-block" style="height: 1.3in;" >
+				<div class="row">
+					<div class="col" style="padding-left: 0px"><center><span class="Names"><br>
+						<b><?php echo $med['FirstName']." ".$med['MiddleName']." ".$med['LastName'].", ".$med['PositionEXT']?>	</b></span></center></div>
+					<div class="col" style="padding-left: 0px"><center><span class="Names"><br>
+						<b><?php echo $qc['FirstName']." ".$qc['MiddleName']." ".$qc['LastName'].", ".$qc['PositionEXT']?>	</b></span></center></div>
+					<div class="col" style="padding-left: 0px"><center><span class="Names"><br>
+						<b><?php echo $path['FirstName']." ".$path['MiddleName']." ".$path['LastName'].", ".$path['PositionEXT']?>	</b></span></center></div>
+				</div>
+				<div class="row">
+					<div class="col" style="padding-left: 0px"><center><span class="lineNameSig"><br>
+						<b>LIC NO. <?php echo $med['LicenseNO'] ?></b></span></center></div>
+					<div class="col" style="padding-left: 0px"><center><span class="lineNameSig"><br>
+						<b>LIC NO. <?php echo $qc['LicenseNO'] ?></b></span></center></div>
+					<div class="col" style="padding-left: 0px"><center><span class="lineNameSig"><br>
+						<b>LIC NO. <?php echo $path['LicenseNO'] ?></b></span></center></div>
+				</div>
+				<div class="row">
+					<div class="col"><center><p class="labelName">Registered Medical Technologist</p></center></div>
+					<div class="col"><center><p class="labelName">Quality Control</p></center></div>
+					<div class="col"><center><p class="labelName">Pathologist</p></center></div>		
+				</div>
+		</div>
+	</div>
+	</div>
+	<div class="col-md-12">
+		<img src="../assets/QISFooter.png" height="50px" width="100%">
+	</div>
+</div>
+<!-- Footer End -->
 
+<div class="col-md-12" >
+	<div class="card" style="border-radius: 0px; margin-top: 20px;border-width: 0px">
+	<div class="card-header"><center><b>LABORATORY RESULTS</b></center></div>
+	<div class="card-block" id="content2">
+
+	<div class="row">
+	    <div class="col-3"><p class="label">TEST</p></div>
+	    <div class="col-2"><p class="label"></p></div>
+	    <div class="col-3"><p class="label">SI Units</p></div>
+	    <div class="col-1"><p class="label"></p></div>
+	    <div class="col-3"><p class="label">Conventional Units</p></div>
+	</div>
+
+	<hr>
+
+	<!-- Blood -->
+		
+
+
+	</div>
+	</div>
+</div>
+</div>
 <script type="text/javascript">
 	$(document).ready(function(){
 		var pcount = "<?php echo $printCount; ?>";
@@ -1056,9 +1184,24 @@ hr
 		// window.onbeforeprint = function() {
 		// 	alert("This will be Count a");
 		// };
+
+		var content = $("#content").css( "height" );
+		var cc = 0;
+		var rowheight = 0;
+		var thishtml = 0;
+		$("#container2").hide();
+		$("#content .row").each(function(){
+			rowheight = rowheight + parseInt($(this).css("height"));
+			if (rowheight > 700) {
+				$("#container2").show();
+				$(this).hide();
+				thishtml = $(this).html();
+				$("#content2").append("<div class='row'>"+ thishtml +"</div>")
+			}
+		});
 	});
 </script>
-</div>
+
 </body>
 </html>
 <?php } ?>

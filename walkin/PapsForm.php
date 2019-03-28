@@ -12,8 +12,8 @@ $lab = new lab;
 $pat = new Patient;
 $qclass = new qc;
 $pd = $pat->fetch_data($id);
-$ld = $lab->fetch_data2($pd['PatientID']);
-$qc = $qclass->fetch_data($id);
+//$ld = $lab->fetch_data2($pd['PatientID']);
+//$qc = $qclass->fetch_data($id);
 
 ?>
 

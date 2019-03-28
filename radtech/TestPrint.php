@@ -31,7 +31,7 @@ $partsArray = array("CHEST PA",
 					"THORACIC SPINE",
 					"COCCYX",
 					"LUMBAR SPINE",
-					"PELVIS");
+					"PELVIS", "SHOULDER AP", "APICOLORDOTIC");
 ?>
 
 

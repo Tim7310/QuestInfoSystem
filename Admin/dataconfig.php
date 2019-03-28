@@ -95,7 +95,10 @@ $pack = $pack->fetchAll();
                           <?php } ?> 
                       </div>
                     </div>
-                    <button type="submit" class="btn btn-primary float-right" id="addItem" name="btnCreatePackage">Add Item</button>
+
+                    <button type="submit" class="btn btn-primary float-right" id="addItem" name="btnCreatePackage">
+                    Add Item</button>
+                    <button type="button" class="btn btn-info float-right" id="editItem">Edit Package</button>
                   </form>
                 </div>
               </div>
@@ -140,7 +143,7 @@ $pack = $pack->fetchAll();
                           <input type="text" class="form-control" name="comadd" id="comadd">
                         </div>
                       </div>
-                    </div>                                 
+                    </div>                                                    
                     <button type="submit" class="btn btn-primary float-right" id="addcompany">Add Company</button>                   
                   </form>
                 </div>
