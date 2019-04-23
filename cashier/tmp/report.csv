@@ -1,46 +1,16 @@
 "Date and Time","Receipt No.","Transaction Type","Patient Name","Company Name",Items,Qty,Subtotal,Total,"Bill To",Cashier,"Amount Tendered","Given Change"
-"2019-03-28 06:36:32",0000000001425,"CASH - sales","VISDA, LILIA"," N/A"," "," "," ",1224," N/A",Moises,1500,276
-,,,,,CBC,1,112.5,,,,,
-,,,,,"TOTAL CALCIUM (TCa)",1,156,,,,,
-,,,,,"SODIUM SERUM",1,120,,,,,
-,,,,,"Potassium ( K )",1,120,,,,,
-,,,,,"SGPT (ALT)",1,99,,,,,
-,,,,,CREATININE,1,85.5,,,,,
-,,,,,"URIC ACID / BUA",1,85.5,,,,,
-,,,,,"LIPID PROFILE",1,373.5,,,,,
-,,,,,"Fasting Blood Sugar",1,72,,,,,
-"2019-03-28 06:39:52",0000000001426,"CASH - sales","CANAVAN, AURORA"," N/A"," "," "," ",325," N/A",Moises,1000,675
-,,,,,CHOLESTEROL,1,95,,,,,
-,,,,,TRIGLYCERIDE,1,135,,,,,
-,,,,,"URIC ACID / BUA",1,95,,,,,
-"2019-03-28 07:14:56",0000000001429,"CASH - sales","BACUD, CARMELITA"," N/A"," "," "," ",175," N/A",Moises,200,25
-,,,,,CREATININE,1,95,,,,,
-,,,,,"Fasting Blood Sugar",1,80,,,,,
-"2019-03-28 07:42:38",0000000001432,"CASH - sales","SHIMBONI, AYAKA"," N/A"," "," "," ",200," N/A",Moises,200,0
-,,,,,"COMPLETE URINALYSIS",1,75,,,,,
-,,,,,CBC,1,125,,,,,
-"2019-03-28 07:42:06",0000000001433,"CASH - sales","CAMINOS, KRISTINA ANDREA"," N/A"," "," "," ",200," N/A",Moises,200,0
-,,,,,CBC,1,125,,,,,
-,,,,,"COMPLETE URINALYSIS",1,75,,,,,
-"2019-03-28 06:55:03",0000000001427,"CASH - sales","TIOTUICO, RONALDO","ALLEN ANDREW SY, MD"," "," "," ",1224,"ALLEN ANDREW SY, MD",Moises,1500,276
-,,,,,HBA1-C,1,500,,,,,
-,,,,,"Fasting Blood Sugar",1,64,,,,,
-,,,,,"SGPT (ALT)",1,88,,,,,
-,,,,,"SGOT (AST)",1,88,,,,,
-,,,,,CREATININE,1,76,,,,,
-,,,,,"URIC ACID / BUA",1,76,,,,,
-,,,,,"LIPID PROFILE",1,332,,,,,
-"2019-03-28 06:58:52",0000000001428,"CASH - sales","LOBO, EDWIN"," N/A"," "," "," ",250,"EDWIN LOBO",Moises,500,250
-,,,,,"COMPLETE URINALYSIS",1,75,,,,,
-,,,,,CHOLESTEROL,1,95,,,,,
-,,,,,"Fasting Blood Sugar",1,80,,,,,
-"2019-03-28 06:07:35",0000000001424,"CASH - sales","ACOSTA, REX","ERICSON LLOYD PATIO, MD"," "," "," ",190,"ERICSON LLOYD PATIO, MD",Moises,200,10
-,,,,,CREATININE,1,95,,,,,
-,,,,,"URIC ACID / BUA",1,95,,,,,
-"2019-03-28 06:09:34",0000000001423,"CASH - sales","MONRO, ABAYAN","FROILAN CANLAS, M.D"," "," "," ",200,"FROILAN CANLAS, M.D",Moises,200,0
-,,,,,"CHEST PA (14X14) WALK IN",1,200,,,,,
-"2019-03-28 07:31:13",0000000001430,"CASH - sales","LOPEZ, JABES JOHN","HAU SEA"," "," "," ",500,"HAU SEA",Moises,500,0
-,,,,,"HAU ENGRINEERING MALE",1,500,,,,,
-"2019-03-28 07:35:09",0000000001431,"CASH - sales","DIMARUCUT, CLARRISE ANN","HAU SEA"," "," "," ",600,"HAU SEA",Moises,600,0
-,,,,,"HAU ENGINEERING FEMALE",1,600,,,,,
-,,,,,,,TOTAL,5088,,,,
+"2019-04-23 08:00:41",0000000002416,"ACCOUNT - sales","FAJARDO, MALVAR","FROILAN CANLAS, M.D"," "," "," ",4014,"FROILAN CANLAS, M.D",Red,,N/A
+,,,,,"HMO COMPLETE URINALYSIS ",1,135,,,,,
+,,,,,"HMO ECG",1,720,,,,,
+,,,,,"HMO SGOT",1,198,,,,,
+,,,,,"HMO SGPT",1,198,,,,,
+,,,,,"HMO CREATITINE",1,360,,,,,
+,,,,,"HMO CHLORIDE",1,378,,,,,
+,,,,,"HMO SODIUM",1,378,,,,,
+,,,,,"HMO POTASIUM",1,378,,,,,
+,,,,,"HMO BUA",1,378,,,,,
+,,,,,"HMO LIPID PROFILE",1,747,,,,,
+,,,,,"HMO FASTING BLOOD SUGAR",1,144,,,,,
+"2019-04-23 10:55:15",0000000002427,"ACCOUNT - sales","HAYAG, JERAMIE","ALORICA UPS"," "," "," ",300,"ALORICA UPS",Red,,N/A
+,,,,,"ALORICA [ BASIC 5 ]",1,300,,,,,
+,,,,,,,TOTAL,4314,,,,

@@ -16,7 +16,9 @@ $row = $stmt->fetch(PDO::FETCH_ASSOC);
     <meta charset="UTF-8">
     <link href="../source/bootstrap4/css/bootstrap.css" rel="stylesheet"/>
     <link href="../source/bootstrap4/css/bootstrap.min.css" rel="stylesheet"/>
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+   <link rel="icon" type="image/png" href="assets/QPD.png">
+    <script src="../source/tether/dist/js/tether.min.js"></script>
+    <script src="../source/bootstrap4/js/bootstrap.min.js"></script>
 </head>
 <style type="text/css">
 	.navbar-custom {

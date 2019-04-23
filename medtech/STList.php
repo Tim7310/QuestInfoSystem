@@ -73,7 +73,10 @@ include_once('labsidebar.php');
 									}
 
 								?>
-								<button type="button" class="btn <?php echo $class; ?>" onclick="document.location = 'LabSTFORM.php?id=<?php echo $patient['PatientID']."&tid=".$transID?>';">View Certificate</button>
+								<button type="button" class="btn <?php echo $class; ?>" 
+									onclick="window.open('LabSTFORM.php?id=<?php echo $patient['PatientID']."&tid=".$transID?>');"    >View Certificate</button>
+
+
 							</td>
 
 					</tr>

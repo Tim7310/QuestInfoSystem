@@ -3,7 +3,7 @@
 class Patient {
 	public function fetch_all(){
 		global $pdo;
-		$query = $pdo->prepare("SELECT * FROM qpd_patient ORDER BY PatientID DESC LIMIT 1000");
+		$query = $pdo->prepare("SELECT * FROM qpd_patient ORDER BY PatientID DESC");
 		$query->execute();
 
 		return $query->fetchAll();
@@ -37,7 +37,6 @@ class Patient {
 			$query->execute();
 
 			return $query->rowCount();
-
 	}
 	public function Update_Patient($pid, $fname, $mname, $lname, $age, $gender, $comname, $contact, $bod, $add, $pos, $biller, $SID, $email=""){
 		global $pdo;

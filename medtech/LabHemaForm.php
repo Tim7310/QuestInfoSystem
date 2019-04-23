@@ -341,9 +341,9 @@ $printCount = $lab->checkPrint($id, $tid, 'HEMATOLOGY');
 	<div class="row">
 	    <div class="col-3"><p class="label">TEST</p></div>
 	    <div class="col-2"><p class="label"></p></div>
-	    <div class="col-3"><p class="label">SI Units</p></div>
+	    <div class="col-3"><p class="label"></p></div>
 	    <div class="col-1"><p class="label"></p></div>
-	    <div class="col-3"><p class="label">Conventional Units</p></div>
+	    <div class="col-3"><p class="label"></p></div>
 	</div>
 	<hr>
 
@@ -355,10 +355,11 @@ $printCount = $lab->checkPrint($id, $tid, 'HEMATOLOGY');
 	            		<b>HEMATOLOGY</b>
 	            		
 	            	</div>
+	            	<div class="col-2"></div>
 	            	<div class="col-2 ">
-
-	            		<b>SI Units</b>
+	            		<b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SI Units</b>
 	            	</div>
+	            	<div class="col-3"><center><b>Normal Values</b></center></div>
 				</div>
 			<?php if($data['WhiteBlood'] != '' and $data['WhiteBlood'] != 'N/A'){
 			?>
@@ -408,7 +409,7 @@ $printCount = $lab->checkPrint($id, $tid, 'HEMATOLOGY');
 				<div class="row" style="margin: 10px;">
 					<div class="col-4"><p class="labelName">RBC</p></div>
 					<div class="col-2"><p class="lineRes"><?php echo $data['CBCRBC'] ?></p></div>
-					<div class="col"><p class="labelName">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;%</p></div>
+					<div class="col"><p class="labelName">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;x 10^12/L</p></div>
 					<div class="col"><p class="labelName">4.32~5.72</p></div>
 				</div>
 				<div class="row" style="margin: 10px;"></div>
@@ -422,7 +423,7 @@ $printCount = $lab->checkPrint($id, $tid, 'HEMATOLOGY');
 				<div class="row" style="margin: 10px;">
 					<div class="col-4"><p class="labelName">Hematocrit</p></div>
 					<div class="col-2"><p class="lineRes"><?php echo $data['Hematocrit'] ?></p></div>
-					<div class="col"><p class="labelName">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;%</p></div>
+					<div class="col"><p class="labelName">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;g/L</p></div>
 					<div class="col-2"><p class="labelName" style="font-size: 16px">M: 0.40~0.51</p></div>
 					<div class="col-2"><p class="labelName" style="font-size: 16px">F: 0.34~0.45</p></div>
 				</div>
@@ -430,7 +431,7 @@ $printCount = $lab->checkPrint($id, $tid, 'HEMATOLOGY');
 				<div class="row" style="margin: 10px;">
 					<div class="col-4"><p class="labelName">Platelet</p></div>
 					<div class="col-2"><p class="lineRes"><?php echo $data['PLT'] ?></p></div>
-					<div class="col"><p class="labelName">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;%</p></div>
+					<div class="col"><p class="labelName">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;x 10^9/L</p></div>
 					<div class="col"><p class="labelName">150~400</p></div>
 				</div>
 				</div>

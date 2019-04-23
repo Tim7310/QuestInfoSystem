@@ -159,11 +159,18 @@ class lab {
 		$sql->execute();
 		return $sql->fetch();
 	}
+
 	public function checkData($pid, $tid, $table){
 		global $pdo;
 		$sql = $pdo->prepare("SELECT * from $table where TransactionID = '$tid' and PatientID = '$pid'");
 		$sql->execute();
 		return $sql->rowCount();
+	}
+	public function fetchData($pid, $tid, $table){
+		global $pdo;
+		$sql = $pdo->prepare("SELECT * from $table where TransactionID = '$tid' and PatientID = '$pid'");
+		$sql->execute();
+		return $sql->fetch();
 	}
 
 }

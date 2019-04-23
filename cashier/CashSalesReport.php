@@ -57,7 +57,7 @@ include_once('cashsidebar.php');
 <div class="row">
     <div class="col-md-10 offset-sm-1">
         <div class="card" style="border-radius: 0px; margin-top: 10px;">
-            <div class="card-header card-inverse card-info"><center><b>Sales Details</b></center></div>
+            <div class="card-header card-inverse card-info bg-primary"><center><b>Sales Details</b></center></div>
             <div class="card-block">
             	<span class="switch">
 				  <input type="checkbox" class="switch" id="switch-id">
@@ -77,6 +77,7 @@ include_once('cashsidebar.php');
             	<center>
             		<input type="submit" class="btn btn-success" value="Generate Report" name="gen">
             		<input type="submit" class="btn btn-success" value="Generate End of the Day" name="eotd">
+            		<input type="submit" class="btn btn-warning" value="Generate For PF" name="ca">
             	</center> 
             	<button class="btn btn-primary mt-2" type="button" name="tdReport" >Generate Today's Report</button>
             	<button class="btn btn-primary mt-2" type="button" name="eotdReport" >Generate End of the Day Report</button>
@@ -123,6 +124,12 @@ include_once('cashsidebar.php');
 			var sd2 = "<?php echo $dnSD?>";
 			var ed2 = "<?php echo $dnED?>";
 			window.open("eotd.php?sd="+sd2+"&ed="+ed2+"&type="+ttype);
+		});
+
+		$("input[name='ca']").click(function(){
+			var sd1 = $('#sd1').val();
+			var ed1 = $('#ed1').val();
+			window.open("SalesCSV.php?sd="+sd1+"&ed="+ed1+"&type=");
 		});
 	});
 </script>

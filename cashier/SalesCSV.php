@@ -17,7 +17,11 @@ $array = array(array("Date and Time", "Receipt No.", "Transaction Type", "Patien
 $grandTotal = 0;
 foreach ($transact as $key) {	
 	$patientName = $key['LastName'].", ".$key['FirstName'];
-	$Change = floatval($key['PaidIn']) - floatval($key['TotalPrice']);
+	if ($key['TransactionType'] == "CASH") {
+		$Change = floatval($key['PaidIn']) - floatval($key['TotalPrice']);
+	}else{
+		$Change = "N/A";
+	}
 	
 	$idpatient = $key['PatientID'];
 	$itemsquantity = $key['ItemQTY'];

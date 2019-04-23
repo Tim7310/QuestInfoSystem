@@ -4,7 +4,7 @@ include_once('../classes/trans.php');
 include_once('../classes/lab.php');
 $trans = new trans;
 $lab = new lab;
-if (isset($_GET['year'])) {
+if (!isset($_GET['year'])) {
 	date_default_timezone_set("Asia/Kuala_Lumpur");
 	$year = date("Y");
 }else{

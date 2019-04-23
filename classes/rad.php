@@ -36,6 +36,7 @@ class rad {
 		$query->execute();
 		return $query->fetchAll();
 	}
+	// public function fetchMarkerbyXray()
 	public function checkXray($pid, $tid){
 		global $pdo;
 		$query = $pdo->prepare("SELECT * from qpd_xray where PatientID = '$pid' and TransactionID = '$tid' ");
@@ -45,6 +46,12 @@ class rad {
 		}else{
 			return False;
 		}
+	}
+	public function filmInventory($from, $to){
+		global $pdo;
+		$query = $pdo->prepare("SELECT * from qpd_patient p, qpd_trans t, xray_markers x where x.PatientID = p.PatientID and x.TransactionID = t.TransactionID and t.TransactionDate between '$from' and '$to' ");
+		$query->execute();
+		return $query->fetchAll();
 	}
 
 }

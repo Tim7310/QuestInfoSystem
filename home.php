@@ -95,7 +95,7 @@ if(!$user->is_logged_in())
                     <?php 
                         if( $data['Imaging'] != 0){               
                     ?>
-                        <a href="radtech/ListOfPatients.php" class="read">Go To Imaging<i class="fa fa-angle-right"></i></a>
+                        <a href="radtech/TestPrint.php" class="read">Go To Imaging<i class="fa fa-angle-right"></i></a>
                     <?php } ?>
                     </div>
                 </div>

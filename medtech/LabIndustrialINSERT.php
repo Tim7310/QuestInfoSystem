@@ -88,8 +88,8 @@ try{
       $lab->updateToxi(  $tid, $id, $Meth, $Tetra, $DT, $path, $mdID, $qcID, $date);
     }
   
-   // echo "<script> alert('Record Added/Updated Successfully'); </script>";
-   // echo "<script>window.open('LabIndustrialView.php?id=$id&tid=$tid','_self');</script>";
+  echo "<script> alert('Record Added/Updated Successfully'); </script>";
+  echo "<script>window.open('LabIndustrialView.php?id=$id&tid=$tid','_self');</script>";
 }catch (Exception $e) {
      echo "<script> alert('Error: $e->getMessage()'); </script>";
       echo "<script>window.open('LabIndustrial.php','_self');</script>";

@@ -15,31 +15,25 @@ if (isset($_GET['id'])){
 	$data = $patient->fetch_data($id);
 	$trans = $tran->Patient_Trans($id);
 	$tid = $tran->RecentTransID($id);
+
 	$tid = $tid['TransactionID'];
 $His = new His;
-if (isset($_GET['id'])){
-	$id = $_GET['id'];
-	$his = $His->fetch_data($id, $tid);
+$his = $His->fetch_data($id, $tid);
+
 $vital = new vital;
-if (isset($_GET['id'])){
-	$id = $_GET['id'];
-	$vit = $vital->fetch_data($id, $tid);
+$vit = $vital->fetch_data($id, $tid);
+
 $pe = new pe;
-if (isset($_GET['id'])){
-	$id = $_GET['id'];
-	$pe = $pe->fetch_data($id, $tid);
+$pe = $pe->fetch_data($id, $tid);
+
 $lab = new lab;
-if (isset($_GET['id'])){
-	$id = $_GET['id'];
-	$lab = $lab->fetch_data($id, $tid);
+$lab = $lab->fetch_data($id, $tid);
+
 $rad = new rad;
-if (isset($_GET['id'])){
-	$id = $_GET['id'];
-	$rad = $rad->fetch_data($id, $tid);
+$rad = $rad->fetch_data($id, $tid);
+
 $qc = new qc;
-if (isset($_GET['id'])){
-	$id = $_GET['id'];
-	$qc = $qc->fetch_data($id, $tid);
+$qc = $qc->fetch_data($id, $tid);
 
 ?>
 <!DOCTYPE html>
@@ -617,4 +611,4 @@ include_once('radsidebar.php');
    
 } );	
 </script>
-<?php }}}}}}} ?>
+<?php }?>

@@ -16,6 +16,7 @@ if (isset($_POST['id'])){
 	$trans = $tran->Patient_Trans($id);
 	$tid = $tran->RecentTransID($id);
 	$tid =$_POST['tid'];
+	
 $His = new His;
 if (isset($_POST['id'])){
 	$id = $_POST['id'];
@@ -28,13 +29,19 @@ $pe = new pe;
 if (isset($_POST['id'])){
 	$id = $_POST['id'];
 	$pe = $pe->fetch_data($id, $tid);
-$lab = new lab;
+$labs = new lab;
 if (isset($_POST['id'])){
 	$id = $_POST['id'];
-	$lab = $lab->fetch_data($id, $tid);
+	$lab = $labs->fetchData($id, $tid, "lab_hematology");
+	$lab2 = $labs->fetchData($id, $tid, "lab_microscopy");
+	$lab3 = $labs->fetchData($id, $tid, "lab_toxicology");
+	$lab4 = $labs->fetchData($id, $tid, "lab_serology");
+	
+
 $rad = new rad;
 if (isset($_POST['id'])){
 	$id = $_POST['id'];
+
 	$rad = $rad->fetch_data($id, $tid);
 $qc = new qc;
 if (isset($_POST['id'])){
@@ -158,11 +165,11 @@ if (isset($_POST['id'])){
 				<div class="form-group row">
 	            	<label for="UriColor" class="col-3 col-form-label text-right">Color :</label>
 	            	<div class="col-2">
-	            		<b><?php echo $lab['UriColor'] ?></b>
+	            		<b><?php echo $lab2['UriColor'] ?></b>
 	            	</div>
 	            	<label for="RBC" class="col-3 col-form-label text-right">RBC :</label>
 	            	<div class="col-1">
-	            		<b><?php echo $lab['RBC'] ?></b>
+	            		<b><?php echo $lab2['RBC'] ?></b>
 	            	</div>
 	            	<label for="RBC" class="col-1 col-form-label">/hpf</label>
 	            	<label for="RBC" class="col-2 col-form-label">0-3</label>
@@ -170,11 +177,11 @@ if (isset($_POST['id'])){
 				<div class="form-group row">
 	            	<label for="UriTrans" class="col-3 col-form-label text-right">Transparency :</label>
 	            	<div class="col-2">
-	            		<b><?php echo $lab['UriTrans'] ?></b>
+	            		<b><?php echo $lab2['UriTrans'] ?></b>
 	            	</div>
 	            	<label for="WBC" class="col-3 col-form-label text-right">WBC :</label>
 	            	<div class="col-1">
-	            		<b><?php echo $lab['WBC'] ?></b>
+	            		<b><?php echo $lab2['WBC'] ?></b>
 	            	</div>
 	            	<label for="WBC" class="col-1 col-form-label">/hpf</label>
 	            	<label for="WBC" class="col-2 col-form-label">0-5</label>
@@ -182,52 +189,52 @@ if (isset($_POST['id'])){
 				<div class="form-group row">
 	            	<label for="UriPh" class="col-3 col-form-label text-right">pH :</label>
 	            	<div class="col-2">
-	            		<b><?php echo $lab['UriPh'] ?></b>
+	            		<b><?php echo $lab2['UriPh'] ?></b>
 	            	</div>
 	            	<label for="ECells" class="col-3 col-form-label text-right">E.Cells:</label>
 	            	<div class="col-2">
-	            		<b><?php echo $lab['ECells'] ?></b>
+	            		<b><?php echo $lab2['ECells'] ?></b>
 	            	</div>
 				</div>
 				<div class="form-group row">
 	            	<label for="UriSp" class="col-3 col-form-label text-right">Sp. Gravity :</label>
 	            	<div class="col-2">
-	            		<b><?php echo $lab['UriSp'] ?></b>
+	            		<b><?php echo $lab2['UriSp'] ?></b>
 	            	</div>
 	            	<label for="Mthreads" class="col-3 col-form-label text-right">M.Threads:</label>
 	            	<div class="col-2">
-	            		<b><?php echo $lab['MThreads'] ?></b>
+	            		<b><?php echo $lab2['MThreads'] ?></b>
 	            	</div>
 				</div>
 				<div class="form-group row">
 	            	<label for="UriPro" class="col-3 col-form-label text-right">Protein :</label>
 	            	<div class="col-2">
-	            		<b><?php echo $lab['UriPro'] ?></b>
+	            		<b><?php echo $lab2['UriPro'] ?></b>
 	            	</div>
 	            	<label for="Bac" class="col-3 col-form-label text-right">Bacteria:</label>
 	            	<div class="col-2">
-	            		<b><?php echo $lab['Bac'] ?></b>
+	            		<b><?php echo $lab2['Bac'] ?></b>
 	            	</div>
 				</div>
 				<div class="form-group row">
 	            	<label for="UriGlu" class="col-3 col-form-label text-right">Glucose :</label>
 	            	<div class="col-2">
-	            		<b><?php echo $lab['UriGlu'] ?></b>
+	            		<b><?php echo $lab2['UriGlu'] ?></b>
 	            	</div>
 	            	<label for="Amorph" class="col-3 col-form-label text-right">Amorphous:</label>
 	            	<div class="col-2">
-	            		<b><?php echo $lab['Amorph'] ?></b>
+	            		<b><?php echo $lab2['Amorph'] ?></b>
 	            	</div>
 				</div>
 				<div class="form-group row">
 	            	<label for="UriOt" class="col-3 col-form-label text-right">OTHERS/NOTES :</label>
 	            	<div class="col-2">
-	            		<b><?php echo $lab['UriOt'] ?></b>
+	            		<b><?php echo $lab2['UriOt'] ?></b>
 	            	</div>
 
 	            	<label for="CoAx" class="col-3 col-form-label text-right">CaOx:</label>
 	            	<div class="col-2">
-	            		<b><?php echo $lab['CoAx'] ?></b>
+	            		<b><?php echo $lab2['CoAx'] ?></b>
 	            	</div>
 				</div>
 
@@ -241,19 +248,19 @@ if (isset($_POST['id'])){
 				<div class="form-group row">
 	            	<label for="Meth" class="col-3 col-form-label text-right">METHAMPHETHAMINE:</label>
 	            	<div class="col-2">
-	            		<b><?php echo $lab['Meth'] ?></b>
+	            		<b><?php echo $lab3['Meth'] ?></b>
 	            	</div>
 				</div>
 				<div class="form-group row">
 	            	<label for="Tetra" class="col-3 col-form-label text-right">TETRAHYDROCANABINOL:</label>
 	            	<div class="col-2">
-	            		<b><?php echo $lab['Tetra'] ?></b>
+	            		<b><?php echo $lab3['Tetra'] ?></b>
 	            	</div>
 				</div>
 				<div class="form-group row">
 	            	<label for="DT" class="col-3 col-form-label text-right">DT RESULT:</label>
 	            	<div class="col-2">
-	            		<b><?php echo $lab['DT'] ?></b>
+	            		<b><?php echo $lab3['DT'] ?></b>
 	            	</div>
 				</div>
 <!-- Serology -->
@@ -265,19 +272,19 @@ if (isset($_POST['id'])){
 				<div class="form-group row">
 	            	<label for="HBsAg" class="col-3 col-form-label text-right">HBsAg:</label>
 	            	<div class="col-2">
-	            		<b><?php echo $lab['HBsAg'] ?></b>
+	            		<b><?php echo $lab4['HBsAG'] ?></b>
 	            	</div>
 				</div>
 				<div class="form-group row">
 	            	<label for="PregTest" class="col-3 col-form-label text-right">PREGNANCY TEST:</label>
 	            	<div class="col-2">
-	            		<b><?php echo $lab['PregTest'] ?></b>
+	            		<b><?php echo $lab2['PregTest'] ?></b>
 	            	</div>
 				</div>
 				<div class="form-group row">
 	            	<label for="SeroOt" class="col-3 col-form-label text-right">OTHERS/NOTES :</label>
 	            	<div class="col-2">
-	            		<b><?php echo $lab['SeroOt'] ?></b>
+	            		<b><?php echo $lab4['SeroOt'] ?></b>
 	            	</div>
 				</div>
 <!-- FECALYSIS -->
@@ -288,50 +295,73 @@ if (isset($_POST['id'])){
 				</div>
 				<div class="form-group row">
 	            	<label for="FecColor" class="col-3 col-form-label text-right">Color:</label>
-	            	<div class="col-2">
-	            		<b><?php echo $lab['FecColor'] ?></b>
+	            	<div class="col-5">
+	            		<b><?php echo $lab2['FecColor'] ?></b>
 	            	</div>
 				</div>
 				<div class="form-group row">
 	            	<label for="FecCon" class="col-3 col-form-label text-right">Consistency:</label>
-	            	<div class="col-2">
-	            		<b><?php echo $lab['FecCon'] ?></b>
+	            	<div class="col-5">
+	            		<b><?php echo $lab2['FecCon'] ?></b>
 	            	</div>
 				</div>
 				<div class="form-group row">
 	            	<label for="FecMicro" class="col-3 col-form-label text-right">Microscopic Findings:</label>
-	            	<div class="col-2">
-	            		<b><?php echo $lab['FecMicro'] ?></b>
+	            	<div class="col-5">
+	            		<b><?php echo $lab2['FecMicro'] ?></b>
 	            	</div>
 				</div>
 				<div class="form-group row">
 	            	<label for="FecOt" class="col-3 col-form-label text-right">OTHERS/NOTES :</label>
-	            	<div class="col-2">
-	            		<b><?php echo $lab['FecOt'] ?></b>
+	            	<div class="col-5">
+	            		<b><?php echo $lab2['FecOt'] ?></b>
 	            	</div>
 				</div>
 				<div class="form-group row"><hr></div>
 
 				<div class="form-group row">
-	            	<div class="col">
-	            		<center><b><?php echo $lab['Received'] ?></b></center>
+	            	<div class="col-4">
+	            		<?php
+	            			if (is_array($lab)) {
+	            				$rec = $labs->medtechByID($lab['MedID']);
+	            				$rec1 = $labs->medtechByID($lab['QualityID']);
+	            				$rec2 = $labs->medtechByID($lab['PathID']);
+	            			}elseif(is_array($lab2)){
+	            				$rec = $labs->medtechByID($lab2['MedID']);
+	            				$rec1 = $labs->medtechByID($lab2['QualityID']);
+	            				$rec2 = $labs->medtechByID($lab2['PathID']);
+	            			}elseif(is_array($lab3)){
+	            				$rec = $labs->medtechByID($lab3['MedID']);
+	            				$rec1 = $labs->medtechByID($lab3['QualityID']);
+	            				$rec2 = $labs->medtechByID($lab3['PathID']);
+	            			}elseif(is_array($lab4)){
+	            				$rec = $labs->medtechByID($lab4['MedID']);
+	            				$rec1 = $labs->medtechByID($lab4['QualityID']);
+	            				$rec2 = $labs->medtechByID($lab4['PathID']);
+	            			}
+	            		?>
+	            		<center><b><?php 
+	            	echo $rec['FirstName']." ". $rec['MiddleName'] ." ". $rec['LastName'] ?> 
+	        			 </b></center>
 	            	</div>
-	            	<div class="col">
-	            		<center><b><?php echo $qc['QC'] ?></b></center>
+	            	<div class="col-4">
+	            		<center><b><?php 
+	            	echo $rec1['FirstName']." ". $rec1['MiddleName'] ." ". $rec1['LastName'] ?></b></center>
 
 	            	</div>
-	            	<div class="col">
-	            		<center><b><?php echo $lab['Printed'] ?></b></center>
+	            	<div class="col-4">
+	            		<center><b><?php 
+	            	echo $rec2['FirstName']." ". $rec2['MiddleName'] ." ". $rec2['LastName'] ?></b></center>
 	            	</div>
 				</div>
 				<div class="form-group row">
-	            	<div class="col">
+	            	<div class="col-4">
 	            		<center>Medical Technologist</center>
 	            	</div>
-	            	<div class="col">
+	            	<div class="col-4">
 	            		<center>Quality Control</center>
 	            	</div>
-	            	<div class="col">
+	            	<div class="col-4">
 	            		<center>Pathologist</center>
 	            	</div>
 				</div>

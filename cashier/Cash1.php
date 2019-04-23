@@ -73,6 +73,8 @@ $TransNo = randomDigits();
 <link href="../source/select2/theme/dist/select2-bootstrap.min.css" rel="stylesheet" />
 <link href="../source/switch.css" rel="stylesheet" />
 <script type="text/javascript" src="../source/select2/dist/js/select2.min.js"></script>
+<link rel="stylesheet" type="text/css" href="../source/jquery-confirm.min.css">
+ <script type="text/javascript" src="../source/jquery-confirm.min.js"></script>
 <style type="text/css">
 	.btn{
 		cursor: pointer;
@@ -380,7 +382,7 @@ include_once('cashsidebar.php');
 				    		<div class="col-3"> Transaction ID </div>
 				    		<div class="col-3">Patient Name </div>
 				    		<div class="col-3">Items </div>
-				    		<!-- <div class="col-3">Price </div> -->
+				    		 <!-- <div class="col-3">Price </div>  -->
 				    		<div class="col-3">Transaction Date </div>
 				    	</div>
 				    	<hr style="margin-top: 2px;">
@@ -435,9 +437,9 @@ include_once('cashsidebar.php');
 			</div>
 			<div class="col-2">
 				<button class="btn btn-warning" id="cancelTrans">Cancel</button>
-				<button class="btn btn-danger" id="discardTrans" disabled>Discard</button>
+				<button class="btn btn-danger" id="discardTrans" disabled>Discard</button>				
 			</div>
-			<div class="col-5"></div>
+			<div class="col-5"><button class="btn btn-info" id="showCompany" class="btn btn-primary" data-toggle="modal" data-target="#CompanyModal">Add Company</button></div>
 			<div class="col-3" id="change">
 				<input type="submit" name="hold" value="HOLD" class="btn btn-primary">
 				<input type="submit" name="print" value="Save and Print" class="btn btn-primary">
@@ -451,7 +453,40 @@ include_once('cashsidebar.php');
 		<button id="hold" class="btn btn-primary">ACCOUNT</button>
 	</div> -->
 </div>
-
+<!-- add company modal -->
+<div class="modal fade" id="CompanyModal" tabindex="-1" role="dialog" aria-labelledby="CompanyModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="CompanyModalLabel">Add Company</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form> 
+          <div class="row">
+              <div class="col-md-12">
+                <div class="form-group">
+                  <label class="bmd-label-floating">Company Name/ Doctor Name</label>
+                  <input type="text" class="form-control" name="comname" id="comname">
+                </div>
+              </div>
+            </div>                
+            <div class="row">
+              <div class="col-md-12">
+                <div class="form-group">
+                  <label class="bmd-label-floating">Address ( Optional )</label>
+                  <input type="text" class="form-control" name="comadd" id="comadd">
+                </div>
+              </div>
+            </div>                                                    
+              <button type="submit" class="btn btn-outline-primary float-right mt-4" id="addcompany">Add Company</button>              
+          </form>
+      </div>
+    </div>
+  </div>
+</div>
 <!-- ADD modal -->
 <div class="modal fade" id="ModalAdd" role="dialog" style="padding-top: 100px;">
 	<center>
@@ -1060,7 +1095,45 @@ include_once('cashsidebar.php');
 				$("input").change();
 			});
 		});
-		
+$("#addcompany").click(function(e){
+	e.preventDefault();
+	var companyName = $("#comname").val();
+	var companyAdd = $("#comadd").val();
+if (companyName == "") {
+$.alert({
+  theme: "modern", title: "Empty Field", content: "Please fill up required field",
+});
+}else{
+	
+    $.confirm({
+        title: "Add Company",
+        content: "Are you Sure?",
+        theme: 'modern',
+        buttons: {
+          cancel: {
+            text: 'Cancel',
+            btnClass: 'btn-danger',
+            action: function(){
+              
+            }
+          },
+          yes: {
+            text: 'Yes',
+            btnClass: 'btn-primary',
+            action: function(){
+            	$.post("../admin/DataConfig/addCompany.php",{name: companyName, address: companyAdd}, function(data){		  
+            		$.alert({		            			
+            			theme: "modern", title: data.title, content: data.text, icon: data.icon,						
+					       });
+					$("#CompanyModal").modal("hide");
+            	},"json");		     
+            }
+           
+          }
+        }
+     });
+}
+});
 	});
 </script>
 </html>

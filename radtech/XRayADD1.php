@@ -16,7 +16,7 @@ if (isset($_GET['id'])){
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<title>Radiology Report</title>
-	<link href="../source/bootstrap4/css/bootstrap.min.css" media="all" rel="stylesheet"/>
+	
       <script type="text/javascript">
       function Res() 
           {

@@ -69,7 +69,7 @@ $row = $stmt->fetch(PDO::FETCH_ASSOC);
   </a>
     <div class="navbar-nav">
       <a class="nav-item nav-link" href="../home.php"><i class="fas fa-home"></i>&nbsp; Home</a>
-      <a class="nav-item nav-link" href="ListOfPatients.php"><i class="fas fa-user-cog"></i>&nbsp;Patient Summary</a>
+      <a class="nav-item nav-link" href="XRayInv.php"><i class="fas fa-user-cog"></i>&nbsp;Xray Inventory</a>
       <a class="nav-item nav-link" href="XRaySummary.php"><i class="fas fa-x-ray"></i>&nbsp;XRAY Summary</a>
       <a class="nav-item nav-link" href="XRay.php"><i class="fas fa-times"></i>&nbsp;Radiology Report</a>
       <a class="nav-item nav-link" href="TestPrint.php"><i class="fas fa-times"></i>&nbsp; X-Ray Markers</a>

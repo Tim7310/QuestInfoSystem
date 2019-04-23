@@ -155,6 +155,12 @@ $pack = $pack->fetchAll();
 		cursor: pointer;
 		margin: 2px;
 	}
+
+	.checkboxes, .checkbox2 {
+
+		height: 20px;
+		width: 20px;
+	}
 </style>
 <body>
 <?php include_once('cashsidebar.php');?>
@@ -228,6 +234,7 @@ $pack = $pack->fetchAll();
 		<table id="example" class="table table-striped table-bordered" style="width:100%">
 					<thead>
                     	<th>Item ID</th>
+                    	<th>Type</th>
                     	<th>Date Created</th>
 						<th>Item Name</th>
 						<th>Item Price</th>
@@ -240,6 +247,9 @@ $pack = $pack->fetchAll();
 					<tr>
 							<td>
 								<?php echo $pack['ItemID']?>
+							</td>
+							<td>
+								<?php echo $pack['ItemType']?>
 							</td>
 							<td>
 								<?php echo $pack['CreationDate']?>

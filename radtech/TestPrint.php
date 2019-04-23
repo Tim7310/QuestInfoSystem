@@ -4,7 +4,19 @@ include_once('../classes/trans.php');
 include_once('../classes/rad.php');
 $rad = new rad;
 $trans = new trans;
-$patients = $trans->fetch_all();
+date_default_timezone_set("Asia/Kuala_Lumpur");
+if (!isset($_GET['year'])) {	
+	$year = date("Y");
+}else{
+	$year = $_GET['year'];
+}
+if (!isset($_GET['month'])) {
+	$month = date("m");
+}else{
+	$month = $_GET['month'];
+}
+
+$patients = $trans->fetchByMonth($month,$year);
 $partsArray = array("CHEST PA", 
 					"CHEST AP LATERAL", 
 					"PELVIMETRY",
@@ -31,7 +43,7 @@ $partsArray = array("CHEST PA",
 					"THORACIC SPINE",
 					"COCCYX",
 					"LUMBAR SPINE",
-					"PELVIS", "SHOULDER AP", "APICOLORDOTIC");
+					"PELVIS", "SHOULDER AP", "APICOLORDOTIC", "LEG AP LATERAL","DOG", "CAT");
 ?>
 
 
@@ -79,7 +91,7 @@ $partsArray = array("CHEST PA",
 	            	<th>Patient ID</th>
 	            	<th nowrap>Transaction Date</th>
 					<th>Company Name</th>
-					<th nowrap>Patient Name</th>
+					<th nowrap style="max-width: 200px;word-wrap: break-word;">Patient Name</th>
 					<th>Action</th>
 				</thead>
 				<?php foreach  ($patients as $patient) {  
@@ -113,7 +125,7 @@ $partsArray = array("CHEST PA",
 						<td>
 							<?php echo $patient['CompanyName']?>
 						</td>	
-						<td nowrap>
+						<td nowrap style="width: 200px;word-wrap: break-word;">
 							<?php echo $patient['LastName' ].", ".$patient['FirstName'] ." ". $patient['MiddleName']?> 
 						</td>
 						<td > 
@@ -197,7 +209,84 @@ $partsArray = array("CHEST PA",
 		        scrollCollapse: true,
 		        "scrollX": true,
 		        paging:         false,
-		        buttons: ['excel', 'pdf', 'colvis' ], 
+		        buttons: ['excel', 'pdf', 'colvis',
+        		{
+        		extend: 'collection',
+                text: 'Month',
+                buttons: [
+                    {
+                        text: 'January',
+                        action: function ( e, dt, node, config ) {
+                           window.location.href = "TestPrint.php?month=1&year=<?php echo $year ?>";
+                        }
+                    },
+                    {
+                        text: 'February',
+                        action: function ( e, dt, node, config ) {
+                           window.location.href = "TestPrint.php?month=2&year=<?php echo $year ?>";
+                        }
+            		},
+            		{
+                        text: 'March',
+                        action: function ( e, dt, node, config ) {
+                           window.location.href = "TestPrint.php?month=3&year=<?php echo $year ?>";
+                        }
+            		},
+            		{
+                        text: 'April',
+                        action: function ( e, dt, node, config ) {
+                           window.location.href = "TestPrint.php?month=4&year=<?php echo $year ?>";
+                        }
+                    },
+                    {
+                        text: 'May',
+                        action: function ( e, dt, node, config ) {
+                           window.location.href = "TestPrint.php?month=5&year=<?php echo $year ?>";
+                        }
+            		},
+            		{
+                        text: 'June',
+                        action: function ( e, dt, node, config ) {
+                           window.location.href = "TestPrint.php?month=6&year=<?php echo $year ?>";
+                        }
+            		},
+            		{
+                        text: 'July',
+                        action: function ( e, dt, node, config ) {
+                           window.location.href = "TestPrint.php?month=7&year=<?php echo $year ?>";
+                        }
+                    },
+                    {
+                        text: 'August',
+                        action: function ( e, dt, node, config ) {
+                           window.location.href = "TestPrint.php?month=8&year=<?php echo $year ?>";
+                        }
+            		},
+            		{
+                        text: 'September',
+                        action: function ( e, dt, node, config ) {
+                           window.location.href = "TestPrint.php?month=9&year=<?php echo $year ?>";
+                        }
+            		},
+            		{
+                        text: 'October',
+                        action: function ( e, dt, node, config ) {
+                           window.location.href = "TestPrint.php?month=10&year=<?php echo $year ?>";
+                        }
+                    },
+                    {
+                        text: 'November',
+                        action: function ( e, dt, node, config ) {
+                           window.location.href = "TestPrint.php?month=11&year=<?php echo $year ?>";
+                        }
+            		},
+            		{
+                        text: 'December',
+                        action: function ( e, dt, node, config ) {
+                           window.location.href = "TestPrint.php?month=12&year=<?php echo $year ?>";
+                        }
+            		}
+            		]} ], 
 		        "order": [[ 0, "desc" ]]
 		    } );
 		 

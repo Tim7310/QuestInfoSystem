@@ -98,7 +98,7 @@ $pack = $pack->fetchAll();
 
                     <button type="submit" class="btn btn-primary float-right" id="addItem" name="btnCreatePackage">
                     Add Item</button>
-                    <button type="button" class="btn btn-info float-right" id="editItem">Edit Package</button>
+                    <button type="button" class="btn btn-secondary float-right" id="editItem">Edit Packages</button>
                   </form>
                 </div>
               </div>
@@ -122,44 +122,72 @@ $pack = $pack->fetchAll();
 	<div class="row">
 		<div class="col-6">
 			<div class="card">
-                <div class="card-header card-header-primary">
-                  <h4 class="card-title">Add Company</h4>
-                  <p class="card-category">Complete Company Profile</p>
-                </div>
-                <div class="card-body">
-                  <form> 
-                  <div class="row">
-                      <div class="col-md-12">
-                        <div class="form-group">
-                          <label class="bmd-label-floating">Company Name</label>
-                          <input type="text" class="form-control" name="comname" id="comname">
-                        </div>
-                      </div>
-                    </div>                
-                    <div class="row">
-                      <div class="col-md-12">
-                        <div class="form-group">
-                          <label class="bmd-label-floating">Address ( Optional )</label>
-                          <input type="text" class="form-control" name="comadd" id="comadd">
-                        </div>
-                      </div>
-                    </div>                                                    
-                    <button type="submit" class="btn btn-primary float-right" id="addcompany">Add Company</button>                   
-                  </form>
+        <div class="card-header card-header-primary">
+          <h4 class="card-title">Add Company</h4>
+          <p class="card-category">Complete Company Profile</p>
+        </div>
+        <div class="card-body">
+          <form> 
+          <div class="row">
+              <div class="col-md-12">
+                <div class="form-group">
+                  <label class="bmd-label-floating">Company Name</label>
+                  <input type="text" class="form-control" name="comname" id="comname">
                 </div>
               </div>
-		</div>
-		<div class="col-6">
-			<div class="card">
-                <div class="card-header card-header-primary">
-                  <h4 class="card-title">Edit Company</h4>
-                  <p class="card-category">List of Company</p>
-                </div>
-                <div class="card-body">
-                  
+            </div>                
+            <div class="row">
+              <div class="col-md-12">
+                <div class="form-group">
+                  <label class="bmd-label-floating">Address ( Optional )</label>
+                  <input type="text" class="form-control" name="comadd" id="comadd">
                 </div>
               </div>
+            </div>                                                    
+            <button type="submit" class="btn btn-primary float-right" id="addcompany">Add Company</button>                   
+          </form>
+        </div>
+      </div>
 		</div>
+		<div class="card col-6">
+    <div class="card-header card-header-primary">
+      <h4 class="card-title">APE Registration</h4>  
+    </div>
+    <div class="card-body">
+      <form id="form" method="post"> 
+        <div class="row mb-2">
+          <div class="col-6">
+          <label for="fileToUpload2" class="btn btn-info">Select Patient CSV</label>
+          <input type="file" name="patient" id="fileToUpload2" class="form-control" style="display: none" >
+        </div> 
+        <div class="col-md-6">
+              <div class="form-group">
+                <label class="bmd-label-floating">Item Name</label>
+                <input type="text" name="item" id="item" class="form-control" required>
+              </div>
+            </div>
+        </div>
+      
+      <div class="row">
+          <div class="col-md-9">
+            <div class="form-group">
+              <label class="bmd-label-floating">Company Name</label>
+              <input type="text" name="comName" id="comName" class="form-control" required>
+            </div>
+          </div>
+           <div class="col-md-3">
+            <div class="form-group">
+              <label class="bmd-label-floating">Item Price</label>
+              <input type="text" name="price" id="price" class="form-control" required>
+            </div>
+          </div>
+        </div>                                                   
+        <button type="submit" class="btn btn-primary float-right" id="submit">Import CSV</button>  
+                   
+      </form>
+    </div>
+     <div class="loader" id="formloader" style="display: none"></div>  
+    </div>  
 	</div>
 	
 </div>
@@ -257,7 +285,36 @@ $("#addItemForm").submit(function(e){
            }); 
  });       
 // script End
-      
+      var csvSelected = 0;
+    $('#fileToUpload2').change(function() {
+      var i = $(this).prev('label').clone();
+      var file = $('#fileToUpload2')[0].files[0].name;
+      $(this).prev('label').text(file);
+      $(this).prev('label').removeClass("btn-info").addClass("btn-primary");
+      csvSelected = 1;
+    });
+
+    $("#form").submit(function(e){
+    e.preventDefault();   
+    if (csvSelected != 0) {   
+      $("#form").ajaxSubmit({
+        target:     '#postLoader', 
+        url:        'DataConfig/importData.php', 
+        success:    function(data) {  
+          $.alert({                     
+                theme: "modern", title: "Success", content: "Data successfully Added to Database", icon: "fas fa-check",
+          });
+          $("#reg").trigger("click");
+        } 
+      });
+      $('#submit').attr("disabled","disabled");
+      $("#formloader").show();
+    }else{
+      $.alert({                     
+            theme: "modern", title: "Warning", content: "Please select CSV file", icon: "fas fa-exclamation",       
+      });
+    }
+    });     
     
 	});
 </script>

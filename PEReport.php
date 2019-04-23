@@ -371,7 +371,7 @@ $find = $pex['find'];
 			<div class="row">
 			    <div class="col-1"><p class="labelName">Address:</p></div>
 			    <div class="col-6">
-			        <span class="lineName"><?php echo $data['Address'] ?></span>
+			        <span class="lineName" style="white-space: nowrap;"><?php echo $data['Address'] ?></span>
 			    </div>
 			    <div class="col-2 text-right">
 			        <p class="labelName">Gender:</p>
@@ -412,7 +412,7 @@ $find = $pex['find'];
 	<div class="col-sm-6" >
 		<div class="card" style="border-radius: 0px; margin-top: 10px;">
 		<div class="card-header"><center><b>MEDICAL HISTORY</b></center></div>
-		<div class="card-block" style="height: 4.5in;">
+		<div class="card-block" style="height: 4.8in;">
 		<div class="row">
 			<div class="col"><p class="labelName">Significant Past Illness</p></div>
 		</div>
@@ -484,7 +484,7 @@ $find = $pex['find'];
 	<div class="col-sm-6" >
 		<div class="card" style="border-radius: 0px; margin-top: 10px;">
 		<div class="card-header"><center><b>VITAL SIGNS</b></center></div>
-		<div class="card-block" style="height: 4.5in;">
+		<div class="card-block" style="height: 4.8in;">
 		<div class="row">
 			<div class="col"><p class="labelName">Height</p></div>
 			<div class="col"><p class="lineName" style="text-transform: lowercase;"><?php echo $vit['height']?></p></div>
@@ -528,16 +528,16 @@ $find = $pex['find'];
 			<div class="col"><p class="lineName"><?php echo $vit['hearing']?></p></div>
 		</div>
 		<div class="row">
-			<div class="col-4"><p class="labelName">Hospitalization</p></div>
-			<div class="col"><p class="lineName"><?php echo $vit['hosp']?></p></div>
+			<div class="col-4"><p class="labelName" >Hospitalization</p></div>
+			<div class="col"><p class="lineName" style="font-size: 15px"><?php echo $vit['hosp']?></p></div>
 		</div>
 		<div class="row">
 			<div class="col-4"><p class="labelName">Operation</p></div>
-			<div class="col"><p class="lineName"><?php echo $vit['opr']?></p></div>
+			<div class="col"><p class="lineName" style="font-size: 15px"><?php echo $vit['opr']?></p></div>
 		</div>
 		<div class="row">
 			<div class="col-4"><p class="labelName">Medication</p></div>
-			<div class="col"><p class="lineName"><?php echo $vit['pm']?></p></div>
+			<div class="col"><p class="lineName" style="font-size: 15px"><?php echo $vit['pm']?></p></div>
 		</div>
 		<div class="row">
 			<div class="col"><p class="labelName">Smoker,Sticks/Year</p></div>
@@ -549,7 +549,7 @@ $find = $pex['find'];
 		</div>
 		<div class="row">
 			<div class="col"><p class="labelName">Last Menstrual Period</p></div>
-			<div class="col"><p class="lineName"><?php echo $vit['lmp']?></p></div>
+			<div class="col"><p class="lineName" style="font-size: 15px"><?php echo $vit['lmp']?></p></div>
 		</div>
 		<div class="row">
 			<div class="col-4"><p class="labelName">Others/Notes</p></div>

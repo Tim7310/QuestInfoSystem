@@ -29,7 +29,7 @@ if (isset($_GET['transID'])){
 	<style type="text/css">
 	body
 		{
-			font-family: "Century Gothic";
+			font-family: "Segoe UI Symbol";
 			font-size: 14px;
 			padding: 0px;
 			margin: 0px;
@@ -44,7 +44,7 @@ if (isset($_GET['transID'])){
 	    }
 	h3
 		{
-			font-family: "Century Gothic";
+			font-family: "OCR A";
 		    padding: 0px;
 		    margin: 0px;
 		    color: black;
@@ -160,7 +160,7 @@ if (isset($_GET['transID'])){
 			$ItemName = explode(",",$data['ItemID']);
 			foreach ($ItemName as $item) {
 		?>
-	<tr style="border-bottom: dotted grey 1px; ">
+	<tr style=" ">
 		<td style="word-wrap: break-word;width: 150px;" colspan="2">
 			<b>
 				<?php 
@@ -190,7 +190,7 @@ if (isset($_GET['transID'])){
 					if ($data['TransactionType'] == 'ACCOUNT') {
 						
 				?>
-				<tr style="border-top: solid grey 5px; padding-top: 3px">
+				<tr style="border-top: solid grey 2px; padding-top: 3px">
 					<td style="font-size: 18px; font-weight: bolder;" colspan="2" 
 					class="text-right">Total Accounted:</td>
 					<td style="font-size: 18px; font-weight: bolder;" class="text-right">
@@ -208,7 +208,7 @@ if (isset($_GET['transID'])){
 						
 				?>
 				
-				<tr style="border-top: solid grey 5px; padding-top: 3px">
+				<tr style="border-top: solid grey 2px; padding-top: 3px">
 					<td style="font-size: 18px; font-weight: bolder;" class="text-right" colspan="2">
 					Receipt Total:</td>
 					<td style="font-size: 18px; font-weight: bolder;" class="text-right">

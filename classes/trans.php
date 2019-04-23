@@ -3,7 +3,7 @@ class trans {
 	public function fetch_all(){
 		global $pdo;
 
-		$query = $pdo->prepare("SELECT f.*, t.* FROM qpd_patient f, qpd_trans t WHERE f.PatientID = t.PatientID ORDER BY t.TransactionID and t.status = '1'");
+		$query = $pdo->prepare("SELECT f.*, t.* FROM qpd_patient f, qpd_trans t WHERE f.PatientID = t.PatientID ORDER BY t.TransactionID and t.status = '1'  ");
 		$query->execute();
 
 		return $query->fetchAll();
@@ -25,10 +25,10 @@ class trans {
 		$query->execute();
 		return $query->rowCount();
 	}
-	public function fetchByMonth($month,$year){
+	public function fetchByMonth($month,$year,$stype=""){
 		global $pdo;
 
-		$query = $pdo->prepare("SELECT * FROM qpd_patient f, qpd_trans t WHERE f.PatientID = t.PatientID and MONTH(t.TransactionDate) = '$month' and YEAR(t.TransactionDate) = '$year' and t.status = '1' ");
+		$query = $pdo->prepare("SELECT * FROM qpd_patient f, qpd_trans t WHERE f.PatientID = t.PatientID and MONTH(t.TransactionDate) = '$month' and YEAR(t.TransactionDate) = '$year' and t.status = '1' and t.SalesType != '$stype' ");
 		$query->execute();
 
 		return $query->fetchAll();
@@ -43,7 +43,7 @@ class trans {
 	}
 	public function fetchCompanies(){
 		global $pdo;
-		$query = $pdo->prepare("SELECT * FROM qpd_company");
+		$query = $pdo->prepare("SELECT * FROM qpd_company order by NameCompany");
 		$query->execute();
 
 		return $query->fetchAll();
@@ -184,10 +184,10 @@ class trans {
 		$query2->execute();
 		return $count;
 	}
-	public function fetch_by_date($date1,$date2){
+	public function fetch_by_date($date1,$date2,$stype=""){
 		global $pdo;
 
-		$query = $pdo->prepare("SELECT f.*, t.* FROM qpd_patient f, qpd_trans t WHERE f.PatientID = t.PatientID and t.TransactionDate BETWEEN '$date1' and '$date2'  AND status = '1' ORDER BY t.TransactionDate");
+		$query = $pdo->prepare("SELECT f.*, t.* FROM qpd_patient f, qpd_trans t WHERE f.PatientID = t.PatientID and t.TransactionDate BETWEEN '$date1' and '$date2'  AND t.status = '1' and t.SalesType != '$stype' ORDER BY t.TransactionDate");
 		$query->execute();
 
 		return $query->fetchAll();
@@ -196,7 +196,7 @@ class trans {
 	public function fetchDateType($date1,$date2,$type){
 		global $pdo;
 
-		$query = $pdo->prepare("SELECT f.*, t.* FROM qpd_patient f, qpd_trans t WHERE f.PatientID = t.PatientID and t.TransactionDate BETWEEN '$date1' and '$date2'  AND status = '1' and TransactionType = '$type' ORDER BY t.Biller");
+		$query = $pdo->prepare("SELECT f.*, t.* FROM qpd_patient f, qpd_trans t WHERE f.PatientID = t.PatientID and t.TransactionDate BETWEEN '$date1' and '$date2'  AND status = '1' and TransactionType LIKE '%$type%' ORDER BY t.TransactionID");
 		$query->execute();
 
 		return $query->fetchAll();
@@ -252,7 +252,7 @@ class trans {
 	}
 	public function RecentTransID($pid){
 		global $pdo;
-		$sql = $pdo->prepare("SELECT TransactionID from qpd_trans where TransactionDate in (SELECT MAX(TransactionDate) from qpd_trans where SalesType = 'sales' and status = '1')");
+		$sql = $pdo->prepare("SELECT TransactionID from qpd_trans where TransactionDate in (SELECT MAX(TransactionDate) from qpd_trans where PatientID = '$pid' and SalesType = 'sales' and status = '1')");
 		$sql->execute();
 		return $sql->fetch();
 	}

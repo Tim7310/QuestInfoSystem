@@ -513,7 +513,7 @@ else if ($Company == 'DNATA' || $Company == 'DNATA TRAVEL INC')
                         t.TransactionID=v.TransactionID AND
                         t.TransactionID=d.TransactionID AND 
                         t.TransactionID=p.TransactionID AND
-                        f.CreationDate >= '$SD' AND f.CreationDate <='$ED' AND 
+                        t.TransactionDate >= '$SD' AND t.TransactionDate <='$ED' AND 
                         f.CompanyName LIKE '$Company%' ORDER BY f.LastName";
 
            $result = mysqli_query($con, $select);
@@ -616,7 +616,7 @@ else if ($Company == 'DNATA' || $Company == 'DNATA TRAVEL INC')
                 <td nowrap>$date</td>
                 <td nowrap>$lasnam,$firnam&nbsp$midnam</td>
                 <td>$age</td>
-                <td nowrap>$xray1</td>
+                <td >$xray1</td>
                 <td nowrap>$UriOt</td>
                 <td nowrap>$FecMicro1</td>
                 <td nowrap>$CBCOt</td>

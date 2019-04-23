@@ -11,7 +11,7 @@ if (isset($_GET['year'])) {
 	$year = $_GET['year'];
 }
 $month = $_GET['month'];
-$patients = $trans->fetchByMonth($month,$year);
+$patients = $trans->fetchByMonth($month,$year,"refund");
 
 
 ?>
@@ -64,11 +64,11 @@ include_once('labsidebar.php');
 						$items = explode(",", $patient['ItemID']);
 						foreach ($items as $item) {
 						 	$itemdata = $trans->fetch_item($item);
-						 	if ($itemdata['ItemType'] == 'CashIndustrial' or $itemdata['ItemType'] == 'INDUSTRIAL') {
+						 	if ($itemdata['ItemType'] == 'CashIndustrial' or $itemdata['ItemType'] == 'INDUSTRIAL' or $itemdata["ItemType"] == 'AccountIndustrial') {
 						 		$indus++;
 						 	}
 						 }
-						 //if ($indus != 0) {
+						 if ($indus != 0) {
 						   
 						$pid = $patient['PatientID'];
 						$tid = $patient['TransactionID'];
@@ -128,7 +128,7 @@ include_once('labsidebar.php');
 							</td>
 
 					</tr>
-					<?php  //} 
+					<?php  } 
 				}	?> 
     </table>
 </div>

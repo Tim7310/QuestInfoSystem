@@ -54,6 +54,7 @@ include_once('cashsidebar.php');
 						<th>Age/Gender</th>
 						<th>Contact No.</th>
 						<th>Package</th>
+						<th>Total</th>
 						<th>ACTION</th>
 </thead>
 					
@@ -105,6 +106,9 @@ include_once('cashsidebar.php');
 								 	echo ", ";
 								 }}
 								 ?>
+							</td>
+							<td>
+								<?php echo $trans['GrandTotal']?>
 							</td>
 							<td > 
 								<button type="button" class="btn btn-primary" onclick="document.location = 'Receipt.php?patID=<?php echo $trans['PatientID']?>&transID=<?php echo $trans['TransactionID']?>';">Reprint Receipt</button><br>

@@ -1,9 +1,5 @@
 <?php
-try {
-$pdo2 = new PDO ('mysql:host=localhost;dbname=dbqis','root','') ;
-} catch (PDOException $e) {
-	exit('Database Error.');
-}
+include_once 'database.php';
 /**
  * 
  */
