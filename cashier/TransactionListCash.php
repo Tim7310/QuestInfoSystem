@@ -110,9 +110,12 @@ include_once('cashsidebar.php');
 							<td>
 								<?php echo $trans['GrandTotal']?>
 							</td>
-							<td > 
+							<!-- <td > 
 								<button type="button" class="btn btn-primary" onclick="document.location = 'Receipt.php?patID=<?php echo $trans['PatientID']?>&transID=<?php echo $trans['TransactionID']?>';">Reprint Receipt</button><br>
-							</td>
+							</td> -->
+                            <td > 
+                                <button type="button" class="btn btn-primary" onclick="window.open('Receipt.php?patID=<?php echo $trans['PatientID']?>&transID=<?php echo $trans['TransactionID']?>');">Reprint Receipt</button>
+                            </td>
 
 
 							<?php  }	?> 

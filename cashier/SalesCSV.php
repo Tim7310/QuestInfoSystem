@@ -8,11 +8,6 @@ $sdate = $sdate->format('F d Y');
 $sdate = $_GET['type']." ".$sdate;
 
 
-
-
-
-
-
 $array = array(array("Date and Time", "Receipt No.", "Transaction Type", "Patient Name", "Company Name", "Items", "Qty", "Subtotal", "Total", "Bill To", "Cashier", "Amount Tendered", "Given Change"));
 $grandTotal = 0;
 foreach ($transact as $key) {	

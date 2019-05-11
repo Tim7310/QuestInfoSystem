@@ -157,7 +157,7 @@ class trans {
 	 	$discTotal = 0;
 	 	for ($x=0;$x < count($arr['id']);$x++) {
 	 		$price = $this->fetch_item($arr["id"][$x]);
-	 		$priceV = $price['ItemPrice'] * $arr["qty"][$x];
+	 		$priceV = floatval($price['ItemPrice']) * floatval($arr["qty"][$x]);
 	 		$discTotal = $discTotal + $priceV;
 	 	}	 	
 	 	return $discTotal;
@@ -196,12 +196,22 @@ class trans {
 	public function fetchDateType($date1,$date2,$type){
 		global $pdo;
 
-		$query = $pdo->prepare("SELECT f.*, t.* FROM qpd_patient f, qpd_trans t WHERE f.PatientID = t.PatientID and t.TransactionDate BETWEEN '$date1' and '$date2'  AND status = '1' and TransactionType LIKE '%$type%' ORDER BY t.TransactionID");
+		$query = $pdo->prepare("SELECT f.*, t.* FROM qpd_patient f, qpd_trans t WHERE f.PatientID = t.PatientID and t.TransactionDate BETWEEN '$date1' and '$date2' AND status = '1' and TransactionType LIKE '%$type%' ORDER BY t.TransactionID");
 		$query->execute();
 
 		return $query->fetchAll();
 
 	}
+//GENERATING HMO ONLY
+/*	public function fetchDateType($date1,$date2,$type){
+		global $pdo;
+
+		$query = $pdo->prepare("SELECT f.*, t.* FROM qpd_patient f, qpd_trans t WHERE f.PatientID = t.PatientID and t.TransactionDate BETWEEN '$date1' and '$date2'  AND t.AN != '' AND status = '1' and TransactionType LIKE '%$type%' ORDER BY t.Biller");
+		$query->execute();
+
+		return $query->fetchAll();
+
+	}*/
 	public function randomDigits(){
 		do{
 			$trans = new trans;

@@ -198,10 +198,18 @@ $pack = $pack->fetchAll();
 					<div class="form-group mr-2">
 						<select name="CashType" class="form-control">
 							<option value="CashIndustrial">CASH INDUSTRIAL</option>
-							<option value="CashLab" selected>CASH LAB</option>
-							<option value="CashImaging">CASH IMAGING</option>
-							<option value="AccountIndustrial">ACCOUNT INDUSTRIAL</option>
-							<option value="AccountHMO">ACCOUNT HMO</option>
+                              <option value="CashLab" selected="">CASH LAB</option>
+                              <option value="CashImaging">CASH IMAGING</option>
+                              <option value="AccountIndustrial">ACCOUNT INDUSTRIAL</option>
+                              <option value="AccountHMO">ACCOUNT HMO</option>
+                              <option value="AccountSURGEON">ACCOUNT SURGEON</option>
+                              <option value="CashSURGEON">CASH SURGEON</option>
+                              <option value="AccountPHARMACY">ACCOUNT PHARMACY</option>
+                              <option value="CashPHARMACY">CASH PHARMACY</option>
+                              <option value="CashDNA">CASH DNA</option>
+                              <option value="CashWLMC">CASH WLMC</option>
+                              <option value="CashSURGEON">CASH PSYCH</option>
+                              <option value="AccountPHARMACY">ACCOUNT PSYCH</option>
 						</select>
 					</div>
 					<div class="form-group mr-2">

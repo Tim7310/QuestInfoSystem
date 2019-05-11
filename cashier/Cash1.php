@@ -307,6 +307,15 @@ include_once('cashsidebar.php');
 	<div id="transDivCash" style="display: none">
 		<div class="row">
 			<div class="col-8"> </div>
+			<div class="col-2">
+				<span class="switch">
+				  <input type="checkbox" class="switch" id="switch-cur">
+				  <label for="switch-cur" style="font-weight: bolder;float: right">PESO</label>
+				</span>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-8"> </div>
 			<div class="col-2" style="text-align: right">Sub Total: </div>
 			<div class="col-2" id="subTotalc"  style="text-align: center;"></div>
 		</div>
@@ -333,7 +342,7 @@ include_once('cashsidebar.php');
 		</div>
 	</div>
 	<div id="transDivAcc" style="display: none">		
-		<div class="row">
+		<div class="row mt-2">
 			<div class="col-2"> </div>
 			<div class="col-2 ">
 				<input type="text" name="LOE" class="form-control m-1 hmo" placeholder="LOE Number" >
@@ -349,8 +358,13 @@ include_once('cashsidebar.php');
 				  <input type="checkbox" class="switch" id="switch-id">
 				  <label for="switch-id" style="font-weight: bolder;float: right">HMO</label>
 				</span>
-			</div>
-			
+			</div>	
+			<div class="col-1">
+				<span class="switch">
+				  <input type="checkbox" class="switch" id="switch-ape">
+				  <label for="switch-ape" style="font-weight: bolder;float: right">APE</label>
+				</span>
+			</div>			
 		</div>	
 		<div class="row">
 			<div class="col-5"> </div>
@@ -685,6 +699,14 @@ include_once('cashsidebar.php');
 				$(".hmo").hide();
 			}
 		}).change();
+		$( "#switch-cur" ).change(function() {
+		  var input = $( this );
+			if (input.is(":checked")) {
+				$(this).siblings("label").html("USD");
+			}else{
+				$(this).siblings("label").html("PESO");
+			}
+		}).change();
 		$("#cancelTrans").click(function(){
 			location.reload();
 		});
@@ -858,7 +880,14 @@ include_once('cashsidebar.php');
 			var itemsID = [];
 			var itemsQTY = getClassDataVal(".qty");
 			var itemsDisc = getClassDataVal(".Disc");
-			
+			var cur = $("#switch-cur").siblings("label").html();
+			var ape = "";
+			$( "#switch-ape" ).change(function() {
+			  var input = $( this );
+				if (input.is(":checked")) {
+					ape = "APE";
+				}
+			}).change();
 			$('.itemNum').each(function(){
 				var itemvalue = $(this).text();
 				itemsID.push(itemvalue);
@@ -875,12 +904,12 @@ include_once('cashsidebar.php');
 				var payment = "";
 			}
 					if (uporin == 0) {
-						$.post("DataTransaction.php",{status: status, PatientID: PatientID, itemsID: itemsID, itemsQTY: itemsQTY, itemsDisc: itemsDisc, change: changeValue, totalAmount: subTotalcash, payment: payment, cashier: CN, transNO: TN, transType: transType, biller: biller,LOE: "", AN: "", AC: ""}, function(e){
+						$.post("DataTransaction.php",{status: status, PatientID: PatientID, itemsID: itemsID, itemsQTY: itemsQTY, itemsDisc: itemsDisc, change: changeValue, totalAmount: subTotalcash, payment: payment, cashier: CN, transNO: TN, transType: transType, biller: biller,LOE: "", AN: "", AC: "",cur: cur,ape:ape}, function(e){
 							alert(e);
 							location.reload();
 						});
 					}else{
-						$.post("DataTransaction.php",{transID: idtrans, status: status, PatientID: PatientID, itemsID: itemsID, itemsQTY: itemsQTY, itemsDisc: itemsDisc, change: changeValue, totalAmount: subTotalcash, payment: payment, cashier: CN, transNO: TN, transType: transType, biller: biller, LOE: "", AN: "", AC: ""}, function(e){
+						$.post("DataTransaction.php",{transID: idtrans, status: status, PatientID: PatientID, itemsID: itemsID, itemsQTY: itemsQTY, itemsDisc: itemsDisc, change: changeValue, totalAmount: subTotalcash, payment: payment, cashier: CN, transNO: TN, transType: transType, biller: biller, LOE: "", AN: "", AC: "",cur: cur,ape:ape}, function(e){
 							alert(e);
 							location.reload();
 						});
@@ -904,6 +933,14 @@ include_once('cashsidebar.php');
 			var LOE = $("input[name=LOE]").val();
 			var AN = $("input[name=ACCNO]").val();
 			var AC = $("input[name=APPC]").val();
+			var cur = $("#switch-cur").siblings("label").html();
+			var ape = "";
+			$( "#switch-ape" ).change(function() {
+			  var input = $( this );
+				if (input.is(":checked")) {
+					ape = "APE";
+				}
+			}).change();
 			$('.itemNum').each(function(){
 				var itemvalue = $(this).text();
 				itemsID.push(itemvalue);
@@ -930,7 +967,7 @@ include_once('cashsidebar.php');
 				var r = confirm("Are you sure you want to save it?");
 				if (r == true) {
 					if (uporin == 0) {
-						$.post("DataTransaction.php",{status: status, PatientID: PatientID, itemsID: itemsID, itemsQTY: itemsQTY, itemsDisc: itemsDisc, change: changeValue, totalAmount: subTotalcash, payment: payment, cashier: CN, transNO: TN, transType: transType, biller: biller, LOE: LOE, AN: AN, AC: AC}, function(e){
+						$.post("DataTransaction.php",{status: status, PatientID: PatientID, itemsID: itemsID, itemsQTY: itemsQTY, itemsDisc: itemsDisc, change: changeValue, totalAmount: subTotalcash, payment: payment, cashier: CN, transNO: TN, transType: transType, biller: biller, LOE: LOE, AN: AN, AC: AC,cur:cur,ape:ape}, function(e){
 							// $.post("AccountReceipt.php",{transID: e},function(){
 								
 							// });
@@ -939,10 +976,10 @@ include_once('cashsidebar.php');
 							location.reload();
 						});
 					}else{
-						$.post("DataTransaction.php",{transID: idtrans, status: status, PatientID: PatientID, itemsID: itemsID, itemsQTY: itemsQTY, itemsDisc: itemsDisc, change: changeValue, totalAmount: subTotalcash, payment: payment, cashier: CN, transNO: TN, transType: transType, biller: biller}, function(e){
+						$.post("DataTransaction.php",{transID: idtrans, status: status, PatientID: PatientID, itemsID: itemsID, itemsQTY: itemsQTY, itemsDisc: itemsDisc, change: changeValue, totalAmount: subTotalcash, payment: payment, cashier: CN, transNO: TN, transType: transType, biller: biller,cur: cur,ape:ape}, function(e){
 							
 							window.open("Receipt.php?transID="+idtrans+"&patID="+PatientID);
-							//location.reload();
+							location.reload();
 						});
 					}
 				}else{

@@ -1,16 +1,19 @@
 "Date and Time","Receipt No.","Transaction Type","Patient Name","Company Name",Items,Qty,Subtotal,Total,"Bill To",Cashier,"Amount Tendered","Given Change"
-"2019-04-23 08:00:41",0000000002416,"ACCOUNT - sales","FAJARDO, MALVAR","FROILAN CANLAS, M.D"," "," "," ",4014,"FROILAN CANLAS, M.D",Red,,N/A
-,,,,,"HMO COMPLETE URINALYSIS ",1,135,,,,,
-,,,,,"HMO ECG",1,720,,,,,
-,,,,,"HMO SGOT",1,198,,,,,
-,,,,,"HMO SGPT",1,198,,,,,
-,,,,,"HMO CREATITINE",1,360,,,,,
-,,,,,"HMO CHLORIDE",1,378,,,,,
+"2019-05-11 08:14:14",0000000003364,"ACCOUNT - sales","NECESITO, KIMBERLY KAYE","DNATA TRAVEL INC"," "," "," ",520,"DNATA TRAVEL INC",Red,,N/A
+,,,,,"DNATA(FEMALE) [ BASIC 5 + PT + DT ]",1,520,,,,,
+"2019-05-11 08:58:37",0000000003374,"ACCOUNT - sales","SAGMIT, RAYMOND",VXI," "," "," ",600,VXI,Red,,N/A
+,,,,,"VXI BASIC 4 + DT",1,600,,,,,
+"2019-05-11 09:31:52",0000000003378,"ACCOUNT - sales","CORREA, ROZELLE","True North Mfg Services Corp."," "," "," ",1125,INTELLICARE,Judy,,N/A
 ,,,,,"HMO SODIUM",1,378,,,,,
 ,,,,,"HMO POTASIUM",1,378,,,,,
-,,,,,"HMO BUA",1,378,,,,,
-,,,,,"HMO LIPID PROFILE",1,747,,,,,
+,,,,,"HMO CBC",1,225,,,,,
 ,,,,,"HMO FASTING BLOOD SUGAR",1,144,,,,,
-"2019-04-23 10:55:15",0000000002427,"ACCOUNT - sales","HAYAG, JERAMIE","ALORICA UPS"," "," "," ",300,"ALORICA UPS",Red,,N/A
+"2019-05-11 12:05:57",0000000003385,"ACCOUNT - sales","POLICARPIO, JHUNEL",VXI," "," "," ",600,VXI,Red,,N/A
+,,,,,"VXI BASIC 4 + DT",1,600,,,,,
+"2019-05-11 12:41:06",0000000003386,"ACCOUNT - sales","BUAN, CHARMAINE","TOA GLOBAL PAMPANGA INC."," "," "," ",300,"TOA GLOBAL PAMPANGA INC.",Red,,N/A
+,,,,,"TOA [ BASIC 5 ]",1,300,,,,,
+"2019-05-11 13:32:03",0000000003387,"ACCOUNT - sales","RASCO JR., ERROL","ALORICA TMO"," "," "," ",300,"ALORICA TMO",Red,,N/A
 ,,,,,"ALORICA [ BASIC 5 ]",1,300,,,,,
-,,,,,,,TOTAL,4314,,,,
+"2019-05-11 13:33:50",0000000003388,"ACCOUNT - sales","TALANAY, JERALEE","OWENS ASIA"," "," "," ",500,"OWENS ASIA",Red,,N/A
+,,,,,"OWENS ASIA [ BASIC 5 + DRUGTEST SCREENING ] ",1,500,,,,,
+,,,,,,,TOTAL,3945,,,,
