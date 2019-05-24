@@ -45,7 +45,8 @@ $printCount = $lab->checkPrint($id, $tid, 'CHEMISTRY');
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<title>LABORATORY CHEMISTRY FORM</title>
-    <link href="../source/bootstrap4/css/bootstrap.min.css" media="all" rel="stylesheet"/>
+	<link href="../source/bootstrap4/css/bootstrap.min.css" media="all" rel="stylesheet"/>
+	<link href="../source/formstyle.css" media="all" rel="stylesheet"/>
      <script type="text/javascript" src="../source/jquery.min.js"></script>
     <script type="text/javascript" src="../source/jquery-confirm.min.js"></script>
 	<link rel="stylesheet" type="text/css" href="../source/jquery-confirm.min.css">
@@ -411,7 +412,11 @@ hr
 						<b><?php echo $med['FirstName']." ".$med['MiddleName']." ".$med['LastName'].", ".$med['PositionEXT']?>	</b></span></center></div>
 					<div class="col" style="padding-left: 0px"><center><span class="Names"><br>
 						<b><?php echo $qc['FirstName']." ".$qc['MiddleName']." ".$qc['LastName'].", ".$qc['PositionEXT']?>	</b></span></center></div>
-					<div class="col" style="padding-left: 0px"><center><span class="Names"><br>
+					<div class="col" style="padding-left: 0px">
+						<div class="sig">
+							<image src="../assets/Emil_Sig.png" width="300px;" >
+						</div>
+						<center><span class="Names"><br>
 						<b><?php echo $path['FirstName']." ".$path['MiddleName']." ".$path['LastName'].", ".$path['PositionEXT']?>	</b></span></center></div>
 				</div>
 				<div class="row">

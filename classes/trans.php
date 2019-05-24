@@ -248,8 +248,9 @@ class trans {
 	} 
 	public function recentTrans(){
 		global $pdo;
-		$sql = $pdo->prepare("SELECT t.*,p.* FROM qpd_trans t, qpd_patient p where TransactionDate in (SELECT MAX(TransactionDate)
-    	FROM qpd_trans where SalesType = 'sales' GROUP BY PatientID) and status = '1' and t.PatientID = p.PatientID ORDER by TransactionID" );
+		$sql = $pdo->prepare("SELECT t.*,p.* FROM qpd_trans t, qpd_patient p 
+		where TransactionDate in (SELECT MAX(TransactionDate) FROM qpd_trans where SalesType = 'sales' GROUP BY PatientID) 
+		and status = '1' and t.PatientID = p.PatientID ORDER by TransactionID" );
 		$sql->execute();
 		
 		return $sql->fetchAll();

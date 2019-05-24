@@ -211,6 +211,12 @@
 {
 	color: black;
 }
+.sig{
+	position: absolute;
+	top:-20px;
+	left: -10px;
+}
+
 </style>
 <html>
 <head>
@@ -329,16 +335,32 @@
 						<b><?php echo $med['FirstName']." ".$med['MiddleName']." ".$med['LastName'].", ".$med['PositionEXT']?>	</b></span></center></div>
 					<div class="col" style="padding-left: 0px"><center><span class="Names"><br>
 						<b><?php echo $qc['FirstName']." ".$qc['MiddleName']." ".$qc['LastName'].", ".$qc['PositionEXT']?>	</b></span></center></div>
-					<div class="col" style="padding-left: 0px"><center><span class="Names"><br>
-						<b><?php echo $path['FirstName']." ".$path['MiddleName']." ".$path['LastName'].", ".$path['PositionEXT']?>	</b></span></center></div>
+					<div class="col" style="padding-left: 0px">
+						<div class="sig">
+							<image src="../assets/Emil_Sig.png" width="300px;" >
+						</div>
+						<center><span class="Names"><br>
+							<b><?php echo 
+							$path['FirstName']." "
+							.$path['MiddleName']." "
+							.$path['LastName'].", "
+							.$path['PositionEXT'] ?>	
+							</b></span>
+						</center>
+					</div>
 				</div>
 				<div class="row">
 					<div class="col" style="padding-left: 0px"><center><span class="lineNameSig"><br>
 						<b>LIC NO. <?php echo $med['LicenseNO'] ?></b></span></center></div>
 					<div class="col" style="padding-left: 0px"><center><span class="lineNameSig"><br>
 						<b>LIC NO. <?php echo $qc['LicenseNO'] ?></b></span></center></div>
-					<div class="col" style="padding-left: 0px"><center><span class="lineNameSig"><br>
-						<b>LIC NO. <?php echo $path['LicenseNO'] ?></b></span></center></div>
+					<div class="col" style="padding-left: 0px">
+						<center>
+							<span class="lineNameSig"><br>
+								<b>LIC NO. <?php echo $path['LicenseNO'] ?></b>
+							</span>
+						</center>
+					</div>
 				</div>
 				<div class="row">
 					<div class="col"><center><p class="labelName">Registered Medical Technologist</p></center></div>

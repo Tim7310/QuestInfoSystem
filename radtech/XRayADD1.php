@@ -158,13 +158,22 @@ include_once('radsidebar.php');
             </div>
             <div class="row">
             	<div class="col">
-            		<input name="qa" class="form-control" placeholder="" value="">
+                    <SELECT class="form-control" name="qa" >
+                        <OPTION >-</OPTION>
+                        <OPTION value="Arby Kaevilette G. Bolibol, RRT">
+                            Arby Kaevilette G. Bolibol, RRT
+                        </OPTION>
+				    </SELECT>
             	</div>
             	<div class="col">
-            		<SELECT class="form-control" name="rad" id="rad" onchange="Res()">
-					<OPTION >-</OPTION>
-                              <OPTION value="Salvador Ramirez,MD.DPBR">Salvador Ramirez,MD.DPBR</OPTION>
-					<OPTION value="Ricardo MA. O. Pacheco,MD.DPBR">Ricardo MA. O. Pacheco,MD.DPBR</OPTION>
+            	<SELECT class="form-control" name="rad" id="rad" onchange="Res()">
+                    <OPTION >-</OPTION>
+                    <OPTION value="Salvador Ramirez,MD.DPBR">
+                        Salvador Ramirez,MD.DPBR
+                    </OPTION>
+					<OPTION value="Ricardo MA. O. Pacheco,MD.DPBR">
+                        Ricardo MA. O. Pacheco,MD.DPBR
+                    </OPTION>
 				</SELECT>
             	</div>
             </div>

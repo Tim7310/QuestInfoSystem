@@ -290,6 +290,11 @@ $UriNotes = $data2['UriOt'];
 {
 	color: black;
 }
+.sig{
+	position: absolute;
+	top:-40px;
+	left: -10px;
+}
 </style>
 <body>
 <div class="container-fluid">
@@ -515,9 +520,14 @@ $UriNotes = $data2['UriOt'];
 					<?php $qc = $lab->medtechByID($data2['QualityID']);
 	            	echo $qc['FirstName']." ". $qc['MiddleName'] ." ". $qc['LastName'].", ".$qc['PositionEXT']  ?>	     
 	            	</b></span></center></div>
-				<div class="col" style="padding-left: 0px"><center><span class="Names"><br><b>
+				<div class="col" style="padding-left: 0px">
+					<div class="sig">
+						<image src="assets/Emil_Sig.png" width="300px;" >
+					</div>
+					<center><span class="Names"><br><b>
 					<?php $path = $lab->medtechByID($data2['PathID']);
-		            	echo $path['FirstName']." ". $path['MiddleName'] ." ". $path['LastName'].", ".$path['PositionEXT']  ?> </b></span></center></div>
+						echo $path['FirstName']." ". $path['MiddleName'] ." ". $path['LastName'].", ".$path['PositionEXT']  ?> </b>
+					</span></center></div>
 			</div>
 			<div class="row">
 					<div class="col" style="padding-left: 0px"><center><span class="lineNameSig"><br>

@@ -54,7 +54,7 @@ include_once('labsidebar.php');
                     	<th>Patient ID</th>
                     	<th >Transaction Date</th>
 						<th>Company Name</th>
-						<th >Patient Name</th>
+						<th nowrap>Patient Name</th>
 						<th >Package</th>
 						<th>Action</th>
 					</thead>
@@ -77,7 +77,7 @@ include_once('labsidebar.php');
 							<td>
 								<?php echo $patient['CompanyName']?>
 							</td>	
-							<td nowrap>
+							<td style="word-wrap: break-word;">
 								<?php echo $patient['LastName']?>,<?php echo $patient['FirstName']?> <?php echo $patient['MiddleName']?> 
 							</td>
 							<td style="word-wrap: break-word;">
