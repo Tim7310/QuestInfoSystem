@@ -4,7 +4,15 @@ include_once('../classes/trans.php');
 include_once('../classes/lab.php');
 $trans = new trans;
 $lab = new lab;
-$data = $trans->fetch_all();
+if (!isset($_GET['month'])) {
+	date_default_timezone_set("Asia/Kuala_Lumpur");
+	$year = date("Y");
+	$month = date("m");
+}else{
+	$year = $_GET['year'];
+	$month = $_GET['month'];
+}
+$data = $trans->fetchByMonth($month,$year,$stype="refund");
 ?>
 <html>
 	<head>
@@ -93,7 +101,98 @@ include_once('labsidebar.php');
         scrollCollapse: true,
         "scrollX": true,
         paging:         false,
-        buttons: ['excel', 'pdf', 'colvis' ]
+        buttons: ['excel', 'pdf', 'colvis', 
+        {
+                extend: 'collection',
+                text: 'Month',
+                buttons: [
+                    {
+                        text: 'January',
+                        action: function ( e, dt, node, config ) {
+						   window.location.href = 
+						   "STList.php?month=1&year=<?php echo $year ?>";
+                        }
+                    },
+                    {
+                        text: 'February',
+                        action: function ( e, dt, node, config ) {
+						   window.location.href = 
+						   "STList.php?month=2&year=<?php echo $year ?>";
+                        }
+            		},
+            		{
+                        text: 'March',
+                        action: function ( e, dt, node, config ) {
+						   window.location.href = 
+						   "STList.php?month=3&year=<?php echo $year ?>";
+                        }
+            		},
+            		{
+                        text: 'April',
+                        action: function ( e, dt, node, config ) {
+						   window.location.href = 
+						   "STList.php?month=4&year=<?php echo $year ?>";
+                        }
+                    },
+                    {
+                        text: 'May',
+                        action: function ( e, dt, node, config ) {
+						   window.location.href = 
+						   "STList.php?month=5&year=<?php echo $year ?>";
+                        }
+            		},
+            		{
+                        text: 'June',
+                        action: function ( e, dt, node, config ) {
+						   window.location.href = 
+						   "STList.php?month=6&year=<?php echo $year ?>";
+                        }
+            		},
+            		{
+                        text: 'July',
+                        action: function ( e, dt, node, config ) {
+						   window.location.href = 
+						   "STList.php?month=7&year=<?php echo $year ?>";
+                        }
+                    },
+                    {
+                        text: 'August',
+                        action: function ( e, dt, node, config ) {
+						   window.location.href = 
+						   "STList.php?month=8&year=<?php echo $year ?>";
+                        }
+            		},
+            		{
+                        text: 'September',
+                        action: function ( e, dt, node, config ) {
+						   window.location.href = 
+						   "STList.php?month=9&year=<?php echo $year ?>";
+                        }
+            		},
+            		{
+                        text: 'October',
+                        action: function ( e, dt, node, config ) {
+						   window.location.href = 
+						   "STList.php?month=10&year=<?php echo $year ?>";
+                        }
+                    },
+                    {
+                        text: 'November',
+                        action: function ( e, dt, node, config ) {
+						   window.location.href = 
+						   "STList.php?month=11&year=<?php echo $year ?>";
+                        }
+            		},
+            		{
+                        text: 'December',
+                        action: function ( e, dt, node, config ) {
+						   window.location.href = 
+						   "STList.php?month=12&year=<?php echo $year ?>";
+                        }
+            		}
+            		]
+           }
+        ]
     } );
  
     table.buttons().container()

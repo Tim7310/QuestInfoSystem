@@ -202,8 +202,17 @@ class trans {
 		return $query->fetchAll();
 
 	}
+	public function fetchByBiller($date1,$date2,$type){
+		global $pdo;
+
+		$query = $pdo->prepare("SELECT f.*, t.* FROM qpd_patient f, qpd_trans t WHERE f.PatientID = t.PatientID and t.TransactionDate BETWEEN '$date1' and '$date2' AND status = '1' and TransactionType = 'ACCOUNT' ORDER BY t.Biller");
+		$query->execute();
+
+		return $query->fetchAll();
+
+	}
 //GENERATING HMO ONLY
-/*	public function fetchDateType($date1,$date2,$type){
+/*	public function fetchByBiller($date1,$date2,$type){
 		global $pdo;
 
 		$query = $pdo->prepare("SELECT f.*, t.* FROM qpd_patient f, qpd_trans t WHERE f.PatientID = t.PatientID and t.TransactionDate BETWEEN '$date1' and '$date2'  AND t.AN != '' AND status = '1' and TransactionType LIKE '%$type%' ORDER BY t.Biller");

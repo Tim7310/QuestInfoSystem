@@ -116,6 +116,9 @@ $patBiller = $patData['PatientBiller'];
 				<label for="" class="newPatLabel">PWD/Senior ID</label>
 				<input type="text"  name="PWD" id="PWD" class="form-control newPatStyle" style="font-size: 15px;font-weight: bold"
 				value="<?php echo $patData['SID']; ?>"/>
+				<label for="" class="newPatLabel">~ Notes ~</label>
+				<input type="text"  name="notes" id="notes" class="form-control newPatStyle" style="font-size: 15px;font-weight: bold"
+				value="<?php echo $patData['Notes']; ?>"/>
 		  		<button type="button" class="btn btn-primary" id="saveEdited" style="margin-top: 10px">Save Changes</button>
 		  		<button type="button" class="btn btn-danger" id="restoreDef" style="margin-top: 10px">Cancel</button>
 		  	</div>
@@ -144,6 +147,7 @@ $patBiller = $patData['PatientBiller'];
 		var EditBiller = $("#EditBiller").val();
 		var EditEmail = $("#EditEmail").val();
 		var PWD = $("#PWD").val();
+		var notes = $("#notes").val();
 		$("#restoreDef").click(function(){
 			$("#EditFName").val(EditFName);
 			$("#EditMName").val(EditMName);
@@ -158,6 +162,7 @@ $patBiller = $patData['PatientBiller'];
 			$("#EditBiller").val(EditBiller);
 			$("#EditEmail").val(EditEmail);
 			$("#PWD").val(PWD);
+			$("#notes").val(notes);
 			$('#editPatientModal').modal('toggle');
 		});
 		$("#saveEdited").click(function(){
@@ -175,8 +180,9 @@ $patBiller = $patData['PatientBiller'];
 			EditBiller = $("#EditBiller").val();
 			EditEmail = $("#EditEmail").val();
 			PWD = $("#PWD").val();
+			notes = $("#notes").val();
 			$('#editPatientModal').modal('toggle');
-			$.post("updatePatient.php",{fname:EditFName, mname:EditMName, lname: EditLName, age: EditAge, gen: EditGender, comname:EditComName, contact: EditContact, bod: EditBOD, address: EditAdd, pos: EditPos, pid:patID, biller: EditBiller, SID:PWD,Email:EditEmail},function(e){
+			$.post("updatePatient.php",{fname:EditFName, mname:EditMName, lname: EditLName, age: EditAge, gen: EditGender, comname:EditComName, contact: EditContact, bod: EditBOD, address: EditAdd, pos: EditPos, pid:patID, biller: EditBiller, SID:PWD,Email:EditEmail,notes: notes},function(e){
 				var patIDID = '#' + patID;
 				$(patIDID).trigger('click',function(){	});
 				$("#searchloader").load("searchPatient.php",{txt:""},function(){});

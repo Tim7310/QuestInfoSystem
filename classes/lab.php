@@ -153,9 +153,26 @@ class lab {
 		$sql->execute();
 		return $sql->fetchAll();
 	}
+	public function fetchlabByDate($table,$month,$year){
+		global $pdo;
+		$sql = $pdo->prepare("SELECT * from $table l, qpd_trans t, qpd_patient p 
+		where p.PatientID = l.PatientID and t.TransactionID = l.TransactionID and
+		MONTH(t.TransactionDate) = '$month' and YEAR(t.TransactionDate) = '$year'");
+		$sql->execute();
+		return $sql->fetchAll();
+	}
 	public function getData($pid, $tid, $table){
 		global $pdo;
 		$sql = $pdo->prepare("SELECT * from $table l, qpd_trans t, qpd_patient p where l.TransactionID = '$tid' and l.PatientID = '$pid' and p.PatientID = l.PatientID and t.TransactionID = l.TransactionID");
+		$sql->execute();
+		return $sql->fetch();
+	}
+	public function getDataByDate($pid, $tid, $table,$month,$year){
+		global $pdo;
+		$sql = $pdo->prepare("SELECT * from $table l, qpd_trans t, qpd_patient p 
+		where l.TransactionID = '$tid' and l.PatientID = '$pid' 
+		and p.PatientID = l.PatientID and t.TransactionID = l.TransactionID 
+		and MONTH(t.TransactionDate) = '$month' and YEAR(t.TransactionDate) = '$year'");
 		$sql->execute();
 		return $sql->fetch();
 	}

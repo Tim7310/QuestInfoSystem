@@ -108,7 +108,14 @@ include_once('cashsidebar.php');
 								 ?>
 							</td>
 							<td>
-								<?php echo $trans['GrandTotal']?>
+								<?php 
+								if($trans['currency'] == 'USD'){
+									echo "$:";
+								}else{
+									echo "₱:";
+								}
+								echo $trans['GrandTotal']
+								?>
 							</td>
 							<!-- <td > 
 								<button type="button" class="btn btn-primary" onclick="document.location = 'Receipt.php?patID=<?php echo $trans['PatientID']?>&transID=<?php echo $trans['TransactionID']?>';">Reprint Receipt</button><br>

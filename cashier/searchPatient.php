@@ -8,7 +8,9 @@ include_once("../connection.php");
 		public function patient($txt){
 			global $pdo;
 
-			$sql = $pdo->prepare("SELECT * from qpd_patient WHERE FirstName LIKE '%$txt%' OR MiddleName LIKE '%$txt%' OR LastName LIKE '%$txt%'");
+			$sql = $pdo->prepare("SELECT * from qpd_patient WHERE FirstName 
+			LIKE '%$txt%' OR MiddleName LIKE '%$txt%' OR LastName LIKE '%$txt%' 
+			ORDER BY LastName ASC");
 			$sql->execute();
 			return $sql->fetchAll();
 		}

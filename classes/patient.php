@@ -38,10 +38,14 @@ class Patient {
 
 			return $query->rowCount();
 	}
-	public function Update_Patient($pid, $fname, $mname, $lname, $age, $gender, $comname, $contact, $bod, $add, $pos, $biller, $SID, $email=""){
+	public function Update_Patient($pid, $fname, $mname, $lname, $age, $gender, $comname, $contact, $bod, $add, $pos, $biller, $SID, $email="", $notes=""){
 		global $pdo;
 
-		$query = $pdo->prepare("UPDATE qpd_patient set FirstName = '$fname', MiddleName = '$mname', LastName = '$lname', Age = '$age', Gender = '$gender', CompanyName = '$comname', ContactNo = '$contact', BirthDate = '$bod', Address = '$add', Position = '$pos', PatientBiller = '$biller', SID = '$SID', Email = '$email' WHERE PatientID = '$pid'");
+		$query = $pdo->prepare("UPDATE qpd_patient set 
+		FirstName = '$fname', MiddleName = '$mname', LastName = '$lname', Age = '$age', 
+		Gender = '$gender', CompanyName = '$comname', ContactNo = '$contact', BirthDate = '$bod',
+		Address = '$add', Position = '$pos', PatientBiller = '$biller', SID = '$SID', 
+		Email = '$email', Notes = '$notes' WHERE PatientID = '$pid'");
 		$query->execute();
 	}
 

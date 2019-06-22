@@ -17,6 +17,12 @@ if (isset($_GET['transID'])){
 
 	$discount = $trans->compute_discount($id);
 	$price_total = $trans->total_price($id);
+	if($data['currency'] == 'USD'){
+		$currency = "$:";
+	}else{	
+		$currency = "₱:";
+	}
+	
 ?>
 <html>
 	<head>
@@ -212,12 +218,12 @@ if (isset($_GET['transID'])){
 					<td style="font-size: 18px; font-weight: bolder;" class="text-right" colspan="2">
 					Receipt Total:</td>
 					<td style="font-size: 18px; font-weight: bolder;" class="text-right">
-						₱:<?php echo $data['GrandTotal'] ?></td>
+					<?php echo $currency?><?php echo $data['GrandTotal'] ?></td>
 				</tr>
 				<?php if($discount != 0){ ?>
 				<tr>
 					<td style="" class="text-right" colspan="2">Discount:</td>
-					<td style="" class="text-right">₱:
+					<td style="" class="text-right"><?php echo $currency?>
 					<?php 
 						// $Disc = explode(",",$data['Discount']);
 						// $DiscA = array_sum($Disc);
@@ -228,7 +234,7 @@ if (isset($_GET['transID'])){
 				<?php } ?>	
 				<tr>
 					<td style="" class="text-right" colspan="2">Amount Tendered:</td>
-					<td style="" class="text-right">₱:
+					<td style="" class="text-right"><?php echo $currency?>
 					<?php 
 						$cash = explode(",",$data['PaidIn']);
 						echo $cash[0];
@@ -239,7 +245,7 @@ if (isset($_GET['transID'])){
 				<tr>
 					<td style="font-size: 18px; font-weight: bolder;" class="text-right" colspan="2">
 					Given Change:</td>					
-					<td style="font-size: 18px; font-weight: bolder;" class="text-right">₱:
+					<td style="font-size: 18px; font-weight: bolder;" class="text-right"><?php echo $currency?>
 					<?php 
 						$change = explode(",",$data['PaidOut']);
 						echo $change[0];

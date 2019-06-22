@@ -4,7 +4,7 @@ include_once('../classes/trans.php');
 include_once('../classes/lab.php');
 $trans = new trans;
 $lab = new lab;
-if (isset($_GET['year'])) {
+if (!isset($_GET['year'])) {
 	date_default_timezone_set("Asia/Kuala_Lumpur");
 	$year = date("Y");
 }else{
@@ -51,12 +51,12 @@ include_once('labsidebar.php');
 <center><p>LABORATORY INDUSTRIAL</p></center>
 	<table id="example" class="table table-striped table-bordered" cellspacing="0" width="100%">
         			<thead>
-                    	<th >Transaction No.</th>
+                    	<th>Transaction No.</th>
                     	<th>Patient ID</th>
-                    	<th >Transaction Date</th>
+                    	<th>Transaction Date</th>
 						<th>Company Name</th>
-						<th >Patient Name</th>
-						<th >Package</th>
+						<th>Patient Name</th>
+						<th>Package</th>
 						<th>Action</th>
 					</thead>
 					<?php foreach  ($patients as $patient) { 

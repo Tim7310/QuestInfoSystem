@@ -335,7 +335,7 @@ $UriNotes = $data2['UriOt'];
 	<div class="col-sm-12" >
 		<div class="card" style="border-radius: 0px; margin-top: 10px;">
 		<div class="card-header"><center><b>LABORATORY SCIENCES RESULT</b></center></div>
-		<div class="card-block" style="height: 6in;">
+		<div class="card-block" style="height: 5.7in;">
 		<div class="row" style="padding-left: 13px;">
 			<div class="col">
 				<div class="row">
@@ -344,12 +344,21 @@ $UriNotes = $data2['UriOt'];
 				<div class="row">
 					<div class="col"><p class="labelName">Complete Blood Count</p></div>
 				</div>
+				<?php if($data1['CBCRBC'] != "" && $data1['CBCRBC'] != "N/A"){ ?>
 				<div class="row">
+					<div class="col-5"><p class="labelName">Red Blood</p></div>
+					<div class="col-2"><p class="lineRes"><?php echo $data1['CBCRBC'] ?></p></div>
+					<div class="col-2"><p class="labelName">X10^6/L</p></div>
+					<div class="col-3"><p class="labelName">4.32~5.72</p></div>
+				</div>
+				<?php } else{ ?>
+					<div class="row">
 					<div class="col-5"><p class="labelName">White Blood</p></div>
 					<div class="col-2"><p class="lineRes"><?php echo $data1['WhiteBlood'] ?></p></div>
-					<div class="col-2"><p class="labelName">x10^9/L</p></div>
-					<div class="col-3"><p class="labelName">4.23-11.07</p></div>
+					<div class="col-2"><p class="labelName">%x10^9/L</p></div>
+					<div class="col-3"><p class="labelName">4.23~11.07</p></div>
 				</div>
+				<?php } ?>
 				<div class="row">
 					<div class="col-5"><p class="labelName">Hemoglobin</p></div>
 					<div class="col-2"><p class="lineRes"><?php echo $data1['Hemoglobin'] ?></p></div>
@@ -362,7 +371,7 @@ $UriNotes = $data2['UriOt'];
 					<div class="col-2"><p class="labelName">VF</p></div>
 					<div class="col-3"><p class="labelName"><?php echo $data1['HemaNR'] ?></p></div>
 				</div>
-				<div class="row">
+				<!-- <div class="row">
 					<div class="col"><p class="labelName">Differential Count</p></div>
 				</div>
 				<div class="row">
@@ -382,7 +391,7 @@ $UriNotes = $data2['UriOt'];
 					<div class="col-2"><p class="lineRes"><?php echo $data1['Monocytes'] ?></p></div>
 					<div class="col-2"><p class="labelName">%</p></div>
 					<div class="col-3"><p class="labelName">5-12</p></div>
-				</div>
+				</div> -->
 				<br>
 				<div class="row">
 					<div class="col"><p class="labelName">SEROLOGY</p></div>
@@ -510,7 +519,7 @@ $UriNotes = $data2['UriOt'];
 				</div>
 			</div>
 		</div>
-		<br><br>
+		<br><br><br>
 			<div class="row">
 				<div class="col" style="padding-left: 0px"><center><span class="Names"><br><b>
 					<?php $rec = $lab->medtechByID($data2['MedID']);
@@ -537,7 +546,7 @@ $UriNotes = $data2['UriOt'];
 					<div class="col" style="padding-left: 0px"><center><span class="lineNameSig"><br>
 						<b>LIC NO. <?php echo $path['LicenseNO'] ?></b></span></center></div>
 				</div>
-			<div class="row">
+			<div class="row" >
 				<div class="col"><center><p class="labelName">Registered Medical Technologist</p></center></div>
 				<div class="col"><center><p class="labelName">Quality Control</p></center></div>
 				<div class="col"><center><p class="labelName">Pathologist</p></center></div>		
@@ -548,7 +557,7 @@ $UriNotes = $data2['UriOt'];
 <div class="col-sm-12">
 	<div class="card" style="border-radius: 0px; margin-top: 10px;">
 	<div class="card-header"><center><b>RADIOLOGY REPORT</b></center></div>
-	<div class="card-block" style="height: 2.1in;">
+	<div class="card-block" style="height: 2.4in;">
 		<div class="row">
 			<div class="col"><p class="lineName" style="padding-top: 10px;"><?php echo $rad['Comment'] ?></p></div>
 		</div>
@@ -560,11 +569,11 @@ $UriNotes = $data2['UriOt'];
 			<div class="col-10"><p class="lineName" style="padding-top: 10px;"><?php echo $rad['Impression'] ?></p></div>
 		</div>
 		<br>
-		<div class="row">
+		<div class="row mt-4">
 			<div class="col-6" style="padding-left: 0px"><center><span class="lineNameSig"><br><b><?php echo $rad['QA'] ?></b></span></center></div>
 			<div class="col-6" style="padding-left: 0px"><center><span class="lineNameSig"><br><b><?php echo $rad['Radiologist'] ?></b></span></center></div>
 		</div>
-		<div class="row">
+		<div class="row ">
 			<div class="col-6" style="padding-top: 0px"><center><span class="labelName"><b>Quality Assurance</b></span></center></div>
 			<div class="col-6" style="padding-top: 0px"><center><span class="labelName"><b>Radiologist</b></span></center></div>
 		</div>

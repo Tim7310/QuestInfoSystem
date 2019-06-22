@@ -78,6 +78,7 @@ include_once('cashsidebar.php');
             		<input type="submit" class="btn btn-success" value="Generate Report" name="gen">
             		<input type="submit" class="btn btn-success" value="Generate End of the Day" name="eotd">
             		<input type="submit" class="btn btn-warning" value="Generate For PF" name="ca">
+            		<input type="submit" class="btn btn-info" value="Generate For Billing" name="bl">
             	</center> 
             	<button class="btn btn-primary mt-2" type="button" name="tdReport" >Generate Today's Report</button>
             	<button class="btn btn-primary mt-2" type="button" name="eotdReport" >Generate End of the Day Report</button>
@@ -130,6 +131,12 @@ include_once('cashsidebar.php');
 			var sd1 = $('#sd1').val();
 			var ed1 = $('#ed1').val();
 			window.open("SalesCSV.php?sd="+sd1+"&ed="+ed1+"&type=");
+		});
+
+		$("input[name='bl']").click(function(){
+			var sd1 = $('#sd1').val();
+			var ed1 = $('#ed1').val();
+			window.open("BillingCSV.php?sd="+sd1+"&ed="+ed1+"&type=");
 		});
 	});
 </script>

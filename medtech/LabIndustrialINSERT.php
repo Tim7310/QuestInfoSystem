@@ -12,14 +12,14 @@ $id=$_POST['id'];
 $tid=$_POST['tid'];
 
 //hematology
-$WhiteBlood=$_POST['WhiteBlood'] ? $_POST['WhiteBlood'] : "N/A";
+$RedBlood=$_POST['RedBlood'] ? $_POST['RedBlood'] : "N/A";
 $Hemoglobin=$_POST['Hemoglobin'] ? $_POST['Hemoglobin'] : "N/A";
 $HemoNR=$_POST['HemoNR'] ? $_POST['HemoNR'] : "N/A";
 $Hematocrit=$_POST['Hematocrit'] ? $_POST['Hematocrit'] : "N/A";
 $HemaNR=$_POST['HemaNR'] ? $_POST['HemaNR'] : "N/A";
-$Neutrophils=$_POST['Neutrophils'] ? $_POST['Neutrophils'] : "N/A";
-$Lymphocytes=$_POST['Lymphocytes'] ? $_POST['Lymphocytes'] : "N/A";
-$Monocytes=$_POST['Monocytes'] ? $_POST['Monocytes'] : "N/A";
+// $Neutrophils=$_POST['Neutrophils'] ? $_POST['Neutrophils'] : "N/A";
+// $Lymphocytes=$_POST['Lymphocytes'] ? $_POST['Lymphocytes'] : "N/A";
+// $Monocytes=$_POST['Monocytes'] ? $_POST['Monocytes'] : "N/A";
 $CBCOt=$_POST['CBCOt'] ? $_POST['CBCOt'] : "N/A";
 
 //Toxicology
@@ -64,9 +64,9 @@ try{
       $lab->updateMicro($tid, $id, $FecColor, $FecCon, $FecMicro, $FecOt, $UriColor, $UriTrans, $UriPh, $UriSp, $UriPro, $UriGlu, $RBC, $WBC, $Bac, $MThreads, $ECells, $Amorph, $CoAx, $UriOt, '', '', '', '', '', '', $PregTest, $path, $mdID, $qcID, $date);
    }
   if ($check3 == 0) {
-      $lab->addHema($tid, $id, $WhiteBlood, $Hemoglobin, $HemoNR, $Hematocrit, $HemaNR, $Neutrophils, $Lymphocytes, $Monocytes, $CBCOt, '', '', '', '', '', '', '', '', '', '', '', $path, $mdID, $qcID, $date);
+      $lab->addHema($tid, $id, '', $Hemoglobin, $HemoNR, $Hematocrit, $HemaNR, '', '', '', $CBCOt, '', '', $RedBlood, '', '', '', '', '', '', '', '', $path, $mdID, $qcID, $date);
   }else{
-      $lab->updateHema($tid, $id, $WhiteBlood, $Hemoglobin, $HemoNR, $Hematocrit, $HemaNR, $Neutrophils, $Lymphocytes, $Monocytes, $CBCOt, '', '', '', '', '', '', '', '', '', '', '', $path, $mdID, $qcID, $date);
+      $lab->updateHema($tid, $id, '', $Hemoglobin, $HemoNR, $Hematocrit, $HemaNR, '', '', '', $CBCOt, '', '', $RedBlood, '', '', '', '', '', '', '', '', $path, $mdID, $qcID, $date);
   }
  
     if (!is_array($check4)) {

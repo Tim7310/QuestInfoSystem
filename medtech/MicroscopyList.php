@@ -2,7 +2,15 @@
 include_once('../connection.php');
 include_once('../classes/lab.php');
 $lab = new lab;
-$data = $lab->fetchlabAll("lab_microscopy");
+if (!isset($_GET['month'])) {
+	date_default_timezone_set("Asia/Kuala_Lumpur");
+	$year = date("Y");
+	$month = date("m");
+}else{
+	$year = $_GET['year'];
+	$month = $_GET['month'];
+}
+$data = $lab->fetchlabByDate("lab_microscopy",$month,$year);
 
 
 ?>
@@ -84,7 +92,98 @@ include_once('labsidebar.php');
         scrollCollapse: true,
         "scrollX": true,
         paging:         false,
-        buttons: ['excel', 'pdf', 'colvis' ]
+		buttons: ['excel', 'pdf', 'colvis', 
+        {
+                extend: 'collection',
+                text: 'Month',
+                buttons: [
+                    {
+                        text: 'January',
+                        action: function ( e, dt, node, config ) {
+						   window.location.href = 
+						   "MicroscopyList.php?month=1&year=<?php echo $year ?>";
+                        }
+                    },
+                    {
+                        text: 'February',
+                        action: function ( e, dt, node, config ) {
+						   window.location.href = 
+						   "MicroscopyList.php?month=2&year=<?php echo $year ?>";
+                        }
+            		},
+            		{
+                        text: 'March',
+                        action: function ( e, dt, node, config ) {
+						   window.location.href = 
+						   "MicroscopyList.php?month=3&year=<?php echo $year ?>";
+                        }
+            		},
+            		{
+                        text: 'April',
+                        action: function ( e, dt, node, config ) {
+						   window.location.href = 
+						   "MicroscopyList.php?month=4&year=<?php echo $year ?>";
+                        }
+                    },
+                    {
+                        text: 'May',
+                        action: function ( e, dt, node, config ) {
+						   window.location.href = 
+						   "MicroscopyList.php?month=5&year=<?php echo $year ?>";
+                        }
+            		},
+            		{
+                        text: 'June',
+                        action: function ( e, dt, node, config ) {
+						   window.location.href = 
+						   "MicroscopyList.php?month=6&year=<?php echo $year ?>";
+                        }
+            		},
+            		{
+                        text: 'July',
+                        action: function ( e, dt, node, config ) {
+						   window.location.href = 
+						   "MicroscopyList.php?month=7&year=<?php echo $year ?>";
+                        }
+                    },
+                    {
+                        text: 'August',
+                        action: function ( e, dt, node, config ) {
+						   window.location.href = 
+						   "MicroscopyList.php?month=8&year=<?php echo $year ?>";
+                        }
+            		},
+            		{
+                        text: 'September',
+                        action: function ( e, dt, node, config ) {
+						   window.location.href = 
+						   "MicroscopyList.php?month=9&year=<?php echo $year ?>";
+                        }
+            		},
+            		{
+                        text: 'October',
+                        action: function ( e, dt, node, config ) {
+						   window.location.href = 
+						   "MicroscopyList.php?month=10&year=<?php echo $year ?>";
+                        }
+                    },
+                    {
+                        text: 'November',
+                        action: function ( e, dt, node, config ) {
+						   window.location.href = 
+						   "MicroscopyList.php?month=11&year=<?php echo $year ?>";
+                        }
+            		},
+            		{
+                        text: 'December',
+                        action: function ( e, dt, node, config ) {
+						   window.location.href = 
+						   "MicroscopyList.php?month=12&year=<?php echo $year ?>";
+                        }
+            		}
+            		]
+           }
+        ]
     } );
  
     table.buttons().container()

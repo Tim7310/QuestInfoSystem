@@ -11,13 +11,19 @@ if (mysqli_connect_errno())
     $ED = $_GET['ed'];
     $j=0;
     if ($_GET['type'] == "CASH") {  
-    $select = "SELECT GrandTotal FROM qpd_trans WHERE TransactionType = 'CASH' AND TransactionDate >= '$SD' AND TransactionDate <= '$ED'  AND status = '1'";
+    $select = "SELECT GrandTotal, currency FROM qpd_trans WHERE TransactionType = 'CASH' AND TransactionDate >= '$SD' AND TransactionDate <= '$ED'  AND status = '1'";
 	$result = mysqli_query($con, $select);
 
 	$totalcash1[] = 0;
+	$totalUSD = 0;
     while($row = mysqli_fetch_array($result))
     {
-    	$totalcash1[] = $row['GrandTotal'];
+		if($row['currency'] == "PESO"){
+			$totalcash1[] = $row['GrandTotal'];
+		}else{
+			$totalUSD = (int)$row['GrandTotal'] + $totalUSD;
+		}
+		
     	$j++;
 
     }
@@ -57,12 +63,15 @@ if (mysqli_connect_errno())
     	
     }
 
-	$select3 = "SELECT PaidIn FROM qpd_trans WHERE TransactionDate >= '$SD' AND TransactionDate <= '$ED'  AND status = '1'";
+	$select3 = "SELECT PaidIn, currency FROM qpd_trans WHERE TransactionDate >= '$SD' AND TransactionDate <= '$ED'  AND status = '1'";
 	$result3 = mysqli_query($con, $select3);
     $cash = 0;
     while($row = mysqli_fetch_array($result3))
     {
-    	$cash += (int)$row['PaidIn'];
+		if($row['currency'] == "PESO"){
+			$cash += (int)$row['PaidIn'];
+		}
+    	
     	
     }
 
@@ -191,7 +200,8 @@ if (mysqli_connect_errno())
 	<br>
 	
 	<div class="row">
-		<div class="col"><b>Dollars</b></div>
+		<div class="col"><b>Dollars(USD)</b></div>
+		<div class="col text-right"><b><?php echo $totalUSD?></b></div>
 	</div>
 	<div class="row">
 		<div class="col">Paid In:</div>

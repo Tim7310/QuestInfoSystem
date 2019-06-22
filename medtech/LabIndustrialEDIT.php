@@ -155,12 +155,12 @@ include_once('labsidebar.php');
 	            	</div>
 				</div>
 				<div class="form-group row">
-	            	<label for="WhiteBlood" class="col-3 col-form-label text-right">White Blood Cells :</label>
+	            	<label for="RedBlood" class="col-3 col-form-label text-right">Red Blood Cells :</label>
 	            	<div class="col-2">
-	            		<input type="text" name="WhiteBlood" class="form-control" id="WhiteBlood" value="<?php echo $data1['WhiteBlood'] ?>">
+	            		<input type="text" name="RedBlood" class="form-control" id="RedBlood" value="<?php echo $data1['CBCRBC'] ?>">
 	            	</div>
-	            	<label for="WhiteBlood" class="col-2 col-form-label">x10^9/L</label>
-	            	<label for="WhiteBlood" class="col-2 col-form-label">4.23-11.07</label>
+	            	<label for="RedBlood" class="col-2 col-form-label">x10^9/L</label>
+	            	<label for="RedBlood" class="col-2 col-form-label">4.23-11.07</label>
 				</div>
 				<div class="form-group row">
 	            	<label for="Hemoglobin" class="col-3 col-form-label text-right">Hemoglobin :</label>
@@ -182,7 +182,7 @@ include_once('labsidebar.php');
 				 		<input type="text" name="HemaNR" class="form-control" id="HemaNR" value="<?php echo $data1['HemaNR'] ?>">
 	            	</div>
 				</div>
-				<div class="form-group row">
+				<!-- <div class="form-group row">
 	            	<div class="col-3 ">
 	            		<b>Differential Count</b>
 	            	</div>
@@ -210,7 +210,7 @@ include_once('labsidebar.php');
 	            	</div>
 	            	<label for="Monocytes" class="col-2 col-form-label">%</label>
 	            	<label for="Monocytes" class="col-2 col-form-label">5-12</label>
-				</div>
+				</div> -->
 				<div class="form-group row">
 	            	<label for="CBCOt" class="col-3 col-form-label text-right">OTHERS/NOTES :</label>
 	            	<div class="col-2">
