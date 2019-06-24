@@ -392,6 +392,10 @@ $UriNotes = $data2['UriOt'];
 					<div class="col-2"><p class="labelName">%</p></div>
 					<div class="col-3"><p class="labelName">5-12</p></div>
 				</div> -->
+				<div class="row">
+					<div class="col-5"><p class="labelName">Other/Notes</p></div>
+					<div class="col"><p class="lineRes1" id="HBSAG"><?php echo $data1['CBCOt'] ?></p></div>
+				</div>
 				<br>
 				<div class="row">
 					<div class="col"><p class="labelName">SEROLOGY</p></div>
