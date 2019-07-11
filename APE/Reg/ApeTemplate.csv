@@ -1,1 +1,1 @@
-CompanyName,Position,FirstName,MiddleName,LastName,Address,Birthdate,Email,Age,Gender,ContactNo,Notes,SID
+PatientID,PatientRef,PatientType,CompanyName,Position,FirstName,MiddleName,LastName,Address,Birthdate,Email,Age,Gender,ContactNo,Notes,SID,CreationDate,DateUpdate

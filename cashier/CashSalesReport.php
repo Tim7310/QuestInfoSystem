@@ -65,23 +65,26 @@ include_once('cashsidebar.php');
 				</span>
             	<div class="row">
             		<div class="col">
-	            		<label>Start Date</label>
-		                <input class="form-control" type="text" name="SD" id="sd1" style="width: 300px; height: 50px; margin-left: 10px; margin-right: 20px;" class="form-control" placeholder="YYYY-MM-DD HH:MM:SS">
+	            		<center><label>Start Date</label>
+		                <input class="form-control" type="text" name="SD" id="sd1" style="width: 300px; height: 50px; margin-left: 10px; margin-right: 20px;" class="form-control" placeholder="YYYY-MM-DD HH:MM:SS"></center>
 		            </div>
 	            	<div class="col">
-	            		<label>End Date</label>
-	                	<input class="form-control" type="text" name="ED" id="ed1" style="width: 300px; height: 50px; margin-left: 10px; margin-right: 20px;" class="form-control" placeholder="YYYY-MM-DD HH:MM:SS">
+	            		<center><label>End Date</label>
+	                	<input class="form-control" type="text" name="ED" id="ed1" style="width: 300px; height: 50px; margin-left: 10px; margin-right: 20px;" class="form-control" placeholder="YYYY-MM-DD HH:MM:SS"></center>
 	            	</div>
             	</div>            
 				
             	<center>
+            		<input type="submit" class="btn btn-success" value="Generate List for Uploading" name="eotdqc">
             		<input type="submit" class="btn btn-success" value="Generate Report" name="gen">
             		<input type="submit" class="btn btn-success" value="Generate End of the Day" name="eotd">
             		<input type="submit" class="btn btn-warning" value="Generate For PF" name="ca">
             		<input type="submit" class="btn btn-info" value="Generate For Billing" name="bl">
+            	
+            		<button class="btn btn-primary mt-2" type="button" name="tdReport" >Generate Today's Report</button>
+            		<button class="btn btn-primary mt-2" type="button" name="eotdReport" >Generate End of the Day Report</button>
+            		<button class="btn btn-primary mt-2" type="button" name="eotdQC" >Generate List for Uploading</button>
             	</center> 
-            	<button class="btn btn-primary mt-2" type="button" name="tdReport" >Generate Today's Report</button>
-            	<button class="btn btn-primary mt-2" type="button" name="eotdReport" >Generate End of the Day Report</button>
             </div>
         </div>
     </div>
@@ -116,6 +119,11 @@ include_once('cashsidebar.php');
 			var ed1 = $('#ed1').val();
 			window.open("eotd.php?sd="+sd1+"&ed="+ed1+"&type="+ttype);
 		});
+		$("input[name='eotdqc']").click(function(){
+			var sd1 = $('#sd1').val();
+			var ed1 = $('#ed1').val();
+			window.open("eotdqc.php?sd="+sd1+"&ed="+ed1+"&type="+ttype);
+		});
 		$("button[name='tdReport'").click(function(){
 			var sd2 = "<?php echo $dnSD?>";
 			var ed2 = "<?php echo $dnED?>";
@@ -125,6 +133,12 @@ include_once('cashsidebar.php');
 			var sd2 = "<?php echo $dnSD?>";
 			var ed2 = "<?php echo $dnED?>";
 			window.open("eotd.php?sd="+sd2+"&ed="+ed2+"&type="+ttype);
+		});
+
+		$("button[name='eotdQC'").click(function(){
+			var sd2 = "<?php echo $dnSD?>";
+			var ed2 = "<?php echo $dnED?>";
+			window.open("eotdqc.php?sd="+sd2+"&ed="+ed2+"&type="+ttype);
 		});
 
 		$("input[name='ca']").click(function(){

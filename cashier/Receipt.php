@@ -17,6 +17,7 @@ if (isset($_GET['transID'])){
 
 	$discount = $trans->compute_discount($id);
 	$price_total = $trans->total_price($id);
+	$TPwoD = 0;
 	if($data['currency'] == 'USD'){
 		$currency = "$:";
 	}else{	
@@ -188,13 +189,18 @@ if (isset($_GET['transID'])){
 		</td> -->
 		<td style="" class="text-right">
 			<?php 
+			$TPwoD = $TPwoD + (float)$itemdata['ItemPrice'];
 				// echo (double)$itemdata['ItemPrice']."<br/>";
 				$disc = (float)$itemDisc[$key] / 100;
 				$disc = (float)$itemdata['ItemPrice'] * $disc;
 				$price = (float)$itemdata['ItemPrice'] - $disc;
-				echo $price;
-				// echo $disc;
 			?>
+			<div style="font-size: 10px;">
+				<?php echo $itemdata['ItemPrice']; ?>
+			</div>
+			<div style="font-weight:bold">
+				<?php echo $price; ?>
+			</div>			
 		</td>
 	</tr>	
 	<?php } ?> 
@@ -228,6 +234,17 @@ if (isset($_GET['transID'])){
 					<?php echo $currency?><?php echo $data['GrandTotal'] ?></td>
 				</tr>
 				<?php if($discount != 0){ ?>
+				<tr>
+					<td style="" class="text-right" colspan="2">Total w/o Discount:</td>
+					<td style="" class="text-right"><?php echo $currency?>
+					<?php 
+						// $Disc = explode(",",$data['Discount']);
+						// $DiscA = array_sum($Disc);
+						// echo $DiscA;
+						
+						echo $TPwoD;
+					?></td>
+				</tr>
 				<tr>
 					<td style="" class="text-right" colspan="2">Discount:</td>
 					<td style="" class="text-right"><?php echo $currency?>
