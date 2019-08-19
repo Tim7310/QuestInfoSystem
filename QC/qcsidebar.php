@@ -65,6 +65,7 @@ $row = $stmt->fetch(PDO::FETCH_ASSOC);
       <a class="nav-item nav-link" href="QCMCList.php">       <i class="fas fa-laptop"></i>&nbsp;QC</a>
       <a class="nav-item nav-link" href="EmailResults.php">                  <i class="fas fa-share-square"></i>&nbsp;Email Results</a>
       <a class="nav-item nav-link" href="SummaryReport.php">  <i class="fas fa-users"></i>&nbsp;Summary</a>
+      <a class="nav-item nav-link" href="ECG.php">  <i class="fas fa-file-medical-alt"></i>&nbsp;ECG</a>
       <a class="nav-item nav-link" href="PEList.php">         <i class="far fa-file"></i>&nbsp;PE Form</a>
       <a class="nav-item nav-link" href="MCList.php">         <i class="far fa-file"></i>&nbsp;MedCert</a>
       <a class="nav-item nav-link" href="../logout.php" style="margin-left: 300px;"><i class="fas fa-sign-out-alt"></i>&nbsp;LOGOUT</a>

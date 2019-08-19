@@ -219,7 +219,7 @@ $printCount = $lab->checkPrint($id, $tid, 'CHEMISTRY');
 {
 	font-family: "Garamond";
 	display: table-cell;
-	width: 50px;
+	min-width: 50px;
 	height: 16px;
 	border-bottom: 1px solid #104E8B;
 	text-transform: uppercase;
@@ -231,7 +231,21 @@ $printCount = $lab->checkPrint($id, $tid, 'CHEMISTRY');
 	/*font-size: 18px;*/
 	
 }
-
+.line2
+{
+	font-family: "Garamond";
+	display: table-cell;
+	height: 16px;
+	border-bottom: 1px solid #104E8B;
+	text-transform: uppercase;
+	font-weight: bolder;
+	padding: 0px;
+	margin: 0px;
+	line-height:22px;
+	text-align: center;
+	/*font-size: 18px;*/
+	
+}
 .label
 {
 	font-family: "Garamond";
@@ -357,12 +371,30 @@ hr
 	    <div class="col-5">
 	        <span class="lineName"><?php echo $data['Gender'] ?></span>
 	    </div>
+	    <?php 
+			$notesData = explode(",", $data['Notes']);
+			if(count($notesData) == 2){
+		?>
+			<div class="col-2 text-right">
+				<p class="labelName">Ward:</p>
+			</div>
+			<div class="">
+				<span class="lineName"><?php echo $notesData[0] ?></span>
+			</div>
+			<div class="col-2 text-right">
+				<p class="labelName">Bed #:</p>
+			</div>
+			<div class="">
+				<span class="lineName"><?php echo $notesData[1] ?></span>
+			</div>
+		<?php }else{ ?>
 	    <div class="col-2 text-right">
 	        <p class="labelName">QuestID:</p>
 	    </div>
-	    <div class="col-4">
+	    <div class="col">
 	        <span class="lineName"><?php echo $data['PatientID'] ?></span>
 	    </div>
+		<?php } ?>
 	</div>
 	<div class="row" style="margin-top: 10px;">
 	    <div class="col-1"><p class="labelName">Age:</p></div>
@@ -382,14 +414,15 @@ hr
 	<div class="row" style="margin-top: 10px;">
 	    <div class="col col-sm-auto"><p class="labelName">Date Received:</p></div>
 	    <div class="col col-sm-auto">
-	        <u><?php echo $data['CreationDate'] ?></u>
+	        <u><?php echo $data['TransactionDate'] ?></u>
 	    </div>
 	    <div class="col"></div>
 	    <div class="col col-sm-auto">
 	        <p class="labelName">Reported:</p>
 	    </div>
 	    <div class="col col-sm-auto">
-	        <u><?php echo $data['CreationDate'] ?></u>
+			<u><?php echo $lab->creationDate($data['chemID'], "lab_chemistry", "chemID");
+			?></u>
 	    </div>
 	    <div class="col"></div>
 	    <div class="col col-sm-auto">
@@ -507,7 +540,10 @@ hr
 	            	<span class="line"><?php echo $data['BUAcon'] ?></span>
 	            </div>
 	            <div class="col-3">
-	            	<p class="label">mg/dl 3 - 7.1</p>
+	            	<p class="label">
+					<!-- mg/dl 3 - 7.1 -->
+					mg/dl 2.60 - 7.18
+					</p>
 	            </div>
 			</div>
 		<?php } ?>	
@@ -584,7 +620,10 @@ hr
 	            	<span class="line"><?php echo $data['TRIGcon'] ?></span>
 	            </div>
 	            <div class="col-3">
-	            	<p class="label">mg/dl 27-150</p>
+	            	<p class="label">
+						<!-- mg/dl 27-150 -->
+						mg/dl 26.54-150
+					</p>
 	            </div>
 			</div>
 			<?php } ?>
@@ -601,7 +640,10 @@ hr
 	            	<span class="line"><?php echo $data['HDLcon'] ?></span>
 	            </div>
 	            <div class="col-3">
-	            	<p class="label">mg/dl 35-85.32</p>
+	            	<p class="label">
+						<!-- mg/dl 35-85.32 -->
+						mg/dl 34.6-85
+					</p>
 	            </div>
 			</div>
 			<?php } ?>
@@ -618,7 +660,10 @@ hr
 	            	<span class="line"><?php echo $data['LDLcon'] ?></span>
 	            </div>
 	            <div class="col-3">
-	            	<p class="label">mg/dl 96.52-158.30</p>
+	            	<p class="label">
+						<!-- mg/dl 96.52-158.30 -->
+						mg/dl 96.15-157.70
+					</p>
 	            </div>
 			</div>
 			<?php } ?>
@@ -772,6 +817,15 @@ hr
 			    <div class="col-2">
 	            	<span class="line"><?php echo $data['GGTP'] ?></span>
 	            </div>
+			</div>			
+			<?php } ?>
+			<?php if ($data['chemNotes'] != '' and $data['chemNotes'] != 'N/A') {			
+			?>
+			<div class="row mt-1" >
+			    <div class="col-3"><p class="label">Other Notes</p></div>
+			    <div class="col-6">
+	            	<span class="line2"><?php echo $data['chemNotes'] ?></span>
+	            </div>
 			</div>
 			<?php } ?>
 			<?php if ($data['LDH'] != '' and $data['LDH'] != '0') {			
@@ -782,7 +836,10 @@ hr
 	            	<span class="line"><?php echo $data['LDH'] ?></span>
 	            </div>
 	             <div class="col-3">
-	            	<p class="label">U/L 132-228</p><br>
+	            	<p class="label">
+						<!-- U/L 132-228 -->
+		            	U/L 225-450
+					</p><br>
 	            </div>
 			</div>
 			<?php } ?>
@@ -976,7 +1033,10 @@ hr
 	            	<span class="line"><?php echo $data['BILTotal'] ?></span>
 	            </div>
 	            <div class="col-3">
-	            	<p class="label">umol/L 0 - 20</p>
+	            	<p class="label">
+					<!-- umol/L 0 - 20 -->
+					umol/L 5 - 21
+					</p>
 	            </div>
 	        </div>    
 			<?php } ?>
@@ -987,7 +1047,10 @@ hr
 	            	<span class="line"><?php echo $data['BILDirect'] ?></span>
 	            </div>
 	            <div class="col-3">
-	            	<p class="label">umol/L 0 - 9</p>
+	            	<p class="label">
+						<!-- umol/L 0 - 9 -->
+						umol/L 0 - 6.9
+					</p>
 	            </div>
 	        </div>    
 			<?php } ?>
@@ -998,7 +1061,10 @@ hr
 	            	<span class="line"><?php echo $data['BILIndirect'] ?></span>
 	            </div>
 	            <div class="col-3">
-	            	<p class="label">umol/L 0 - 11</p>
+	            	<p class="label">
+						<!-- umol/L 0 - 11 -->
+		            	umol/L 5 - 14.1
+					</p>
 	            </div>
 	        </div>    
 			<?php } ?>

@@ -76,7 +76,7 @@ include_once('qcsidebar.php');
 						t.TransactionID=d.TransactionID AND 
 						t.TransactionID=p.TransactionID AND
 						t.TransactionID=x.TransactionID AND
-                        f.CreationDate >= '$SD' AND f.CreationDate <='$ED' AND 
+                        t.TransactionDate >= '$SD' AND t.TransactionDate <='$ED' AND 
                         f.CompanyName LIKE '$Company%' ORDER BY f.LastName";
 
 			           $result = mysqli_query($con, $select);

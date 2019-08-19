@@ -43,7 +43,7 @@ $partsArray = array("CHEST PA",
 					"THORACIC SPINE",
 					"COCCYX",
 					"LUMBAR SPINE",
-					"PELVIS", "SHOULDER AP", "APICOLORDOTIC", "LEG AP LATERAL","DOG", "CAT");
+					"PELVIS", "SHOULDER AP", "APICOLORDOTIC", "LEG AP LATERAL","DOG", "CAT", "KNEE AP/LAT");
 ?>
 
 

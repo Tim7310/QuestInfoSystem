@@ -563,6 +563,8 @@ include_once('cashsidebar.php');
 				<!-- <input type="text"  name="billto" id="billto" class="form-control newPatStyle" id="myInput" value="" /> -->
 				<label for="" class="newPatLabel">Senior/PWD ID:</label>
 				<input type="text"  name="sid" id="SID" class="form-control newPatStyle" id="myInput" value="" />
+				<label for="" class="newPatLabel">~ NOTES ~</label>
+				<input type="text"  name="notes" id="notes" class="form-control newPatStyle"  />
 				<br>
 				<button type="submit"  name="ADDNewRecord" class="btn btn-primary" style="font-size: 14px; width: 120px; height: 40px;" id="NPbtn">
 				<i class="far fa-check-circle"></i>&nbsp; SUBMIT</button>
@@ -1007,6 +1009,7 @@ include_once('cashsidebar.php');
 			var age = $("input[name=age]").val();
 			var gender = $("input[name=gender]").val();
 			var bt = $("input[name=billto]").val();
+			var notes = $("input[name=notes]").val();
 			// if (company.length && position.length && fn.length && mn.length && ln.length && add.length && bd.length) {
 				var option = { 
 					target: "#APloader",

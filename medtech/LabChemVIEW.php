@@ -317,7 +317,8 @@ include_once('labsidebar.php');
 	            	<p><?php echo $data['TRIGcon'] ?></p>
 	            </div>
 	            <div class="col-3">
-	            	mg/dl 27-150
+	            	<!-- mg/dl 27-150 -->
+						mg/dl 26.54-150
 	            </div>
 			</div>
 			<div class="form-group row">
@@ -332,7 +333,8 @@ include_once('labsidebar.php');
 	            	<p><?php echo $data['HDLcon'] ?></p>
 	            </div>
 	            <div class="col-3">
-	            	mg/dl 35-85.32
+	            	<!-- mg/dl 35-85.32 -->
+						mg/dl 34.6-85
 	            </div>
 			</div>
 			<div class="form-group row">
@@ -347,7 +349,8 @@ include_once('labsidebar.php');
 	            	<p><?php echo $data['LDLcon'] ?></p>
 	            </div>
 	            <div class="col-3">
-	            	mg/dl 96.52-158.30
+	            	<!-- mg/dl 96.52-158.30 -->
+						mg/dl 96.15-157.70
 	            </div>
 			</div>
 			<div class="form-group row">
@@ -475,6 +478,12 @@ include_once('labsidebar.php');
 	            	<b><?php echo $data['GGTP']; ?></b>
 	            </div>
 			</div>
+			<div class="form-group row">
+	            <label for="notes" class="col-3 col-form-label"><b>Other Notes :</b></label>
+	            <div class="col-6">
+	            	<p><?php echo $data['chemNotes'] ?></p>
+	            </div>
+			</div>
 			<button class="btn btn-info mb-2" type="button" data-toggle="collapse" data-target="#collapseMore" aria-expanded="false" aria-controls="collapseMore" id="more" style="padding-top: 0px;padding-bottom: 0px;">
 		    	More Test &nbsp;<i class='fas fa-arrow-alt-circle-right'></i>
 		  	</button>
@@ -485,7 +494,8 @@ include_once('labsidebar.php');
 		            	<p><?php echo $data['LDH'] ?></p>
 		            </div>
 		            <div class="col-4">
-		            	U/L 132-228
+		            	<!-- U/L 132-228 -->
+		            	U/L 225-450
 		            </div>
 				</div>	
 				<div class="form-group row">
@@ -644,7 +654,8 @@ include_once('labsidebar.php');
 		            	<p><?php echo $data['BILTotal'] ?></p>
 		            </div>
 		            <div class="col-4">
-		            	umol/L 0 - 20
+		            	<!-- umol/L 0 - 20 -->
+		            	umol/L 5 - 21
 		            </div>
 				</div>
 				<div class="form-group row">
@@ -653,7 +664,8 @@ include_once('labsidebar.php');
 		            	<p><?php echo $data['BILDirect'] ?></p>
 		            </div>
 		            <div class="col-4">
-		            	umol/L 0 - 9
+		            	<!-- umol/L 0 - 9 -->
+		            	umol/L 0 - 6.9
 		            </div>
 				</div>
 				<div class="form-group row">
@@ -662,7 +674,8 @@ include_once('labsidebar.php');
 		            	<p><?php echo $data['BILIndirect'] ?></p>
 		            </div>
 		            <div class="col-4">
-		            	umol/L 0 - 11
+		            	<!-- umol/L 0 - 11 -->
+		            	umol/L 5 - 14.1
 		            </div>
 				</div>
 				<div class="form-group row">

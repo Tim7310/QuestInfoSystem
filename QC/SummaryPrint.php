@@ -84,7 +84,7 @@ if ($Company == 'DNATA' || $Company == 'DNATA TRAVEL INC')
                 $DT = $row['Drugtest'];
                 $Preg = $row['PregTest'];
                 $FecMicro = $row['FecMicro'];
-                if ($FecMicro == "NO INTESTINAL PARASITE SEEN") 
+                if ($FecMicro == "NO OVA OR PARASITE SEEN" || $FecMicro =="NO INTESTINAL PARASITE SEEN") 
                     {
                         $FecMicro1="NIPS";
                     }
@@ -227,7 +227,7 @@ else
                         $HBsAg1 = "N/A";
                     }
                 $FecMicro = $row['FecMicro'];
-                if ($FecMicro == "NO INTESTINAL PARASITE SEEN") 
+                if ($FecMicro == "NO OVA OR PARASITE SEEN" || $FecMicro =="NO INTESTINAL PARASITE SEEN") 
                     {
                         $FecMicro1="NIPS";
                     }

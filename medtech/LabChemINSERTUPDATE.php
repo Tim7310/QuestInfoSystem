@@ -85,19 +85,21 @@ $path = $_POST['pathID'];
   $BILIndirect = $_POST['BILIndirect'];
   $AGRatio = $_POST['AGRatio'];
 
+  $notes = $_POST['notes'];
+
 $date=date("Y-m-d H:i:s");
 
   try{
     $check =  $lab->getData($PatientID, $id, "lab_chemistry");
      if (!is_array($check)) {
 
-    $lab->addChem($id, $PatientID, $FBS, $FBScon, $BUA, $BUAcon, $BUN, $BUNcon, $CREA, $CREAcon, $CHOL, $CHOLcon, $TRIG, $TRIGcon, $HDL, $HDLcon, $LDL, $LDLcon, $CH, $VLDL, $Na, $K, $Cl, $ALT, $AST, $HB, $ALP,  $PSA, $RBS, $RBScon, $GGTP, $path, $mdID, $qcID, $date, $LDH, $Calcium, $Amylase, $Lipase, $InPhos, $Protein, $Albumin, $Globulin, $Magnesium, $OGTT1, $OGTT1con, $OGTT2, $OGTT2con, $OGCT, $OGCTcon, $CPKMB, $CPKMM, $totalCPK, $IonCalcium, $BILTotal, $BILDirect, $BILIndirect, $AGRatio);
+    $lab->addChem($id, $PatientID, $FBS, $FBScon, $BUA, $BUAcon, $BUN, $BUNcon, $CREA, $CREAcon, $CHOL, $CHOLcon, $TRIG, $TRIGcon, $HDL, $HDLcon, $LDL, $LDLcon, $CH, $VLDL, $Na, $K, $Cl, $ALT, $AST, $HB, $ALP,  $PSA, $RBS, $RBScon, $GGTP, $path, $mdID, $qcID, $date, $LDH, $Calcium, $Amylase, $Lipase, $InPhos, $Protein, $Albumin, $Globulin, $Magnesium, $OGTT1, $OGTT1con, $OGTT2, $OGTT2con, $OGCT, $OGCTcon, $CPKMB, $CPKMM, $totalCPK, $IonCalcium, $BILTotal, $BILDirect, $BILIndirect, $AGRatio, $notes);
        echo "<script> alert('Record Added Successfully'); </script>";
        echo "<script>window.open('LabChemView.php?id=$PatientID&tid=$id','_self');</script>";
     }else{
-      $lab->updateChem($id, $PatientID, $FBS, $FBScon, $BUA, $BUAcon, $BUN, $BUNcon, $CREA, $CREAcon, $CHOL, $CHOLcon, $TRIG, $TRIGcon, $HDL, $HDLcon, $LDL, $LDLcon, $CH, $VLDL, $Na, $K, $Cl, $ALT, $AST, $HB, $ALP, $PSA, $RBS, $RBScon, $GGTP, $path, $mdID, $qcID, $date, $LDH, $Calcium, $Amylase, $Lipase, $InPhos, $Protein, $Albumin, $Globulin, $Magnesium, $OGTT1, $OGTT1con, $OGTT2, $OGTT2con, $OGCT, $OGCTcon, $CPKMB, $CPKMM, $totalCPK, $IonCalcium, $BILTotal, $BILDirect, $BILIndirect, $AGRatio);
-        echo "<script> alert('Record Updated Successfully'); </script>";
-        echo "<script>window.open('LabChemView.php?id=$PatientID&tid=$id','_self');</script>";
+    $lab->updateChem($id, $PatientID, $FBS, $FBScon, $BUA, $BUAcon, $BUN, $BUNcon, $CREA, $CREAcon, $CHOL, $CHOLcon, $TRIG, $TRIGcon, $HDL, $HDLcon, $LDL, $LDLcon, $CH, $VLDL, $Na, $K, $Cl, $ALT, $AST, $HB, $ALP, $PSA, $RBS, $RBScon, $GGTP, $path, $mdID, $qcID, $date, $LDH, $Calcium, $Amylase, $Lipase, $InPhos, $Protein, $Albumin, $Globulin, $Magnesium, $OGTT1, $OGTT1con, $OGTT2, $OGTT2con, $OGCT, $OGCTcon, $CPKMB, $CPKMM, $totalCPK, $IonCalcium, $BILTotal, $BILDirect, $BILIndirect, $AGRatio, $notes);
+      echo "<script> alert('Record Updated Successfully'); </script>";
+      echo "<script>window.open('LabChemView.php?id=$PatientID&tid=$id','_self');</script>";
     }
   }catch (Exception $e) {
      echo "<script> alert('Error: $e->getMessage()'); </script>";

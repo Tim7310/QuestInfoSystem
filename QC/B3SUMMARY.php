@@ -72,7 +72,7 @@ include_once('qcsidebar.php');
 			                $comnam = $row['CompanyName'];
 			               /* $CBCOt = $row['CBCOt'];*/
 			                $FecMicro = $row['FecMicro'];
-			                if ($FecMicro == "NO INTESTINAL PARASITE SEEN") 
+			                if ($FecMicro == "NO OVA OR PARASITE SEEN") 
 			                    {
 			                        $FecMicro1="NIPS";
 			                    }

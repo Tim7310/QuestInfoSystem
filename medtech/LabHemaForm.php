@@ -252,12 +252,30 @@ $printCount = $lab->checkPrint($id, $tid, 'HEMATOLOGY');
 	    <div class="col-6">
 	        <span class="lineName"><?php echo $data['Gender'] ?></span>
 	    </div>
+		<?php 
+			$notesData = explode(",", $data['Notes']);
+			if(count($notesData) == 2){
+		?>
+			<div class="col-2 text-right">
+				<p class="labelName">Ward:</p>
+			</div>
+			<div class="">
+				<span class="lineName"><?php echo $notesData[0] ?></span>
+			</div>
+			<div class="col-2 text-right">
+				<p class="labelName">Bed #:</p>
+			</div>
+			<div class="">
+				<span class="lineName"><?php echo $notesData[1] ?></span>
+			</div>
+		<?php }else{ ?>
 	    <div class="col-2 text-right">
 	        <p class="labelName">QuestID:</p>
 	    </div>
 	    <div class="col">
 	        <span class="lineName"><?php echo $data['PatientID'] ?></span>
 	    </div>
+		<?php } ?>
 	</div>
 	<div class="row" style="margin-top: 10px;">
 	    <div class="col-1"><p class="labelName">Age:</p></div>
@@ -278,14 +296,14 @@ $printCount = $lab->checkPrint($id, $tid, 'HEMATOLOGY');
 	`1>
 	    <div class="col col-sm-auto"><p class="labelName">Date Received:</p></div>
 	    <div class="col col-sm-auto">
-	        <u><?php echo $data['CreationDate'] ?></u>
+	        <u><?php echo $data['TransactionDate'] ?></u>
 	    </div>
 	    <div class="col"></div>
 	    <div class="col col-sm-auto">
 	        <p class="labelName">Reported:</p>
 	    </div>
 	    <div class="col col-sm-auto">
-	        <u><?php echo $data['CreationDate'] ?></u>
+	        <u><?php echo $lab->creationDate($data['hemaID'], "lab_hematology", "hemaID") ?></u>
 	    </div>
 	    <div class="col"></div>
 	    <div class="col col-sm-auto">
@@ -299,7 +317,7 @@ $printCount = $lab->checkPrint($id, $tid, 'HEMATOLOGY');
 	</div>
 </div>
 <!--Footer-->
-<div style="position: absolute;margin-top: 785px;margin-left:-10px;">
+<div style="position: absolute;margin-top: 780px;margin-left:-10px;">
 	<div class="col-md-12 ">
 	<span style="font-size: 12px;">Note: Specimen rechecked, result/s verified.</span>
 	<div class="card" style="border-radius: 0px; margin-top: 10px;">
@@ -439,6 +457,34 @@ $printCount = $lab->checkPrint($id, $tid, 'HEMATOLOGY');
 					<div class="col"><p class="labelName">150~400</p></div>
 				</div>
 				</div>
+				<?php }
+				if ($data['bloodType'] != "" and $data['bloodType'] != "N/A") {	?>
+				<div class="row" style="margin: 10px;">
+					<div class="col-4"><p class="labelName">Blood Type</p></div>
+					<div class="col-2"><p class="lineRes"><?php echo $data['bloodType'] ?></p></div>
+				</div>
+				<?php }
+				if ($data['rh'] != "" and $data['rh'] != "N/A") {	?>
+					<div class="row" style="margin: 10px;">
+						<div class="col-4"><p class="labelName">RH</p></div>
+						<div class="col-2"><p class="lineRes"><?php echo $data['rh'] ?></p></div>
+					</div>
+				<?php }
+				if ($data['clottingTime'] != "" and $data['clottingTime'] != "N/A") {	?>
+					<div class="row" style="margin: 10px;">
+						<div class="col-4"><p class="labelName">Clotting Time</p></div>
+						<div class="col-2"><p class="lineRes"><?php echo $data['clottingTime'] ?></p></div>
+						<div class="col"><p class="labelName">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Minutes</p></div>
+						<div class="col"><p class="labelName">4-10 Minutes</p></div>
+					</div>
+				<?php }
+				if ($data['bleedingTime'] != "" and $data['bleedingTime'] != "N/A") {	?>
+					<div class="row" style="margin: 10px;">
+						<div class="col-4"><p class="labelName">Bleeding Time</p></div>
+						<div class="col-2"><p class="lineRes"><?php echo $data['bleedingTime'] ?></p></div>
+						<div class="col"><p class="labelName">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Minutes</p></div>
+						<div class="col"><p class="labelName">1-5 Minutes</p></div>
+					</div>
 				<?php }
 				if ($data['PTime'] != "" and $data['PTime'] != "N/A") {
 					

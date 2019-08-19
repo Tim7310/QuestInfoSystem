@@ -323,7 +323,8 @@ include_once('labsidebar.php');
 		            	 <b><center><?php echo $check2['TSH'] ?></center></b>
 		            </div>
 		            <div class="col-2">
-		            	uIU/mL 0.40-4.0
+		            	<!-- uIU/mL 0.40-4.0 -->
+						uIU/mL 0.4-5.0
 		            </div>
 				</div>
 				<div class="form-group row">
@@ -332,7 +333,8 @@ include_once('labsidebar.php');
 		            	 <b><center><?php echo $check2['FT3'] ?></center></b>
 		            </div>
 		            <div class="col-2">
-		            	ng/dL 1.4-4.2
+		            	<!-- ng/dL 1.4-4.2 -->
+						ng/dL 0.52-1.85
 		            </div>
 				</div>
 				<div class="form-group row">
@@ -341,7 +343,8 @@ include_once('labsidebar.php');
 		            	 <b><center><?php echo $check2['FT4'] ?></center></b>
 		            </div>
 		            <div class="col-2">
-		            	ng/dL 0.8-4.2
+		            	<!-- ng/dL 0.8-4.2 -->
+						ng/dL 4.4-11.6
 		            </div>
 				</div>
 				<div class="row ">

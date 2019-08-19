@@ -50,26 +50,25 @@ include_once('qcsidebar.php');
 					</thead>
 					<?php
 					include_once('../summarycon.php');
-	include_once('../summarycon.php');
-  	$select = "SELECT * FROM qpd_patient f, lab_microscopy m, lab_hematology h, lab_toxicology s, qpd_xray x, qpd_class c, qpd_vital v, qpd_medhis d, qpd_pe p, qpd_trans t WHERE
+  					$select = "SELECT DISTINCT * FROM qpd_patient f, lab_microscopy m, lab_hematology h, lab_toxicology s, qpd_xray x, qpd_class c, /*qpd_vital v, qpd_medhis d, qpd_pe p,*/ qpd_trans t WHERE
                         f.PatientID=m.PatientID AND 
                         f.PatientID=h.PatientID AND 
                         f.PatientID=x.PatientID AND
                         f.PatientID=c.PatientID AND
                         f.PatientID=s.PatientID AND
-                        f.PatientID=v.PatientID AND
+                        /*f.PatientID=v.PatientID AND
                         f.PatientID=d.PatientID AND
-                        f.PatientID=p.PatientID AND 
+                        f.PatientID=p.PatientID AND */
                         f.PatientID=t.PatientID AND 
                         t.TransactionID=m.TransactionID AND 
                         t.TransactionID=h.TransactionID AND
                         t.TransactionID=x.TransactionID AND 
                         t.TransactionID=s.TransactionID AND
                         t.TransactionID=c.TransactionID AND
-                        t.TransactionID=v.TransactionID AND
+                        /*t.TransactionID=v.TransactionID AND
                         t.TransactionID=d.TransactionID AND 
-                        t.TransactionID=p.TransactionID AND
-                        f.CreationDate >= '$SD' AND f.CreationDate <='$ED' AND 
+                        t.TransactionID=p.TransactionID AND*/
+                        t.TransactionDate >= '$SD' AND t.TransactionDate <='$ED' AND 
                         f.CompanyName LIKE '$Company%' ORDER BY f.LastName";
 					$result = mysqli_query($con, $select);
 					$i=0;
@@ -82,11 +81,11 @@ include_once('qcsidebar.php');
 			                $age = $row['Age'];
 			                $gen = $row['Gender'];
 			                $connum = $row['ContactNo'];
-			                $date = $row['CreationDate'];
+			                $date = $row['TransactionDate'];
 			                $comnam = $row['CompanyName'];
 			                $CBCOt = $row['CBCOt'];
 			                $FecMicro = $row['FecMicro'];
-			                if ($FecMicro == "NO INTESTINAL PARASITE SEEN") 
+			                if ($FecMicro == "NO OVA OR PARASITE SEEN" || $FecMicro =="NO INTESTINAL PARASITE SEEN") 
 			                    {
 			                        $FecMicro1="NIPS";
 			                    }
@@ -138,6 +137,7 @@ include_once('qcsidebar.php');
 			                $patclass = $row['MedicalClass'];
 
 			                $note = $row['Notes'];
+			                
 			                if ($patclass == "CLASS A - Physically Fit")
 			                {
 			                    $patclass1 = "Class A";
@@ -164,7 +164,7 @@ include_once('qcsidebar.php');
 			                    $patclass2 = $note;
 			                }
 
-			                $findings = $row['find'];
+			                /*$findings = $row['find'];
 			                if ($findings == "")
 			                {
 			                    $findings1 = "NORMAL";
@@ -172,7 +172,7 @@ include_once('qcsidebar.php');
 			                else
 			                {
 			                    $findings1 = $row['find'];
-			                }
+			                }*/
 
 
 

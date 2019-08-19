@@ -520,7 +520,7 @@ include_once('labsidebar.php');
 	            	<div class="col-2">
 	            		<SELECT class="form-control" name="FecMicro" id="FecMicro">
 				 	 		<OPTION >N/A</OPTION>
-				 	 		<OPTION value="NO INTESTINAL PARASITE SEEN">NO INTESTINAL PARASITE SEEN</OPTION>
+				 	 		<OPTION value="NO OVA OR PARASITE SEEN">NO OVA OR PARASITE SEEN</OPTION>
 				 	 		<OPTION >Presence of:</OPTION>
 				 	 	</SELECT>
 	            	</div>

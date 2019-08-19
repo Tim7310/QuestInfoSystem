@@ -46,21 +46,56 @@ $PTime = $_POST['PTime'];
 $PTControl = $_POST['PTControl'];
 $ActPercent = $_POST['ActPercent'];
 $INR = $_POST['INR'];
+ 
+$INRNV = $_POST['INRNV']; 
+
+if($PTime != ""){
+  $PTimeNV = $_POST['PTimeNV']; 
+}else{
+  $PTimeNV = "";
+}
+if($PTControl != ""){
+  $PTControlNV = $_POST['PTControlNV'];
+}else{
+  $PTControlNV = "";
+}
+if($ActPercent != ""){
+  $ActPercentNV = $_POST['ActPercentNV'];
+}else{
+  $ActPercentNV = "";
+}
+if($INR != ""){
+  $INRNV = $_POST['INRNV'];
+}else{
+  $INRNV = "";
+}
+
 $PR131 = $_POST['PR131'];
 $APTTime = $_POST['APTTime'];
 $APTControl = $_POST['APTControl'];
-$PTimeNV = $_POST['PTimeNV']; 
-$PTControlNV = $_POST['PTControlNV'];
-$ActPercentNV = $_POST['ActPercentNV']; 
-$INRNV = $_POST['INRNV']; 
-$APTTimeNV = $_POST['APTTimeNV'];
-$APTControlNV = $_POST['APTControlNV'];
+
+if($APTTime != ""){
+  $APTTimeNV = $_POST['APTTimeNV'];
+}else{
+  $APTTimeNV = "";
+}
+if($APTControl != ""){
+  $APTControlNV = $_POST['APTControlNV'];
+}else{
+  $APTControlNV = "";
+}
+
+
 //Malarial Smear
 $MS = $_POST['MS'];
 //ESR
 $ESR = $_POST['ESR'];
 $ESRMethod = $_POST['ESRMethod'];
 
+$bt = $_POST['bt'];
+$ct = $_POST['ct'];
+$rh = $_POST['rh'];
+$blt = $_POST['blt'];
 
 $date=date("Y-m-d H:i:s");
 
@@ -68,11 +103,11 @@ $date=date("Y-m-d H:i:s");
     $check =  $lab->getData($PatientID, $id, "lab_hematology");
      if (!is_array($check)) {
 
-    $lab->addHema($id, $PatientID, $WhiteBlood, $Hemoglobin, $HemoNR, $Hematocrit, $HemaNR, $Neutrophils, $Lymphocytes, $Monocytes, $CBCOt, $EOS, $BAS, $CBCRBC, $PLT, $PTime, $PTControl, $ActPercent, $INR, $PR131, $APTTime, $APTControl, $path, $mdID, $qcID, $date, $PTimeNV, $PTControlNV, $ActPercentNV, $INRNV, $APTTimeNV, $APTControlNV, $MS, $ESR, $ESRMethod);
+    $lab->addHema($id, $PatientID, $WhiteBlood, $Hemoglobin, $HemoNR, $Hematocrit, $HemaNR, $Neutrophils, $Lymphocytes, $Monocytes, $CBCOt, $EOS, $BAS, $CBCRBC, $PLT, $PTime, $PTControl, $ActPercent, $INR, $PR131, $APTTime, $APTControl, $path, $mdID, $qcID, $date, $PTimeNV, $PTControlNV, $ActPercentNV, $INRNV, $APTTimeNV, $APTControlNV, $MS, $ESR, $ESRMethod, $bt, $rh, $ct, $blt);
       echo "<script> alert('Record Added Successfully'); </script>";
       echo "<script>window.open('LabHemaView.php?id=$PatientID&tid=$id','_self');</script>";
     }else{
-      $lab->updateHema($id, $PatientID, $WhiteBlood, $Hemoglobin, $HemoNR, $Hematocrit, $HemaNR, $Neutrophils, $Lymphocytes, $Monocytes, $CBCOt, $EOS, $BAS, $CBCRBC, $PLT, $PTime, $PTControl, $ActPercent, $INR, $PR131, $APTTime, $APTControl, $path, $mdID, $qcID, $date, $PTimeNV, $PTControlNV, $ActPercentNV, $INRNV, $APTTimeNV, $APTControlNV, $MS, $ESR, $ESRMethod);
+      $lab->updateHema($id, $PatientID, $WhiteBlood, $Hemoglobin, $HemoNR, $Hematocrit, $HemaNR, $Neutrophils, $Lymphocytes, $Monocytes, $CBCOt, $EOS, $BAS, $CBCRBC, $PLT, $PTime, $PTControl, $ActPercent, $INR, $PR131, $APTTime, $APTControl, $path, $mdID, $qcID, $date, $PTimeNV, $PTControlNV, $ActPercentNV, $INRNV, $APTTimeNV, $APTControlNV, $MS, $ESR, $ESRMethod, $bt, $rh, $ct, $blt);
        echo "<script> alert('Record Updated Successfully'); </script>";
        echo "<script>window.open('LabHemaView.php?id=$PatientID&tid=$id','_self');</script>";
     }

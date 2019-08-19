@@ -62,7 +62,7 @@ include_once('qcsidebar.php');
 						t.TransactionID=x.TransactionID AND 
 						t.TransactionID=c.TransactionID AND 
 						t.TransactionID=p.TransactionID AND
-						f.CreationDate >= '$SD' AND f.CreationDate <='$ED' AND 
+						t.TransactionDate >= '$SD' AND t.TransactionDate <='$ED' AND 
 						f.CompanyName LIKE '$Company%' GROUP BY t.TransactionID";
 					$result = mysqli_query($con, $select);
 					$i=0;
@@ -79,7 +79,7 @@ include_once('qcsidebar.php');
 			                $comnam = $row['CompanyName'];
 			                $CBCOt = $row['CBCOt'];
 			                $FecMicro = $row['FecMicro'];
-			                if ($FecMicro == "NO INTESTINAL PARASITE SEEN") 
+			                if ($FecMicro == "NO OVA OR PARASITE SEEN" || $FecMicro =="NO INTESTINAL PARASITE SEEN") 
 			                    {
 			                        $FecMicro1="NIPS";
 			                    }

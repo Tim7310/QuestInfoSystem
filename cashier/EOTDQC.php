@@ -258,6 +258,7 @@ if (mysqli_connect_errno())
 			            <td><b>Amount</b></td>
 			            <td><center><b>Name</b></center></td>
 			            <td><b>BillTo</b></td>
+			            <td><b>Time</b></td>
 			            <td><b>REMARKS</b></td>
 			        </tr>
 				</thead>
@@ -274,12 +275,14 @@ if (mysqli_connect_errno())
 				        $midnam = $row['MiddleName'];
 				        $lasnam = $row['LastName'];
 				        $billto = $row['Biller'];
+				        $time = $row['TransactionDate'];
 
 					echo"
 						<tr>
 			                <td width='5%'>$totalprice --</td>
 			                <td width='40%'><b>$lasnam,$firnam &nbsp;$midnam</b></td>
 			                <td width='20%'>-$billto</td>
+			                <td>-$time</td>
 			                <td></td>
 			            </tr>";	
 					}

@@ -117,7 +117,7 @@
 	font-weight: bolder;
 	padding: 0px;
 	margin: 0px;
-	line-height: 25px;
+	line-height: 20px;
 	
 }
 .labelName
@@ -278,12 +278,30 @@
 	    <div class="col-6">
 	        <span class="lineName"><?php echo $data['Gender'] ?></span>
 	    </div>
+	    <?php 
+			$notesData = explode(",", $data['Notes']);
+			if(count($notesData) == 2){
+		?>
+			<div class="col-2 text-right">
+				<p class="labelName">Ward:</p>
+			</div>
+			<div class="">
+				<span class="lineName"><?php echo $notesData[0] ?></span>
+			</div>
+			<div class="col-2 text-right">
+				<p class="labelName">Bed #:</p>
+			</div>
+			<div class="">
+				<span class="lineName"><?php echo $notesData[1] ?></span>
+			</div>
+		<?php }else{ ?>
 	    <div class="col-2 text-right">
 	        <p class="labelName">QuestID:</p>
 	    </div>
 	    <div class="col">
 	        <span class="lineName"><?php echo $data['PatientID'] ?></span>
 	    </div>
+		<?php } ?>
 	</div>
 	<div class="row" style="margin-top: 10px;">
 	    <div class="col-1"><p class="labelName">Age:</p></div>
@@ -304,14 +322,14 @@
 	<div class="row" style="margin-top: 10px;">
 	    <div class="col col-sm-auto"><p class="labelName">Date Received:</p></div>
 	    <div class="col col-sm-auto">
-	        <u><?php echo $data['CreationDate'] ?></u>
+	        <u><?php echo $data['TransactionDate'] ?></u>
 	    </div>
 	    <div class="col"></div>
 	    <div class="col col-sm-auto">
 	        <p class="labelName">Reported:</p>
 	    </div>
 	    <div class="col col-sm-auto">
-	        <u><?php echo $data['CreationDate'] ?></u>
+	        <u><?php echo $lab->creationDate($data['microID'], "lab_microscopy", "microID") ?></u>
 	    </div>
 	    <div class="col"></div>
 	    <div class="col col-sm-auto">
@@ -517,7 +535,7 @@
 					if($data['Amorph'] != "" and $data['Amorph'] != "N/A"){
 				?>
 				<div class="row" style="margin-top: 5px;">
-					<div class="col-4"><p class="labelName">Amorphus</p></div>
+					<div class="col-4"><p class="labelName">Amorphous</p></div>
 					<div class="col-3"><p class="lineRes"><?php echo $data['Amorph'] ?></p></div>
 				</div>
 				<?php } ?>

@@ -166,12 +166,14 @@ if (isset($_GET['transID'])){
 		<?php
 			$ItemName = explode(",",$data['ItemID']);
 			$itemDisc = explode(',',$data['Discount']);
+			$itemQTY= explode(',',$data['ItemQTY']);
 			foreach ($ItemName as $key=>$item) {
 				
 		?>
 	<tr style=" ">
 		<td style="word-wrap: break-word;width: 150px;" colspan="2">
 			<b>
+				<span style="font-size:10px;">( QTY - <?php echo $itemQTY[$key] ?> ) </span>
 				<?php 
 					$itemdata = $trans->fetch_item($item);
 					echo $itemdata['ItemName'];
@@ -194,6 +196,7 @@ if (isset($_GET['transID'])){
 				$disc = (float)$itemDisc[$key] / 100;
 				$disc = (float)$itemdata['ItemPrice'] * $disc;
 				$price = (float)$itemdata['ItemPrice'] - $disc;
+				$price = $price * (float)$itemQTY[$key];
 			?>
 			<div style="font-size: 10px;">
 				<?php echo $itemdata['ItemPrice']; ?>

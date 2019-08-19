@@ -217,7 +217,7 @@ include_once('labsidebar.php');
 	            	<div class="col-4">
 	            		<SELECT class="form-control" name="HBsAg" id="HBsAg">
 				 	 		<OPTION >N/A</OPTION>
-				 	 		<OPTION value="NON-REACTIVE">NON-REACTIVE</OPTION>
+				 	 		<OPTION value="NONREACTIVE">NONREACTIVE</OPTION>
 				 	 		<OPTION value="REACTIVE">REACTIVE</OPTION>
 				 	 	</SELECT>
 	            	</div>
@@ -227,7 +227,7 @@ include_once('labsidebar.php');
 	            	<div class="col-4">
 	            		<SELECT class="form-control" name="aHav" id="aHav">
 				 	 		<OPTION >N/A</OPTION>
-				 	 		<OPTION value="NON-REACTIVE">NON-REACTIVE</OPTION>
+				 	 		<OPTION value="NONREACTIVE">NONREACTIVE</OPTION>
 				 	 		<OPTION value="REACTIVE">REACTIVE</OPTION>
 				 	 	</SELECT>
 	            	</div>
@@ -237,7 +237,7 @@ include_once('labsidebar.php');
 	            	<div class="col-4">
 	            		 <SELECT class="form-control" name="VDRL" id="VDRL">
 				 	 		<OPTION >N/A</OPTION>
-				 	 		<OPTION value="NON-REACTIVE">NON-REACTIVE</OPTION>
+				 	 		<OPTION value="NONREACTIVE">NONREACTIVE</OPTION>
 				 	 		<OPTION value="REACTIVE">REACTIVE</OPTION>
 				 	 	</SELECT>
 	            	</div>
@@ -341,7 +341,7 @@ include_once('labsidebar.php');
 	            	<div class="col-4">
 	            		 <SELECT class="form-control" name="HBeAG" id="HBeAG">
 				 	 		<OPTION >N/A</OPTION>
-				 	 		<OPTION value="NON-REACTIVE">NON-REACTIVE</OPTION>
+				 	 		<OPTION value="NONREACTIVE">NONREACTIVE</OPTION>
 				 	 		<OPTION value="REACTIVE">REACTIVE</OPTION>
 				 	 	</SELECT>
 	            	</div>
@@ -351,7 +351,7 @@ include_once('labsidebar.php');
 	            	<div class="col-4">
 	            		 <SELECT class="form-control" name="AntiHBE" id="AntiHBE">
 				 	 		<OPTION >N/A</OPTION>
-				 	 		<OPTION value="NON-REACTIVE">NON-REACTIVE</OPTION>
+				 	 		<OPTION value="NONREACTIVE">NONREACTIVE</OPTION>
 				 	 		<OPTION value="REACTIVE">REACTIVE</OPTION>
 				 	 	</SELECT>
 	            	</div>
@@ -361,7 +361,7 @@ include_once('labsidebar.php');
 	            	<div class="col-4">
 	            		 <SELECT class="form-control" name="AntiHBC" id="AntiHBC">
 				 	 		<OPTION >N/A</OPTION>
-				 	 		<OPTION value="NON-REACTIVE">NON-REACTIVE</OPTION>
+				 	 		<OPTION value="NONREACTIVE">NONREACTIVE</OPTION>
 				 	 		<OPTION value="REACTIVE">REACTIVE</OPTION>
 				 	 	</SELECT>
 	            	</div>
@@ -375,7 +375,7 @@ include_once('labsidebar.php');
 		            	<input type="text" name="TSH"  class="form-control" id="TSH">
 		            </div>
 		            <div class="col-4">
-		            	uIU/mL 0.40-4.0
+		            	uIU/mL 0.4-5.0
 		            </div>
 				</div>
 				<div class="form-group row">
@@ -384,7 +384,8 @@ include_once('labsidebar.php');
 		            	<input type="text" name="FT3"  class="form-control" id="FT3">
 		            </div>
 		            <div class="col-4">
-		            	ng/dL 1.4-4.2
+		            	<!-- ng/dL 1.4-4.2 -->
+						ng/dL 0.52 - 1.85
 		            </div>
 				</div>
 				<div class="form-group row">
@@ -393,7 +394,8 @@ include_once('labsidebar.php');
 		            	<input type="text" name="FT4"  class="form-control" id="FT4">
 		            </div>
 		            <div class="col-4">
-		            	ng/dL 0.8-4.2
+		            	<!-- ng/dL 0.8-4.2 -->
+						ng/dL 4.4 - 11.6
 		            </div>
 				</div>
 				<div class="row ">
@@ -422,7 +424,7 @@ include_once('labsidebar.php');
 	            	<div class="col-4">
 	            		 <SELECT class="form-control" name="HIV1" id="HIV1">
 				 	 		<OPTION >N/A</OPTION>
-				 	 		<OPTION value="NON-REACTIVE">NON-REACTIVE</OPTION>
+				 	 		<OPTION value="NONREACTIVE">NONREACTIVE</OPTION>
 				 	 		<OPTION value="REACTIVE">REACTIVE</OPTION>
 				 	 	</SELECT>
 	            	</div>
@@ -432,7 +434,7 @@ include_once('labsidebar.php');
 	            	<div class="col-4">
 	            		 <SELECT class="form-control" name="HIV2" id="HIV2">
 				 	 		<OPTION >N/A</OPTION>
-				 	 		<OPTION value="NON-REACTIVE">NON-REACTIVE</OPTION>
+				 	 		<OPTION value="NONREACTIVE">NONREACTIVE</OPTION>
 				 	 		<OPTION value="REACTIVE">REACTIVE</OPTION>
 				 	 	</SELECT>
 	            	</div>

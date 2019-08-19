@@ -309,6 +309,36 @@ include_once('labsidebar.php');
 	            </div>
 			</div>
 			<div class="form-group row">
+	            <label for="bt" class="col-3 col-form-label">BLOOD TYPE :</label>
+	            <div class="col-2">
+	            	<?php echo $data['bloodType'] ?>
+	            </div>
+			</div>
+			<div class="form-group row">
+	            <label for="rh" class="col-3 col-form-label">RH :</label>
+	            <div class="col-2">
+	            	<?php echo $data['rh'] ?>
+	            </div>
+			</div>
+			<div class="form-group row">
+	            <label for="ct" class="col-3 col-form-label">CLOTTING TIME :</label>
+	            <div class="col-2">
+	            	<?php echo $data['clottingTime'] ?>
+	            </div>
+	            <div class="col-2">
+	            	4-10 Minutes
+	            </div>
+			</div>
+			<div class="form-group row">
+	            <label for="blt" class="col-3 col-form-label">BLEEDING TIME :</label>
+	            <div class="col-2">
+	            	<?php echo $data['bleedingTime'] ?>
+	            </div>
+	            <div class="col-2">
+	            	1-5 Minutes
+	            </div>
+			</div>
+			<div class="form-group row">
 	            <label for="PLATELET" class="col-3 col-form-label">Other Notes :</label>
 	            <div class="col-5">
 	            	<?php echo $data['CBCOt'] ?>

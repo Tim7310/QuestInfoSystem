@@ -3,7 +3,7 @@ class trans {
 	public function fetch_all(){
 		global $pdo;
 
-		$query = $pdo->prepare("SELECT f.*, t.* FROM qpd_patient f, qpd_trans t WHERE f.PatientID = t.PatientID ORDER BY t.TransactionID and t.status = '1'  ");
+		$query = $pdo->prepare("SELECT f.*, t.* FROM qpd_patient f, qpd_trans t WHERE f.PatientID = t.PatientID ORDER BY t.TransactionID and t.status = '1'");
 		$query->execute();
 
 		return $query->fetchAll();

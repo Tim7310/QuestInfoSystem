@@ -321,13 +321,22 @@ $UriNotes = $data2['UriOt'];
 			<div class="col-sm-2"><p class="labelName">Others/Notes:</p></div>
 			<div class="col-sm-4"><p class="line" id="Notes"><?php echo $qc['Notes']?></p></div>
 			<div class="col-sm-2"><p class="labelName">Physician:</p></div>
-			<div class="col-sm-4"><p class="line"><?php echo $pe['Doctor'] ?></p></div>
+			<?php if($pe['Doctor']){ ?>
+				<div class="col-sm-4"><p class="line"><?php echo $pe['Doctor'] ?></p></div>
+			<?php } else{?>
+			<?php ?>
+				<div class="col-sm-4"><p class="line">FROILAN A. CANLAS, M.D.</p></div>
+			<?php } ?>
 		</div>
 		<div class="row">
 			<div class="col-sm-2"><p class="labelName"></p></div>
 			<div class="col-sm-4"><p class="lineName"></p></div>
 			<div class="col-sm-2"><p class="labelName">License:</p></div>
+			<?php if($pe['Doctor']){ ?>
 			<div class="col-sm-4"><p class="lineName"><?php echo $pe['License'] ?></p></div>
+			<?php } else{?>
+				<div class="col-sm-4"><p class="lineName">82498</p></div>
+			<?php } ?>
 		</div>				
 	</div>
 	</div>
@@ -519,7 +528,8 @@ $UriNotes = $data2['UriOt'];
 				</div>
 				<div class="row">
 					<div class="col-5"><p class="labelName">Others/Notes</p></div>
-					<div class="col-2"><p class="lineRes1" id="UriNotes"><?php echo $data2['UriOt'] ?></p></div>
+					<div class="col-7"><p class="lineRes1" id="UriNotes"
+					style="font-size:12px"><?php echo $data2['UriOt'] ?></p></div>
 				</div>
 			</div>
 		</div>
@@ -561,7 +571,7 @@ $UriNotes = $data2['UriOt'];
 <div class="col-sm-12">
 	<div class="card" style="border-radius: 0px; margin-top: 10px;">
 	<div class="card-header"><center><b>RADIOLOGY REPORT</b></center></div>
-	<div class="card-block" style="height: 2.4in;">
+	<div class="card-block" style="height: 2.2in;">
 		<div class="row">
 			<div class="col"><p class="lineName" style="padding-top: 10px;"><?php echo $rad['Comment'] ?></p></div>
 		</div>

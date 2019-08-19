@@ -11,6 +11,19 @@ class rad {
 
 	}
 
+	public function fetchByMonth($month,$year){
+		global $pdo;
+
+		$query = $pdo->prepare("SELECT * FROM qpd_patient f, qpd_trans t, qpd_xray x 
+		WHERE x.TransactionID = t.TransactionID AND f.PatientID = x.PatientID AND
+		MONTH(t.TransactionDate) = '$month' and YEAR(t.TransactionDate) = '$year'
+		 ORDER BY t.TransactionID");
+		$query->execute();
+
+		return $query->fetchAll();
+
+	}
+
 	public function fetch_data($id, $tid){
 			global $pdo;
 

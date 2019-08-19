@@ -285,10 +285,40 @@ include_once('labsidebar.php');
 	            </div>
 			</div>
 			<div class="form-group row">
-	            <label for="PLATELET" class="col-3 col-form-label">OTHER NOTES :</label>
+	            <label for="bt" class="col-3 col-form-label">BLOOD TYPE :</label>
+	            <div class="col-2">
+	            	<input type="text" name="bt"  class="form-control" id="bt">
+	            </div>
+			</div>
+			<div class="form-group row">
+	            <label for="rh" class="col-3 col-form-label">RH :</label>
+	            <div class="col-2">
+	            	<input type="text" name="rh"  class="form-control" id="rh">
+	            </div>
+			</div>
+			<div class="form-group row">
+	            <label for="ct" class="col-3 col-form-label">CLOTTING TIME :</label>
+	            <div class="col-2">
+	            	<input type="text" name="ct"  class="form-control" id="ct">
+				</div>
+				<div class="col-2">
+	            	4-10 Minutes
+				</div>
+			</div>
+			<div class="form-group row">
+	            <label for="blt" class="col-3 col-form-label">BLEEDING TIME :</label>
+	            <div class="col-2">
+	            	<input type="text" name="blt"  class="form-control" id="blt">
+				</div>
+				<div class="col-2">
+	            	1-5 Minutes
+	            </div>
+			</div>
+			<div class="form-group row">
+	            <label for="notes" class="col-3 col-form-label">OTHER NOTES :</label>
 	            <div class="col-5">
 	            	<input type="text" name="CBCOt"  class="form-control">
-	            </div>
+				</div>			
 			</div>
 			<div class="row">
 	            <div class="col">
@@ -307,7 +337,7 @@ include_once('labsidebar.php');
 	            	NV :
 	            </div>
 	            <div class="col-2">
-	            	<input type="text" name="PTimeNV"  class="form-control" id="PTimeNV">
+	            	<input type="text" name="PTimeNV"  class="form-control" id="PTimeNV" value="11-14">
 	            </div>
 	            <div class="col-2">
 	            	SECS
@@ -325,7 +355,7 @@ include_once('labsidebar.php');
 	            	NV :
 	            </div>
 	            <div class="col-2">
-	            	<input type="text" name="PTControlNV"  class="form-control" id="PTControlNV">
+	            	<input type="text" name="PTControlNV"  class="form-control" id="PTControlNV" value="11.5-16.6">
 	            </div>
 	            <div class="col-2">
 	            	SECS
@@ -334,7 +364,7 @@ include_once('labsidebar.php');
 			<div class="form-group row">
 	            <label for="ActPercent" class="col-3 col-form-label">% Activity:</label>
 	            <div class="col-2">
-	            	<input type="text" name="ActPercent"  class="form-control" id="ActPercent">
+	            	<input type="text" name="ActPercent"  class="form-control" id="ActPercent" >
 	            </div>
 	            <div class="col-1">
 	            	%
@@ -343,7 +373,7 @@ include_once('labsidebar.php');
 	            	NV :
 	            </div>
 	            <div class="col-2">
-	            	<input type="text" name="ActPercentNV"  class="form-control" id="ActPercentNV">
+	            	<input type="text" name="ActPercentNV"  class="form-control" id="ActPercentNV" value="82-118">
 	            </div>
 	            <div class="col-2">
 	            	%
@@ -361,7 +391,7 @@ include_once('labsidebar.php');
 	            	NV :
 	            </div>
 	            <div class="col-2">
-	            	<input type="text" name="INRNV"  class="form-control" id="INRNV">
+	            	<input type="text" name="INRNV"  class="form-control" id="INRNV" value="0.82-1.18">
 	            </div>
 			</div>
 			<div class="form-group row">
@@ -388,7 +418,7 @@ include_once('labsidebar.php');
 	            	NV :
 	            </div>
 	            <div class="col-2">
-	            	<input type="text" name="APTTimeNV"  class="form-control" id="APTTimeNV">
+	            	<input type="text" name="APTTimeNV"  class="form-control" id="APTTimeNV" value="27-34">
 	            </div>
 	            <div class="col-2">
 	            	SECS
@@ -407,7 +437,7 @@ include_once('labsidebar.php');
 	            	NV :
 	            </div>
 	            <div class="col-2">
-	            	<input type="text" name="APTControlNV"  class="form-control" id="APTControlNV">
+	            	<input type="text" name="APTControlNV"  class="form-control" id="APTControlNV" value="28.2-40.7">
 	            </div>
 	            <div class="col-2">
 	            	SECS

@@ -37,10 +37,10 @@ $data = $lab->fetchlabByDate("lab_microscopy",$month,$year);
 <?php
 include_once('labsidebar.php');
 ?>
-<div class="container" style="margin-top: 10px;">
+<div class="container-fluid" style="margin-top: 10px;">
 	<table id="example" class="table table-striped table-bordered" cellspacing="0" width="100%">
         			<thead>
-                    	<th>ID</th>
+                    	<th>Transaction ID</th>
                     	<th nowrap>Last Update</th>
 						<th>Company Name</th>
 						<th nowrap>Patient Name</th>
@@ -52,7 +52,7 @@ include_once('labsidebar.php');
 					
 					<tr>
 							<td>
-								<?php echo $patient['PatientID']?>
+								<?php echo $transID?>
 							</td>
 							<td>
 								<?php echo $patient['CreationDate']?>

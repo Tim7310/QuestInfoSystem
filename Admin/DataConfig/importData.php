@@ -71,6 +71,6 @@ foreach ($patients as $patient) {
 	$biller = $_POST['comName'];
 	$itemName = $_POST['item'];
 	$pid = $patientID['PatientID'];
-	$Data->Transaction( $pid, $ttype="ACCOUNT", $cashier="ITDev", $itemName, $itemQTY="1", $biller, $gtotal, $paidIn="", $disc="", $PaidOut="", $gtotal, $status="1", $loe="", $an="", $ac="");
+	$Data->Transaction( $pid, $ttype="APE", $cashier="ITDev", $itemName, $itemQTY="1", $biller, $gtotal, $paidIn="", $disc="", $PaidOut="", $gtotal, $status="1", $loe="", $an="", $ac="");
 }
 ?> 

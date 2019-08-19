@@ -42,7 +42,7 @@ $email = $_POST['email'];
 $age = $_POST['age'];
 $gen = $_POST['gender'];
 $conNo = $_POST['contact'];
-$notes = "";
+$notes = $_POST['notes'];
 $sid = $_POST['sid'];
 $biller = $_POST['billto'];
 try {

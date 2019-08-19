@@ -16,8 +16,10 @@ if (isset($_GET['id']) and isset($_GET['tid'])){
 	$data2 = $lab->getData($id,$tid,"lab_serology");
 	if (is_array($data1)) {
 		$data = $lab->getData($id,$tid,"lab_toxicology");
+		$cd = $lab->creationDate($data['toxicID'], "lab_toxicology", "toxicID");
 	}else{
 		$data = $lab->getData($id,$tid,"lab_serology");
+		$cd = $lab->creationDate($data['seroID'], "lab_serology", "seroID");
 	}
 
 date_default_timezone_set("Asia/Kuala_Lumpur");
@@ -240,14 +242,14 @@ hr
 	<div class="row" style="margin-top: 10px;">
 	    <div class="col col-sm-auto"><p class="labelName">Date Received:</p></div>
 	    <div class="col col-sm-auto">
-	        <u><?php echo $data['CreationDate'] ?></u>
+	        <u><?php echo $data['TransactionDate'] ?></u>
 	    </div>
 	    <div class="col"></div>
 	    <div class="col col-sm-auto">
 	        <p class="labelName">Reported:</p>
 	    </div>
 	    <div class="col col-sm-auto">
-	        <u><?php echo $data['CreationDate'] ?></u>
+	        <u><?php echo $cd ?></u>
 	    </div>
 	    <div class="col"></div>
 	    <div class="col col-sm-auto">
@@ -494,7 +496,10 @@ hr
 	            </div>
 	            <div class="col-1"></div>
 	             <div class="col-2">
-	            	<p class="resunit">uIU/mL 0.40 - 4.0</p>
+	            	<p class="resunit">
+					<!-- uIU/mL 0.40 - 4.0 -->
+					uIU/mL 0.4-5.0
+					</p>
 	            </div>
 			</div>
 		<?php } ?>
@@ -507,7 +512,10 @@ hr
 	            </div>
 	            <div class="col-1"></div>
 	             <div class="col-2">
-	            	<p class="resunit">ng/dL 1.4-4.2</p>
+	            	<p class="resunit">
+					<!-- ng/dL 1.4-4.2 -->
+					ng/dL 0.52-1.85
+					</p>
 	            </div>
 			</div>
 		<?php } ?>
@@ -520,7 +528,10 @@ hr
 	            </div>
 	            <div class="col-1"></div>
 	             <div class="col-2">
-	            	<p class="resunit">ng/dL 0.8-4.2</p>
+	            	<p class="resunit">
+					<!-- ng/dL 0.8-4.2 -->
+					ng/dL 4.4-11.6
+					</p>
 	            </div>
 			</div>
 		<?php } ?>

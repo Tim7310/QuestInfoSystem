@@ -436,8 +436,10 @@ include_once('labsidebar.php');
 				 	 		<OPTION value="FORMED">FORMED</OPTION>
 				 	 		<OPTION value="SEMI-FORMED">SEMI-FORMED</OPTION>
 				 	 		<OPTION value="SOFT">SOFT</OPTION>
+							<OPTION value="WATERY">WATERY</OPTION>
+				 	 		<OPTION value="SLIGHTLY MUCOID">SLIGHTLY MUCOID</OPTION>
 				 	 		<OPTION value="MUCOID">MUCOID</OPTION>
-				 	 		<OPTION value="WATERY">WATERY</OPTION>
+				 	 		
 				 	 	</SELECT>
 	            	</div>
 				</div>
